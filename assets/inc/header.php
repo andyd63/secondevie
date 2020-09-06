@@ -26,6 +26,7 @@ $configSite = initConfigSite();
 <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="./css/ionicons.min.css" rel="stylesheet">
 <link href="./css/main.css" rel="stylesheet">
+<link href="./css/basic.css" rel="stylesheet">
 <link href="./css/style.css" rel="stylesheet">
 <link href="./css/responsive.css" rel="stylesheet">
 

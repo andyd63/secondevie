@@ -13,9 +13,10 @@
   <!-- header -->
   <header>
     <div class="sticky">
+    <div class="textAlignCenter"> <a href="index.html"><img class="img-responsive" src="assets/img/general/logo.png" alt="" ></a> </div>
       <div class="container">  
         <!-- Logo -->
-        <div class="logo"> <a href="index.html"><img class="img-responsive" src="assets/img/general/logo.png" alt="" ></a> </div>
+        
         <nav class="navbar ownmenu">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"><i class="fa fa-navicon"></i></span> </button>

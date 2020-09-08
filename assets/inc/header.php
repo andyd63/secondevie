@@ -1,8 +1,11 @@
-<?php 
+<?php
 require_once('./modeles/m_bdd.php');
+require_once('./modeles/m_clients.php');
+require_once('./assets/inc/_initGeneral/functionInit.php');
+require_once('./assets/inc/function.php');
 require_once('./modeles/mGlobal/m_menu.php');
 require_once('./modeles/m_configSite.php');
-require_once('./assets/inc/_initGeneral/functionInit.php');
+
 $configSite = initConfigSite();
 ?>
 
@@ -30,12 +33,13 @@ $configSite = initConfigSite();
 <link href="./css/style.css" rel="stylesheet">
 <link href="./css/general.css" rel="stylesheet">
 <link href="./css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" /> 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 <!-- JavaScripts -->
 <script src="./js/modernizr.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Online Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>

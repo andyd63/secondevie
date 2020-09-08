@@ -1,6 +1,7 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_module.php";
 $conn = bdd();
 
 if(isset($_GET['action'])) // SI Y A PAS DE PARAMETRE ACTION DANS L URL
@@ -34,8 +35,9 @@ switch($action) {
 	break;
 	
 	case 'reussi':
-		$cli = derclient() ;	
-		include('vues/v_inscription_r.php');
+		$cli = derclient() ;
+		$moduleInscriptionReussi = voir_module(9);	
+		include('vues/v_inscription r.php');
 	break;
 
 	default:

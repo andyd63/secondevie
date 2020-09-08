@@ -1,33 +1,16 @@
 <?php
 
-require_once "./modeles/m_produits.php";
-
-if(isset($_GET['cat']))
-{
-	$action = $_GET['cat'];
-	$prod = produit($action);
-	$cate = categorie($action);
-	include('./vues/vue_boutique.php');
-
-	
-}
+//require_once "./modeles/m_produits.php";
 
 if(isset($_GET['action']))
 {
-	$prod = rech_produit();
-	$nbre_rech = nb_rech_p();
-	include('./vues/vue_boutique.php');
+	$action = $_GET['action'];
+	include('./vues/v_boutique.php');
 
 	
+}else {
+	include('./vues/v_boutique.php');
 }
-
-if((empty($_GET['action'])) and (empty($_GET['cat'])))
-{
-	$action = 'def';
-	
-include('./vues/vue_boutique.php');
-}
-
 
 
 ?>

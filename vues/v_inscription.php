@@ -2,14 +2,14 @@
 
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');?>
-  <?php //include('./assets/inc/menu.php');?>
+  <?php include('./assets/inc/menu.php');?>
 
   
 
   <!-- Content -->
   <div id="content"> 
     <!--======= PAGES INNER =========-->
-    <section class="chart-page padding-top-100 padding-bottom-100">
+    <section class="chart-page padding-top-100 ">
       <div class="container">         
         <!-- Payments Steps -->
         <div class="shopping-cart"> 

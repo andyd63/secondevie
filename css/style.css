@@ -169,7 +169,7 @@ p.intro-small {
 	font-weight: bold !important;
 }
 a:hover, a:focus {
-	color: #ffe115;
+
 }
 .primary-color {
 	color: #ffe115 !important;
@@ -388,7 +388,7 @@ section {
 	position: absolute;
 	bottom: 9px;
 	height: 4px;
-	background: #ffe115;
+
 	height: 7px;
 	width: 100%;
 	z-index: -1;
@@ -418,8 +418,7 @@ header .navbar {
 	position: static;
 	padding: 0px;
 	border-radius: 0px;
-	text-align: center;
-	float: right;
+	text-align: center!important;
 }
 header .logo {
 	float: left;
@@ -481,7 +480,7 @@ header .navbar li a:before {
 	left:0px;
 	top: 45%;
 	z-index: -1;
-	background: #ffe115;
+
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -500,7 +499,7 @@ header .navbar li.active a:before {
 	top: 45%;
 	left:0px;
 	z-index: -1;
-	background: #ffe115;
+
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -859,8 +858,7 @@ header.light-head .ownmenu ul.dropdown li a {
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 header .navbar-collapse {
-	float: left;
-	padding: 0px;
+
 	margin-right: 20px;
 }
 header .user-acc li {
@@ -902,10 +900,10 @@ header .user-acc li a {
 	font-size: 12px;
 }
 header .user-acc .dropdown-menu>li>a:hover {
-	background: #ffe115;
+	
 }
 header .user-acc .dropdown-menu>li>a:focus {
-	background: #ffe115;
+
 }
 header .navbar-right li a:before {
 	display: none;
@@ -940,7 +938,6 @@ header .user-basket .btn {
 	border: none;
 }
 header .user-basket .btn:hover {
-	background: #ffe115;
 	color: #2d3a4b;
 }
 header .user-basket .media-heading {
@@ -2803,7 +2800,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 .shopping-cart .cart-ship-info {
 	text-align: left;
-	margin-top: 50px;
+
 }
 .shopping-cart .cart-ship-info h6 {
 	margin-bottom: 60px;
@@ -4365,7 +4362,7 @@ main {
 	font-size: 14px;
 }
 .login-with li a:hover {
-	background: #ffe115;
+
 }
 .cart-ship-info.register select {
 }

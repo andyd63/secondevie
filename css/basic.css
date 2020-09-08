@@ -269,6 +269,11 @@
 .textAlignCenter{
     text-align: center;
 }
+
+.survol:hover{
+    color:gold;
+}
+
 .middleBar .header-items .header-item a {
     position: relative;
     display: block;

@@ -12,78 +12,31 @@
   
   <!-- header -->
   <header>
-    <div class="sticky">
+    <div class="sticky textAlignCenter">
     <div class="textAlignCenter"> <a href="index.html"><img class="img-responsive" src="assets/img/general/logo.png" alt="" ></a> </div>
-      <div class="container">  
         <!-- Logo -->
         
-        <nav class="navbar ownmenu">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"><i class="fa fa-navicon"></i></span> </button>
-          </div>
-          
+        <nav class="navbar ">
+
           <!-- NAV -->
           <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav">
-            <?php foreach(allSiteMenuGroupe() as $groupe){ 
-                if($groupe['nomAction'] == ''){
-                  $param = 'c='.$groupe['nomControleur'];
-              }else{
-                  $param = 'c='.$groupe['nomControleur'].'&action='.$groupe['nomAction'];
-              }
-                 if($groupe['sousMenu'] == 0){ 
-                  if($groupe['connecte'] == 1){
-                                    if(!isset($_SESSION['mail'])){?>
-                                     <li> <a href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li>
-                                    <?php }
-                                }else{?>
-                                <li> <a href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li>
-                            <?php }
-              }else {?>
-              <li class="dropdown "> <a href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
-                <ul class="dropdown-menu">
-                  <?php          
-                      foreach(allSiteMenuV($groupe['id']) as $lien){ 
-                                if($lien['nomAction'] == ''){
-                                    $param = 'c='.$lien['nomControleur'];
-                                }else{
-                                    $param = 'c='.$lien['nomControleur'].'&action='.$lien['nomAction'];
-                                }
-                                if($lien['connecte'] == 1){
-                                    if(!isset($_SESSION['mail'])){?>
-                                     <li> <a href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li>
-                                    <?php }
-                                }else{?>
-                                <li> <a href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li>
-                            <?php }}
-                   ?>
-                   </ul>
-              </li> <?php }?>
-              
-              <?php }?>
-                          
-              
-           
-             
-          
-          <!-- Nav Right -->
-          <div class="nav-right">
-            <ul class="navbar-right">
-              
-              <!-- USER INFO -->
-              <li class="dropdown user-acc"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="icon-user"></i> </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <h6>HELLO! Jhon Smith</h6>
-                  </li>
-                  <li><a href="#">MY CART</a></li>
-                  <li><a href="#">ACCOUNT INFO</a></li>
-                  <li><a href="#">LOG OUT</a></li>
-                </ul>
+              <!-- SEARCH BAR -->
+              <li class="dropdown"> <a href="javascript:void(0);" class="search-open"><i class=" fa-lg icon-magnifier"></i></a>
+                <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
+                  <div class="search-overlay"></div>
+                  <div class="position-center-center">
+                    <div class="search">
+                      <form>
+                        <input type="search" placeholder="Search Shop">
+                        <button type="submit"><i class="icon-check"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </li>
-              
-              <!-- USER BASKET -->
-              <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i> </a>
+                <!-- USER BASKET -->
+                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fas fa fa-lg fa-shopping-cart"></i></a>
                 <ul class="dropdown-menu">
                   <li>
                     <div class="media-body">
@@ -99,23 +52,93 @@
                 </ul>
               </li>
               
-              <!-- SEARCH BAR -->
-              <li class="dropdown"> <a href="javascript:void(0);" class="search-open"><i class=" icon-magnifier"></i></a>
-                <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
-                  <div class="search-overlay"></div>
-                  <div class="position-center-center">
-                    <div class="search">
-                      <form>
-                        <input type="search" placeholder="Search Shop">
-                        <button type="submit"><i class="icon-check"></i></button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </li>
+          <?php foreach(allSiteMenuGroupe() as $groupe){ 
+                if(strlen($groupe['nomAction']) < 1){
+                  $param = 'c='.$groupe['nomControleur'];
+              }else{
+                  $param = 'c='.$groupe['nomControleur'].'&action='.$groupe['nomAction'];
+              }
+                 if($groupe['sousMenu'] == 0){ 
+                  if($groupe['connecte'] == 1) // si besoin d'etre co 
+                    {
+                                    if(isset($_SESSION['mail'])){?>
+                                     <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li>
+                                    <?php }
+                                }else{}
+                          
+                  if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
+                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li> <?php 
+                  }
+                  if($groupe['connecte'] == 2){ // les deux
+                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li> <?php 
+                  }
+                  
+              }else {
+                if(($groupe['connecte'] == 1) &&  (isset($_SESSION['mail']))){ // que quand tu es co
+                  ?> <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                  <?php
+                }
+                    if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco 
+                    ?>
+                    <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                    <?php }
+                    if($groupe['connecte'] == 2){ // les deux 
+                      ?>
+
+                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                      <?php
+                    }
+                    if(isset($_SESSION['mail'])){
+                    if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
+                      ?>
+
+                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                      <?php
+                    }}?>
+
+                <ul class="dropdown-menu">
+                  <?php          
+                      foreach(allSiteMenuV($groupe['id']) as $lien){ 
+                   
+                               if($lien['nomAction'] == ''){
+                                    $param = 'c='.$lien['nomControleur'];
+                                }else{
+                                    $param = 'c='.$lien['nomControleur'].'&action='.$lien['nomAction'];
+                                }
+                                if($lien['connecte'] == 1){
+                                    if(isset($_SESSION['mail'])){?>
+                                     <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li>
+                                    <?php }
+                                }else{ }
+                                if(($lien['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
+                                  ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                }
+                                if($lien['connecte'] == 2){ // les deux
+                                  ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                }
+                                if(isset($_SESSION['mail'])){
+                                  if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
+                                    ?><li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                  }
+                                }
+
+                               }
+                   ?>
+                   </ul>
+              </li> <?php }?>
+              
+              <?php }?>
+                          
+              
+      
+              
+            
+              
+            
+          
             </ul>
           </div>
         </nav>
-      </div>
+
     </div>
   </header>

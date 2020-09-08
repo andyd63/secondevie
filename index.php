@@ -14,12 +14,12 @@ session_start();
 				   case 'profil' : include("./Controleurs/c_client.php"); break;
 				   case 'acceuil-m' : include("./vues/accueil_m.php"); break;
 				   case 'calend' : include("./vues/calendrier_vue.php"); break;
-				   case 'evenement' : include("./Controleurs/c_evenement.php"); break;
+				   case 'boutique' : include("./Controleurs/c_boutique.php"); break;
 				   case 'panier' : include("./Controleurs/c_panier.php"); break;
 				   case 'admin' : include("./Controleurs/c_administration.php"); break;
 				   case 'connexion' : include("./Controleurs/c_connexion.php"); break;
 				   case 'inscription' : include("./Controleurs/c_inscription.php"); break;
-					case 'deconnexion' : include("./vues/deconnexion.php"); break;
+					case 'deconnexion' : include("./vues/v_deconnexion.php"); break;
                         
 				   default : include("./vues/accueil.php"); break;
 		        }

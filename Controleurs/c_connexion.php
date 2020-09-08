@@ -47,7 +47,8 @@ document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
 		else
 		{
 		/////////////////////////////////////// MESSAGE EN CAS D'ERREUR D'IDENTIFIANT OU MDP
-			$message_erreur_co = 
+			$alert
+			 = 
 			"   <div class='alert alert-danger'>	
 					Désolé l'opération n'a pas pu aboutir.. <br>
 					Votre mot de passe ou l'email est mauvaise.

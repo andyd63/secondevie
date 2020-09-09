@@ -29,18 +29,19 @@
               </div><?php }?>
                 <form action="index.php?c=admin&action=addproduitValide" enctype="multipart/form-data" method="post" >
                   <ul class="row">
-                    
-                    <!-- Name -->
-                    <li class="col-md-6">
-                      <label>Nom du produit
-                        <input type="text" name="nomProduit" value="" placeholder="" required>
-                      </label>
-                    </li>
-                    <li class="col-md-6">
-                      <label>Marque
-                        <input type="text" name="marqueProduit" value="" placeholder="" required>
-                      </label>
-                    </li>
+                    <div class="row">
+                      <!-- Name -->
+                      <li class="col-md-6">
+                        <label>Nom du produit
+                          <input type="text" name="nomProduit" value="" placeholder="" required>
+                        </label>
+                      </li>
+                      <li class="col-md-6">
+                        <label>Marque
+                          <input type="text" name="marqueProduit" value="" placeholder="" required>
+                        </label>
+                      </li>
+                    </div>
                     <div class="row">
                     <!-- Name -->
                     <li class="col-md-6">
@@ -83,22 +84,36 @@
                       </label>
                     </li>
                     </div>
+                    <div class="row">
+                    <li class="col-md-6">
+                      <label>Sous catégorie
+                        <select class="form-control" name="sousCategorieProduit">
+                          <option value="1">Garçon</option>
+                          <option value="2">Fille</option>
+                          <option value="3">Chaussure</option>
+                          <option value="4">Jouet</option>
+                        </select>
+                      </label>
+                    </li>
                     <!-- Name -->
                     <li class="col-md-6">
                       <label>Image 1
                         <input type="file" name="img1" class="form-control-file" >
                       </label>
                     </li>
-                    <li class="col-md-6">
-                      <label>Image 2
-                        <input type="file" name="img2" class="form-control-file">
-                      </label>
-                    </li>
-                    <li class="col-md-12">
-                      <label>Description
-                        <textarea class="form-control"  name="description" value="" placeholder=""></textarea>
-                      </label>
-                    </li>
+                    </div>
+                    <div class="row">
+                      <li class="col-md-6">
+                        <label>Image 2
+                          <input type="file" name="img2" class="form-control-file">
+                        </label>
+                      </li>
+                      <li class="col-md-6">
+                        <label>Description
+                          <textarea class="form-control"  name="description" value="" placeholder=""></textarea>
+                        </label>
+                      </li>
+                    </div>
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">
                       <button  id="addprod" class="btn" type="submit" >Ajouter ce produit</button>

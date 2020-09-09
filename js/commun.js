@@ -54,6 +54,19 @@ function visibilite(divPrec,divId)
     divPrecedent = divId;
 }
 
+
+// Permet de changer la visibilité et la petite fleche 
+function changeVisibilite(divId,divIcone)
+{
+    if(document.getElementById(divId).style.display == 'none'){
+        document.getElementById(divId).style.display = "block";
+        document.getElementById(divIcone).innerHTML = '<i  class="fas fa-angle-up"></i>';
+    }else{
+        document.getElementById(divId).style.display = "none";
+        document.getElementById(divIcone).innerHTML = '<i  class="fas fa-angle-down"></i>';
+    }
+}
+
 function selectValeur(id) {
     select = document.getElementById(id);
     choice = select.selectedIndex  // Récupération de l'index du <option> choisi

@@ -1,43 +1,51 @@
 
-  <!--- Include Header et menu --->
-  <?php include('./assets/inc/header.php');?>
-  <?php include('./assets/inc/menu.php');?>
 
-  
-  
+ <!--- Include Header et menu --->
+ <?php include('./assets/inc/header.php');?>
+  <?php include('./assets/inc/menu.php');?> 
+
   
   <!-- Content -->
   <div id="content"> 
     
     <!-- Products -->
-    <section class="shop-page padding-top-100 padding-bottom-100">
+    <section class="shop-page  padding-bottom-100">
       <div class="container">
         <div class="row"> 
-          
+        <div class="col-sm-12">
+
+          <h5><?=$categorie['iconeCategorie']?><?=$categorie['nomCategorie']?></h5><hr>
+        </div>
           <!-- Shop SideBar -->
           <div class="col-sm-3">
+            <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h5><hr>
             <div class="shop-sidebar"> 
               
               <!-- Category -->
-              <h5 class="shop-tittle margin-bottom-30">category</h5>
-              <ul class="shop-cate">
-                <li><a href="#."> Chair <span>24</span></a></li>
-                <li><a href="#."> Bag <span>122</span></a></li>
-                <li><a href="#."> Soffa <span>09</span></a></li>
-                <li><a href="#."> Bed <span>12</span></a></li>
-                <li><a href="#."> Shoes <span>98</span></a></li>
-                <li><a href="#."> Table <span>34</span></a></li>
-                <li><a href="#."> Bedsheets <span>23</span></a></li>
-                <li><a href="#."> Curtains <span>43</span></a></li>
-                <li><a href="#."> TV Cabinets <span>12</span></a></li>
-                <li><a href="#."> Clocks <span>18</span></a></li>
-                <li><a href="#."> Towels <span>25</span></a></li>
+              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Catégorie <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
+              <ul style="display:none" id="divCategorie" class="shop-cate">
+                <?php foreach($allSousCategorie as $sCat){?>
+                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$sCat['idSousCategorie']?>"> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                <?php }?>
               </ul>
               
+               
+              <!-- Category -->
+              <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divTaille','spanTaille')">Taille <span id="spanTaille" ><i  class="fas fa-angle-down"></i></span></h5>
+              <ul style="display:none" id="divTaille" class="shop-cate">
+                <?php foreach($allSousCategorie as $sCat){?>
+                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$sCat['idSousCategorie']?>"> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                <?php }?>
+              </ul>
               <!-- FILTER BY PRICE -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY PRICE</h5>
-              
-              <!-- TAGS -->
+              <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divPrix','spanPrix')">Filtrer par prix <span id="spanPrix"><i  class="fas fa-angle-down"></i></span></h5>
+              <div style="display:none" id="divPrix" data-role="rangeslider">
+                <label for="price-min">Prix minimum: <span id="prixMinValue">0</span>€</label>
+                <input type="range" name="price-min" id="price-min" value="0" min="0" max="100">
+                <label for="price-max">Prix maximum: <span id="prixMaxValue">100</span>€</label>
+                <input type="range" name="price-max" id="price-max" value="100" min="0" max="100">
+              </div>
+              <!-- 
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>
               <ul class="colors">
                 <li><a href="#." style="background:#958170;"></a></li>
@@ -58,39 +66,40 @@
                 <li><a href="#." style="background:#daed39;"></a></li>
                 <li><a href="#." style="background:#a3ed39;"></a></li>
                 <li><a href="#." style="background:#f56868;"></a></li>
-              </ul>
-              
-              <!-- TAGS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">PAUPLAR TAGS</h5>
-              <ul class="shop-tags">
-                <li><a href="#.">Towels</a></li>
-                <li><a href="#.">Chair</a></li>
-                <li><a href="#.">Bedsheets</a></li>
-                <li><a href="#.">Shoe</a></li>
-                <li><a href="#.">Curtains</a></li>
-                <li><a href="#.">Clocks</a></li>
-                <li><a href="#.">TV Cabinets</a></li>
-                <li><a href="#.">Best Seller</a></li>
-                <li><a href="#.">Top Selling</a></li>
-              </ul>
+              </ul>-->
               
               <!-- BRAND -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">brands</h5>
-              <ul class="shop-cate">
-                <li><a href="#."> G-Furniture
-                  BigYellow</a></li>
-                <li><a href="#."> WoodenBazaar</a></li>
-                <li><a href="#."> GreenWoods</a></li>
-                <li><a href="#."> Hot-n-Fire </a></li>
+              <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divEtat','spanEtat')">Etat <span id="spanEtat"><i  class="fas fa-angle-down"></i></span></h5>
+              <ul style="display:none" id="divEtat" class="shop-cate">
+              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Bon état</li>
+              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Très bon état</li>
+              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Neuf</li>
+              </ul>
+            
+
+
+               <!-- TAGS -->
+               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divMarque','spanMarque')">Marque <span id="spanMarque"><i  class="fas fa-angle-down"></i></span></h5>
+              <ul style="display:none" id="divMarque" class="shop-tags">
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
+                <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
               </ul>
               
+              <li class="col-md-12  margin-top-30 margin-bottom-30 text-center">
+                      <button type="submit" class="btn btnSmall"><i class="fas fa-sync-alt"></i> Filtrer</button>
+              </li>
+
               <!-- SIDE BACR BANER -->
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="images/sidebar-bnr.jpg" alt="">
                 <div class="position-center-center"> <span class="price"><small>$</small>299</span>
-                  <div class="bnr-text">look
-                    hot
-                    with
-                    style</div>
+                  <div class="bnr-text">
+                    PROMO</div>
                 </div>
               </div>
             </div>
@@ -100,217 +109,52 @@
           <div class="col-sm-9">
             <div class="item-display">
               <div class="row">
-                <div class="col-xs-6"> <span class="product-num">Showing 1 - 10 of 30 products</span> </div>
+                <div class="col-xs-6"> <span class="product-num">Affichage de  1 - 10 sur 30 produits</span> </div>
                 
                 <!-- Products Select -->
                 <div class="col-xs-6">
                   <div class="pull-right"> 
                     
                     <!-- Short By -->
-                    <select class="selectpicker">
-                      <option>Short By</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
-                    </select>
-                    <!-- Filter By -->
-                    <select class="selectpicker">
-                      <option>Filter By</option>
+                    <select class="form-control">
+                      <option>Trier par</option>
                       <option>Short By</option>
                       <option>Short By</option>
                     </select>
+                  
                     
-                    <!-- GRID & LIST --> 
-                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
+                    </div>
                 </div>
               </div>
             </div>
-            
-            <!-- Popular Item Slide -->
             <div class="papular-block row"> 
-              
+            <?php foreach($produits as $produit){ ?>
+            <!-- Popular Item Slide -->
+            
               <!-- Item -->
               <div class="col-md-4">
                 <div class="item"> 
                   <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-2-1.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
+                  <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
                     <!-- Overlay -->
                     <div class="overlay">
                       <div class="position-center-center">
-                        <div class="inn"><a href="images/product-2-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                        <div class="inn"><a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                       </div>
                     </div>
                   </div>
                   <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">stone cup</a>
-                    <p>Lorem ipsum dolor sit amet</p>
+                  <div class="item-name"> <a href="#."><?=$produit['nom'];?></a>
+                    <p><?=$produit['description'];?></p>
                   </div>
                   <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
+                  <span class="price"><?=$produit['prix'];?>€ </div>
               </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Sale Tags -->
-                  <div class="on-sale"> 10% <span>OFF</span> </div>
-                  
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-2-2.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-2-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">gray bag</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-2-3.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-2-3.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">chiar</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-2-4.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-2-4.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">STool</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-5.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-5.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">stone cup</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-6.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-6.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">gray bag</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-7.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-7.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">chiar</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-8.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-8.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">STool</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
-              
-              <!-- Item -->
-              <div class="col-md-4">
-                <div class="item"> 
-                  <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="images/product-9.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
-                    <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="images/product-9.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Item Name -->
-                  <div class="item-name"> <a href="#.">stone cup</a>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <!-- Price --> 
-                  <span class="price"><small>$</small>299</span> </div>
-              </div>
+             
+            <?php }?>
             </div>
+             
+         
             
             <!-- Pagination -->
             <ul class="pagination">
@@ -324,5 +168,20 @@
         </div>
       </div>
     </section>
+    
+<script> 
+  $('#price-min').change(function(e){ 
+      $('#prixMinValue').text($(this).val());
+      $('#price-max').attr({'min': $('#prixMinValue').text() });
       
-  <?php include('./assets/inc/footer.php');?>
+  });</script>
+
+    
+<script> 
+  $('#price-max').change(function(e){ 
+      $('#prixMaxValue').text($(this).val());
+      $('#price-min').attr({'max': $('#prixMaxValue').text() });
+  });</script>
+
+<?php include('./assets/inc/footer.php');?>
+  

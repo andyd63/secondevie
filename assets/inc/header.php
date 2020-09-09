@@ -32,6 +32,7 @@ $configSite = initConfigSite();
 <link href="./css/basic.css" rel="stylesheet">
 <link href="./css/style.css" rel="stylesheet">
 <link href="./css/general.css" rel="stylesheet">
+<link href="./css/boutique.css" rel="stylesheet">
 <link href="./css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" /> 
 
@@ -39,6 +40,7 @@ $configSite = initConfigSite();
 
 <!-- JavaScripts -->
 <script src="./js/modernizr.js"></script>
+<script src="./js/commun.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Online Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

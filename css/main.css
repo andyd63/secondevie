@@ -4751,3 +4751,32 @@ html[xmlns] .flexslider .slides {
 .letter-space-10 {
 	letter-spacing: 10px !important;
 }
+
+
+.btnSmall{
+	border: none;
+	color: #fff;
+	display: inline-block;
+	padding: 5px!important;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 14px!important;
+	border-radius: 0px;
+	font-family: 'Montserrat', sans-serif;
+	line-height: 30px !important;
+	background: #2d3a4b;
+	letter-spacing: 1px;
+	position: relative;
+	z-index: 1;
+	}
+	
+	.checkCategorie{
+		position: relative;
+		color: #2d3a4b;
+		line-height: 38px;
+		border-bottom: 1px solid #d1d5db;
+		display: inline-block;
+		width: 100%;
+		font-size: 14px;
+		padding-left: 10px;
+	}

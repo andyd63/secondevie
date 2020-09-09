@@ -39,7 +39,7 @@ switch($action)
     $img2 = $_FILES['img2']['tmp_name'];
     move_uploaded_file($img1, $dossier.$_FILES['img1']['name']);
     move_uploaded_file($img1, $dossier.$_FILES['img2']['name']);
-    addproduit($_POST['nomProduit'],$_POST['marqueProduit'],$_POST['prixProduit'],$_POST['etatProduit'],$_POST['tailleProduit'],$_POST['categorieProduit'],'./assets/img/produits/'.$_FILES['img1']['name'],'./assets/img/produits/'.$_FILES['img2']['name'],$_POST['description']);
+    addproduit($_POST['nomProduit'],$_POST['marqueProduit'],$_POST['prixProduit'],$_POST['etatProduit'],$_POST['tailleProduit'],$_POST['categorieProduit'],'./assets/img/produits/'.$_FILES['img1']['name'],'./assets/img/produits/'.$_FILES['img2']['name'],$_POST['description'],$_POST['sousCategorieProduit']);
     $errorSuccess = "Le produit est ajouté!";
     include('./vues/administration/v_addproduit.php');
     break;    

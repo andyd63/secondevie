@@ -105,7 +105,7 @@
                     <div class="row">
                       <li class="col-md-6">
                         <label>Image 2
-                          <input type="file" name="img2" class="form-control-file">
+                          <input type="file" name="image2" class="form-control-file">
                         </label>
                       </li>
                       <li class="col-md-6">

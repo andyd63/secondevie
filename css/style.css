@@ -468,7 +468,7 @@ header .navbar li a {
 	font-weight: normal;
 	padding: 15px 0px;
 	margin:0 10px;
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 	text-transform: uppercase;
 }
 header .navbar li a:before {

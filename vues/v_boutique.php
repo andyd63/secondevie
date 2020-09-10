@@ -33,8 +33,8 @@
               <!-- Category -->
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divTaille','spanTaille')">Taille <span id="spanTaille" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divTaille" class="shop-cate">
-                <?php foreach($allSousCategorie as $sCat){?>
-                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$sCat['idSousCategorie']?>"> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                <?php foreach($allTaille as $taille){?>
+                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
                 <?php }?>
               </ul>
               <!-- FILTER BY PRICE -->
@@ -135,14 +135,13 @@
               <div class="col-md-4">
                 <div class="item"> 
                   <!-- Item img -->
-                  <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" > 
+                  <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
                     <!-- Overlay -->
-                    <div class="overlay">
-                      <div class="position-center-center">
-                        <div class="inn"><a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
-                      </div>
-                    </div>
+                   
                   </div>
+                        <div class="inn"><a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i id="coeur" class="icon-heart"></i></a></div>
+                     
+           
                   <!-- Item Name -->
                   <div class="item-name"> <a href="#."><?=$produit['nom'];?></a>
                     <p><?=$produit['description'];?></p>

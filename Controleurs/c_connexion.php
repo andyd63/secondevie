@@ -1,6 +1,7 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_module.php";
 $conn = bdd();
 
 if(isset($_GET['action']))  // SI Y A PAS DE PARAMETRE ACTION DANS L URL
@@ -46,14 +47,9 @@ document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
 		}
 		else
 		{
+			$moduleErrorConnexion = voir_module(10);	
 		/////////////////////////////////////// MESSAGE EN CAS D'ERREUR D'IDENTIFIANT OU MDP
-			$alert
-			 = 
-			"   <div class='alert alert-danger'>	
-					Désolé l'opération n'a pas pu aboutir.. <br>
-					Votre mot de passe ou l'email est mauvaise.
-
-					</div>";
+			$alert= "<div class='alert alert-danger'>".$moduleErrorConnexion['texte_module']."</div>";
 			require_once('vues/v_connexion.php');
 					break;
 			

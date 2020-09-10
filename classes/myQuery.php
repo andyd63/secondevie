@@ -39,7 +39,7 @@ class myQueryClass
         if($this->order != ''){
             $nbOrder = 1;
             foreach($this->order as $order ){
-                if(count($this->conditions) == 1 ){
+                if(count($this->order) == 1 ){
                     $mesOrder = "Order by ".$order['nameChamps'].' '.$order['sens'];
                     }
                 else {

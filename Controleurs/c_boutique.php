@@ -1,10 +1,12 @@
 <?php
 
 require_once "./modeles/m_categorie.php";
+require_once "./modeles/m_taille.php";
 require_once "./modeles/m_produit.php";
 require_once "./modeles/m_sousCategorie.php";
 
 $allSousCategorie = allSousCategorie();
+$allTaille = allTaille();
 // requete qui prend toutes les catégories
 if(isset($_GET['action'])){
 	$laCategorie = $_GET['action'];

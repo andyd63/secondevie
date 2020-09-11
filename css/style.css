@@ -735,12 +735,13 @@ header .is-sticky .sticky .nav .dropdown.megamenu .dropdown-menu {
 	position: relative;
 }
 header .social_icons {
-	float: right;
-	color: #fff;
+	display: inline-block;
 	margin-top: 20px;
 }
+header .social_icons li {
+	display: inline-block;
+}
 header .social_icons a {
-	color: #fff;
 	margin-left: 10px;
 }
 header.light-head  .navbar .nav-right  li a{

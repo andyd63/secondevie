@@ -2,18 +2,35 @@
 
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');?>
-  <?php include('./assets/inc/menu.php');?>
+  <?php include('./assets/inc/menu.php');
+  $moduleVendre = voir_module(1);
+  $moduleConcept = voir_module(2);
+  $moduleDernierProduit = voir_module(3);
+  
+  ?>
 
   
   <!-- Content -->
   <div id="content"> 
     
     <!-- New Arrival -->
-    <section class="padding-top-100 padding-bottom-100">
+    <section class="padding-top-30 padding-bottom-100">
       <div class="container"> 
-        
+      <div class="heading row">
+        <div class="col-md-6">
+          <h4 class="textAlignCenter"><?php echo $moduleVendre['titre_module'];?></h5>
+          <p><?php echo $moduleVendre['texte_module'];?></p>
+        </div>
+        <div  class="col-md-6">
+          <h4  class="textAlignCenter"><?php echo $moduleConcept['titre_module'];?></h5>
+          <p><?php echo $moduleConcept['texte_module'];?></p>
+        </div>
+      </div>
+      <hr>
+      </div>
         <!-- Main Heading -->
         <div class="heading text-center">
+     
           <h4>new arrival</h4>
           <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
           Sed feugiat, tellus vel tristique posuere, diam</span> </div>
@@ -21,19 +38,18 @@
       
 </section>
     
-    <!-- Popular Products -->
+    <!-- Dernier produit -->
     <section class="padding-top-50 padding-bottom-150">
       <div class="container"> 
         
         <!-- Main Heading -->
         <div class="heading text-center">
-          <h4>popular products</h4>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</span> </div>
+          <h4><?php echo $moduleDernierProduit['titre_module'];?></h4>
+          <p> <?php echo $moduleDernierProduit['texte_module'];?></p>
+          </div>
         
         <!-- Popular Item Slide -->
-        <div class="papular-block block-slide"> 
-          
+        <div class="papular-block block-slide">   
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
@@ -186,13 +202,7 @@
         </div>
         
         <!-- Social Icons -->
-        <ul class="social_icons">
-          <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-          <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-          <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-          <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-          <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-        </ul>
+       
       </div>
     </section>
    

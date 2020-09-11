@@ -25,7 +25,7 @@
               <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Catégorie <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divCategorie" class="shop-cate">
                 <?php foreach($allSousCategorie as $sCat){?>
-                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$sCat['idSousCategorie']?>"> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                  <li class="checkCategorie"> <input type="checkbox" id="scat-<?=$sCat['idSousCategorie'];?>" class="form-check-input "> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
                 <?php }?>
               </ul>
               
@@ -34,7 +34,7 @@
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divTaille','spanTaille')">Taille <span id="spanTaille" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divTaille" class="shop-cate">
                 <?php foreach($allTaille as $taille){?>
-                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
+                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
                 <?php }?>
               </ul>
               <!-- FILTER BY PRICE -->
@@ -92,7 +92,7 @@
               </ul>
               
               <li class="col-md-12  margin-top-30 margin-bottom-30 text-center">
-                      <button type="submit" class="btn btnSmall"><i class="fas fa-sync-alt"></i> Filtrer</button>
+                      <button id="btnFiltrer" class="btn btnSmall"><i class="fas fa-sync-alt"></i> Filtrer</button>
               </li>
 
               <!-- SIDE BACR BANER -->
@@ -169,18 +169,25 @@
     </section>
     
 <script> 
+btnFiltrer
+  $('#btnFiltrer').click(function(e){ 
+     console.log('e');
+      
+  });
+
   $('#price-min').change(function(e){ 
       $('#prixMinValue').text($(this).val());
       $('#price-max').attr({'min': $('#prixMinValue').text() });
       
-  });</script>
+  });
 
-    
-<script> 
+
   $('#price-max').change(function(e){ 
       $('#prixMaxValue').text($(this).val());
       $('#price-min').attr({'max': $('#prixMaxValue').text() });
-  });</script>
+  });
+  
+  </script>
 
 <?php include('./assets/inc/footer.php');?>
   

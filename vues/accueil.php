@@ -125,86 +125,8 @@
       </div>
     </section>
     
-    <!-- Knowledge Share -->
-    <section class="light-gray-bg padding-top-150 padding-bottom-150">
-      <div class="container"> 
-        
-        <!-- Main Heading -->
-        <div class="heading text-center">
-          <h4>knowledge share</h4>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</span> </div>
-        <div class="knowledge-share">
-          <ul class="row">
-            
-            <!-- Post 1 -->
-            <li class="col-md-6">
-              <div class="date"> <span>December</span> <span class="huge">27</span> </div>
-              <a href="#.">Donec commo is vulputate</a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
-              <span>By <strong>Admin</strong></span> </li>
-            
-            <!-- Post 2 -->
-            <li class="col-md-6">
-              <div class="date"> <span>December</span> <span class="huge">09</span> </div>
-              <a href="#.">Donec commo is vulputate</a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
-              <span>By <strong>Admin</strong></span> </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+
     
-    <!-- Testimonial -->
-    <section class="testimonial padding-top-100">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6"> 
-            
-            <!-- SLide -->
-            <div class="single-slide"> 
-              
-              <!-- Slide -->
-              <div class="testi-in"> <i class="fa fa-quote-left"></i>
-                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed ullamcorper sapien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus p</p>
-                <h5>john smith</h5>
-              </div>
-              
-              <!-- Slide -->
-              <div class="testi-in"> <i class="fa fa-quote-left"></i>
-                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed ullamcorper sapien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus p</p>
-                <h5>john smith</h5>
-              </div>
-              
-              <!-- Slide -->
-              <div class="testi-in"> <i class="fa fa-quote-left"></i>
-                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed ullamcorper sapien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus p</p>
-                <h5>john smith</h5>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Img -->
-          <div class="col-sm-6"> <img class="img-responsive" src="images/testi-avatar.jpg" alt=""> </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- About -->
-    <section class="small-about padding-top-150 padding-bottom-150">
-      <div class="container"> 
-        
-        <!-- Main Heading -->
-        <div class="heading text-center">
-          <h4>about PAVSHOP</h4>
-          <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odio luctus non. Nulla lacinia,
-            eros vel fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex. </p>
-        </div>
-        
-        <!-- Social Icons -->
-       
-      </div>
-    </section>
    
   </div>
   

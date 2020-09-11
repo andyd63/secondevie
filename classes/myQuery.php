@@ -5,11 +5,13 @@ class myQueryClass
     private $conditions;
     private $order;
     private $value;
-    public function __construct($table,$mesConditions = '',$order = '',$value = ''){
+    private $limit;
+    public function __construct($table,$mesConditions = '',$order = '',$value = '', $limit =''){
         $this->table = $table;
         $this->conditions = $mesConditions;
         $this->order = $order;
         $this->value = $value;
+        $this->limit = $limit;
     }
 
 
@@ -55,7 +57,7 @@ class myQueryClass
 
 
        
-        $requete = $pdo->prepare("SELECT * FROM ".$this->table." ".$mesConditions." ".$mesOrder);
+        $requete = $pdo->prepare("SELECT * FROM ".$this->table." ".$mesConditions." ".$mesOrder." ".$this->limit);
         if($this->conditions != ''){
             foreach($this->conditions as $condition ){
                 $requete->bindParam($condition['name'], $condition['value']);

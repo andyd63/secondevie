@@ -37,6 +37,19 @@ return $r[0] ;
 }
 
 
+//function retrouve le dernier produit 
+function voir10DernierProduit(){
+    $order = array();
+    $limit = "limit 10";
+    array_push($order, array('nameChamps'=>'id','sens'=>'desc'));
+    $req =  new myQueryClass('produit','',$order,$limit);
+    $r = $req->myQuerySelect();
+    return $r;
+    }
+    
+    
+
+
 function allProduit(){
 	$req =  new myQueryClass('produit');
 	$r = $req->myQuerySelect();

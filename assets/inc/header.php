@@ -1,6 +1,7 @@
 <?php
 require_once('./modeles/m_bdd.php');
 require_once('./modeles/m_clients.php');
+require_once('./modeles/m_produit.php');
 require_once('./modeles/m_module.php');
 require_once('./assets/inc/_initGeneral/functionInit.php');
 require_once('./assets/inc/function.php');

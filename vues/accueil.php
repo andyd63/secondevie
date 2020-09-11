@@ -6,7 +6,7 @@
   $moduleVendre = voir_module(1);
   $moduleConcept = voir_module(2);
   $moduleDernierProduit = voir_module(3);
-  
+  $lesProduits = voir10DernierProduit(); 
   ?>
 
   

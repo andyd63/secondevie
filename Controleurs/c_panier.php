@@ -91,7 +91,7 @@ switch ($action){
 	require_once('./vues/vue_voirpanier.php');
 	break;
 
-	case 'v_ajouterPanier' : // action pour ajouter au panier
+	case 'v_ajouterPanier' : // action pour Ajouter dans le panier
 	if(!isset($_SESSION['Panier'])){ // Si le panier n'existe pas
 		$_SESSION['Panier'] = new Panier();
     }
@@ -111,7 +111,7 @@ switch ($action){
 <?php
 	break;
 
-	case 'suppr_panier' : // action pour ajouter au panier
+	case 'suppr_panier' : // action pour Ajouter dans le panier
 	unset($_SESSION['Panier'][$_GET['num'] - 1]);
     ?>
 	<SCRIPT LANGUAGE="JavaScript">

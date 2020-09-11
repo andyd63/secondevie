@@ -14,7 +14,7 @@
   <div id="content"> 
     
     <!-- New Arrival -->
-    <section class="padding-top-30 padding-bottom-100">
+    <section class="padding-top-30 padding-bottom-30">
       <div class="container"> 
       <div class="heading row">
         <div class="col-md-6">
@@ -27,15 +27,7 @@
         </div>
       </div>
       <hr>
-      </div>
-        <!-- Main Heading -->
-        <div class="heading text-center">
-     
-          <h4>new arrival</h4>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</span> </div>
-      </div>
-      
+      </div>      
 </section>
     
     <!-- Dernier produit -->
@@ -57,7 +49,11 @@
             <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
               <!-- Overlay -->
            
-                  <div class="inn margin-top-30"><a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+                  <div class="inn margin-top-30">
+                    <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a>
+                    <a href="#." data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i class="icon-basket"></i></a> 
+                    <a href="#." data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="coeur" class="icon-heart"></i></a>
+                  </div>
             
             </div>
             <!-- Item Name -->

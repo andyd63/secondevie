@@ -139,7 +139,11 @@
                     <!-- Overlay -->
                    
                   </div>
-                        <div class="inn"><a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i id="coeur" class="icon-heart"></i></a></div>
+                        <div class="inn">
+                          <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
+                          <a href="#." data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i class="icon-basket"></i></a>
+                          <a href="#." data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="coeur" class="icon-heart"></i></a>
+                          </div>
                      
            
                   <!-- Item Name -->

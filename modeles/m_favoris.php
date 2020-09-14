@@ -39,6 +39,15 @@ function addFavoris($idClient,$idProduit){
 
 }
 
+function deleteFavoris($idFavoris){
+    $conn = bdd();
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'idFavoris','type'=>'=','name'=>'idFavoris','value'=>$idFavoris));
+    $req =  new myQueryClass('favoris',$conditions);
+	$r = $req->myQueryDelete();
+	$conn = null ; //Quitte la connexion
+}
+
 
 
 

@@ -150,4 +150,34 @@ class myQueryClass
         }
         $requete->execute();
     }
+
+    function myQueryDelete(){
+        $pdo = bdd();
+        $mesConditions = '';
+
+        if($this->conditions != ''){
+            $nbCondit = 1;
+            foreach($this->conditions as $condition ){
+                if(count($this->conditions) == 1 ){
+                $mesConditions = "WHERE ".$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                }
+                else {
+                    if($nbCondit == 1 ){
+                        $mesConditions =  "WHERE ".$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                    } else {
+                        $mesConditions.= ' AND '.$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                    }
+                    $nbCondit++;
+                }
+            }
+        } 
+       
+        $requete = $pdo->prepare("Delete from ".$this->table." ".$mesConditions);
+        if($this->conditions != ''){
+            foreach($this->conditions as $conditions ){
+                $requete->bindParam($conditions['name'], $conditions['value']);
+            }
+        }
+        $requete->execute();
+    }
 }

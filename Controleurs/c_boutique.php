@@ -3,6 +3,7 @@
 require_once "./modeles/m_categorie.php";
 require_once "./modeles/m_taille.php";
 require_once "./modeles/m_produit.php";
+require_once "./modeles/m_favoris.php";
 require_once "./modeles/m_sousCategorie.php";
 
 $allSousCategorie = allSousCategorie();
@@ -29,6 +30,11 @@ if(isset($_GET['action'])){
 			$categorie =  categorie(4); 
 			include('vues/v_boutique.php');
 		break;	
+
+		case 'addFavoris':
+			addFavoris($_POST['idClient'],$_POST['idProduit']);
+			return '';
+		break;
 					
 	}
 		

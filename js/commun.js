@@ -8,7 +8,7 @@ function postAjax(param, url,messageRetour,retourJs = false){
     dataType : 'html',
 
     success: function(data,status,xhr){
-        if(retourJs === false){
+        if(retourJs === true){
         if(xhr.status === 200){
             valRetour = xhr.responseText.replace(/\r|\t|\n/g,'');
             if(valRetour == messageRetour){

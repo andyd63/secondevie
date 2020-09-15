@@ -44,6 +44,11 @@ function redirectionNonAdmin($bool){
     else{
     }
 }
+function genererError($idModule,$idAlert){
+        $module = voir_module($idModule);
+        $alert = voirAlert($idAlert);
+        echo $alert['part1Alert'].$module['titre_module'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
+}
 
 function prixReel($prix){
     $margeFixe = 0.25;

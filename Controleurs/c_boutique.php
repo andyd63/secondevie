@@ -1,5 +1,7 @@
 <?php
 
+require_once "./modeles/m_module.php";
+require_once "./modeles/m_alert.php";
 require_once "./modeles/m_categorie.php";
 require_once "./modeles/m_taille.php";
 require_once "./modeles/m_produit.php";
@@ -35,6 +37,25 @@ if(isset($_GET['action'])){
 			addFavoris($_POST['idClient'],$_POST['idProduit']);
 			return '';
 		break;
+
+		case 'favoris':
+			$produits = voirFavoris($_SESSION['id']);
+			include('vues/v_favoris.php');
+		break;
+			
+		case 'voirProduit':
+			$produit = voirProduitById($_GET['id']);
+			$moduleDernierProduit = voir_module(3);
+			$lesDerniersProduits = voir10DernierProduit(); 
+			include('vues/v_produitDetail.php');
+			return '';
+		break;
+
+		default: 
+			$categorie = 0;
+			include('vues/v_boutique.php');
+		break;
+		
 
 		case 'supprFavoris':
 			supprFavoris($_POST['idClient'],$_POST['idProduit']);

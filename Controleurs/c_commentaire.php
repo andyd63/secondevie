@@ -26,7 +26,6 @@ switch ($action)
 
 
 		case 'ajoutcommentaire' :
-		var_dump($_POST);
 		$uncomm = ajoutercom($_POST['idcli'],$_POST['idprod'],$_POST['date'],$_POST['commentaire'],$_POST['note']);
 
 		include('vues/vue_commentaire.php');

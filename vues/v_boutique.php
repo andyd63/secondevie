@@ -135,7 +135,7 @@
               <div class="col-md-4">
                 <div class="item"> 
                   <!-- Item img -->
-                  <a href="dd">
+                  <a  href="index.php?c=boutique&action=voirProduit&id=<?=$produit['id'];?>">
                     <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
                       <!-- Overlay -->
                     </div>
@@ -154,7 +154,7 @@
                      
            
                   <!-- Item Name -->
-                  <div class="item-name"> <a href="#."><?=$produit['nom'];?></a>
+                  <div class="item-name">  <a data-toggle="tooltip" data-placement="top" title="Voir le produit" href="index.php?c=boutique&action=voirProduit&id=<?=$produit['id'];?>"><?=$produit['nom'];?></a>
                     <p><?=$produit['description'];?></p>
                   </div>
                   <!-- Price --> 

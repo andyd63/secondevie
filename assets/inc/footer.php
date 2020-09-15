@@ -4,7 +4,8 @@
       
       <!-- ABOUT Location -->
       <div class="col-md-3">
-        <div class="about-footer"> <img class="margin-bottom-30" src="images/logo-foot.png" alt="" >
+      <h6  class="blanc"><?=$configSite->nameSite;?></h5>
+        <div class="about-footer">
           <p><i class="icon-pointer"></i> Street No. 12, Newyork 12, <br>
             MD - 123, USA.</p>
           <p><i class="icon-call-end"></i> 1.800.123.456789</p>

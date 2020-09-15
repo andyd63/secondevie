@@ -48,18 +48,32 @@ function voir10DernierProduit(){
     }
     
     
-
-
 function allProduit(){
 	$req =  new myQueryClass('produit');
 	$r = $req->myQuerySelect();
 	return $r;
 }
 
+
+//voir produit selon l'id
+function voirProduitById($id){
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$id));
+    $req =  new myQueryClass('produit',$conditions);
+    $r = $req->myQuerySelect();
+    if(count($r)==0){
+        $r = false;
+    }else{
+        $r = $r[0];
+    }
+	return $r;
+}
+
 function allProduitByCategorie($id){
-    $req =  new myQueryClass('produit');
+   
     $conditions = array();
     array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
+    $req =  new myQueryClass('produit',$conditions);
 	$r = $req->myQuerySelect();
 	return $r;
 }

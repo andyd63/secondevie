@@ -17,3 +17,11 @@
 .violet{
     color : #E1306C;
 }
+
+.blanc {
+    color: white !important;
+}
+
+.alertColor{
+    color: black;
+}

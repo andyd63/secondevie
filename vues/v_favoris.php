@@ -23,7 +23,9 @@
            
             <div class="papular-block row"> 
             <?php
-            
+            if(count($produits) == 0){
+                genererError(4);
+            }else {
             foreach($produits as $produit){
             $produit = voirProduitById($produit['idProduit']);
   
@@ -61,7 +63,7 @@
                   <span class="price"><?=$produit['prix'];?>€ </div>
               </div>
              
-            <?php }?>
+            <?php }}?>
             </div>
              
          

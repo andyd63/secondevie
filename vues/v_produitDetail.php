@@ -54,32 +54,36 @@
                   <li class="col-xs-10"> <a href="#." class="btn">Ajouter dans le panier</a> </li>
                   
                   <!-- LIKE -->
-                  <li class="col-xs-2"> <a href="#." class="like-us"><i class="rouge icon-heart"></i></a> </li>
+                  <li class="col-xs-2"> 
+                      <?php if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
+                        <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:bl" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris  fa-2x icon-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fa-2x fas fa-heart"></i></a>
+                           <?php } else { ?>
+                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris fa-2x icon-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-2x fa-heart"></i></a>
+                          <?php }?></li>
                 </ul>
                 
-                <!-- INFOMATION -->
+                <!-- INFOMATION sur le retour et le l'envoie -->
                 <div class="inner-info">
-                  <h6>Information de livraison</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus ligula a scelerisque gravida. Nullam laoreet tortor ac maximus alique met, consectetur adipiscing elit. </p>
-                  <h6>Information sur le retour</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus ligula a scelerisque gravida. Nullam laoreet tortor ac maximus alique met, consectetur adipiscing elit. </p>
-                  <h6>Partagez ce produit</h6>
+                  <?php  genererError(12);?>
+                  <?php  genererError(13);?>
+                 <!-- <br><h6>Partagez le produit</h6>
                   
-                  <!-- Social Icons -->
                   <ul class="social_icons">
                     <li><a href="#."><i class="icon-social-facebook"></i></a></li>
                     <li><a href="#."><i class="icon-social-twitter"></i></a></li>
                     <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
                     <li><a href="#."><i class="icon-social-youtube"></i></a></li>
                     <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                  </ul>
+                  </ul>-->
                 </div>
               </div>
             </div>
           </div>
         </div>
         <?php } else {
-            genererError(11,2);
+            genererError(11);
         }?>
         
             
@@ -90,6 +94,6 @@
     <?php include('./vues/module/dernierProduit.php');?>
   
   </div>
-  
+  <?php include('./js/page/boutique.php');?>
   <?php include('./assets/inc/footer.php');?>
   

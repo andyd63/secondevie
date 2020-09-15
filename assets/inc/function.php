@@ -44,9 +44,9 @@ function redirectionNonAdmin($bool){
     else{
     }
 }
-function genererError($idModule,$idAlert){
+function genererError($idModule){
         $module = voir_module($idModule);
-        $alert = voirAlert($idAlert);
+        $alert = voirAlert($module['alert']);
         echo $alert['part1Alert'].$module['titre_module'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
 }
 

@@ -22,14 +22,17 @@ if(isset($_GET['action'])){
 		break;
 		case 2: 
 			$categorie =  categorie(2);
+			$produits = allProduitByCategorie(2);
 			include('vues/v_boutique.php');
 		break;
 		case 3: 
 			$categorie =  categorie(3); 
+			$produits = allProduitByCategorie(3);
 			include('vues/v_boutique.php');
 		break;
 		case 4: 
 			$categorie =  categorie(4); 
+			$produits = allProduitByCategorie(4);
 			include('vues/v_boutique.php');
 		break;	
 

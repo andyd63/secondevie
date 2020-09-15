@@ -145,10 +145,10 @@
                           <a href="#." data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i class="icon-basket"></i></a>
                           <?php if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:bl" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris icon-heart"></i></a>
-                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur fas fa-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-heart"></i></a>
                            <?php } else { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris icon-heart"></i></a>
-                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur fas fa-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-heart"></i></a>
                           <?php }?>
                         </div>
                      
@@ -196,6 +196,19 @@
 
     $('#linkAddFavoris'+idProduit).hide();
     $('#linkSupprFavoris'+idProduit).show();
+	
+  });
+
+  $('.supprFavoris').click(function(e){ 
+		idProduit =    e.target.id;
+		idClient = <?php echo json_encode($_SESSION['id']); ?>;
+    param = 'idClient='+idClient+"&idProduit="+idProduit;
+		url= 'index.php?c=boutique&action=supprFavoris';
+	  messageRetour = '';
+    postAjax(param,url,messageRetour);
+
+    $('#linkAddFavoris'+idProduit).show();
+    $('#linkSupprFavoris'+idProduit).hide();
 	
   });
 

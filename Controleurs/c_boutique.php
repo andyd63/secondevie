@@ -35,6 +35,11 @@ if(isset($_GET['action'])){
 			addFavoris($_POST['idClient'],$_POST['idProduit']);
 			return '';
 		break;
+
+		case 'supprFavoris':
+			supprFavoris($_POST['idClient'],$_POST['idProduit']);
+			return '';
+		break;
 					
 	}
 		

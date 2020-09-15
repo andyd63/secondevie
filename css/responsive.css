@@ -1,4 +1,18 @@
+@media(min-width:1921px) {
+	.menuResponsive{
+		display: none;
+	}
+	.titreMenuResponsive{
+		display: none;
+	}
+}
 @media(min-width:1400px) and (max-width:1920px) {
+	.menuResponsive{
+		display: none;
+	}
+	.titreMenuResponsive{
+		display: none;
+	}
 }
 @media(max-width:1600px) {
 .info-office {
@@ -14,6 +28,12 @@
 }
 }
 @media(min-width:1200px) and (max-width:1400px) {
+	.menuResponsive{
+		display: none;
+	}
+	.titreMenuResponsive{
+		display: none;
+	}
 .latest-work .col-4 .item.filter-home {
 	width: 100%;
 }
@@ -71,6 +91,12 @@
 }
 }
 @media(min-width:992px) and (max-width:1199px) {
+	.menuResponsive{
+		display: none;
+	}
+	.titreMenuResponsive{
+		display: none;
+	}
 .top-info-con ul li {
 	width: 27%;
 }
@@ -153,6 +179,16 @@ header .navbar li {
 }
 }
 @media(min-width:768px) and (max-width:991px) {
+	.menuResponsive{
+		display: none;
+	}
+	.titreMenuResponsive{
+		display: none;
+	}
+
+.nav ul{
+	overflow-x: hidden; 
+}
 .top-right ul li {
 	float: left;
 	display: inline-block;
@@ -471,6 +507,13 @@ footer h6 {
 }
 }
 @media(max-width:767px) {
+	.menuResponsive{
+		display: inline-block !important;
+		float: right;
+	}
+	.titreMenuResponsive{
+		display: inline-block;
+	}
 footer h5 {
 	display: inline-block;
 	width: 100%;
@@ -541,7 +584,6 @@ header .is-sticky .sticky .nav .dropdown-menu {
 }
 header .navbar .nav {
 	max-height: 400px;
-	overflow-y: scroll;
 	margin-top: 20px;
 }
 

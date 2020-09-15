@@ -17,7 +17,10 @@
     <ul class="social_icons">
           <li><a href="#."><i class="blueFb fa-lg fab fa-facebook"></i></a></li>
           <li><a href="#."><i class="violet fa-lg fab fa-instagram"></i></a></li>  
+          
+          
         </ul>
+    <div id="incMenuResponsive" class="menuResponsive"><i class="fas fa-bars fa-2x"></i></div>
     </div>
         <!-- Logo -->
         
@@ -63,41 +66,41 @@
               }else{
                   $param = 'c='.$groupe['nomControleur'].'&action='.$groupe['nomAction'];
               }
-                 if($groupe['sousMenu'] == 0){ 
+                 if($groupe['sousMenu'] == 0){  
                   if($groupe['connecte'] == 1) // si besoin d'etre co 
                     {
                                     if(isset($_SESSION['mail'])){?>
-                                     <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li>
+                                     <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
                                     <?php }
                                 }else{}
                           
                   if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
-                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   if($groupe['connecte'] == 2){ // les deux
-                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$groupe['name'];?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   
               }else {
                 if(($groupe['connecte'] == 1) &&  (isset($_SESSION['mail']))){ // que quand tu es co
-                  ?> <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                ?> <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                   <?php
                 }
                     if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco 
                     ?>
-                    <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                    <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                     <?php }
                     if($groupe['connecte'] == 2){ // les deux 
                       ?>
 
-                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                       <?php
                     }
                     if(isset($_SESSION['mail'])){
                     if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
                       ?>
 
-                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?= $groupe['name'];?></a>
+                      <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                       <?php
                     }}?>
 

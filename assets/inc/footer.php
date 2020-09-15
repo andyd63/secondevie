@@ -60,7 +60,17 @@
   </footer>
   
   <!--======= RIGHTS =========--> 
-  
+<script>
+  $('#incMenuResponsive').click(function(e){ 
+    if(($('.collapse').is(":visible") == false)){
+      $('.collapse').show();
+    }else{
+      $('.collapse').hide();
+    }
+   
+  });
+</script>
+
 </div>
 <script src="js/jquery-1.11.3.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 

@@ -33,7 +33,7 @@
 <!---- MODULE DERNIER PRODUIT DISPO SUR LE SITE --->
     
 <?php include('./vues/module/dernierProduit.php');?>
-    
+<?php include('./js/page/boutique.php');?> 
    
   </div>
   

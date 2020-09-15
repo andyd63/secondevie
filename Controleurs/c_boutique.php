@@ -49,7 +49,7 @@ if(isset($_GET['action'])){
 		case 'voirProduit':
 			$produit = voirProduitById($_GET['id']);
 			$moduleDernierProduit = voir_module(3);
-			$lesDerniersProduits = voir10DernierProduit(); 
+			$lesDerniersProduits = voir10DernierProduit($_GET['id']); 
 			include('vues/v_produitDetail.php');
 			return '';
 		break;

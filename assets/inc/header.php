@@ -60,6 +60,9 @@ $configSite = initConfigSite();
 
 <?php
 // Récupère la configuration du
+if(!isset($_SESSION['panier'])){
+    $_SESSION['panier'] = new collection();
+}
 
 $configSite = initConfigSite();
 initParamBoolSite($configSite);

@@ -1,6 +1,6 @@
 <?php
 require_once ('./classes/collection.php');
-//require_once ('./classes/produits.php');
+require_once ('./classes/produits.php');
 require_once ('./classes/configSite.php');
 require_once ('./classes/paramSite.php');
 //require_once ('./classes/photo.php');

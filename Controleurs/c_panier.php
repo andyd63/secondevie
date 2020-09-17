@@ -1,13 +1,11 @@
 <?php
-require_once('vendor/autoload.php');
-require_once('lib/pdo_db.php');
 require_once('modeles/m_panier.php');
-require_once('modeles/m_commande.php');
+require_once('modeles/m_produit.php');
+//require_once('modeles/m_commande.php');
 require_once('./modeles/m_configSite.php');
-require_once('modeles/Transaction.php');
-require_once('./modeles/m_evenements.php');
-require_once('./modeles/m_codepromo.php');
-require_once ('./classes/zipfiles.php');
+//require_once('modeles/Transaction.php');
+//require_once('./modeles/m_codepromo.php');
+//require_once ('./classes/zipfiles.php');
 require_once ('./assets/inc/function.php');
 
 
@@ -32,38 +30,13 @@ switch ($action){
 	break;
 
     case 'addPanier':
-        $jour =  date("d");
-        $mois =  date("m");
-        $annee =  date("Y");
-        $date = mktime(0, 0, 0, $mois,  $jour, $annee);
-        // Si c'est une photo papier
-        if($_POST['type'] == 1){
-            $fini = false;
-            //si y a aucune photo
-            if($_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() == 0){
-                $_SESSION['configPanierPapier']->getPhotoPanier()->ajouter(new produit(1,$_POST['nom_photo'],$_POST['lien_photo'],$_POST['qte'],$_POST['rep']));
-            }else{     
-                foreach($_SESSION['configPanierPapier']->getPhotoPanier()->getCollection() as $produit){
-                    if($fini !== true ){
-                    // si c'est le meme produit 
-                        if($produit->getLien() == $_POST['lien_photo']){
-                        $produit->augmenterQuantite($_POST['qte']);
-                        $fini = true;
-                        }
-                    }
-                }
-                if($fini != true){
-                        $nb = $_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() + $_SESSION['configPanierNum']->getPhotoPanier()->getNbCollection();
-                        $_SESSION['configPanierPapier']->getPhotoPanier()->ajouter(new produit($nb,$_POST['nom_photo'],$_POST['lien_photo'],$_POST['qte'],$_POST['rep']));
-                }   
-            }
-        }
-        else {
-            $nb = $_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() + $_SESSION['configPanierNum']->getPhotoPanier()->getNbCollection();
-            $_SESSION['configPanierNum']->getPhotoPanier()->ajouter(new produit($nb,$_POST['nom_photo'],$_POST['lien_photo'],$_POST['qte'],$_POST['rep']));
-        }
-        ajouterPanier($_SESSION['idPanier'],$_POST['nom_photo'],$_POST['qte'],$_POST['type'],$_SESSION['id'],$date);        
-        
+        //Cherche le produit correspondant 
+        $produit = voirProduitById($_POST['idProduit']);
+        // Ajouter le produit au panier
+        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['prix'],$produit['reduction']));  
+        var_dump($_SESSION['panier']);     
+        // Réserve le produit pendant 30 minutes
+
         ?>
         <?php
         break;

@@ -25,4 +25,17 @@ $('#linkAddFavoris'+idProduit).show();
 $('#linkSupprFavoris'+idProduit).hide();
 
 });
+
+$('.addPanier').click(function(e){ 
+    idProduit =    e.target.id;
+    param = 'idProduit='+idProduit;
+    url= 'index.php?c=panier&action=addPanier';
+    messageRetour = '';
+    postAjax(param,url,messageRetour);
+
+});
+
+
+
+
 </script>

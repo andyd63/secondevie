@@ -44,8 +44,8 @@
                 </div>
               </li>
                 <!-- USER BASKET -->
-                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                <p class="badge badgePanier badge-secondary">50<i class="fas fa fa-lg fa-shopping-cart"> </i></p></a>
+                <li class="dropdown user-basket"> <a href="#" class="bleuTurquoise dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+              <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier">2</b>)</a>
                 <ul class="dropdown-menu">
                   <li>
                     <div class="media-body">

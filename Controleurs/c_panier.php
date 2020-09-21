@@ -29,6 +29,8 @@ switch ($action){
     <?php
 	break;
 
+
+    /// PERMET D'AJOUTER AU PANIER
     case 'addPanier':
         //Cherche le produit correspondant 
         $produit = voirProduitById($_POST['idProduit']);
@@ -40,6 +42,12 @@ switch ($action){
         ?>
         <?php
         break;
+
+    /// PERMET DE SAVOIR LE NOMBRE DE PRODUIT DANS LE PANIER
+
+    case 'nbreProduitPanier':
+        return var_dump($_SESSION['panier']->getNbCollection());
+    break;
 
 
     case 'mettreCode':

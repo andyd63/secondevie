@@ -55,6 +55,11 @@ class Collection
 		return $this->tab;
 	}
 		
+	public function getNbCollection()
+	{
+		return count($this->tab);
+	}
+
 	public function getCles() 
 	{
 		return array_keys($this->tab);

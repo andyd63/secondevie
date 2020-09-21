@@ -2,7 +2,7 @@
 <script>
 $('.addFavoris').click(function(e){ 
     idProduit =    e.target.id;
-    idClient = <?php echo json_encode($_SESSION['id']); ?>;
+    idClient = <?php if(isset($_SESSION['id'])){ echo json_encode($_SESSION['id']); } else{ echo json_encode(0); } ?>;
 param = 'idClient='+idClient+"&idProduit="+idProduit;
     url= 'index.php?c=boutique&action=addFavoris';
   messageRetour = '';
@@ -15,7 +15,7 @@ $('#linkSupprFavoris'+idProduit).show();
 
 $('.supprFavoris').click(function(e){ 
     idProduit =    e.target.id;
-    idClient = <?php echo json_encode($_SESSION['id']); ?>;
+    idClient = <?php if(isset($_SESSION['id'])){ echo json_encode($_SESSION['id']); } else{ echo json_encode(0); } ?>;
 param = 'idClient='+idClient+"&idProduit="+idProduit;
     url= 'index.php?c=boutique&action=supprFavoris';
   messageRetour = '';
@@ -32,10 +32,16 @@ $('.addPanier').click(function(e){
     url= 'index.php?c=panier&action=addPanier';
     messageRetour = '';
     postAjax(param,url,messageRetour);
-
+    console.log(voirNbreProduitPanier());
 });
 
 
+
+function voirNbreProduitPanier(){
+    url= 'index.php?c=panier&action=nbreProduitPanier';
+    messageRetour = '';
+    postAjax('',url,messageRetour);
+}
 
 
 </script>

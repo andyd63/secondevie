@@ -44,7 +44,8 @@ $('#btnFiltrer').click(function(e){
      filterGenre = '&genre='+filterGenre;
    }
    adresse = 'index.php?c=boutique&action='+ action + filterGenre;
-   console.log(adresse);
+   document.location.href = adresse;
+   
 });
 
 function genreFilter() {
@@ -56,7 +57,6 @@ function genreFilter() {
           genre += index +',';
         }
     }
-    console.log(genre);
     return genre;
 }
 

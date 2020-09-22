@@ -26,9 +26,16 @@
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
               <ul style="display:block" id="divGenre"  class="shop-cate">
                 <?php
-                foreach($allGenre as $genre){?>
-                  <li  class="checkGenre<?=$genre['idGenre'];?>"> <input type="checkbox" id="genre-<?=$genre['idGenre'];?>" class="form-check-input "> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?></li>
-                <?php }?>
+                if(isset($_GET['genre'])){
+                  $getGenre = explode(',',$_GET['genre']); // tableau des genre dans le get
+                }
+                foreach($allGenre as $genre){       
+                ?>
+                  <li  class="checkGenre<?=$genre['idGenre'];?>">
+                    <input type="checkbox" id="genre-<?=$genre['idGenre'];?>" class="form-check-input " <?php if(isset($getGenre)){ if(in_array($genre['idGenre'],$getGenre)){ echo 'checked';}}?>> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?>
+                  </li>
+                <?php
+              }?>
               </ul>
               
 

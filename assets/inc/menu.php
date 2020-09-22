@@ -44,9 +44,9 @@
                 </div>
               </li>
                 <!-- USER BASKET -->
-                <li class="dropdown user-basket"> <a href="#" class="bleuTurquoise dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <li class="dropdown user-basket"> <a class="bleuTurquoise dropdown-toggle menuP"  role="button" aria-haspopup="true" aria-expanded="true">
               <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier">2</b>)</a>
-                <ul class="dropdown-menu">
+                <ul class="menuPanier " >
                   <li>
                     <div class="media-body">
                       <h6 class="media-heading">WOOD CHAIR <span class="price">129.00 USD</span></h6>

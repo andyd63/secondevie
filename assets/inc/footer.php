@@ -70,6 +70,15 @@
     }
    
   });
+
+  $('.menuP').click(function(e){ 
+    if(($('.menuPanier').is(":visible") == false)){
+      $('.menuPanier').show();
+    }else{
+      $('.menuPanier').hide();
+    }
+   
+  });
 </script>
 
 </div>

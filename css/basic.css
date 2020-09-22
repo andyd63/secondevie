@@ -2,6 +2,55 @@
     z-index: 0 !important;
 }
 
+.menuPanier{
+    padding: 20px !important;
+    border: none!important;
+    border-radius: 0px!important;
+    min-width: 350px!important;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+    margin-top: 0px;
+    box-shadow: 0 5px 6px rgba(0,0,0,.1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.menuPanier > li > a {
+    display: block;
+    padding: 6px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #878c94;
+    white-space: nowrap;
+}
+header .user-basket .menuPanier li {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
 .menuClient{
     min-width: 150px !important;
 }

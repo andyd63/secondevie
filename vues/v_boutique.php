@@ -23,9 +23,11 @@
               
             <!-- Category -->
              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanCategorie')">Genre <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
-              <ul style="display:block" id="divGenre" class="shop-cate">
-                <?php foreach($allGenre as $genre){?>
-                  <li class="checkGnere"> <input type="checkbox" id=genre-<?=$genre['idGenre'];?>" class="form-check-input "> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?></li>
+              <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
+              <ul style="display:block" id="divGenre"  class="shop-cate">
+                <?php
+                foreach($allGenre as $genre){?>
+                  <li  class="checkGenre<?=$genre['idGenre'];?>"> <input type="checkbox" id="genre-<?=$genre['idGenre'];?>" class="form-check-input "> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?></li>
                 <?php }?>
               </ul>
               
@@ -191,10 +193,6 @@
     
 <script> 
 
-  $('#btnFiltrer').click(function(e){ 
-     console.log('e');
-      
-  });
 
 
   $('#price-min').change(function(e){ 

@@ -12,6 +12,24 @@ function allTaille(){
 	return $r;
 }
 
+function tailleEnfant(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'typeBoutique','type'=>'=','name'=>'typeBoutique','value'=>0));
+	$req =  new myQueryClass('taille',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+
+function tailleAdulte(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'typeBoutique','type'=>'=','name'=>'typeBoutique','value'=>1));
+	$req =  new myQueryClass('taille',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+
 function taille($id){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'idTaille','type'=>'=','name'=>'idTaille','value'=>$id));

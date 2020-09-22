@@ -9,8 +9,7 @@ require_once "./modeles/m_produit.php";
 require_once "./modeles/m_favoris.php";
 require_once "./modeles/m_sousCategorie.php";
 
-$allSousCategorie = allSousCategorie();
-$allTaille = allTaille();
+
 
 // requete qui prend toutes les catégories
 if(isset($_GET['action'])){
@@ -19,13 +18,17 @@ if(isset($_GET['action'])){
 	{
 		case 1: 
 			$categorie =  categorie(1);
+			$allSousCategorie = sousCategorieAdulte();
 			$allGenre = genreAdulte();
+			$allTaille = tailleAdulte();
 			$produits = allProduitByCategorie(1);
 			include('vues/v_boutique.php');
 		break;
 		case 2: 
 			$categorie =  categorie(2);
+			$allSousCategorie = sousCategorieEnfant();
 			$allGenre = genreEnfant();
+			$allTaille = tailleEnfant();
 			$produits = allProduitByCategorie(2);
 			include('vues/v_boutique.php');
 		break;

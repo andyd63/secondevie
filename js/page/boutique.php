@@ -36,6 +36,27 @@ $('.addPanier').click(function(e){
 });
 
 
+$('#btnFiltrer').click(function(e){ 
+   filterGenre = genreFilter();
+   action =  $_GET('action');
+   if(filterGenre != ''){
+     filterGenre = '&genre='+filterGenre;
+   }
+   adresse = 'index.php?c=boutique&action='+ action + filterGenre;
+   console.log(adresse);
+});
+
+function genreFilter() {
+    nbGenre = document.getElementById('nbGenre').innerText; // nbre de genre possible
+    genre = '';
+    for (let index = 1; index <= nbGenre; index++) {
+        if($('#genre-'+index).is(":checked")){
+          genre += index +',';
+        }
+    }
+    return genre;
+}
+
 
 function voirNbreProduitPanier(){
     url= 'index.php?c=panier&action=nbreProduitPanier';

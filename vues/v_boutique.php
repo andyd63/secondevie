@@ -21,6 +21,15 @@
             <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h5><hr>
             <div class="shop-sidebar"> 
               
+            <!-- Category -->
+             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanCategorie')">Genre <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
+              <ul style="display:block" id="divGenre" class="shop-cate">
+                <?php foreach($allGenre as $genre){?>
+                  <li class="checkGnere"> <input type="checkbox" id=genre-<?=$genre['idGenre'];?>" class="form-check-input "> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?></li>
+                <?php }?>
+              </ul>
+              
+
               <!-- Category -->
               <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Catégorie <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divCategorie" class="shop-cate">

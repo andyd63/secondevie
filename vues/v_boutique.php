@@ -22,7 +22,7 @@
             <div class="shop-sidebar"> 
               
             <!-- Category -->
-             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanCategorie')">Genre <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
+             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Genre <span class="cursor" id="spanGenre" ><i  class="fas fa-angle-up"></i></span></h5>
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
               <ul style="display:block" id="divGenre"  class="shop-cate">
                 <?php

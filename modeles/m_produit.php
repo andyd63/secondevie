@@ -76,12 +76,27 @@ function voirProduitById($id){
 	return $r;
 }
 
-function allProduitByCategorie($id){
-   
-    $conditions = array();
+function allProduitByCategorie($id,$get){
+    
+    $conditions = array(); 
+    // pour chaque get
+    foreach($get as $g => $value){
+        $value = explode(",", $value);
+        $nb = count($value) -1; // nbre de valeur
+        $cp = 0;
+        foreach($value as $v){
+            if($nb != $cp){
+            array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR'));
+            }else{
+            array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR' ));
+            }
+            $cp++;
+        }
+       
+    }
     array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
     $req =  new myQueryClass('produit',$conditions);
-	$r = $req->myQuerySelect();
+    $r = $req->myQuerySelect();
 	return $r;
 }
 

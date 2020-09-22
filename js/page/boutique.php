@@ -38,6 +38,7 @@ $('.addPanier').click(function(e){
 
 $('#btnFiltrer').click(function(e){ 
    filterGenre = genreFilter();
+
    action =  $_GET('action');
    if(filterGenre != ''){
      filterGenre = '&genre='+filterGenre;
@@ -49,11 +50,13 @@ $('#btnFiltrer').click(function(e){
 function genreFilter() {
     nbGenre = document.getElementById('nbGenre').innerText; // nbre de genre possible
     genre = '';
-    for (let index = 1; index <= nbGenre; index++) {
+   
+    for (let index = 1; index <= 100; index++) {
         if($('#genre-'+index).is(":checked")){
           genre += index +',';
         }
     }
+    console.log(genre);
     return genre;
 }
 

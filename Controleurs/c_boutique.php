@@ -21,7 +21,9 @@ if(isset($_GET['action'])){
 			$allSousCategorie = sousCategorieAdulte();
 			$allGenre = genreAdulte();
 			$allTaille = tailleAdulte();
-			$produits = allProduitByCategorie(1);
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(1,$_GET);
 			include('vues/v_boutique.php');
 		break;
 		case 2: 
@@ -29,18 +31,24 @@ if(isset($_GET['action'])){
 			$allSousCategorie = sousCategorieEnfant();
 			$allGenre = genreEnfant();
 			$allTaille = tailleEnfant();
-			$produits = allProduitByCategorie(2);
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(2,$_GET);
 			include('vues/v_boutique.php');
 		break;
 		case 3: 
 			$categorie =  categorie(3); 
-			$produits = allProduitByCategorie(3);
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(3,$_GET);
 			include('vues/v_boutique.php');
 		break;
 		case 4: 
 			$categorie =  categorie(4); 
 			$allGenre = allGenre();
-			$produits = allProduitByCategorie(4);
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(4,$_GET);
 			include('vues/v_boutique.php');
 		break;	
 

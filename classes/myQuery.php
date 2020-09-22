@@ -32,7 +32,12 @@ class myQueryClass
                     if($nbCondit == 1 ){
                         $mesConditions =  "WHERE ".$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
                     } else {
-                        $mesConditions.= ' AND '.$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                        if(isset($condition['operator'])){
+                            $operator = $condition['operator'];
+                        }else{
+                            $operator = 'AND';       
+                        }      
+                        $mesConditions.= ' '.$operator.'  '.$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
                     }
                     $nbCondit++;
                 }

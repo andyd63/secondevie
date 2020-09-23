@@ -32,8 +32,8 @@ $('.addPanier').click(function(e){
     url= 'index.php?c=panier&action=addPanier';
     messageRetour = '';
     postAjax(param,url,messageRetour);
-    inverseVisibilite('panierAdd'+idProduit, 'panierSuppr'+idProduit, 'inline-block')
-    console.log(voirNbreProduitPanier());
+    inverseVisibilite('panierAdd'+idProduit, 'panierSuppr'+idProduit, 'inline-block');
+    document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)+1;
 });
 
 
@@ -62,11 +62,7 @@ function genreFilter() {
 }
 
 
-function voirNbreProduitPanier(){
-    url= 'index.php?c=panier&action=nbreProduitPanier';
-    messageRetour = '';
-    postAjax('',url,messageRetour);
-}
+
 
 
 </script>

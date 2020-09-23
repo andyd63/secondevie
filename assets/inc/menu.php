@@ -45,7 +45,7 @@
               </li>
                 <!-- USER BASKET -->
                 <li class="dropdown user-basket"> <a class="bleuTurquoise dropdown-toggle menuP"  role="button" aria-haspopup="true" aria-expanded="true">
-              <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier">0</b>)</a>
+              <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier"><?=  $_SESSION['panier']->getNbCollection(); ;?></b>)</a>
                 <ul class="menuPanier " >
                   <li>
                     <div class="media-body">

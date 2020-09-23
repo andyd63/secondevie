@@ -3,7 +3,7 @@
 }
 
 .transparent{
-    display: none;
+    display: none !important;
 }
 
 .menuPanier{

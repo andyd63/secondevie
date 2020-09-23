@@ -35,7 +35,7 @@ switch ($action){
         //Cherche le produit correspondant 
         $produit = voirProduitById($_POST['idProduit']);
         // Ajouter le produit au panier
-        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['prix'],$produit['reduction']));  
+        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['prix'],$produit['reduction']),$produit['id'] );  
         var_dump($_SESSION['panier']);     
         // Réserve le produit pendant 30 minutes
 

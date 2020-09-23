@@ -160,8 +160,13 @@
                   </a>
                         <div class="inn">
                           <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
-                          <a data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i id="<?=$produit['id'];?>" class="addPanier fas fa-cart-plus"></i></a>
-                          <?php if(isset($_SESSION['id'])){
+                          <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
+                            <a id="panierAdd<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier" style="display:none"><i id="<?=$produit['id'];?>" class="addPanier  fas fa-cart-plus"></i></a>
+                            <a  id="panierSuppr<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier"><i id="<?=$produit['id'];?>" class="supprPanier fas rouge fa-window-close"></i></a>
+                          <?php } else { ?>
+                            <a id="panierAdd<?=$produit['id'];?>"  data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i id="<?=$produit['id'];?>" class="addPanier  fas fa-cart-plus"></i></a>
+                            <a id="panierSuppr<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" style="display:none"><i id="<?=$produit['id'];?>" class="supprPanier  fas rouge fa-window-close"></i></a>
+                          <?php } if(isset($_SESSION['id'])){
                             if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:bl" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris icon-heart"></i></a>
                             <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-heart"></i></a>

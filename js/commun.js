@@ -67,6 +67,18 @@ function changeVisibilite(divId,divIcone)
     }
 }
 
+// Permet de changer la visibilité et la petite fleche 
+function inverseVisibilite(divId,divId2,typeVisibilité = 'block')
+{
+    if(document.getElementById(divId).style.display == 'none'){
+        document.getElementById(divId).style.display = typeVisibilité;
+        document.getElementById(divId2).style.display = "none";
+    }else{
+        document.getElementById(divId).style.display = "none";
+        document.getElementById(divId2).style.display = typeVisibilité;
+    }
+}
+
 function selectValeur(id) {
     select = document.getElementById(id);
     choice = select.selectedIndex  // Récupération de l'index du <option> choisi

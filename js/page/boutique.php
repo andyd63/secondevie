@@ -32,6 +32,7 @@ $('.addPanier').click(function(e){
     url= 'index.php?c=panier&action=addPanier';
     messageRetour = '';
     postAjax(param,url,messageRetour);
+    inverseVisibilite('panierAdd'+idProduit, 'panierSuppr'+idProduit, 'inline-block')
     console.log(voirNbreProduitPanier());
 });
 

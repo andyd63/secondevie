@@ -79,6 +79,13 @@
     }
    
   });
+
+  $('#viderPanier').click(function(){ 
+	url = 'index.php?c=panier&action=viderP';
+	messageRetour = "Votre panier est bien vidé!";
+	postAjax('',url,messageRetour,true);
+  
+  });
 </script>
 
 </div>

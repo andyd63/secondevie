@@ -1,5 +1,4 @@
 <body>
-
 <!-- LOADER -->
 <div id="loader">
   <div class="position-center-center">
@@ -55,8 +54,8 @@
                     <h5 class="text-center">SUBTOTAL: 258.00€</h5>
                   </li>
                   <li class="margin-0">
-                      <a href="shopping-cart.html" class="btn">VIEW CART</a>
-                      <a href="checkout.html" class="btn">CHECK OUT</a>
+                      <a href="shopping-cart.html" class="btn marginBottom5">Voir le panier</a>
+                      <a id="viderPanier" class="btn rouge"><i class="fas fa-shopping-basket"></i> Vider le panier</a>
                   </li>
                 </ul>
               </li>

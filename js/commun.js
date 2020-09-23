@@ -101,3 +101,4 @@ function $_GET(param) {
 	}
 	return vars;
 }
+

@@ -18,15 +18,9 @@ else{
 	$action = "voirpanier";
 }
 switch ($action){
-	case 'vider_p' :
-    deletePanier($_SESSION['idPanier']);
-	$_SESSION['Panier'] = array();
-	$_SESSION['configPanierPapier'] = array();
-    $_SESSION['configPanierNum'] = array();
-    unset($_SESSION['idPanier']);
-	?>
-	<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?c=accueil"</SCRIPT>
-    <?php
+	case 'viderP' :
+        $_SESSION['panier']->vider();
+        echo "Votre panier est bien vidé!";
 	break;
 
 

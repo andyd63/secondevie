@@ -561,7 +561,7 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 .marginBottom5{
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
 }
 
 .panel-blue{
@@ -586,3 +586,4 @@ a.socialIcon:hover, .socialHoverClass {
 .noMarginBottom{
     margin-bottom: 0px !important;
 }
+

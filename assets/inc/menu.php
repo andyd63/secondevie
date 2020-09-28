@@ -80,6 +80,12 @@
                   if($groupe['connecte'] == 2){ // les deux
                     ?> <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
+                  if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
+                    ?>
+
+                    <li class="dropdown "> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
+                    <?php
+                  }
                   
               }else {
                 if(($groupe['connecte'] == 1) &&  (isset($_SESSION['mail']))){ // que quand tu es co

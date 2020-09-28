@@ -19,18 +19,15 @@
 								foreach($menuAdmin as $menu){
 								$box = voirBoxAdmin($menu['idBoxAdmin']);
 								$couleur = voirCouleur($menu['idCouleur']);
-								echo $box['part1Box'].' class="pointer  '.$couleur['backCouleur'].' '.$box['part2Box'].$menu['nomControleur'].'&action='.$menu['nomAction'].$box['part3Box'].$menu['iconeAdmin'].$box['part4Box'].$menu['libMenu'].$box['part5Box'];
-								}?>
+						
+								?>
 
-									<a class="pointer metrostyle metrostylelarge backRouge" href="index.php?c=admin&action=ajout_eve">
-										<span class="iconeMenuAdmin"><i class="fas fa-lg fa-tshirt"></i></span>
-										<span class="textMenuAdmin">Gestion des produits</span>
-									</a>
-									<a  class="pointer metrostyle backBleuTurquoise" href="index.php?c=admin&action=codeP">
-										<span class="iconeMenuAdmin"><i class="fa fas fa-barcode"></i></span>
-										<span class="textMenuAdmin">Codes promos</span>
+									<a  class="pointer <?=$box['typeBox'];?> <?= $couleur['backCouleur'];?>" href="index.php?c=<?=$menu['nomControleur'].'&action='.$menu['nomAction'];?>">
+										<span class="iconeMenuAdmin"><i class="fa fas <?= $menu['iconeAdmin'];?>"></i></span>
+										<span class="textMenuAdmin"><?= $menu['libMenu'];?></span>
 									</a>
 								
+									<?php }?>
 									<a  class="pointer metrostyle metrostylelarge backBleu" href="index.php?c=configSite&action=accueil">
 										<span class="iconeMenuAdmin"><i class="fa fa-cogs"></i></span>
 										<span class="textMenuAdmin">Configuration site</span>

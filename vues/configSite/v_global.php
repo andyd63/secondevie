@@ -102,7 +102,7 @@
         param = 'nameSite='+nameSite+'&telSite='+telSite+"&emailSite="+emailSite;
         url = 'index.php?c=configSite&action=changerGeneral';
         messageRetour = 'Les informations généraux du site sont mises à jour!';
-        postAjax(param,url,messageRetour);  
+        postAjax(param,url,messageRetour,true);  
     });
 
     </script>

@@ -3,6 +3,7 @@ require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_menuadmin.php";
 require_once "./modeles/m_couleur.php";
+require_once "./modeles/m_configSite.php";
 require_once "./modeles/m_boxAdmin.php";
 require_once "./modeles/m_commande.php";
 require_once "./modeles/m_codepromo.php";

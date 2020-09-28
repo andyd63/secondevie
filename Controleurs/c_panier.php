@@ -29,7 +29,7 @@ switch ($action){
         //Cherche le produit correspondant 
         $produit = voirProduitById($_POST['idProduit']);
         // Ajouter le produit au panier
-        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['prix'],$produit['reduction']),$produit['id'] );       
+        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['nom'],$produit['prix'],$produit['reduction']),$produit['id'] );       
         // Réserve le produit pendant 30 minutes
 
         ?>
@@ -41,6 +41,12 @@ switch ($action){
     case 'nbreProduitPanier':
         echo  $_SESSION['panier']->getNbCollection();
     break;
+
+    // VOIR PANIER
+	case 'voirpanier' :
+        require_once('./vues/v_panier.php');
+        break;
+
 
 
     case 'mettreCode':
@@ -61,9 +67,7 @@ switch ($action){
         <SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?c=panier"</SCRIPT>
     <?php
         break;
-	case 'voirpanier' :
-	require_once('./vues/vue_voirpanier.php');
-	break;
+
 
 	case 'v_ajouterPanier' : // action pour Ajouter dans le panier
 	if(!isset($_SESSION['Panier'])){ // Si le panier n'existe pas

@@ -44,11 +44,27 @@ function redirectionNonAdmin($bool){
     else{
     }
 }
+
+// Generer l'erreur ou le message à afficher entièrement
 function genererError($idModule){
         $module = voir_module($idModule);
         $alert = voirAlert($module['alert']);
         echo $alert['part1Alert'].$module['titre_module'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
 }
+
+// Permet de retrouver le prix dans le panier, le total des remises, et les prix avec remises
+function totalPrixPanier(){
+    $totalPrix = 0;
+    $totalRemise = 0;
+    //Pour chaque produit
+    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+        $totalPrix += $produitPanier->getPrix();
+        $totalRemise += ($produitPanier->getPrix() * $produitPanier->getReduction() );    
+    }
+    $retour = array(($totalPrix - $totalRemise ),$totalPrix,$totalRemise);
+    return $retour;
+}
+
 
 function prixReel($prix){
     $margeFixe = 0.25;

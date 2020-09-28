@@ -48,13 +48,26 @@
                 <ul class="menuPanier " >
                   <li>
                     <div class="media-body">
-                      <h6 class="media-heading">WOOD CHAIR <span class="price">129.00 USD</span></h6>
+                      <?php 
+                      foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
+                        <h6 class="media-heading"><?= $produitPanier->getNom();?> <span class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span></h6>
+                      <?php }?>
+                    
                   </li>
                   <li>
-                    <h5 class="text-center">SUBTOTAL: 258.00€</h5>
+                    <?php $totalPanier = totalPrixPanier();
+
+
+                    // si y a une réduction
+                    if($totalPanier[2] > 0){?>
+                    <h5 class="text-center">Total sans réduc: <?= $totalPanier[1];?></h5>
+                    <h6 class="text-center">Total avec réduc: <?= $totalPanier[0];?></h6>
+                    <?php } else{?>
+                      <h5 class="text-center">Total: <?= $totalPanier[1];?>€</h5>
+                   <?php } ?>
                   </li>
                   <li class="margin-0">
-                      <a href="shopping-cart.html" class="btn marginBottom5">Voir le panier</a>
+                      <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>
                       <a id="viderPanier" class="btn rouge"><i class="fas fa-shopping-basket"></i> Vider le panier</a>
                   </li>
                 </ul>

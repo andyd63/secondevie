@@ -946,7 +946,6 @@ header .user-basket .media-heading {
 	font-weight: normal;
 }
 header .user-basket span {
-	display: inline-block;
 	width: 100%;
 	margin: 5px 0;
 	font-size: 12px;

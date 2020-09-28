@@ -26,9 +26,15 @@ switch($action)
     redirectionNonAdmin(adminexist($_SESSION['mail']));
     $nbCommande = count(allCommandes()); // nb de commande 
     $menuAdmin = menuAdminByNom('General');
-    var_dump($menuAdmin);
 	include('./vues/administration/v_admin_def.php');
-	break;
+    break;
+    
+    case 'accueilProduit':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('Produit');
+        include('./vues/administration/v_admin_def.php');
+    break;
 	
     case 'addproduit':
     include('./vues/administration/v_addproduit.php');

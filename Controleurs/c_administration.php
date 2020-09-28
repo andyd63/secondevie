@@ -1,6 +1,9 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_menuadmin.php";
+require_once "./modeles/m_couleur.php";
+require_once "./modeles/m_boxAdmin.php";
 require_once "./modeles/m_commande.php";
 require_once "./modeles/m_codepromo.php";
 require_once "./modeles/m_panier.php";
@@ -21,10 +24,17 @@ switch($action)
 {
     case 'accueil':
     redirectionNonAdmin(adminexist($_SESSION['mail']));
-    $nbEve = count(voir_tous_evenement()); //nb evenements
     $nbCommande = count(allCommandes()); // nb de commande 
+    $menuAdmin = menuAdminByNom('General');
 	include('./vues/administration/v_admin_def.php');
-	break;
+    break;
+    
+    case 'accueilProduit':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('Produit');
+        include('./vues/administration/v_admin_def.php');
+    break;
 	
     case 'addproduit':
     include('./vues/administration/v_addproduit.php');

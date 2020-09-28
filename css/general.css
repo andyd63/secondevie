@@ -1,3 +1,8 @@
+
+/********************************
+            COLOR
+********************************/
+
 .rouge{
     color:red;
 }
@@ -40,4 +45,46 @@
 
 .blue {
     color : blue;
+}
+
+
+/*******************************
+        BACKGROUND COLOR
+*******************************/
+
+
+.backVioletFonce {
+    background-color: #603cba;
+}
+
+.backViolet {
+    background-color: #a200ff;
+}
+
+.backOrange {
+    background-color: #f47835;
+}
+
+.backRouge {
+    background-color: #d41243;
+}
+
+.backVert {
+    background-color: #8ec127;
+}
+
+.backRose {
+    background-color: #9f00a7;
+}
+
+.backBleuTurquoise {
+    background-color: #00aba9;
+}
+
+.backBleu {
+    background-color: #2d89ef;
+}
+
+.pointer {
+    cursor: pointer;
 }

@@ -1,12 +1,15 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_menuadmin.php";
+require_once "./modeles/m_couleur.php";
+require_once "./modeles/m_configSite.php";
+require_once "./modeles/m_boxAdmin.php";
 require_once "./modeles/m_commande.php";
 require_once "./modeles/m_codepromo.php";
-require_once "./modeles/m_configSite.php";
 require_once "./modeles/m_panier.php";
+require_once "./modeles/m_produit.php";
 require_once "./modeles/m_module.php";
-require_once "./modeles/m_evenements.php";
 require_once "./assets/inc/function.php";
 $conn = bdd();
 
@@ -22,8 +25,10 @@ switch($action){
     
     case 'accueil':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        include('./vues/configSite/v_admin_configGlobal.php');
-    break;
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('ConfigSite');
+        include('./vues/administration/v_admin_def.php');
+        break;
 
     case 'global':
         redirectionNonAdmin(adminexist($_SESSION['mail']));

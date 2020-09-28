@@ -17,6 +17,7 @@ session_start();
 				   case 'boutique' : include("./Controleurs/c_boutique.php"); break;
 				   case 'panier' : include("./Controleurs/c_panier.php"); break;
 				   case 'admin' : include("./Controleurs/c_administration.php"); break;
+				   case 'configSite' : include("./Controleurs/c_administrationGlobal.php"); break;
 				   case 'connexion' : include("./Controleurs/c_connexion.php"); break;
 				   case 'inscription' : include("./Controleurs/c_inscription.php"); break;
 					case 'deconnexion' : include("./vues/v_deconnexion.php"); break;

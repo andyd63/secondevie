@@ -49,9 +49,16 @@
                   
                   
                 
-                  
+                  <li class="col-xs-10">
                   <!-- Ajouter dans le panier -->
-                  <li class="col-xs-10"> <a href="#." class="btn">Ajouter dans le panier</a> </li>
+                  <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
+                            <a class="btn addPanier " id="panierAdd-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier" style="display:none"><i id="<?=$produit['id'];?>" class="  fas fa-cart-plus"></i> Ajouter</a>
+                            <a class="btn supprPanier"  id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier"><i id="<?=$produit['id'];?>" class=" fas rouge fa-window-close"></i> Enlever</a>
+                          <?php } else { ?>
+                            <a class="btn addPanier" id="panierAdd-<?=$produit['id'];?>"  data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier"><i id="<?=$produit['id'];?>" class="  fas fa-cart-plus"></i> Ajouter</a>
+                            <a class="btn supprPanier" id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" style="display:none"><i id="<?=$produit['id'];?>" class="  fas rouge fa-window-close"></i> Enlever</a>
+                          <?php }?>
+                   </li>
                   
                   <!-- LIKE -->
                   <li class="col-xs-2"> 

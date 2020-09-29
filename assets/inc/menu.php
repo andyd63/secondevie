@@ -47,24 +47,19 @@
               <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier"><?=  $_SESSION['panier']->getNbCollection(); ;?></b>)</a>
                 <ul class="menuPanier " >
                   <li>
-                    <div class="media-body">
+                    <div id="menuPanierProduit" class="media-body">
                       <?php 
                       foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
-                        <h6 class="media-heading"><?= $produitPanier->getNom();?> <span class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span></h6>
-                      <?php }?>
+                        <h6 id="produitMenu<?=$produitPanier->getId();?>" class="media-heading"><?= $produitPanier->getNom();?> <span id="prixProduit<?=$produitPanier->getId();?>"class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span></h6>
+                        <span style="display:none" id="produitReduction<?=$produitPanier->getId();?>"><?=$produitPanier->getReduction();?></span>
+                        <?php }?>
                     
                   </li>
                   <li>
-                    <?php $totalPanier = totalPrixPanier();
+                    <?php $totalPanier = totalPrixPanier();?>
 
-
-                    // si y a une réduction
-                    if($totalPanier[2] > 0){?>
-                    <h5 class="text-center">Total sans réduc: <?= $totalPanier[1];?></h5>
-                    <h6 class="text-center">Total avec réduc: <?= $totalPanier[0];?></h6>
-                    <?php } else{?>
-                      <h5 class="text-center">Total: <?= $totalPanier[1];?>€</h5>
-                   <?php } ?>
+                    <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier[1];?></span></h5>
+                    <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier[0];?></h6>
                   </li>
                   <li class="margin-0">
                       <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>

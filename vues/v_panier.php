@@ -33,7 +33,7 @@
           </div>
           <?php    foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
             <!-- Cart Details -->
-            <ul class="row cart-details">
+            <ul id="produit-<?=$produitPanier->getId();?>" class="row cart-details">
             
               <li class="col-sm-6">
                 <div class="media"> 
@@ -62,61 +62,7 @@
             </ul>
           <?php }?>
           
-          <!-- Cart Details -->
-          <ul class="row cart-details">
-            <li class="col-sm-6">
-              <div class="media"> 
-                <!-- Media Image -->
-                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="images/cart-img-2.jpg" alt=""> </a> </div>
-                
-                <!-- Item Name -->
-                <div class="media-body">
-                  <div class="position-center-center">
-                    <h5>STOOL</h5>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            
-            <!-- PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-
-            <!-- REMOVE -->
-            <li class="col-sm-1">
-              <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
-            </li>
-          </ul>
-          
-          <!-- Cart Details -->
-          <ul class="row cart-details">
-            <li class="col-sm-6">
-              <div class="media"> 
-                <!-- Media Image -->
-                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="images/cart-img-3.jpg" alt=""> </a> </div>
-                
-                <!-- Item Name -->
-                <div class="media-body">
-                  <div class="position-center-center">
-                    <h5>wood SPOON</h5>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            
-            <!-- PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-            
-            <!-- REMOVE -->
-            <li class="col-sm-1">
-              <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
-            </li>
-          </ul>
+        
         </div>
       </div>
     </section>
@@ -144,9 +90,9 @@
               <h6>Récapitulatif</h6>
               <div class="grand-total">
                 <div class="order-detail">
-                  <p>WOOD CHAIR <span>$598 </span></p>
-                  <p>STOOL <span>$199 </span></p>
-                  <p>WOOD SPOON <span> $139</span></p>
+                  <p>Produit enfant <span>$598 </span></p>
+                  <p>Produit adulte <span>$199 </span></p>
+                  <p>Produit de braderie <span> $139</span></p>
                   
                   <!-- SUB TOTAL -->
                   <p class="all-total">Total panier <span> $998</span></p>

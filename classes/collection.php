@@ -16,7 +16,7 @@ class Collection
 		{
 			if (isset($this->tab[$key])) 
 			{
-				throw new KeyHasUseException("Key $key already in use.");
+				echo 'ERREUR CLE '.$key.' deja utilisée';
 			}
 			else 
 			{

@@ -36,6 +36,17 @@ $('.addPanier').click(function(e){
     document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)+1;
 });
 
+$('.supprPanier').click(function(e){ 
+    idProduit =    e.target.id;
+    param = 'idProduit='+idProduit;
+    url= 'index.php?c=panier&action=supprPanier';
+    messageRetour = '';
+    postAjax(param,url,messageRetour);
+    inverseVisibilite('panierSuppr'+idProduit, 'panierAdd'+idProduit, 'inline-block');
+    document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)-1;
+});
+
+
 
 $('#btnFiltrer').click(function(e){ 
    filterGenre = genreFilter();

@@ -42,6 +42,9 @@ switch ($action){
         echo  $_SESSION['panier']->getNbCollection();
     break;
 
+
+    
+
     // VOIR PANIER
 	case 'voirpanier' :
         require_once('./vues/v_panier.php');
@@ -89,15 +92,16 @@ switch ($action){
 <?php
 	break;
 
-	case 'suppr_panier' : // action pour Ajouter dans le panier
-	unset($_SESSION['Panier'][$_GET['num'] - 1]);
-    ?>
-	<SCRIPT LANGUAGE="JavaScript">
-        document.location.href="index.php?c=panier"
-    </SCRIPT>
-<?php
+	case 'supprPanier' : // action pour Supprimer dans le panier
+        // Supprime le produit du panier
+        $_SESSION['panier']->supprimer($_POST['idProduit'] );       
 
-	break;
+    // DERESERVE LE PRODUIT
+
+    /// PERMET DE SAVOIR LE NOMBRE DE PRODUIT DANS LE PANIER
+    case 'nbreProduitPanier':
+        echo  $_SESSION['panier']->getNbCollection();
+    break;
 
     case 'termine':
         \Stripe\Stripe::setApiKey('sk_test_WIueQDa130JgDaN7xLw64zb1');

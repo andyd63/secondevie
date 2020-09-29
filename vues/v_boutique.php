@@ -146,7 +146,16 @@
               </div>
             </div>
             <div class="papular-block row"> 
-            <?php foreach($produits as $produit){ ?>
+              <div class='row'>
+            <?php 
+            $number = 0;
+            foreach($produits as $produit){
+              if ($number % 3 == 0) { // si c'est une nouvelle ligne ?>
+                </div>
+                <div class='row'>
+              <?php }
+              $number++;
+              ?>
             <!-- Popular Item Slide -->
             
               <!-- Item -->

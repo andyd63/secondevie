@@ -28,47 +28,39 @@
               <li class="col-sm-2">
                 <h6>Prix</h6>
               </li>              
-              <!-- TOTAL PRICE -->
-              <li class="col-sm-2">
-                <h6>TOTAL</h6>
-              </li>
               <li class="col-sm-1"> </li>
             </ul>
           </div>
-          
-          <!-- Cart Details -->
-          <ul class="row cart-details">
-            <li class="col-sm-6">
-              <div class="media"> 
-                <!-- Media Image -->
-                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="images/cart-img-1.jpg" alt=""> </a> </div>
-                
-                <!-- Item Name -->
-                <div class="media-body">
-                  <div class="position-center-center">
-                    <h5>wood chair</h5>
-                    <p>Lorem ipsum dolor sit amet</p>
+          <?php    foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
+            <!-- Cart Details -->
+            <ul class="row cart-details">
+            
+              <li class="col-sm-6">
+                <div class="media"> 
+                  <!-- Media Image -->
+                  <div class="media-left media-middle"> <a class="item-img"> <img class="media-object" src="<?= $produitPanier->getImage();?>" alt="photo du produit"> </a> </div>
+                  
+                  <!-- Item Name -->
+                  <div class="media-body">
+                    <div class="position-center-center">
+                      <h5><?= $produitPanier->getNom();?></h5>
+                      <p><?= $produitPanier->getDescription();?></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            
-            <!-- PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-            
-            
-            <!-- TOTAL PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-            
-            <!-- REMOVE -->
-            <li class="col-sm-1">
-              <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
-            </li>
-          </ul>
+              </li>
+              
+              <!-- PRICE -->
+              <li class="col-sm-2">
+                <div class="position-center-center"> <span class="price"><?= $produitPanier->getPrix();?>€</span> </div>
+              </li>
+              
+              <!-- REMOVE -->
+              <li class="col-sm-1">
+                <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+              </li>
+            </ul>
+          <?php }?>
           
           <!-- Cart Details -->
           <ul class="row cart-details">
@@ -91,26 +83,7 @@
             <li class="col-sm-2">
               <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
             </li>
-            
-            <!-- QTY -->
-            <li class="col-sm-1">
-              <div class="position-center-center">
-                <div class="quinty"> 
-                  <!-- QTY -->
-                  <select class="selectpicker">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            
-            <!-- TOTAL PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-            
+
             <!-- REMOVE -->
             <li class="col-sm-1">
               <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
@@ -139,25 +112,6 @@
               <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
             </li>
             
-            <!-- QTY -->
-            <li class="col-sm-1">
-              <div class="position-center-center">
-                <div class="quinty"> 
-                  <!-- QTY -->
-                  <select class="selectpicker">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            
-            <!-- TOTAL PRICE -->
-            <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
-            </li>
-            
             <!-- REMOVE -->
             <li class="col-sm-1">
               <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
@@ -177,17 +131,17 @@
             
             <!-- DISCOUNT CODE -->
             <div class="col-sm-7">
-              <h6>DISCOUNT CODE</h6>
+              <h6>Code de réduction</h6>
               <form>
-                <input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
-                <button type="submit" class="btn btn-small btn-dark">APPLY CODE</button>
+                <input type="text" value="" placeholder="Entrer le code de réduction">
+                <button type="submit" class="btn btn-small btn-dark">Appliquer</button>
               </form>
-              <div class="coupn-btn"> <a href="#." class="btn">continue shopping</a> <a href="#." class="btn">update cart</a> </div>
+              <div class="coupn-btn textAlignCenter"> <a href="#." class="btn">Continuer</a> </div>
             </div>
             
             <!-- SUB TOTAL -->
             <div class="col-sm-5">
-              <h6>grand total</h6>
+              <h6>Récapitulatif</h6>
               <div class="grand-total">
                 <div class="order-detail">
                   <p>WOOD CHAIR <span>$598 </span></p>
@@ -195,7 +149,7 @@
                   <p>WOOD SPOON <span> $139</span></p>
                   
                   <!-- SUB TOTAL -->
-                  <p class="all-total">TOTAL COST <span> $998</span></p>
+                  <p class="all-total">Total panier <span> $998</span></p>
                 </div>
               </div>
             </div>

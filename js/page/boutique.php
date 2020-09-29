@@ -36,6 +36,8 @@ $('.addPanier').click(function(e){
     document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)+1;
 });
 
+
+// SUPPRESSION DU PRODUIT 
 $('.supprPanier').click(function(e){ 
     idProduit =    e.target.id;
     param = 'idProduit='+idProduit;
@@ -46,6 +48,24 @@ $('.supprPanier').click(function(e){
     document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)-1;
 });
 
+// SUPPRESSION DU PRODUIT DANS LA PAGE PANIER
+$('.supprPanierproduit').click(function(e){ 
+    idProduit =    e.target.id;
+    param = 'idProduit='+idProduit;
+    url= 'index.php?c=panier&action=supprPanier';
+    messageRetour = '';
+    postAjax(param,url,messageRetour);
+    document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)-1;
+});
+
+
+// Permet de supprimer une ligne du panier dans la page panier
+$('.supprPanierLigne').click(function(e){ 
+    idProduit =    e.target.id;
+    tabPanier =  document.getElementById("tabPanier");
+    produit = document.getElementById("produit-panier-"+idProduit);
+    tabPanier.removeChild(produit);
+});
 
 
 $('#btnFiltrer').click(function(e){ 

@@ -13,7 +13,7 @@
       <div class="container"> 
         
         <!-- Payments Steps -->
-        <div class="shopping-cart text-center">
+        <div id="tabPanier" class="shopping-cart text-center">
           <div class="cart-head">
             <ul class="row">
               <!-- PRODUCTS -->
@@ -33,7 +33,7 @@
           </div>
           <?php    foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
             <!-- Cart Details -->
-            <ul id="produit-<?=$produitPanier->getId();?>" class="row cart-details">
+            <ul id="produit-panier-<?=$produitPanier->getId();?>" class="row cart-details">
             
               <li class="col-sm-6">
                 <div class="media"> 
@@ -57,7 +57,7 @@
               
               <!-- REMOVE -->
               <li class="col-sm-1">
-                <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+                <div id="panierSuppr<?=$produitPanier->getId();?>" class="position-center-center"> <a class="supprPanierproduit supprPanierLigne" href="#."><i  id="<?=$produitPanier->getId();?>"  class="icon-close"></i></a> </div>
               </li>
             </ul>
           <?php }?>

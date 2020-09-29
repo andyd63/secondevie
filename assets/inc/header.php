@@ -45,7 +45,7 @@ $configSite = initConfigSite();
 <!-- JavaScripts -->
 <script src="./js/modernizr.js"></script>
 <script src="./js/commun.js"></script>
-<script src="./js/jquery.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Online Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

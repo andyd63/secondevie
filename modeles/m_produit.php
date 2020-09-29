@@ -40,7 +40,7 @@ return $r[0] ;
 //function retrouve le dernier produit 
 function voir10DernierProduit($id = ''){
     $order = array();
-    $limit = "limit 10";
+    $limit = "limit 3";
     if($id == ''){
         $conditions = '';
     }else {
@@ -49,7 +49,7 @@ function voir10DernierProduit($id = ''){
     }
 
     array_push($order, array('nameChamps'=>'id','sens'=>'desc'));
-    $req =  new myQueryClass('produit',$conditions,$order,$limit);
+    $req =  new myQueryClass('produit',$conditions,$order,'',$limit);
     $r = $req->myQuerySelect();
     return $r;
     }

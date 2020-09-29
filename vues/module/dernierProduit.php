@@ -1,5 +1,7 @@
 
-   <!-- Dernier produit -->
+  
+  
+  <!-- Dernier produit -->
    <section class="padding-top-50 padding-bottom-150">
       <div class="container"> 
         
@@ -8,6 +10,7 @@
           <h4><?php echo $moduleDernierProduit['titre_module'];?></h4>
           <p> <?php echo $moduleDernierProduit['texte_module'];?></p>
           </div>
+          
           <div class="papular-block row"> 
             <?php foreach($lesDerniersProduits as $produit){ ?>
             <!-- Popular Item Slide -->

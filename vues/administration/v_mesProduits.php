@@ -20,40 +20,90 @@
                     <?php echo $alert;?>
                   </div>
                  <?php  }?>
-                <h6>Mes Produits</h6>
-                <?php if(isset($errorSuccess)){?>
-                <div class="alert alert-success" role="alert">
-                   <?=$errorSuccess;?>
-              </div><?php }?>
+                <h6>Mes produits disponibles</h6>
                 
               <table id="test" class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Réduction</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($allProduitDispo as $produitP){?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><?= $produitP['id'];?></th>
+                    <td><?= $produitP['nom'];?></td>
+                    <td><?= $produitP['prix'];?></td>
+                    <td><?= $produitP['marque'];?></td>
+                    <td><?= $produitP['reduction'] *100?>%</td>
+                    <td></td>
                   </tr>
+                  <?php }?>
+                  
+              
+                </tbody>
+              </table>
+              <hr>
+              <h6>Mes produits réservés</h6>
+                
+              <table id="test" class="table">
+                <thead>
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Réduction</th>
+                    <th scope="col"></th>
                   </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($allProduitReserve as $produitR){?>
                   <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row"><?= $produitR['id'];?></th>
+                    <td><?= $produitR['nom'];?></td>
+                    <td><?= $produitR['prix'];?></td>
+                    <td><?= $produitR['marque'];?></td>
+                    <td><?= $produitR['reduction'] *100?>%</td>
+                    <td></td>
                   </tr>
+                  <?php }?>
+                  
+              
+                </tbody>
+              </table>
+              <hr>
+              <h6>Mes produits vendus</h6>
+                
+              <table id="test" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Réduction</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($allProduitVendu as $produitV){?>
+                  <tr>
+                    <th scope="row"><?= $produitV['id'];?></th>
+                    <td><?= $produitV['nom'];?></td>
+                    <td><?= $produitV['prix'];?></td>
+                    <td><?= $produitV['marque'];?></td>
+                    <td><?= $produitV['reduction'] *100?>%</td>
+                    <td></td>
+                  </tr>
+                  <?php }?>
+                  
+              
                 </tbody>
               </table>
               </div>

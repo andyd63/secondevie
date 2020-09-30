@@ -81,6 +81,9 @@ switch($action)
     break;    
 
     case 'mesProduits':
+        $allProduitDispo = voirProduitParEtat(0);
+        $allProduitReserve = voirProduitParEtat(1);
+        $allProduitVendu = voirProduitParEtat(2);
         include('./vues/administration/v_mesProduits.php'); 
     break;
 

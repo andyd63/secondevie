@@ -112,4 +112,17 @@ function countProduitByCategorie($idCategorie,$idSousCategorie){
 }
 
 
+//voir produit selon l'etat 
+// 0 : dispo
+// 1 : réservé 
+// 2 : vendu
+function voirProduitParEtat($id){
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'=','name'=>'etatDuProduit','value'=>$id));
+    $req =  new myQueryClass('produit',$conditions);
+    $r = $req->myQuerySelect();
+	return $r;
+}
+
+
 ?>

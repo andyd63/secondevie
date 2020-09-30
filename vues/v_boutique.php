@@ -2,7 +2,11 @@
 
  <!--- Include Header et menu --->
  <?php include('./assets/inc/header.php');?>
-  <?php include('./assets/inc/menu.php');?> 
+  <?php include('./assets/inc/menu.php');
+  
+  $nbProduit = count($produits);
+  
+  ?> 
 
   
   <!-- Content -->
@@ -129,7 +133,7 @@
           <div class="col-sm-9">
             <div class="item-display">
               <div class="row">
-                <div class="col-xs-6"> <span class="product-num">Affichage de  1 - 10 sur 30 produits</span> </div>
+                <div class="col-xs-6"> <span class="product-num">Affichage de  1 - 10 sur <?=$nbProduit;?> produits</span> </div>
                 
                 <!-- Products Select -->
                 <div class="col-xs-6">
@@ -151,6 +155,9 @@
               <div class='row'>
             <?php 
             $number = 0;
+            if($nbProduit == 0){
+              genererError(14);
+            }
             foreach($produits as $produit){
               if ($number % 3 == 0) { // si c'est une nouvelle ligne ?>
                 </div>

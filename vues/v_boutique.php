@@ -95,8 +95,8 @@
               </ul>
             
 
-
-               <!-- TAGS -->
+               <!-- Plus tard possibilite de trier par marque     
+              
                <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divMarque','spanMarque')">Marque <span id="spanMarque"><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divMarque" class="shop-tags">
                 <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
@@ -107,7 +107,7 @@
                 <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
                 <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
                 <li> <input type="checkbox" class="form-check-input " id=""> Towels</li>
-              </ul>
+              </ul>-->
               
               <li class="col-md-12  margin-top-30 margin-bottom-30 text-center">
                       <button id="btnFiltrer" class="btn btnSmall"><i class="fas fa-sync-alt"></i> Filtrer</button>

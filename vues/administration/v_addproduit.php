@@ -49,6 +49,11 @@
                         <input type="number" name="prixProduit" value="" placeholder="" required>
                       </label>
                     </li>
+                    <li class="col-md-6">
+                      <label>Réduction
+                        <input type="number" name="reducProduit" value="0.00" max='1.00' placeholder="" required>
+                      </label>
+                    </li>
                     <!-- Name -->
                     <li class="col-md-6">
                       <label>Etat
@@ -65,9 +70,9 @@
                     <li class="col-md-6">
                       <label>Taille
                           <select class="form-control" name="tailleProduit">
-                            <option>Aucune</option>
-                            <option>Fille</option>
-                            <option>Jouet</option>
+                          <?php foreach ($allTaille as $taille){
+                            echo "<option value=".$taille['idTaille'].">".$taille['nomTaille']."</option>";
+                          }?> 
                           </select>
                       </label>
                     </li>
@@ -76,36 +81,45 @@
                     <li class="col-md-6">
                       <label>Catégorie
                         <select class="form-control" name="categorieProduit">
-                          <option value="1">Garçon</option>
-                          <option value="2">Fille</option>
-                          <option value="3">Chaussure</option>
-                          <option value="4">Jouet</option>
+                          <?php foreach ($allCategorie as $cat){
+                            echo "<option value=".$cat['idCategorie'].">".$cat['nomCategorie']."</option>";
+                          }?>                      
                         </select>
                       </label>
                     </li>
-                    </div>
-                    <div class="row">
-                    <li class="col-md-6">
-                      <label>Sous catégorie
-                        <select class="form-control" name="sousCategorieProduit">
-                          <option value="1">Garçon</option>
-                          <option value="2">Fille</option>
-                          <option value="3">Chaussure</option>
-                          <option value="4">Jouet</option>
-                        </select>
-                      </label>
-                    </li>
-                    <!-- Name -->
-                    <li class="col-md-6">
-                      <label>Image 1
-                        <input type="file" name="img1" class="form-control-file" >
-                      </label>
-                    </li>
-                    </div>
+                  </div>
                     <div class="row">
                       <li class="col-md-6">
-                        <label>Image 2
-                          <input type="file" name="image2" class="form-control-file">
+                        <label>Genre
+                          <select class="form-control" name="genreProduit">
+                            <?php  foreach ($allGenre as $genre){
+                              echo "<option value=".$genre['idGenre'].">".$genre['libGenre']."</option>";
+                            }?>                      
+                          </select>
+                        </label>
+                      </li>
+                            
+                      <li class="col-md-6">
+                        <label>Sous catégorie Enfant 
+                          <select class="form-control" name="sousCategorieEnfantProduit">
+                            <option value="0">Sans choix</option>
+                            <?php foreach ($allSousCategorieEnfant as $sCatEnfant){
+                            echo "<option value=".$sCatEnfant['idSousCategorie'].">".$sCatEnfant['nomSousCategorie']."</option>";
+                            }?>   
+                
+                          </select>
+                        </label>
+                      </li>
+                    </div>  
+                    <div class="row">      
+                      <li class="col-md-6">
+                        <label>Sous catégorie Adulte 
+                          <select class="form-control" name="sousCategorieAdulteProduit">
+                            <option value="0">Sans choix</option>
+                            <?php foreach ($allSousCategorieAdulte as $sCatAdulte){
+                            echo "<option value=".$sCatAdulte['idSousCategorie'].">".$sCatAdulte['nomSousCategorie']."</option>";
+                            }?>   
+                          </select>
                         </label>
                       </li>
                       <li class="col-md-6">
@@ -113,6 +127,22 @@
                           <textarea class="form-control"  name="description" value="" placeholder=""></textarea>
                         </label>
                       </li>
+                    </div>     
+                    <div class="row">     
+                      <!-- Name -->
+                      <li class="col-md-6">
+                        <label>Image 1
+                          <input type="file" name="img1" class="form-control-file" >
+                        </label>
+                          </li>
+                      
+                        <li class="col-md-6">
+                          <label>Image 2
+                            <input type="file" name="image2" class="form-control-file">
+                          </label>
+                        </li>
+                    </div>
+                      
                     </div>
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">

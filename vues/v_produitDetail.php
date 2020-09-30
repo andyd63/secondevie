@@ -52,7 +52,7 @@
                 <?php }?>
               <ul class="item-owner">
                 <li>Marque :<span class="enGras blueSite"> <?=$produit['marque'];?></span></li>
-                <li>Etat:<span class="enGras blueSite"> <?=$produit['etat'];?></span></li>
+                <li>Etat:<span class="enGras blueSite"> <?=$etat['libEtat'];?></span></li>
               </ul>
               
               <!-- Description -->

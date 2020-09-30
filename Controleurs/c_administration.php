@@ -3,6 +3,7 @@ require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_menuadmin.php";
 require_once "./modeles/m_couleur.php";
+require_once "./modeles/m_etat.php";
 require_once "./modeles/m_boxAdmin.php";
 require_once "./modeles/m_commande.php";
 require_once "./modeles/m_codepromo.php";
@@ -45,6 +46,7 @@ switch($action)
     case 'addproduit':
     $allTaille = allTaille();
     $allCategorie = allCategorie(); // toutes les catégories
+    $allEtat = allEtat();
     $allSousCategorieEnfant =sousCategorieEnfant(); // sous categorie enfant + tous 
     $allSousCategorieAdulte = sousCategorieAdulte();// sous categorie adulte + tous 
     $allGenre = allGenre(); // tous les genre ()
@@ -54,6 +56,7 @@ switch($action)
 
     case 'addproduitValide':
     $allTaille = allTaille();
+    $allEtat = allEtat();
     $allCategorie = allCategorie(); // toutes les catégories
     $allSousCategorieEnfant =sousCategorieEnfant(); // sous categorie enfant + tous 
     $allSousCategorieAdulte = sousCategorieAdulte();// sous categorie adulte + tous 

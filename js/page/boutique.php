@@ -113,13 +113,26 @@ function updateMenuPanier(idProduit){
 
 
 $('#btnFiltrer').click(function(e){ 
+  filter= '';
    filterGenre = genreFilter();
+   filterCategorie = categorieFilter();
+   filterTaille = tailleFilter();
+   etatFilter = etatFilter();
 
    action =  $_GET('action');
    if(filterGenre != ''){
-     filterGenre = '&genre='+filterGenre;
+     filter = filter + '&genre='+filterGenre;
    }
-   adresse = 'index.php?c=boutique&action='+ action + filterGenre;
+   if(filterCategorie != ''){
+    filter = filter + '&souscategorie='+filterCategorie;
+   }
+   if(filterTaille != ''){
+    filter = filter + '&taille='+filterTaille;
+   }
+   if(etatFilter != ''){
+    filter = filter + '&etat='+etatFilter;
+   }
+   adresse = 'index.php?c=boutique&action='+ action + filter ;
    document.location.href = adresse;
    
 });
@@ -135,6 +148,46 @@ function genreFilter() {
     }
     return genre;
 }
+
+
+function categorieFilter() {
+    nbCategorie = parseInt(document.getElementById('nbCategorie').innerText)+1; // nbre de genre possible
+    categorie = '';
+   
+    for (let index = 1; index <= 100; index++) {
+        if($('#souscategorie-'+index).is(":checked")){
+          categorie += index +',';
+        }
+    }
+    return categorie;
+}
+
+function tailleFilter() {
+    nbtaille = parseInt(document.getElementById('nbTaille').innerText)+1; // nbre de genre possible
+    taille = '';
+    console.log(nbtaille)
+    for (let index = 1; index <= 100; index++) {
+      console.log($('#taille-'+index).is(":checked"))
+        if($('#taille-'+index).is(":checked")){
+          taille += index +',';
+          
+        }
+    }
+    return taille;
+}
+
+function etatFilter() {
+    etat = '';
+   
+    for (let index = 1; index <= 10; index++) {
+        if($('#etat-'+index).is(":checked")){
+          etat += index +',';
+        }
+    }
+    return etat;
+}
+
+
 
 
 

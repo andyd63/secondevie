@@ -42,8 +42,9 @@
               <!-- Category -->
               <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Catégorie <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divCategorie" class="shop-cate">
+              <span class="transparent" id="nbCategorie"><?=count($allSousCategorie);?></span>
                 <?php foreach($allSousCategorie as $sCat){?>
-                  <li class="checkCategorie"> <input type="checkbox" id="scat-<?=$sCat['idSousCategorie'];?>" class="form-check-input "> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                  <li class="souscategorie"> <input type="checkbox" id="souscategorie-<?=$sCat['idSousCategorie'];?>" class="form-check-input "> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
                 <?php }?>
               </ul>
               
@@ -51,8 +52,9 @@
               <!-- Category -->
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divTaille','spanTaille')">Taille <span id="spanTaille" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divTaille" class="shop-cate">
+              <span class="transparent" id="nbTaille"><?=count($allTaille);?></span>
                 <?php foreach($allTaille as $taille){?>
-                  <li class="checkCategorie"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
+                  <li class="taille"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
                 <?php }?>
               </ul>
               <!-- FILTER BY PRICE -->
@@ -89,9 +91,9 @@
               <!-- BRAND -->
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divEtat','spanEtat')">Etat <span id="spanEtat"><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divEtat" class="shop-cate">
-              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Bon état</li>
-              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Très bon état</li>
-              <li class="checkCategorie"><input type="checkbox" class="form-check-input " id=""> Neuf</li>
+                <?php foreach($allEtat as $etat){?>
+                  <li class="etat"> <input type="checkbox" class="form-check-input " id="etat-<?=$etat['idEtat']?>"> <?=$etat['libEtat']?></li>
+                <?php }?>
               </ul>
             
 

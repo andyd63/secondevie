@@ -4,12 +4,14 @@ require_once "./modeles/m_module.php";
 require_once "./modeles/m_genre.php";
 require_once "./modeles/m_alert.php";
 require_once "./modeles/m_categorie.php";
+require_once "./modeles/m_etat.php";
 require_once "./modeles/m_taille.php";
 require_once "./modeles/m_produit.php";
 require_once "./modeles/m_favoris.php";
 require_once "./modeles/m_sousCategorie.php";
 
-
+			
+$allEtat = allEtat();
 
 // requete qui prend toutes les catégories
 if(isset($_GET['action'])){
@@ -64,6 +66,7 @@ if(isset($_GET['action'])){
 			
 		case 'voirProduit':
 			$produit = voirProduitById($_GET['id']);
+			$etat = etat($produit['etat']);
 			$moduleDernierProduit = voir_module(3);
 			$lesDerniersProduits = voir10DernierProduit($_GET['id']); 
 			include('vues/v_produitDetail.php');

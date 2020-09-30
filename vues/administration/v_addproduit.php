@@ -58,9 +58,9 @@
                     <li class="col-md-6">
                       <label>Etat
                           <select class="form-control" name="etatProduit">
-                            <option>Bon état</option>
-                            <option>Super état</option>
-                            <option>Neuf</option>
+                          <?php foreach ($allEtat as $etat){
+                            echo "<option value=".$etat['idEtat'].">".$etat['libEtat']."</option>";
+                          }?> 
                           </select>
                       </label>
                     </li>

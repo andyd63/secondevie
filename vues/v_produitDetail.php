@@ -34,10 +34,22 @@
             <!-- COntent -->
             <div class="col-md-5">
               <h4><?=$produit['nom'];?></h4>
-              <span class="price"><?=$produit['prix'];?><small>€</small></span> 
+              <span class="price">
+                  <?php if($produit['reduction']==0){
+                      echo $produit['prix'].'€';
+                  }else{ ?>
+                      <del><?=$produit['prix'];?>€</del> 
+                      <?=$produit['prix'] * (1 - $produit['reduction']);?>€
+                  <?php } ?>
+              </span> 
               
              
-              <!-- en cas de promotion <div class="on-sale"> 10% <span>OFF</span> </div>-->
+              <?php if($produit['reduction']>0){?>
+                  <div class="on-sale">
+                    -<?= $produit['reduction'] * 100 ;?>%
+                    <span>Promo</span>
+                  </div>
+                <?php }?>
               <ul class="item-owner">
                 <li>Marque :<span class="enGras blueSite"> <?=$produit['marque'];?></span></li>
                 <li>Etat:<span class="enGras blueSite"> <?=$produit['etat'];?></span></li>

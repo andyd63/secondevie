@@ -43,13 +43,10 @@ switch ($action){
         echo  $_SESSION['panier']->getNbCollection();
     break;
 
-
-    
-
     // VOIR PANIER
 	case 'voirpanier' :
         require_once('./vues/v_panier.php');
-        break;
+    break;
 
 
 

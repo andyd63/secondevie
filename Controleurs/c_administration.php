@@ -76,7 +76,17 @@ switch($action)
     $errorSuccess = "Le produit est ajouté!";
     include('./vues/administration/v_addproduit.php');
     break;    
-   
+
+    case 'mesProduits':
+        include('./vues/administration/v_mesProduits.php'); 
+    break;
+
+    default: 
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('General');
+        include('./vues/administration/v_admin_def.php');
+    break;
 
    
 }

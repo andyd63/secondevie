@@ -45,7 +45,11 @@ $configSite = initConfigSite();
 <!-- JavaScripts -->
 <script src="./js/modernizr.js"></script>
 <script src="./js/commun.js"></script>
-<script src="js/jquery-1.11.3.min.js"></script> 
+<script src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.22/sp-1.2.0/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.22/sp-1.2.0/datatables.min.js"></script>
+ 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Online Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

@@ -6,13 +6,16 @@
 
   <!-- Content -->
   <div id="content"> 
-    
     <!-- Popular Products -->
     <section class=" padding-bottom-100">
+   
       <div class="container"> 
+     
         <?php if($produit!= false){?>
         <!-- SHOP DETAIL -->
         <div class="shop-detail">
+        <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A>
+        <hr>
           <div class="row"> 
             
             <!-- Popular Images Slider -->
@@ -36,8 +39,8 @@
              
               <!-- en cas de promotion <div class="on-sale"> 10% <span>OFF</span> </div>-->
               <ul class="item-owner">
-                <li>Marque :<span> <?=$produit['marque'];?></span></li>
-                <li>Etat:<span> <?=$produit['etat'];?></span></li>
+                <li>Marque :<span class="enGras blueSite"> <?=$produit['marque'];?></span></li>
+                <li>Etat:<span class="enGras blueSite"> <?=$produit['etat'];?></span></li>
               </ul>
               
               <!-- Description -->

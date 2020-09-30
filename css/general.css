@@ -44,9 +44,12 @@
 }
 
 .blue {
-    color : blue;
+    color : blue !important;
 }
 
+.blueSite {
+    color : #2d3a4b !important;
+}
 
 /*******************************
         BACKGROUND COLOR
@@ -87,4 +90,8 @@
 
 .pointer {
     cursor: pointer;
+}
+
+.enGras{
+    font-weight: bold;
 }

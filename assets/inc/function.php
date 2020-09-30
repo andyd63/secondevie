@@ -59,9 +59,10 @@ function totalPrixPanier(){
     //Pour chaque produit
     foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
         $totalPrix += $produitPanier->getPrix();
-        $totalRemise += ($produitPanier->getPrix() * $produitPanier->getReduction() );    
+        $totalRemise += ($produitPanier->getPrix() * (1 - $produitPanier->getReduction() )) ;
+
     }
-    $retour = array(($totalPrix - $totalRemise ),$totalPrix,$totalRemise);
+    $retour = array(number_format(($totalRemise ),2),number_format($totalPrix,2),number_format($totalPrix - $totalRemise,2));
     return $retour;
 }
 

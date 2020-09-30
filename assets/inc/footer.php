@@ -87,7 +87,7 @@
   
   });
 </script>
-
+<p id="valeurRetourJs"> </p>
 </div>
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/own-menu.js"></script> 

@@ -50,16 +50,17 @@
                     <div id="menuPanierProduit" class="media-body">
                       <?php 
                       foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
-                        <h6 id="produitMenu<?=$produitPanier->getId();?>" class="media-heading"><?= $produitPanier->getNom();?> <span id="prixProduit<?=$produitPanier->getId();?>"class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span></h6>
+                        <h6 id="produitMenu<?=$produitPanier->getId();?>" class="media-heading"><?= $produitPanier->getNom();?> <span id="prixProduit<?=$produitPanier->getId();?>"class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span>
                         <span style="display:none" id="produitReduction<?=$produitPanier->getId();?>"><?=$produitPanier->getReduction();?></span>
+                        </h6>
                         <?php }?>
                     
                   </li>
                   <li>
                     <?php $totalPanier = totalPrixPanier();?>
 
-                    <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier[1];?></span></h5>
-                    <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier[0];?></h6>
+                    <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier[1]?></span>€</h5>
+                    <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier[0];?></span>€</h6>
                   </li>
                   <li class="margin-0">
                       <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>

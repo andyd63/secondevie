@@ -33,11 +33,28 @@ $('.addPanier').click(function(e){
     param = 'idProduit='+idProduit[1];
     url= 'index.php?c=panier&action=addPanier';
     messageRetour = '';
-    postAjax(param,url,messageRetour);
+    postAjax(param,url,messageRetour);  // rempli valeurRetourJs
     inverseVisibilite('panierAdd-'+idProduit[1], 'panierSuppr-'+idProduit[1], 'inline-block');
     document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)+1;
+   
+    setTimeout(UpdatePanierRemplissage, 500); 
 });
 
+
+function UpdatePanierRemplissage()
+{
+  valeurJs = JSON.parse( document.getElementById("valeurRetourJs").innerHTML);
+  console.log()
+  itemPanier = "<h6 id='produitMenu"+idProduit[1]+"' class='media-heading'>"+ valeurJs.nom +"<span class='price' id='prixProduit"+idProduit[1]+"'> "+valeurJs.prix+"</span>"+"<span class='price'>€</span><span style='display:none' id='produitReduction"+idProduit[1] +"' >"+valeurJs.reduction+"</span></h6>";
+  document.getElementById("menuPanierProduit").innerHTML = document.getElementById("menuPanierProduit").innerHTML + itemPanier
+  
+  // Change le prix total du panier
+  document.getElementById("prixTotalMenuPanier").innerText = parseFloat(parseFloat(document.getElementById("prixTotalMenuPanier").innerText) +   parseFloat(valeurJs.prix)).toFixed(2);
+
+    // Change le prix total du panier avec reduc 
+    document.getElementById("prixTotalMenuPanierPromo").innerText =  parseFloat (parseFloat(document.getElementById("prixTotalMenuPanierPromo").innerText) + parseFloat(((valeurJs.prix -(valeurJs.prix * valeurJs.reduction))))).toFixed(2);
+ //Le code écrit dans cette fonction ne sera exécuté qu'au bout de 5 secondes)
+}
 
 // SUPPRESSION DU PRODUIT 
 $('.supprPanier').click(function(e){ 

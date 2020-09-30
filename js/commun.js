@@ -24,7 +24,7 @@ function postAjax(param, url,messageRetour,retourJs = false){
             }
         }}
         else {
-             console.log(xhr.responseText);
+            $("#valeurRetourJs").html(xhr.responseText);
         }}
  });
 }

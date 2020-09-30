@@ -32,6 +32,7 @@ switch ($action){
         $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['nom'],$produit['prix'],$produit['reduction'],$produit['image1'],$produit['description']),$produit['id'] );       
         // Réserve le produit pendant 30 minutes
 
+        echo json_encode($produit);
         ?>
         <?php
         break;

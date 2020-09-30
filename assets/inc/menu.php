@@ -50,7 +50,11 @@
                     <div id="menuPanierProduit" class="media-body">
                       <?php 
                       foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
-                        <h6 id="produitMenu<?=$produitPanier->getId();?>" class="media-heading"><?= $produitPanier->getNom();?> <span id="prixProduit<?=$produitPanier->getId();?>"class="price"><?= $produitPanier->getPrix();?></span><span class="price">€</span>
+                        <h6 id="produitMenu<?=$produitPanier->getId();?>" class="media-heading"><?= $produitPanier->getNom();?> 
+                        <span id="prixProduit<?=$produitPanier->getId();?>" class="price">
+                          <?php if($produitPanier->getReduction()==0){ echo  $produitPanier->getPrix().'€'; }else{ ?>
+                          <del><?=$produitPanier->getPrix();?>€</del> <?= $produitPanier->getPrix() * (1 -$produitPanier->getReduction());?>€<?php } ?>
+                        </span>
                         <span style="display:none" id="produitReduction<?=$produitPanier->getId();?>"><?=$produitPanier->getReduction();?></span>
                         </h6>
                         <?php }?>

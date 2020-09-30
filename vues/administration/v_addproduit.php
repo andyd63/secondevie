@@ -51,7 +51,7 @@
                     </li>
                     <li class="col-md-6">
                       <label>Réduction
-                        <input type="number" name="reducProduit" value="0.00" max='1.00' placeholder="" required>
+                        <input type="number" name="reducProduit" value="0.00"  step="0.01" placeholder="" required>
                       </label>
                     </li>
                     <!-- Name -->

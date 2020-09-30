@@ -44,8 +44,12 @@ $('.addPanier').click(function(e){
 function UpdatePanierRemplissage()
 {
   valeurJs = JSON.parse( document.getElementById("valeurRetourJs").innerHTML);
-  console.log()
-  itemPanier = "<h6 id='produitMenu"+idProduit[1]+"' class='media-heading'>"+ valeurJs.nom +"<span class='price' id='prixProduit"+idProduit[1]+"'> "+valeurJs.prix+"</span>"+"<span class='price'>€</span><span style='display:none' id='produitReduction"+idProduit[1] +"' >"+valeurJs.reduction+"</span></h6>";
+
+  if(valeurJs.reduction == 0){
+  itemPanier = "<h6 id='produitMenu"+idProduit[1]+"' class='media-heading'>"+ valeurJs.nom +"<span class='price' id='prixProduit"+idProduit[1]+"'> "+valeurJs.prix+"€</span>"+"<span style='display:none' id='produitReduction"+idProduit[1] +"' >"+valeurJs.reduction+"</span></h6>";
+  }else{
+    itemPanier = "<h6 id='produitMenu"+idProduit[1]+"' class='media-heading'>"+ valeurJs.nom +"<span class='price' id='prixProduit"+idProduit[1]+"'> <del>"+valeurJs.prix+"€</del> "+ valeurJs.prix * (1- valeurJs.reduction) +" €</span>"+"<span style='display:none' id='produitReduction"+idProduit[1] +"' >"+valeurJs.reduction+"</span></h6>";
+  }
   document.getElementById("menuPanierProduit").innerHTML = document.getElementById("menuPanierProduit").innerHTML + itemPanier
   
   // Change le prix total du panier
@@ -100,10 +104,10 @@ function updateMenuPanier(idProduit){
     produitPrixAvecReduction =  prixProduit - (prixProduit * parseFloat(document.getElementById("produitReduction"+idProduit).innerText));
 
     // Change le prix total du panier
-    document.getElementById("prixTotalMenuPanier").innerText = Math.round(parseFloat(document.getElementById("prixTotalMenuPanier").innerText) - prixProduit);
+    document.getElementById("prixTotalMenuPanier").innerText = (parseFloat(document.getElementById("prixTotalMenuPanier").innerText).toFixed(2) - prixProduit);
 
     // Change le prix total du panier avec reduc 
-    document.getElementById("prixTotalMenuPanierPromo").innerText = Math.round(parseFloat(document.getElementById("prixTotalMenuPanierPromo").innerText) - produitPrixAvecReduction);
+    document.getElementById("prixTotalMenuPanierPromo").innerText = (parseFloat(document.getElementById("prixTotalMenuPanierPromo").innerText).toFixed(2) - produitPrixAvecReduction);
     tabPanier.removeChild(produit);
 }
 

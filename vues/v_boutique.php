@@ -161,6 +161,14 @@
               <!-- Item -->
               <div class="col-md-4">
                 <div class="item"> 
+                <div class="item"> 
+                <!-- Sale Tags -->
+                <?php if($produit['reduction']>0){?>
+                  <div class="on-sale">
+                    -<?= $produit['reduction'] * 100 ;?>%
+                    <span>Promo</span>
+                  </div>
+                <?php }?>
                   <!-- Item img -->
                   <a  href="index.php?c=boutique&action=voirProduit&id=<?=$produit['id'];?>">
                     <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
@@ -191,8 +199,17 @@
                     <p><?=$produit['description'];?></p>
                   </div>
                   <!-- Price --> 
-                  <span class="price"><?=$produit['prix'];?>€ </div>
+                  <span class="price">
+                  <?php if($produit['reduction']==0){
+                      echo $produit['prix'].'€';
+                  }else{ ?>
+                      <del><?=$produit['prix'];?>€</del> 
+                      <?=$produit['prix'] * (1 - $produit['reduction']);?>€
+                  <?php } ?>
+                    </span>
+                  </div>
               </div>
+                  </div>
              
             <?php }?>
             </div>

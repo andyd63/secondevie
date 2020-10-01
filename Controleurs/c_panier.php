@@ -1,7 +1,7 @@
 <?php
 require_once('modeles/m_panier.php');
 require_once('modeles/m_produit.php');
-//require_once('modeles/m_commande.php');
+require_once('modeles/m_commande.php');
 require_once('./modeles/m_configSite.php');
 //require_once('modeles/Transaction.php');
 //require_once('./modeles/m_codepromo.php');
@@ -91,6 +91,9 @@ switch ($action){
     <?php
         break;
 
+    case 'payment':
+        require_once('./vues/create_payment.php');
+    break;
 
 	
 

@@ -62,7 +62,7 @@ function totalPrixPanier(){
         $totalRemise += ($produitPanier->getPrix() * (1 - $produitPanier->getReduction() )) ;
 
     }
-    $retour = array(number_format(($totalRemise ),2),number_format($totalPrix,2),number_format($totalPrix - $totalRemise,2));
+    $retour = array('totalAvecRemise'=>number_format(($totalRemise ),2),'totalSansRemise'=>number_format($totalPrix,2),'totalRemise'=>number_format($totalPrix - $totalRemise,2));
     return $retour;
 }
 

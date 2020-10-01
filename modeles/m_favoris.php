@@ -26,7 +26,7 @@ function voirSiFavoris($idClient,$idProduit)
 	return count($r);
 }
 
-//////////////// AJOUT d'un client /////////////////////////
+//////////////// AJOUT d'un favoris /////////////////////////
 function addFavoris($idClient,$idProduit){
     $conn = bdd();
     $conditions = array();

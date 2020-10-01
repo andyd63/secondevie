@@ -6,17 +6,28 @@ require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
 
 
-function ajouter_commande($idcli,$prix_commande,$nbre_photo_num,$prix_n,$nbre_photo,$nbre_paquet,$prix_paquet,$nbre_photo_u,$prix_photo_u,$codeP)
+function ajouter_commande($idClient,$prixCommande,$prixSansReduction,$nbreProduit,$modeLivraison,$tokenVerification,$idPromo = NULL)
 {
 $conn = bdd();
 $jour = date("d");   
 $mois = date("m");   
 $annee = date("Y");    
-	$date = mktime(0, 0, 0, $mois,  $jour, $annee);
-$newclient = $conn->prepare("INSERT INTO commande (id_client,prix_commande,nbre_photo_numerique,prix_photo_n,nbre_photo,nbre_paquet,prix_paquet,nbre_photo_u,prix_photo_u, statut_commande, idPromo,date) 
-							VALUES ($idcli,$prix_commande,$nbre_photo_num,$prix_n,$nbre_photo,$nbre_paquet,
-							$prix_paquet,$nbre_photo_u,$prix_photo_u,'1', $codeP,$date)");
-$newclient->execute();
+$date = mktime(0, 0, 0, $mois,  $jour, $annee);
+
+$conditions = array();
+array_push($conditions, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
+array_push($conditions, array('nameChamps'=>'prixCommande','name'=>'prixCommande','value'=>$prixCommande));
+array_push($conditions, array('nameChamps'=>'prixSansReduction','name'=>'prixSansReduction','value'=>$prixSansReduction));
+array_push($conditions, array('nameChamps'=>'nbreProduit','name'=>'nbreProduit','value'=>$nbreProduit));
+array_push($conditions, array('nameChamps'=>'modeLivraison','name'=>'modeLivraison','value'=>$modeLivraison));
+array_push($conditions, array('nameChamps'=>'tokenVerification','name'=>'tokenVerification','value'=>$tokenVerification));
+array_push($conditions, array('nameChamps'=>'idPromo','name'=>'idPromo','value'=>$idPromo));
+array_push($conditions, array('nameChamps'=>'date','name'=>'date','value'=>$date));
+array_push($conditions, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>'0'));
+$req =  new myQueryClass('commande',$conditions);
+$r = $req->myQueryInsert();
+$conn = null ; //Quitte la connexion
+
 }
 
 

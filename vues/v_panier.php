@@ -92,7 +92,7 @@
                 <input type="text" value="" placeholder="Entrer le code de réduction">
                 <button type="submit" class="btn btn-small btn-dark">Appliquer</button>
               </form>
-              <div class="coupn-btn textAlignCenter"> <a href="#." class="btn">Continuer</a> </div>
+              <div class="coupn-btn textAlignCenter"> <a href="index.php?c=panier&action=payment" class="btn">Continuer</a> </div>
             </div>
             
             <!-- SUB TOTAL -->
@@ -112,8 +112,8 @@
                   <?php } ?>
                   <!-- SUB TOTAL -->
                   <?php $totalPanier = totalPrixPanier();?>
-                  <p class="all-total">Total sans réduction: <span><?= $totalPanier[1]?>€</span></p>
-                  <p class="all-total">Total avec réduction: <span ><?= $totalPanier[0];?>€</span></p>
+                  <p class="all-total">Total sans réduction: <span><?= $totalPanier['totalSansRemise']?>€</span></p>
+                  <p class="all-total">Total avec réduction: <span ><?= $totalPanier['totalAvecRemise'];?>€</span></p>
                 </div>
               </div>
             </div>

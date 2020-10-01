@@ -35,7 +35,7 @@ $conn = null ; //Quitte la connexion
 function voirDerniereCommande(){
 	$order = array();
 	array_push($order, array('nameChamps'=>'idCommande','sens'=>'desc'));
-	$req =  new myQueryClass('commande','',$order,'limit 1');
+	$req =  new myQueryClass('commande','',$order,'','limit 1');
 	$r = $req->myQuerySelect();
 	return $r[0] ;
 	}
@@ -62,6 +62,45 @@ function deleteCommandeToken($token){
 	$r = $req->myQueryDelete();
 	$conn = null ; //Quitte la connexion
 }
+
+
+function changeCommandeToken($token,$valeur)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'tokenVerification','type'=>'=','name'=>'tokenVerification','value'=>$token));
+	array_push($values, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>$valeur));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
+function changeCommandeFacture($token,$valeur)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'tokenVerification','type'=>'=','name'=>'tokenVerification','value'=>$token));
+	array_push($values, array('nameChamps'=>'idFacture','name'=>'idFacture','value'=>$valeur));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
+
+
+//function retrouve le dernier produit 
+function voirDerniereCommandeAvecFacture(){
+	$conditions = array();
+	$order = array();
+	array_push($order, array('nameChamps'=>'idFacture','sens'=>'desc'));
+	array_push($conditions, array('nameChamps'=>'idFacture','type'=>'is not null','name'=>'','value'=>''));
+	$req =  new myQueryClass('commande',$conditions,$order,'','limit 1');
+	$r = $req->myQuerySelect();
+	return $r[0];
+}
+	
+
+
 
 function mescommandes($id){
 	/*$conn=bdd();

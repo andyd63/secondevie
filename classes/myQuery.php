@@ -26,18 +26,24 @@ class myQueryClass
             $nbCondit = 1;
             foreach($this->conditions as $condition ){
                 if(count($this->conditions) == 1 ){
-                $mesConditions = "WHERE ".$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                if($condition['name'] != ''){
+                    $condition['name'] = ':'.$condition['name'];
+                }
+                $mesConditions = "WHERE ".$condition['nameChamps'].' '.$condition['type'].' '.$condition['name'];
                 }
                 else {
+                    if($condition['name'] != ''){
+                        $condition['name'] = ':'.$condition['name'];
+                    }
                     if($nbCondit == 1 ){
-                        $mesConditions =  "WHERE ".$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                        $mesConditions =  "WHERE ".$condition['nameChamps'].' '.$condition['type'].' '.$condition['name'];
                     } else {
                         if(isset($condition['operator'])){
                             $operator = $condition['operator'];
                         }else{
                             $operator = 'AND';       
                         }      
-                        $mesConditions.= ' '.$operator.'  '.$condition['nameChamps'].' '.$condition['type'].' :'.$condition['name'];
+                        $mesConditions.= ' '.$operator.'  '.$condition['nameChamps'].' '.$condition['type'].' '.$condition['name'];
                     }
                     $nbCondit++;
                 }

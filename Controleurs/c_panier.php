@@ -108,59 +108,42 @@ switch ($action){
     
 
     case 'success' :
-
-	$files = array();
-	$filesAdmin = array(); // Juste les photos Papier
     $idcli= $_SESSION['id']; // id du client
-    
-    $nbre_photo_num = $_SESSION['configPanierNum']->getPhotoPanier()->getNbCollection() ; // nbre photo numérique 
+    if(isset($_GET['id'])){ // si y a un token
+        $commande = voirCommandeToken($_GET['id']); // verifie si le token a une correspondance
 
-    $ladernierecommande = dernierecommande() ; // id de la derniere commande commande
-    $ladernierecommande = $ladernierecommande['id_commande'] +1;
-    if(!isset($_SESSION['idPromo'])){
-        $idCodeP = 0;
-    } else {
-        $idCodeP = $_SESSION['idPromo'];
-    }
+        if($commande != false){ // si celui ci a une commande
+            $derFacture = voirDerniereCommandeAvecFacture();
+            changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+            changeCommandeToken($_GET['id'],'1');// change le statut de la commande
 
-    
-    if(!isset($charge['error']) || ($prix == 0) ){
-    $unecommande = ajouter_commande($idcli,$_SESSION['prixTotalTempo'],$nbre_photo_num,$_SESSION['configPanierNum']->getPrixUnite(),
-    $_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() , $_SESSION['configPanierPapier']->getPhotoPanier()->getNbLot()
-        ,$_SESSION['configPanierPapier']->getPrixLot(), 
-        $_SESSION['configPanierPapier']->getPhotoPanier()->getNbUnitaire(), $_SESSION['configPanierPapier']->getPrixUnite(),$idCodeP);
-    $idcommande = $ladernierecommande;
-    
+            foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+                changeProduitStatut($produitPanier->getId(),'2',$_SESSION['id']);// change le statut de la commande
+            }
+        }
+    $_SESSION['panier']->vider(); // vider le panier
+
+}
+break;
+
+/* 
+    /////////////////////////////////////////
+    // PREPARATION MAIL
+    //////////////////////////////////////////
+    $totPhoto = $_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() + $_SESSION['configPanierNum']->getPhotoPanier()->getNbCollection();
+    $text = "<tr><td>Evenement</td><td>référence</td><td>Lien site </td><td>Quantite</td><tr>";
+    $text_client = "<tr><td>Reference</td><td>Quantite</td><tr>";
+
+
     foreach ($_SESSION['configPanierPapier']->getPhotoPanier()->getCollection() as $produit) {
-         $ajoutercompo = ajouter_photo($idcommande, $produit->getRef(), $produit->getLien(), $produit->getQte(), $produit->getRep(), 2);
-         array_push($files, $produit->getLien());    
+        $text_client.= "<tr><td>".$produit->getRef()."</td><td>".$produit->getQte()." Photos papier(s) </td>";
+        $text.= "<tr><td>".$produit->getRep()."</td><td>".$produit->getRef()."</td><td>".$produit->getLien()."</td><td>".$produit->getQte()." Photos papiers </td>";
     }
 
     foreach ($_SESSION['configPanierNum']->getPhotoPanier()->getCollection() as $produit) {
-         $ajoutercompo = ajouter_photo($idcommande, $produit->getRef(), $produit->getLien(), $produit->getQte(), $produit->getRep(), 1);
-         array_push($filesAdmin, $produit->getLien());
+        $text_client.= "<tr><td>".$produit->getRef()."</td><td>".$produit->getQte()." Photos numerique(s) </td>";
+        $text.= "<tr><td>".$produit->getRep()."</td><td>".$produit->getRef()."</td><td>".$produit->getLien()."</td><td>".$produit->getQte()." Photos numériques </td>";
     }
-    
-    createZip($files,$idcommande,"Archives_Numerique"); // Creer Archives Client
-    createZip($filesAdmin,$idcommande,"Archives_Papier"); // Creer Archives Admin
-
-/////////////////////////////////////////
-// PREPARATION MAIL
-//////////////////////////////////////////
- $totPhoto = $_SESSION['configPanierPapier']->getPhotoPanier()->getNbCollection() + $_SESSION['configPanierNum']->getPhotoPanier()->getNbCollection();
-$text = "<tr><td>Evenement</td><td>référence</td><td>Lien site </td><td>Quantite</td><tr>";
-$text_client = "<tr><td>Reference</td><td>Quantite</td><tr>";
-
-
-foreach ($_SESSION['configPanierPapier']->getPhotoPanier()->getCollection() as $produit) {
-    $text_client.= "<tr><td>".$produit->getRef()."</td><td>".$produit->getQte()." Photos papier(s) </td>";
-    $text.= "<tr><td>".$produit->getRep()."</td><td>".$produit->getRef()."</td><td>".$produit->getLien()."</td><td>".$produit->getQte()." Photos papiers </td>";
-}
-
-foreach ($_SESSION['configPanierNum']->getPhotoPanier()->getCollection() as $produit) {
-    $text_client.= "<tr><td>".$produit->getRef()."</td><td>".$produit->getQte()." Photos numerique(s) </td>";
-    $text.= "<tr><td>".$produit->getRep()."</td><td>".$produit->getRef()."</td><td>".$produit->getLien()."</td><td>".$produit->getQte()." Photos numériques </td>";
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 ///////////////// ENVOIE MAIL ADMIN
@@ -313,33 +296,8 @@ $message2.= $passage_ligne."--".$boundary."--".$passage_ligne;
 //=====Envoi de l'e-mail.
 mail($mail2,$sujet2,$message2,$header2);
 //==========
+*/
 
-$_SESSION['Panier'] = array();
-deletePanier($_SESSION['idPanier']);
-$_SESSION['Panier'] = array();
-$_SESSION['configPanierPapier'] = array();
-$_SESSION['configPanierNum'] = array();
-unset($_SESSION['idPanier']);
-if(isset($_SESSION['promo'])){
-    if($_SESSION['idPromo']){
-        $code = codePromobyId($_SESSION['idPromo']);
-        if($code['multi'] == 0){
-            updateCodePromo($_SESSION['idPromo'],0);
-        }
-    }
-    unset($_SESSION['promo']);
-}
-
-?>
-<SCRIPT LANGUAGE="JavaScript">
-   document.location.href="index.php?c=panier&action=reussi";
-</SCRIPT><?php
-}
-        else {
-            $errorBank ="<div class='alert alert-danger' role='alert'>Désolé il y a eu un problème dans le paiement, veuillez recommencer le paiement.</div>";
-            include('./vues/vue_voirpanier.php');
-        }
-        break;
 
     case "reussi" :
         include('./vues/vue_panier_reussi.php');

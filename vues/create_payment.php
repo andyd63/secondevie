@@ -25,8 +25,8 @@ var_dump("https://index.php?c=panier&action=cancel&id=$token");
 $session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' => [[
-    'name' => 'Commande Deuxiemevie',
-    'description' => 'Commande de vêtement',
+    'name' => 'Commande Deuxiemevie '.$token,
+    'description' => 'Commande de vêtement:',
     'amount' => $totalPanier['totalAvecRemise'] *100,
     'currency' => 'eur',
     'quantity' => 1,

@@ -48,6 +48,7 @@ function voir10DernierProduit($id = ''){
     }else {
     $conditions = array();
     array_push($conditions, array('nameChamps'=>'id','type'=>'!=','name'=>'id','value'=>$id));
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'id','value'=>'2'));
     }
 
     array_push($order, array('nameChamps'=>'id','sens'=>'desc'));
@@ -97,6 +98,7 @@ function allProduitByCategorie($id,$get){
        
     }
     array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
     $req =  new myQueryClass('produit',$conditions);
     $r = $req->myQuerySelect();
 	return $r;
@@ -122,6 +124,20 @@ function voirProduitParEtat($id){
     $req =  new myQueryClass('produit',$conditions);
     $r = $req->myQuerySelect();
 	return $r;
+}
+
+
+
+function changeProduitStatut($idProduit,$valeur,$idClient =NULL)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$idProduit));
+    array_push($values, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>$valeur));
+    array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
+	$req =  new myQueryClass('produit',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
 }
 
 

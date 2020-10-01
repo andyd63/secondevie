@@ -43,7 +43,7 @@
                     <!-- EMAIL ADDRESS -->
                     <li class="col-md-6">
                       <label>Email <span class="rouge">*</span>
-                        <input type="email" name="email" value="" placeholder="" required>
+                        <input type="email" name="email"  id="emailInscription" value="" placeholder="jean.dupont@example.com" required >
                       </label>
                     </li>
                     <!-- PHONE -->
@@ -90,7 +90,7 @@
                     
                     <!-- PHONE -->
                     <li class="col-md-12 textAlignCenter">
-                      <button type="submit" class="btn">S'inscrire!</button>
+                      <button id='btnInscription' type="submit" class="btn">S'inscrire!</button>
                     </li>
                     
                   </ul>
@@ -102,7 +102,28 @@
       </div>
     </section>
     
-
+  <script>
+    
+  $('#emailInscription').change(function(e){ 
+    Email = document.getElementById('emailInscription').value;
+    param = 'email='+Email
+    url= 'index.php?c=profil&action=verifMail&ajx=1&'+param;
+    messageRetour = '';
+    reponse= postAjax(param,url,messageRetour);
+    rep = reponse.responseText;
+    rep = jQuery.parseJSON(rep);
+    if(rep.success){ // si le mail existe déjà
+        Swal.fire({
+                    icon: 'warning',
+                    title: 'Ce mail est déjà utilisé sur le site, veuillez prendre une autre adresse',
+      });
+      document.getElementById('btnInscription').disabled = true;
+    }else{
+      document.getElementById('btnInscription').disabled = false;
+    }
+  });
+  
+  </script>
 
   <?php include('./assets/inc/footer.php');?>
   

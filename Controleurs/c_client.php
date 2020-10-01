@@ -2,7 +2,6 @@
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_commande.php";
 require_once "./assets/inc/function.php";
-
 if(isset($_GET['action']))
 	$action = $_GET['action'];
 else{
@@ -10,40 +9,55 @@ else{
 }
 switch ($action){
 	case 'profil' :
-	if(isset($_SESSION['id'])){
-			$id = $_SESSION['id'];
-	} else {
-			$id = isset($_GET['ajx']);
+	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	{
+		if(isset($_SESSION['id'])){
+				$id = $_SESSION['id'];
+		} else {
+				$id = isset($_GET['ajx']);
+		}
+		$cli = informationsRest($id);
+		if(!isset($_GET['ajx'])){ //appel normal
+				$cli = json_decode($cli);
+				$cli = $cli->result;
+				require_once('vues/vue_profil.php');
+		} else	{ // Appel Ajax
+				appelAjax($cli);
+		}	
+	}else{
+		redirectUrl("index.php?c=accueil");
 	}
-	$cli = informationsRest($id);
-	if(!isset($_GET['ajx'])){ //appel normal
-			$cli = json_decode($cli);
-			$cli = $cli->result;
-			require_once('vues/vue_profil.php');
-	} else	{ // Appel Ajax
-			appelAjax($cli);
-	}	
 	break;
 
-	case 'mescommandes' :   
-	$commandes= mescommandes($_SESSION['id']);
-	if(!isset($_GET['ajx'])){ //appel normal
-		$commandes = json_decode($commandes);
-		$commandes = $commandes->result;
-		require_once('vues/v_mescommandes.php');
-	} else	{ // Appel Ajax
-		appelAjax($commandes);
-	}	
+	case 'mescommandes' : 
+	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	{  
+		$commandes= mescommandes($_SESSION['id']);
+		if(!isset($_GET['ajx'])){ //appel normal
+			$commandes = json_decode($commandes);
+			$commandes = $commandes->result;
+			require_once('vues/v_mescommandes.php');
+		} else	{ // Appel Ajax
+			appelAjax($commandes);
+		}	
+	}else{
+		redirectUrl("index.php?c=accueil");
+	}
 	break;
 	
-	case 'macommande' :   
-	$commandes= mescommandes($_SESSION['id']);
-	if(!isset($_GET['ajx'])){ //appel normal
-		$commandes = json_decode($commandes);
-		$commandes = $commandes->result;
-		require_once('vues/v_mescommandes.php');
-	} else	{ // Appel Ajax
-		appelAjax($commandes);
+	case 'macommande' :
+	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	{    
+		$commandes= mescommandes($_SESSION['id']);
+		if(!isset($_GET['ajx'])){ //appel normal
+			$commandes = json_decode($commandes);
+			$commandes = $commandes->result;
+			require_once('vues/v_mescommandes.php');
+		} else	{ // Appel Ajax
+			appelAjax($commandes);
+		}
+	}else{
+		redirectUrl("index.php?c=accueil");
 	}	
 	break;
 	
@@ -72,7 +86,18 @@ switch ($action){
 	require_once('vues/vue_profil.php');
 	break;
 
-    default :
+
+	//Test si mail existe
+	case 'verifMail' : 
+	if(isset($_GET['ajx'])){
+		$erreur = userMailExist($_GET['email']);
+		appelAjax($erreur);
+	}
+	break;
+
+	default :
+	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	{  
 		$cli = informationsRest($_SESSION['id']);
 		if(!isset($_GET['ajx'])){ //appel normal
 			$cli = json_decode($cli);
@@ -80,6 +105,9 @@ switch ($action){
 		} else	{ // Appel Ajax
 			appelAjax($cli);
 		}
+	}else{
+		redirectUrl("index.php?c=accueil");
+	}
         break;
 }
 

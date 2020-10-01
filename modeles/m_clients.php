@@ -118,6 +118,22 @@ function getclient($mail,$mdp) // Sert à renvoyer les données du client
       return $requser->fetch();	    
 }
 
+function userMailExist($mail) // Sert à savoir si le client existe
+{
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'MAIL_CLIENTS','type'=>'=','name'=>'MAIL_CLIENTS','value'=>$mail));
+	$req =  new myQueryClass('client',$conditions);
+	$r = $req->myQuerySelect();
+	if(count($r) == 0){
+		$success = false;
+	}else{
+		$success = 'true';
+	}
+	return reponse_json($success,"");
+}
+
+
+
 function informationsRest($id){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'ID_CLIENTS','type'=>'=','name'=>'idCli','value'=>$id));

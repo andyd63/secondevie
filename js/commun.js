@@ -1,7 +1,9 @@
 
 
 function postAjax(param, url,messageRetour,retourJs = false){
+    d = '';
     form = $.ajax({
+    async: !1,
     url : url, // La ressource ciblée
     type : 'POST', // Le type de la requête HTTP.
     data : param,
@@ -24,9 +26,10 @@ function postAjax(param, url,messageRetour,retourJs = false){
             }
         }}
         else {
-            $("#valeurRetourJs").html(xhr.responseText);
+        
         }}
  });
+ return form;
 }
 
 function  changeVal(val1,val2) {

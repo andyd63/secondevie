@@ -93,7 +93,13 @@
                 <input type="text" value="" placeholder="Entrer le code de réduction">
                 <button type="submit" class="btn btn-small btn-dark">Appliquer</button>
               </form>
-              <div class="coupn-btn textAlignCenter"> <a href="index.php?c=panier&action=payment" class="btn">Continuer</a> </div>
+              <div class="coupn-btn textAlignCenter"> 
+                <?php if(isConnected()){?>
+                <a href="index.php?c=panier&action=payment" class="btn">Continuer</a> 
+                <?php }else{?>
+                  <a href="index.php?c=panier&action=payment" class="btn">Connectez-vous!</a>
+                <?php }?>
+                </div>
             </div>
             
             <!-- SUB TOTAL -->

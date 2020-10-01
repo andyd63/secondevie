@@ -27,7 +27,10 @@
               <!-- PRICE -->
               <li class="col-sm-2">
                 <h6>Prix</h6>
-              </li>              
+              </li>
+              <li class="col-sm-2">
+                <h6>Réduction</h6>
+              </li>                 
               <li class="col-sm-1"> </li>
             </ul>
           </div>
@@ -52,9 +55,16 @@
               
               <!-- PRICE -->
               <li class="col-sm-2">
+              <?php if($produitPanier->getReduction() != '0'){?>
+                <div class="position-center-center"> <span class="price"><del><?= $produitPanier->getPrix();?>€</del> <?= $produitPanier->getPrix() * (1- $produitPanier->getReduction());?>€ </span> </div>
+              <?php }else{?>
                 <div class="position-center-center"> <span class="price"><?= $produitPanier->getPrix();?>€</span> </div>
+              <?php }?>
               </li>
               
+              <li class="col-sm-2">
+          <?php if($produitPanier->getReduction() != '0'){?><div class="position-center-center"> <span class="price"><?= $produitPanier->getReduction() *100?>%</span> </div><?php }?>
+              </li>
               <!-- REMOVE -->
               <li class="col-sm-1">
                 <div id="panierSuppr<?=$produitPanier->getId();?>" class="position-center-center"> <a class="supprPanierproduit supprPanierLigne" href="#."><i  id="<?=$produitPanier->getId();?>"  class="icon-close"></i></a> </div>
@@ -90,12 +100,20 @@
               <h6>Récapitulatif</h6>
               <div class="grand-total">
                 <div class="order-detail">
-                  <p>Produit enfant <span>$598 </span></p>
-                  <p>Produit adulte <span>$199 </span></p>
-                  <p>Produit de braderie <span> $139</span></p>
-                  
+                  <?php
+                  $totPanierCategories =  totalPrixPanierParCategorie(); 
+                  foreach($totPanierCategories as $tot){
+                    $cat = categorie($tot['id']);?>
+                    <p>Produit <?=$cat['nomCategorie'];?> 
+                    <?php if($tot['totalRemise'] == '0' ){ ?><span><?= $tot['totalSansRemise'];?>€</span><?php } else{ ?>
+                      <span><del><?= $tot['totalSansRemise'];?>€</del><?= $tot['totalAvecRemise'];?>€</span>
+                    <?php } ?>
+                  </p>
+                  <?php } ?>
                   <!-- SUB TOTAL -->
-                  <p class="all-total">Total panier <span> $998</span></p>
+                  <?php $totalPanier = totalPrixPanier();?>
+                  <p class="all-total">Total sans réduction: <span><?= $totalPanier[1]?>€</span></p>
+                  <p class="all-total">Total avec réduction: <span ><?= $totalPanier[0];?>€</span></p>
                 </div>
               </div>
             </div>

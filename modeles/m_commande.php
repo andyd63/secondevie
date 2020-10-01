@@ -104,7 +104,7 @@ function voirDerniereCommandeAvecFacture(){
 
 function mescommandes($id){
 	/*$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from commande where id_client = ? order by id_commande desc');
+	$dernierecomm = $conn->prepare('SELECT * from commande where id_client = ? order by idCommande desc');
 	$dernierecomm-> execute(array($id));
 	$laderniercom = $dernierecomm->fetchAll();
 	$conn=null;
@@ -112,8 +112,8 @@ function mescommandes($id){
 */
 	$conditions = array();
 	$order = array();
-	array_push($conditions, array('nameChamps'=>'id_client','type'=>'=','name'=>'idCli','value'=>$id));
-	array_push($order, array('nameChamps'=>'id_commande','sens'=>'desc'));
+	array_push($conditions, array('nameChamps'=>'idClient','type'=>'=','name'=>'idCli','value'=>$id));
+	array_push($order, array('nameChamps'=>'idCommande','sens'=>'desc'));
 	$req =  new myQueryClass('commande',$conditions,$order);
 	$r = $req->myQuerySelect();
 		$success = true;
@@ -126,7 +126,7 @@ function mescommandes($id){
  */
 function allCommandes(){
 	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT  *, commande.date as commandeDate from commande inner join client on client.ID_CLIENTS = commande.id_client order by id_commande desc');
+	$dernierecomm = $conn->prepare('SELECT  *, commande.date as commandeDate from commande inner join client on client.ID_CLIENTS = commande.idClient order by idCommande desc');
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetchAll();
 	$conn=null;
@@ -136,7 +136,7 @@ function allCommandes(){
 
 function photo_commande_p($id){
 	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from photos  where id_commande = ? and choix = 1 ');
+	$dernierecomm = $conn->prepare('SELECT * from photos  where idCommande = ? and choix = 1 ');
 	$dernierecomm-> execute(array($id));
 	$laderniercom = $dernierecomm->fetchAll();
 	$conn=null;
@@ -145,7 +145,7 @@ function photo_commande_p($id){
 
 function photo_commande_n($id){
 	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from photos  where id_commande = ? and choix = 2  ');
+	$dernierecomm = $conn->prepare('SELECT * from photos  where idCommande = ? and choix = 2  ');
 	$dernierecomm-> execute(array($id));
 	$laderniercom = $dernierecomm->fetchAll();
 	$conn=null;
@@ -159,18 +159,18 @@ function premiere_commandemois(){
 	$mois =  date("m");  
 	$annee =  date("Y");  
 	$date = mktime(0, 0, 0, $mois,  $jour, $annee);
-	$dernierecomm = $conn->prepare("SELECT * from commande where date >= $date order by id_commande asc   limit 1 ");
+	$dernierecomm = $conn->prepare("SELECT * from commande where date >= $date order by idCommande asc   limit 1 ");
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetch();
 	$conn=null;
-	return $laderniercom['id_commande'];
+	return $laderniercom['idCommande'];
 }
 
 ///////////////////////////////////////
 
 function modifStatutCommande($statutCommande,$idCommande){
     $conn = bdd();
-    $modifcli = $conn->prepare('UPDATE commande SET statut_commande=?  WHERE id_commande = ?;');
+    $modifcli = $conn->prepare('UPDATE commande SET statut_commande=?  WHERE idCommande = ?;');
     $modifcli->execute(array($statutCommande,$idCommande));
     $conn = null ; //Quitte la connexion
     return "Le statut de la commande à été changé!";
@@ -182,7 +182,7 @@ function modifStatutCommande($statutCommande,$idCommande){
 function sum_photo_mois_num(){
 	$conn=bdd();
 	$id = premiere_commandemois();
-	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='2' and id_commande >='$id'");
+	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='2' and idCommande >='$id'");
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetch();
 	$conn=null;
@@ -196,7 +196,7 @@ function sum_photo_mois_num(){
 function sum_photo_mois_papier(){
 	$conn=bdd();
 	$id = premiere_commandemois();
-	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='1' and id_commande >='$id'");
+	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='1' and idCommande >='$id'");
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetch();
 	$conn=null;
@@ -209,7 +209,7 @@ function sum_photo_mois_papier(){
  */
 function commandeParId($id){
     $conn=bdd();
-    $dernierecomm = $conn->prepare("SELECT * from commande where id_commande ='$id'");
+    $dernierecomm = $conn->prepare("SELECT * from commande where idCommande ='$id'");
     $dernierecomm-> execute();
     $lacommande = $dernierecomm->fetch();
     $conn=null;
@@ -289,7 +289,7 @@ function nbre_commandemois_papier(){
 		$laderniercom = 0; 
 		$conn=bdd();
 		$date_format = date('d/m/Y', $date);
-	$dernierecomm = $conn->prepare("SELECT count(*) as count from commande inner join photos on photos.id_commande = commande.id_commande  where date >= $date   and date <= $date_m and choix = 1");
+	$dernierecomm = $conn->prepare("SELECT count(*) as count from commande inner join photos on photos.idCommande = commande.idCommande  where date >= $date   and date <= $date_m and choix = 1");
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetch();
 	$conn=null;
@@ -332,7 +332,7 @@ function nbre_commandemois_num(){
 		$laderniercom = 0; 
 		$conn=bdd();
 		$date_format = date('d/m/Y', $date);
-	$dernierecomm = $conn->prepare("SELECT count(*) as count from commande inner join photos on photos.id_commande = commande.id_commande  where date >= $date   and date < $date_m and choix = 2 ");
+	$dernierecomm = $conn->prepare("SELECT count(*) as count from commande inner join photos on photos.idCommande = commande.idCommande  where date >= $date   and date < $date_m and choix = 2 ");
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetch();
 	$conn=null;
@@ -574,3 +574,6 @@ function chiffre_inscritTot(){
         $nbreTotal = $nbreTotal->fetch();
     return $nbreTotal['nbre'];
 }
+
+
+

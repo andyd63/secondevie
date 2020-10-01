@@ -30,7 +30,18 @@ switch ($action){
 	if(!isset($_GET['ajx'])){ //appel normal
 		$commandes = json_decode($commandes);
 		$commandes = $commandes->result;
-		require_once('vues/vue_commande.php');
+		require_once('vues/v_mescommandes.php');
+	} else	{ // Appel Ajax
+		appelAjax($commandes);
+	}	
+	break;
+	
+	case 'macommande' :   
+	$commandes= mescommandes($_SESSION['id']);
+	if(!isset($_GET['ajx'])){ //appel normal
+		$commandes = json_decode($commandes);
+		$commandes = $commandes->result;
+		require_once('vues/v_mescommandes.php');
 	} else	{ // Appel Ajax
 		appelAjax($commandes);
 	}	

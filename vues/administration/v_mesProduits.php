@@ -22,7 +22,7 @@
                  <?php  }?>
                 <h6>Mes produits disponibles</h6>
                 
-              <table id="test" class="table">
+              <table id="test1" class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -118,7 +118,7 @@
 
   <script>
     $(document).ready(function() {
-        $('#test').DataTable( {
+        $('#test1').DataTable( {
             "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "All"]],
             "language": {
                 //"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",

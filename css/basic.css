@@ -2,6 +2,10 @@
     z-index: 0 !important;
 }
 
+.paginate_button a{
+    color : white!important;
+}
+
 .transparent{
     display: none !important;
 }

@@ -82,7 +82,11 @@
 
   $('#viderPanier').click(function(){ 
 	url = 'index.php?c=panier&action=viderP';
-	messageRetour = "Votre panier est bien vidé!";
+  messageRetour = "Votre panier est bien vidé!";
+  document.getElementById('menuPanierProduit').innerHTML = '';
+  document.getElementById('prixTotalMenuPanier').innerHTML = '0';
+  document.getElementById('prixTotalMenuPanierPromo').innerHTML = '0';
+  
 	postAjax('',url,messageRetour,true);
   
   });

@@ -168,9 +168,7 @@ p.intro-small {
 .font-bold {
 	font-weight: bold !important;
 }
-a:hover, a:focus {
 
-}
 .primary-color {
 	color: #ffe115 !important;
 }
@@ -1564,8 +1562,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	display: inline-block;
 	vertical-align: top;
 }
-.papular-block .overlay a:hover {
-}
+
 .papular-block .item img {
 	width: 100%;
 	margin-top: 0px;
@@ -1738,8 +1735,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
       SHOP DETAIL PAGES
 ========================================================*/
-.shop-detail {
-}
+
 .shop-detail .price {
 	font-size: 18px;
 	font-weight: bold;
@@ -2077,8 +2073,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
       OUR TEAM
 ========================================================*/
-.our-team {
-}
+
 .our-team article {
 	position: relative;
 }
@@ -2112,8 +2107,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	left: 0px;
 	opacity: 1;
 }
-.our-team article:hover img {
-}
+
 .our-team .team-hover img {
 	border-radius: 50%;
 }
@@ -2183,8 +2177,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
       BLOG LIST
 ========================================================*/
-.blog-list {
-}
+
 .blog-list article {
 	text-align: center;
 	border-bottom: 1px solid #d1d5db;
@@ -2214,8 +2207,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	letter-spacing: 2px;
 	padding: 0px;
 }
-.blog-list .post-tittle {
-}
+
 .blog-list img {
 	margin-bottom: 30px;
 }
@@ -2379,8 +2371,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
 			PAPULAR POST
 ========================================================*/
-.papu-post {
-}
+
 .papu-post .media-left {
 	margin-right: 0px;
 }
@@ -2874,8 +2865,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .shopping-cart .grand-total .all-total {
 	border-bottom: none !important;
 }
-.shopping-cart .cart-ship-info .grand-total {
-}
+
 .shopping-cart .cart-ship-info .grand-total h4 {
 	font-size: 20px;
 	font-weight: bold;
@@ -3119,8 +3109,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	display: inline-block;
 	width: 100%;
 }
-.comments .media-body a {
-}
+
 .comments {
 	margin-top: 30px;
 }
@@ -3232,8 +3221,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
       Testimonial
 ========================================================*/
-.testimonial {
-}
+
 .testimonial .testi-in {
 	text-align: right;
 	position: relative;
@@ -4135,10 +4123,7 @@ main {
 .cd-nav .cd-primary-nav a.selected {
 	color: #ffffff;
 }
-.no-touch .cd-nav .cd-primary-nav a:hover {
-}
-.cd-nav .cd-contact-info {
-}
+
 .cd-nav .cd-contact-info li {
 	margin-bottom: 1.5em;
 	line-height: 1.2;
@@ -4176,8 +4161,7 @@ main {
 .cd-nav .cd-contact-info {
 	text-align: right;
 }
-.cd-nav .cd-contact-info li, .cd-nav .cd-contact-info a, .cd-nav .cd-contact-info span {
-}
+
 .no-js main {
 	height: auto;
 	overflow: visible;
@@ -4361,11 +4345,7 @@ main {
 	margin-right: 10px;
 	font-size: 14px;
 }
-.login-with li a:hover {
 
-}
-.cart-ship-info.register select {
-}
 .cart-ship-info.register .bootstrap-select .btn {
 	height: 44px;
 	border: 1px solid #2d3a4b;

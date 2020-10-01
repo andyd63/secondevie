@@ -48,7 +48,31 @@ switch ($action){
         require_once('./vues/v_panier.php');
     break;
 
+	case 'supprPanier' : // action pour Supprimer dans le panier
+        // Supprime le produit du panier
+        $_SESSION['panier']->supprimer($_POST['idProduit'] );       
 
+    // DERESERVE LE PRODUIT
+
+    /// PERMET DE SAVOIR LE NOMBRE DE PRODUIT DANS LE PANIER
+    case 'nbreProduitPanier':
+        echo  $_SESSION['panier']->getNbCollection();
+    break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     case 'mettreCode':
         $codeP = codePromobyPromo($_POST['nomCode']);
@@ -70,36 +94,9 @@ switch ($action){
         break;
 
 
-	case 'v_ajouterPanier' : // action pour Ajouter dans le panier
-	if(!isset($_SESSION['Panier'])){ // Si le panier n'existe pas
-		$_SESSION['Panier'] = new Panier();
-    }
-    $nombre = $_GET['a'];
+	
 
-    // Si 1 ajoute | 2 diminue
-	if ($nombre == 1 ){
-        $_SESSION['configPanierPapier']->getPhotoPanier()->getAddOrDiminue($_GET['num'],1,1);
-	}
-	if ($nombre == 2 ){
-        $_SESSION['configPanierPapier']->getPhotoPanier()->getAddOrDiminue($_GET['num'],1,2);
-	}
-	?>
-	<SCRIPT LANGUAGE="JavaScript">
-       document.location.href="index.php?c=panier"
-    </SCRIPT>
-<?php
-	break;
 
-	case 'supprPanier' : // action pour Supprimer dans le panier
-        // Supprime le produit du panier
-        $_SESSION['panier']->supprimer($_POST['idProduit'] );       
-
-    // DERESERVE LE PRODUIT
-
-    /// PERMET DE SAVOIR LE NOMBRE DE PRODUIT DANS LE PANIER
-    case 'nbreProduitPanier':
-        echo  $_SESSION['panier']->getNbCollection();
-    break;
 
     case 'termine':
         \Stripe\Stripe::setApiKey('sk_test_WIueQDa130JgDaN7xLw64zb1');

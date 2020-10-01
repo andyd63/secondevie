@@ -33,7 +33,7 @@ class Collection
 		}
 		else 
 		{
-			//throw new KeyInvalidException("Invalid key $key.");
+			echo 'ERREUR CLE '.$key.' deja utilisée';
 		}
 	}
 
@@ -46,7 +46,7 @@ class Collection
 		}
 		else 
 		{
-			throw new KeyInvalidException("Invalid key $key.");
+			echo 'ERREUR CLE '.$key.' deja utilisée';
 		}
 	}
 

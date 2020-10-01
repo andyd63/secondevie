@@ -66,6 +66,19 @@ function totalPrixPanier(){
     return $retour;
 }
 
+function siCheckUrl($valeur,$tableau){
+    $retour = false;
+    if(isset($_GET[$tableau])){ // si le get existe
+    $value = explode(",", $_GET[$tableau]);
+        foreach($value as $v){ // pour chaque valeur
+            if($valeur == $v){
+                return true;
+            }
+        }
+    }
+    return $retour;
+}
+
 
 // Permet de retrouver le prix dans le panier pour chaque catégorie
 function totalPrixPanierParCategorie(){

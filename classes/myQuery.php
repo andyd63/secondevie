@@ -22,6 +22,7 @@ class myQueryClass
         $pdo = bdd();   
         $mesConditions = '';
         $mesOrder = '';
+        $derniereCondition = '';
         if($this->conditions != ''){
             $nbCondit = 1;
             foreach($this->conditions as $condition ){
@@ -42,7 +43,8 @@ class myQueryClass
                             $operator = $condition['operator'];
                         }else{
                             $operator = 'AND';       
-                        }      
+                        }    
+                   
                         $mesConditions.= ' '.$operator.'  '.$condition['nameChamps'].' '.$condition['type'].' '.$condition['name'];
                     }
                     $nbCondit++;
@@ -66,15 +68,30 @@ class myQueryClass
             }
         }
 
+        // Reconsctruction des conditions pour mettre des paranthèse pour les and
+        $mesConditionsNonConstruit = explode('AND', $mesConditions);
+        $conditionsConstruit = ''; 
+        $compteur =0;
+        foreach($mesConditionsNonConstruit as $e){
+            if($compteur != 0){
+            $conditionsConstruit .= 'And ('.$e.') ';
+            }else{
+                $conditionsConstruit .= $e;
+            }
+            $compteur++;
+        }
+    
 
-       
-        $requete = $pdo->prepare("SELECT * FROM ".$this->table." ".$mesConditions." ".$mesOrder." ".$this->limit);
+        $requete = $pdo->prepare("SELECT * FROM ".$this->table." ".$conditionsConstruit." ".$mesOrder." ".$this->limit);
         if($this->conditions != ''){
             foreach($this->conditions as $condition ){
                 $requete->bindParam($condition['name'], $condition['value']);
             }
-        }
+        } 
         $requete->execute();
+       
+      
+        
         $r = $requete->fetchAll();
         return $r;
     }

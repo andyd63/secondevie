@@ -188,8 +188,15 @@ function etatFilter() {
 }
 
 
+function changeTri(){
+  var urlcourante = document.location.href;
+  var selectElmt = document.getElementById("OrderbyProduit");
+  var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;  
+  var textselectionne = selectElmt.options[selectElmt.selectedIndex].text; 
 
-
+  urlcourante += '&order='+valeurselectionnee;
+  document.location.href= urlcourante;
+}
 
 
 

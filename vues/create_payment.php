@@ -4,15 +4,10 @@
 require("./vendor/autoload.php");
 $totalPanier = totalPrixPanier();
 $modeLivraison = '0'; // a faire definir par l'utilisateur
-
+$token = genererChaineAleatoire(50);
 //ajoute une commande avec le token vide et le statut à 0
-ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,genererChaineAleatoire(50),$idPromo = NULL);
+ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo = NULL);
 
-// si reussi renvoie commande sur success + id 
-// si annule  supprime la commande 
-
-
-var_dump($_SESSION);
 //if($_POST['prix'] == 0){?>
 <script>
  // document.location.href="../index.php?c=panier&action=success"; 
@@ -25,20 +20,19 @@ else{
 //\Stripe\Stripe::setApiKey('sk_live_I5VhN6csccZpnrc0DflqTIkz');
 
 \Stripe\Stripe::setApiKey('sk_test_WIueQDa130JgDaN7xLw64zb1');
-
+var_dump("https://index.php?c=panier&action=cancel&id=$token");
 // Creation d'une session stripe avec vos produits vos prix vos images et urls de retour
 $session = \Stripe\Checkout\Session::create([
-  
   'payment_method_types' => ['card'],
   'line_items' => [[
-    'name' => 'Commande '.'',
+    'name' => 'Commande Deuxiemevie',
     'description' => 'Commande de vêtement',
-    'amount' => $totalPanier['totalAvecRemise'],
+    'amount' => $totalPanier['totalAvecRemise'] *100,
     'currency' => 'eur',
     'quantity' => 1,
   ]],
-  'success_url' => 'index.php?c=panier&action=success&id='.genererChaineAleatoire('25'),
-  'cancel_url' => 'https://jcphotographie.fr/index.php?c=panier&action=cancel',
+  'success_url' => 'index.php?c=panier&action=success&id='.$token,
+  'cancel_url' => 'https://index.php?c=panier&action=cancel&id='.$token,
 ]);
 //}
 
@@ -57,7 +51,6 @@ function genererChaineAleatoire($longueur = 10)
 //Utilisation de la fonction
 
 ?>
-
 <html>
   <!-- Redirection vers le checkout SCA 3D SECURE de stripe avec votre $session->id -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -71,4 +64,4 @@ function genererChaineAleatoire($longueur = 10)
   });
   </script>
 
-</html>*/
+</html>

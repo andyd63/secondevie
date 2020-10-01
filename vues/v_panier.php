@@ -11,6 +11,7 @@
     <!--======= PAGES INNER =========-->
     <section class="padding-top-30 padding-bottom-100 pages-in chart-page">
       <div class="container"> 
+        <?php if($error){ echo genererError(16); }?>
         
         <!-- Payments Steps -->
         <div id="tabPanier" class="shopping-cart text-center">

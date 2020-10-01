@@ -31,13 +31,36 @@ $conn = null ; //Quitte la connexion
 }
 
 
-function dernierecommande(){	
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from commande order by id_commande desc limit 1');
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetch();
-	$conn=null;
-	return $laderniercom;
+//function retrouve le dernier produit 
+function voirDerniereCommande(){
+	$order = array();
+	array_push($order, array('nameChamps'=>'idCommande','sens'=>'desc'));
+	$req =  new myQueryClass('commande','',$order,'limit 1');
+	$r = $req->myQuerySelect();
+	return $r[0] ;
+	}
+
+
+//function retrouve le dernier produit 
+function voirCommandeToken($token){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'tokenVerification','type'=>'=','name'=>'tokenVerification','value'=>$token));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	if(count($r)== 1){
+		return $r[0];
+	}else{
+		return false;
+	}
+}
+	
+function deleteCommandeToken($token){
+    $conn = bdd();
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'tokenVerification','type'=>'=','name'=>'tokenVerification','value'=>$token));
+    $req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQueryDelete();
+	$conn = null ; //Quitte la connexion
 }
 
 function mescommandes($id){

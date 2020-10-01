@@ -63,8 +63,8 @@
                   <li>
                     <?php $totalPanier = totalPrixPanier();?>
 
-                    <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier[1]?></span>€</h5>
-                    <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier[0];?></span>€</h6>
+                    <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier['totalSansRemise']?></span>€</h5>
+                    <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier['totalAvecRemise'];?></span>€</h6>
                   </li>
                   <li class="margin-0">
                       <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>

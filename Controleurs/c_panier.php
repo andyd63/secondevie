@@ -45,7 +45,7 @@ switch ($action){
 
     // VOIR PANIER
     case 'voirpanier' :
-        
+        $error = false;
         require_once('./vues/v_panier.php');
     break;
 
@@ -54,10 +54,19 @@ switch ($action){
         $_SESSION['panier']->supprimer($_POST['idProduit'] );       
 
     // DERESERVE LE PRODUIT
-
     break;
 
-
+    case 'cancel':
+        $error = true;
+        if(isset($_GET['id'])){
+        $commande = voirCommandeToken($_GET['id']);
+        if($commande != 'false'){
+            deleteCommandeToken($_GET['id']);
+        }
+        }
+        // supprime la commande 
+        require_once('./vues/v_panier.php');
+        break;
 
 
 
@@ -96,47 +105,7 @@ switch ($action){
     break;
 
 	
-
-
-
-    case 'termine':
-        \Stripe\Stripe::setApiKey('sk_test_WIueQDa130JgDaN7xLw64zb1');
-
-        // Clef de votre webhook
-        $endpoint_secret = 'whsec_XnAvP9pdAAwgERFlA2PePeWdLH3svr7W';
-        $payload = @file_get_contents('php://input');
-        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-        $event = null;
-        
-        try {
-          $event = \Stripe\Webhook::constructEvent(
-            $payload, $sig_header, $endpoint_secret
-          );
-        } catch(\UnexpectedValueException $e) {
-          // Invalid payload
-          http_response_code(400); // PHP 5.4 or greater
-          exit();
-        } catch(\Stripe\Error\SignatureVerification $e) {
-          // Invalid signature
-          http_response_code(400); // PHP 5.4 or greater
-          exit();
-        }
-        
-        // Handle the checkout.session.completed event
-        if ($event->type == 'checkout.session.completed') {
-          $session = $event->data->object;
-          // LE PAIEMENT EST BIEN VERIFIER :) 
-          // Ici sessions contient l'id de votre session au depart vous pouvez maintenant 
-          // faire le raprochement avec l'utilisateur et son panier grace a cette id pour mettre a jour son profil 
-        }
-        
-        http_response_code(200); // PHP 5.4 or greater
-    break;
-
-    case 'cancel':
-    $errorBank ="<div class='alert alert-danger' role='alert'>Désolé il y a eu un problème dans le paiement, veuillez recommencer le paiement.</div>";
-    include('./vues/vue_voirpanier.php');
-    break;
+    
 
     case 'success' :
 

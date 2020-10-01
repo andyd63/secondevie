@@ -19,3 +19,4 @@ function categorie($id){
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
+

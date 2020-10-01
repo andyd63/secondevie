@@ -9,7 +9,7 @@
   <!-- Content -->
   <div id="content"> 
     <!--======= PAGES INNER =========-->
-    <section class="chart-page padding-top-100 ">
+    <section class="chart-page padding-top-30 padding-bottom-100 ">
       <div class="container">         
         <!-- Payments Steps -->
         <div class="shopping-cart"> 
@@ -21,8 +21,7 @@
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-12">
                 <h6>S'inscrire</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-                 Sed feugiat, tellus vel tristique posuere, diam</p>
+                <?=genererError(15);?>
                 <p><span class="rouge">*</span> Obligatoire
                  <form action="index.php?c=inscription&action=valide" method="post">
                   <ul class="row">
@@ -90,9 +89,10 @@
                     </li>
                     
                     <!-- PHONE -->
-                    <li class="col-md-12">
+                    <li class="col-md-12 textAlignCenter">
                       <button type="submit" class="btn">S'inscrire!</button>
                     </li>
+                    
                   </ul>
                 </form>
               </div>

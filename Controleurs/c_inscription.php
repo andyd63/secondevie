@@ -1,6 +1,7 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_alert.php";
 require_once "./modeles/m_module.php";
 $conn = bdd();
 

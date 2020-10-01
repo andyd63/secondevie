@@ -118,10 +118,16 @@ switch ($action){
             changeCommandeToken($_GET['id'],'1');// change le statut de la commande
 
             foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
-                changeProduitStatut($produitPanier->getId(),'2',$_SESSION['id']);// change le statut de la commande
+                changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
             }
         }
     $_SESSION['panier']->vider(); // vider le panier
+    //recuperer la commande avec le prix
+    $commande = voirCommandeToken($_GET['id']);
+    $produits = voirProduitByCommande($commande['idCommande']);
+    var_dump($produits);
+    // recuperer les produits de la commande    
+    require_once('./vues/v_commande.php');
 
 }
 break;

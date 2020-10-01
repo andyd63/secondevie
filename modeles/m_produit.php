@@ -65,6 +65,23 @@ function allProduit(){
 }
 
 
+//voir produit de la commande
+function voirProduitByCommande($id){
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+    $req =  new myQueryClass('produit',$conditions);
+    $r = $req->myQuerySelect();
+    if(count($r)==0){
+        $r = false;
+    }else{
+        $r = $r;
+    }
+	return $r;
+}
+
+
+
+
 //voir produit selon l'id
 function voirProduitById($id){
     $conditions = array();
@@ -78,6 +95,7 @@ function voirProduitById($id){
     }
 	return $r;
 }
+
 
 function allProduitByCategorie($id,$get){
     
@@ -128,17 +146,19 @@ function voirProduitParEtat($id){
 
 
 
-function changeProduitStatut($idProduit,$valeur,$idClient =NULL)
+function changeProduitStatut($idProduit,$valeur,$idCommande = null,$idClient =NULL)
 {
 	$conditions = array();
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$idProduit));
     array_push($values, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>$valeur));
     array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
+    array_push($values, array('nameChamps'=>'idCommande','name'=>'etatDuProduit','value'=>$idCommande));
 	$req =  new myQueryClass('produit',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion
 }
+
 
 
 ?>

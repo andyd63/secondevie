@@ -1,7 +1,9 @@
 .formRecherche{
     z-index: 0 !important;
 }
-
+.logoSite{
+    width: 200px;
+}
 .paginate_button a{
     color : white!important;
 }

@@ -1,6 +1,8 @@
 <?php
 require_once('modeles/m_panier.php');
 require_once('modeles/m_produit.php');
+require_once('modeles/m_alert.php');
+require_once('modeles/m_module.php');
 require_once('modeles/m_commande.php');
 require_once('modeles/m_statutCommande.php');
 require_once('modeles/m_modeLivraison.php');
@@ -72,6 +74,7 @@ switch ($action){
 
 
         case 'success' :
+            $error = true; // affiche un message de félicitation pour la commande
             $idcli= $_SESSION['id']; // id du client
             if(isset($_GET['id'])){ // si y a un token
                 $commande = voirCommandeToken($_GET['id']); // verifie si le token a une correspondance

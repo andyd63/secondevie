@@ -13,7 +13,9 @@
     <!--======= PAGES INNER =========-->
     <section class="padding-top-30 padding-bottom-100 light-gray-bg shopping-cart small-cart">
       <div class="container"> 
+      <?php if(!isset($error)){?>
       <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
+      <?php } else{  genererError(17); }?>
         <!-- SHOPPING INFORMATION -->
         <div class="cart-ship-info margin-top-0">
           <div class="row"> 

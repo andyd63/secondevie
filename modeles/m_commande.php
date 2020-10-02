@@ -23,7 +23,7 @@ array_push($conditions, array('nameChamps'=>'modeLivraison','name'=>'modeLivrais
 array_push($conditions, array('nameChamps'=>'tokenVerification','name'=>'tokenVerification','value'=>$tokenVerification));
 array_push($conditions, array('nameChamps'=>'idPromo','name'=>'idPromo','value'=>$idPromo));
 array_push($conditions, array('nameChamps'=>'date','name'=>'date','value'=>$date));
-array_push($conditions, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>'0'));
+array_push($conditions, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>'1'));
 $req =  new myQueryClass('commande',$conditions);
 $r = $req->myQueryInsert();
 $conn = null ; //Quitte la connexion

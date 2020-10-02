@@ -43,7 +43,7 @@
                     <td><?= $c->modeLivraison;?></td>
                     <td><?= $c->statutCommande;?></td>
                     <td><?= date('d/m/Y',$c->date);?></td>
-                    <td><a href="index.php?c=client&action=macommande"><i class="fas fa-search-plus fa-lg"></i></a><a href=""><i class="far fa-file-pdf fa-lg"></i></a></td>
+                    <td><a href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="fas fa-search-plus fa-lg"></i></a><a href=""><i class="far fa-file-pdf fa-lg"></i></a></td>
                   </tr>
                   <?php }?>
                   

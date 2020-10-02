@@ -1,7 +1,11 @@
 <?php
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_commande.php";
+require_once('modeles/m_statutCommande.php');
+require_once('modeles/m_modeLivraison.php');
+require_once('modeles/m_produit.php');
 require_once "./assets/inc/function.php";
+
 if(isset($_GET['action']))
 	$action = $_GET['action'];
 else{
@@ -9,7 +13,7 @@ else{
 }
 switch ($action){
 	case 'profil' :
-	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	if(isset($_SESSION['id']))
 	{
 		if(isset($_SESSION['id'])){
 				$id = $_SESSION['id'];
@@ -30,7 +34,7 @@ switch ($action){
 	break;
 
 	case 'mescommandes' : 
-	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
+	if(isset($_SESSION['id']))
 	{  
 		$commandes= mescommandes($_SESSION['id']);
 		if(!isset($_GET['ajx'])){ //appel normal
@@ -46,19 +50,22 @@ switch ($action){
 	break;
 	
 	case 'macommande' :
-	if((isset($_SESSION['id']) && isset($_GET['ajx'])))
-	{    
-		$commandes= mescommandes($_SESSION['id']);
-		if(!isset($_GET['ajx'])){ //appel normal
-			$commandes = json_decode($commandes);
-			$commandes = $commandes->result;
-			require_once('vues/v_mescommandes.php');
-		} else	{ // Appel Ajax
-			appelAjax($commandes);
-		}
-	}else{
+	if(isset($_SESSION['id'])){    
+		$commande = voirCommandeToken($_GET['id']);
+		if($commande != false){ // si elle n'existe pas
+			$allStatutCommande = allStatutCommande(); // récupère tout les statuts
+			$statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
+			$modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
+			$produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
+			// recuperer les produits de la commande    
+			require_once('./vues/v_commande.php');
+		} else{
+			redirectUrl("index.php?c=accueil");
+		}	
+	} else{
 		redirectUrl("index.php?c=accueil");
 	}	
+
 	break;
 	
 

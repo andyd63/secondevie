@@ -6,6 +6,8 @@ require_once('modeles/m_alert.php');
 require_once('./modeles/m_categorie.php');
 require_once("./modeles/m_favoris.php");
 require_once("./modeles/m_commande.php");
+require_once('modeles/m_statutCommande.php');
+require_once('modeles/m_modeLivraison.php');
 require_once('./modeles/m_module.php');
 require_once('./assets/inc/_initGeneral/functionInit.php');
 require_once('./assets/inc/function.php');

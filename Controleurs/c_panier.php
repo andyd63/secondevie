@@ -2,6 +2,8 @@
 require_once('modeles/m_panier.php');
 require_once('modeles/m_produit.php');
 require_once('modeles/m_commande.php');
+require_once('modeles/m_statutCommande.php');
+require_once('modeles/m_modeLivraison.php');
 require_once('./modeles/m_configSite.php');
 //require_once('modeles/Transaction.php');
 //require_once('./modeles/m_codepromo.php');
@@ -69,7 +71,32 @@ switch ($action){
         break;
 
 
-
+        case 'success' :
+            $idcli= $_SESSION['id']; // id du client
+            if(isset($_GET['id'])){ // si y a un token
+                $commande = voirCommandeToken($_GET['id']); // verifie si le token a une correspondance
+        
+                if($commande != false){ // si celui ci a une commande
+                    $derFacture = voirDerniereCommandeAvecFacture();
+                    changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+                    changeCommandeToken($_GET['id'],'1');// change le statut de la commande
+        
+                    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+                        changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
+                    }
+                }
+            $_SESSION['panier']->vider(); // vider le panier
+            //recuperer la commande avec le prix
+            $commande = voirCommandeToken($_GET['id']);
+            $allStatutCommande = allStatutCommande(); // récupère tout les statuts
+            $statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
+            $modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
+            $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
+            // recuperer les produits de la commande    
+            require_once('./vues/v_commande.php');
+        
+        }
+        break;
 
 
 
@@ -107,30 +134,7 @@ switch ($action){
 	
     
 
-    case 'success' :
-    $idcli= $_SESSION['id']; // id du client
-    if(isset($_GET['id'])){ // si y a un token
-        $commande = voirCommandeToken($_GET['id']); // verifie si le token a une correspondance
 
-        if($commande != false){ // si celui ci a une commande
-            $derFacture = voirDerniereCommandeAvecFacture();
-            changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
-            changeCommandeToken($_GET['id'],'1');// change le statut de la commande
-
-            foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
-                changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
-            }
-        }
-    $_SESSION['panier']->vider(); // vider le panier
-    //recuperer la commande avec le prix
-    $commande = voirCommandeToken($_GET['id']);
-    $produits = voirProduitByCommande($commande['idCommande']);
-    var_dump($produits);
-    // recuperer les produits de la commande    
-    require_once('./vues/v_commande.php');
-
-}
-break;
 
 /* 
     /////////////////////////////////////////

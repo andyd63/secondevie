@@ -11,24 +11,37 @@
 
   
     <!--======= PAGES INNER =========-->
-    <section class="padding-top-100 padding-bottom-100 light-gray-bg shopping-cart small-cart">
+    <section class="padding-top-30 padding-bottom-100 light-gray-bg shopping-cart small-cart">
       <div class="container"> 
-        
+      <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
         <!-- SHOPPING INFORMATION -->
         <div class="cart-ship-info margin-top-0">
           <div class="row"> 
-            
             <!-- DISCOUNT CODE -->
             <div class="col-sm-7">
-              <h6>Statut de votre commande du <?= date('d/m/Y', $commande['date']);?></h6>
+            <h6>Information sur la commande #<?= $commande['idCommande'] ;?> </h6>
+            <p>Date de la commande: <span class='enGras'><?= date('d/m/Y', $commande['date']);?></p>
+            <p>Mode de livraison: <span class='enGras'><?= $modeLivraison['libModeLivraison'];?></span></p>
+            <p>Date de livraison: <span class='enGras'></span></p> <!-- si à domicile -->
+            <p>Date dépot colis: <span class='enGras'></span></p><!-- si relai coli-->
+            <br>
+
+            <h6>Statut de la commande</h6>
+            <ul class="progressbar">
+              <?php foreach($allStatutCommande as $statut){
+                ?>
+     
+              <li <?php if($statut['idStatutCommande'] <= $statutCommande['idStatutCommande']){ echo 'class="active"';}?>><?= $statut['libStatutCommande'];?></li>
+              <?php }?>
+            </ul>
             </div>
-            <?php var_dump($commande);?>
             <!-- SUB TOTAL -->
             <div class="col-sm-5">
               <h6>Récapitulatif</h6>
               <div class="grand-total">
                 <div class="order-detail">
                   <?php
+                
                   $totPanierCategories =  totalPrixPanierParCategorie(); 
                   foreach($totPanierCategories as $tot){
                     $cat = categorie($tot['id']);?>
@@ -52,7 +65,6 @@
     <!--======= PAGES INNER =========-->
     <section class="padding-top-30 padding-bottom-100 pages-in chart-page">
       <div class="container"> 
-        <?php if($error){ echo genererError(16); }?>
         
         <!-- Payments Steps -->
         <div id="tabPanier" class="shopping-cart text-center">
@@ -108,9 +120,7 @@
           <?php if($produitCommande['reduction'] != '0'){?><div class="position-center-center"> <span class="price"><?=$produitCommande['reduction'] *100?>%</span> </div><?php }?>
               </li>
               <!-- REMOVE -->
-              <li class="col-sm-1">
-                <div id="panierSuppr<?=$produitCommande['id'];?>" class="position-center-center"> <a class="supprPanierproduit supprPanierLigne" href="#."><i  id="<?=  $produitCommande['id'];?>"  class="icon-close"></i></a> </div>
-              </li>
+              
             </ul>
           <?php }?>
           

@@ -1,7 +1,9 @@
 
 
 function postAjax(param, url,messageRetour,retourJs = false){
+    d = '';
     form = $.ajax({
+    async: !1,
     url : url, // La ressource ciblée
     type : 'POST', // Le type de la requête HTTP.
     data : param,
@@ -24,9 +26,10 @@ function postAjax(param, url,messageRetour,retourJs = false){
             }
         }}
         else {
-            $("#valeurRetourJs").html(xhr.responseText);
+        
         }}
  });
+ return form;
 }
 
 function  changeVal(val1,val2) {
@@ -100,5 +103,21 @@ function $_GET(param) {
 		return vars[param] ? vars[param] : null;	
 	}
 	return vars;
+}
+
+
+function getDataTable(id,recherche =false){
+    $('#'+id).DataTable( {
+        "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "All"]],
+        "language": {
+            "lengthMenu":     "Voir _MENU_ résultats ",
+            "zeroRecords":    "Aucun résultat",
+            "info":           "Affichage de  _START_ à _END_ sur _TOTAL_ résultats",
+            "paginate": {
+                "previous": "<",
+                "next": ">"
+              }
+        }
+    } );
 }
 

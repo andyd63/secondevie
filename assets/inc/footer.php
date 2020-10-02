@@ -28,14 +28,10 @@
       
       <!-- SHOP -->
       <div class="col-md-3">
-        <h6>SHOP</h6>
+        <h6>Boutique</h6>
         <ul class="link">
-          <li><a href="#."> About Us</a></li>
-          <li><a href="#."> Career</a></li>
-          <li><a href="#."> Shipping Methods</a></li>
-          <li><a href="#."> Contact</a></li>
-          <li><a href="#."> Support</a></li>
-          <li><a href="#."> Retailer</a></li>
+          <li><a href="#.">Adulte</a></li>
+          <li><a href="#.">Enfant</a></li>
         </ul>
       </div>
       
@@ -82,7 +78,11 @@
 
   $('#viderPanier').click(function(){ 
 	url = 'index.php?c=panier&action=viderP';
-	messageRetour = "Votre panier est bien vidé!";
+  messageRetour = "Votre panier est bien vidé!";
+  document.getElementById('menuPanierProduit').innerHTML = '';
+  document.getElementById('prixTotalMenuPanier').innerHTML = '0';
+  document.getElementById('prixTotalMenuPanierPromo').innerHTML = '0';
+  
 	postAjax('',url,messageRetour,true);
   
   });

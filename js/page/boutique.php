@@ -33,17 +33,17 @@ $('.addPanier').click(function(e){
     param = 'idProduit='+idProduit[1];
     url= 'index.php?c=panier&action=addPanier';
     messageRetour = '';
-    postAjax(param,url,messageRetour);  // rempli valeurRetourJs
+    retour =  postAjax(param,url,messageRetour);  // rempli valeurRetourJs
     inverseVisibilite('panierAdd-'+idProduit[1], 'panierSuppr-'+idProduit[1], 'inline-block');
     document.getElementById("nbreProduitPanier").innerText =  parseInt(document.getElementById("nbreProduitPanier").innerText)+1;
    
-    setTimeout(UpdatePanierRemplissage, 500); 
+    UpdatePanierRemplissage(retour.responseText);
 });
 
 
-function UpdatePanierRemplissage()
+function UpdatePanierRemplissage(retour)
 {
-  valeurJs = JSON.parse( document.getElementById("valeurRetourJs").innerHTML);
+  valeurJs = JSON.parse( retour);
 
   if(valeurJs.reduction == 0){
   itemPanier = "<h6 id='produitMenu"+idProduit[1]+"' class='media-heading'>"+ valeurJs.nom +"<span class='price' id='prixProduit"+idProduit[1]+"'> "+valeurJs.prix+"€</span>"+"<span style='display:none' id='produitReduction"+idProduit[1] +"' >"+valeurJs.reduction+"</span></h6>";
@@ -188,8 +188,15 @@ function etatFilter() {
 }
 
 
+function changeTri(){
+  var urlcourante = document.location.href;
+  var selectElmt = document.getElementById("OrderbyProduit");
+  var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;  
+  var textselectionne = selectElmt.options[selectElmt.selectedIndex].text; 
 
-
+  urlcourante += '&order='+valeurselectionnee;
+  document.location.href= urlcourante;
+}
 
 
 

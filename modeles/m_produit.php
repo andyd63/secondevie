@@ -98,26 +98,36 @@ function voirProduitById($id){
 
 
 function allProduitByCategorie($id,$get){
-    
+    $order = array();
     $conditions = array(); 
+    array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
     // pour chaque get
     foreach($get as $g => $value){
-        $value = explode(",", $value);
-        $nb = count($value) -1; // nbre de valeur
-        $cp = 0;
-        foreach($value as $v){
-            if($nb != $cp){
-            array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR'));
-            }else{
-            array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR' ));
+        if($g != 'order'){
+            $value = explode(",", $value);
+            $nb = count($value) -1; // nbre de valeur
+            $cp = 0;
+            foreach($value as $v){
+                if($cp == 0){
+                    array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v));
+                }else{
+                    if($nb != $cp){
+                        array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR'));
+                        }else{
+                        array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR' ));
+                        }
+                }
+            
+                $cp++;
             }
-            $cp++;
+        } else{
+            array_push($order, array('nameChamps'=>'prix','sens'=>$value));
         }
        
     }
-    array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
-    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
-    $req =  new myQueryClass('produit',$conditions);
+    
+    $req =  new myQueryClass('produit',$conditions,$order);
     $r = $req->myQuerySelect();
 	return $r;
 }

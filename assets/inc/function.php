@@ -45,6 +45,14 @@ function redirectionNonAdmin($bool){
     }
 }
 
+function redirectUrl($url){
+    ?>
+        <SCRIPT LANGUAGE="JavaScript">
+            document.location.href= <?php echo  json_encode($url);?>
+        </SCRIPT>
+    <?php }
+
+
 // Generer l'erreur ou le message à afficher entièrement
 function genererError($idModule){
         $module = voir_module($idModule);
@@ -66,6 +74,27 @@ function totalPrixPanier(){
     return $retour;
 }
 
+function siCheckUrl($valeur,$tableau){
+    $retour = false;
+    if(isset($_GET[$tableau])){ // si le get existe
+    $value = explode(",", $_GET[$tableau]);
+        foreach($value as $v){ // pour chaque valeur
+            if($valeur == $v){
+                return true;
+            }
+        }
+    }
+    return $retour;
+}
+
+// PERMET DE SAVOIR S'IL EST CONNECTé
+function isConnected(){
+    $r = false;
+    if(isset($_SESSION['id'])){
+        $r = true;
+    }
+    return $r;
+}
 
 // Permet de retrouver le prix dans le panier pour chaque catégorie
 function totalPrixPanierParCategorie(){

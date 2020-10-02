@@ -30,13 +30,10 @@
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
               <ul style="display:block" id="divGenre"  class="shop-cate">
                 <?php
-                if(isset($_GET['genre'])){
-                  $getGenre = explode(',',$_GET['genre']); // tableau des genre dans le get
-                }
                 foreach($allGenre as $genre){       
                 ?>
                   <li  class="checkGenre<?=$genre['idGenre'];?>">
-                    <input type="checkbox" id="genre-<?=$genre['idGenre'];?>" class="form-check-input " <?php if(isset($getGenre)){ if(in_array($genre['idGenre'],$getGenre)){ echo 'checked';}}?>> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?>
+                    <input  type="checkbox" id="genre-<?=$genre['idGenre'];?>" class="form-check-input " <?php if(siCheckUrl($genre['idGenre'],'genre')){ echo 'checked';}?>> <?=$genre['iconeGenre']?> <?=$genre['libGenre']?>
                   </li>
                 <?php
               }?>
@@ -48,7 +45,7 @@
               <ul style="display:none" id="divCategorie" class="shop-cate">
               <span class="transparent" id="nbCategorie"><?=count($allSousCategorie);?></span>
                 <?php foreach($allSousCategorie as $sCat){?>
-                  <li class="souscategorie"> <input type="checkbox" id="souscategorie-<?=$sCat['idSousCategorie'];?>" class="form-check-input "> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
+                  <li class="souscategorie"> <input type="checkbox" id="souscategorie-<?=$sCat['idSousCategorie'];?>" class="form-check-input " <?php if(siCheckUrl($sCat['idSousCategorie'],'souscategorie')){ echo 'checked';}?>> <?=$sCat['iconeSousCategorie']?> <?=$sCat['nomSousCategorie']?></li>
                 <?php }?>
               </ul>
               
@@ -58,7 +55,7 @@
               <ul style="display:none" id="divTaille" class="shop-cate">
               <span class="transparent" id="nbTaille"><?=count($allTaille);?></span>
                 <?php foreach($allTaille as $taille){?>
-                  <li class="taille"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>"> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
+                  <li class="taille"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>" <?php if(siCheckUrl($taille['idTaille'],'taille')){ echo 'checked';}?>> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
                 <?php }?>
               </ul>
               <!-- FILTER BY PRICE -->
@@ -96,7 +93,7 @@
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divEtat','spanEtat')">Etat <span id="spanEtat"><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divEtat" class="shop-cate">
                 <?php foreach($allEtat as $etat){?>
-                  <li class="etat"> <input type="checkbox" class="form-check-input " id="etat-<?=$etat['idEtat']?>"> <?=$etat['libEtat']?></li>
+                  <li class="etat"> <input  type="checkbox" class="form-check-input " id="etat-<?=$etat['idEtat']?>" <?php if(siCheckUrl($etat['idEtat'],'etat')){ echo 'checked';}?>> <?=$etat['libEtat']?></li>
                 <?php }?>
               </ul>
             
@@ -140,10 +137,10 @@
                   <div class="pull-right"> 
                     
                     <!-- Short By -->
-                    <select class="form-control">
+                    <select id="OrderbyProduit" class="form-control" onchange='changeTri();'>
                       <option>Trier par</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
+                      <option value='ASC'>Prix croissant</option>
+                      <option value='DESC'>Prix décroissant</option>
                     </select>
                   
                     

@@ -81,7 +81,6 @@ switch ($action){
 
 
         case 'success' :
-    
             $error = true; // affiche un message de félicitation pour la commande
             $idcli= $_SESSION['id']; // id du client
             if(isset($_GET['id'])){ // si y a un token
@@ -90,20 +89,20 @@ switch ($action){
                 if($commande != false){ // si celui ci a une commande
                     $derFacture = voirDerniereCommandeAvecFacture();
                     $idC = $derFacture['idFacture'] + 1;
-                    addPointRelaiCommande($_SESSION['livraison']['transporteur'],$idC,$_SESSION['livraison']['name'],
-                    $_SESSION['livraison']['num'].' '.$_SESSION['livraison']['street'], $_SESSION['livraison']['postal'],$_SESSION['livraison']['city'] );
-
-                    $cli = clientByEmail($_SESSION['mail']);
-                    $poidsPanier = totalPanierPoids();
-                    if($_SESSION['livraison']['transporteur'] == 'colissimo'){
-                        $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Colissimo');
-                    }else{
-                        $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Relay');
+                  
+                    if($_GET['choix'] == 2){
+                        $cli = clientByEmail($_SESSION['mail']);
+                        addPointRelaiCommande($_SESSION['livraison']['transporteur'],$idC,$_SESSION['livraison']['name'],
+                        $_SESSION['livraison']['num'].' '.$_SESSION['livraison']['street'], $_SESSION['livraison']['postal'],$_SESSION['livraison']['city'] );
+                        $poidsPanier = totalPanierPoids();
+                        if($_SESSION['livraison']['transporteur'] == 'colissimo'){
+                            $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Colissimo');
+                        }else{
+                            $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Relay');
+                        }
+                        addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS'],
+                        $cli['num'],$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $idC);
                     }
-
-                    addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS'],
-                    $cli['num'],$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'], $idC);
-                
                     changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
                     changeCommandeToken($_GET['id'],'1');// change le statut de la commande
         

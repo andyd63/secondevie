@@ -53,7 +53,6 @@ switch($action)
 
     case 'lesEtiquettes':
         $etiquetteNonTraite = voirEtiquetteNonTraite();
-        var_dump($etiquetteNonTraite);
         include('./vues/administration/v_mesEtiquettes.php'); 
     break;
 

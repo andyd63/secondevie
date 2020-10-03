@@ -106,7 +106,7 @@
     
         
         postalCodeFieldMondialRelay = document.getElementById('postalCodeMondialRelay'),
-        postalCodeFieldColissimo = document.getElementById('postalCodeMondialRelay'),
+        postalCodeFieldColissimo = document.getElementById('postalCodeColissimo'),
         advancedButton = document.getElementById('mondialRelayId')
 
 

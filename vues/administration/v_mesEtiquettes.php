@@ -127,19 +127,18 @@
 
   </div>
 <style>
-  .col-sm-12{
-    overflow-x: scroll;
-  }
+
 </style>
   <script>
     $(document).ready(function() {
         $('#test1').DataTable( {
-             responsive: true,
-            "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "All"]],
-            "language": {
-                //"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
-                 "search": ""
-            }
+          "scrollX": true,
+          dom: 'Bfrtip',
+        buttons: [ {
+          extend: 'excel',
+            text: 'Exporter en excel',
+        }]
+           
         } );
     });
 </script>

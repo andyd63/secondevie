@@ -43,8 +43,7 @@ $configSite = initConfigSite();
 <link href="./css/general.css" rel="stylesheet">
 <link href="./css/boutique.css" rel="stylesheet">
 <link href="./css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.9.0/styles/github.min.css" />
+
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" /> 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -53,12 +52,19 @@ $configSite = initConfigSite();
 <script src="./js/modernizr.js"></script>
 <script src="./js/commun.js"></script>
 <script src="js/jquery-1.11.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-    
-<script type="text/javascript" src="https://embed.sendcloud.sc/spp/1.0.0/api.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.22/sp-1.2.0/datatables.min.css"/>
  
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.22/sp-1.2.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+
+
+
+
  
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Online Fonts -->
@@ -79,7 +85,6 @@ $configSite = initConfigSite();
 if(!isset($_SESSION['panier'])){
     $_SESSION['panier'] = new collection();
 }
-
 
 $configSite = initConfigSite();
 initParamBoolSite($configSite);

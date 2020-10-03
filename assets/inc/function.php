@@ -74,6 +74,17 @@ function totalPrixPanier(){
     return $retour;
 }
 
+// Permet de retrouver le  poids du panier
+function totalPanierPoids(){
+    $totalPoids = 0;
+    //Pour chaque produit
+    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+        $totalPoids += $produitPanier->getPoids();
+
+    }
+    return $totalPoids;
+}
+
 function siCheckUrl($valeur,$tableau){
     $retour = false;
     if(isset($_GET[$tableau])){ // si le get existe

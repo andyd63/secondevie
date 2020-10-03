@@ -1,6 +1,12 @@
 <?php
 require_once('modeles/m_panier.php');
 require_once('modeles/m_produit.php');
+require_once('modeles/m_pointRelaiCommande.php');
+require_once('modeles/m_clients.php');
+require_once('modeles/m_etiquetteLivraison.php');
+require_once('modeles/m_categorie.php');
+require_once('modeles/m_sousCategorie.php');
+require_once('modeles/m_prixLivraison.php');
 require_once('modeles/m_alert.php');
 require_once('modeles/m_module.php');
 require_once('modeles/m_commande.php');
@@ -32,8 +38,9 @@ switch ($action){
     case 'addPanier':
         //Cherche le produit correspondant 
         $produit = voirProduitById($_POST['idProduit']);
+        $poids = voirPoids($produit['genre'],$produit['sousCategorie']);
         // Ajouter le produit au panier
-        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['categorie'],$produit['nom'],$produit['prix'],$produit['reduction'],$produit['image1'],$produit['description']),$produit['id'] );       
+        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['categorie'],$produit['nom'],$produit['prix'],$produit['reduction'],$produit['image1'],$produit['description'],$poids),$produit['id'] );       
         // Réserve le produit pendant 30 minutes
 
         echo json_encode($produit);
@@ -74,6 +81,7 @@ switch ($action){
 
 
         case 'success' :
+    
             $error = true; // affiche un message de félicitation pour la commande
             $idcli= $_SESSION['id']; // id du client
             if(isset($_GET['id'])){ // si y a un token
@@ -81,6 +89,21 @@ switch ($action){
         
                 if($commande != false){ // si celui ci a une commande
                     $derFacture = voirDerniereCommandeAvecFacture();
+                    $idC = $derFacture['idFacture'] + 1;
+                    addPointRelaiCommande($_SESSION['livraison']['transporteur'],$idC,$_SESSION['livraison']['name'],
+                    $_SESSION['livraison']['num'].' '.$_SESSION['livraison']['street'], $_SESSION['livraison']['postal'],$_SESSION['livraison']['city'] );
+
+                    $cli = clientByEmail($_SESSION['mail']);
+                    $poidsPanier = totalPanierPoids();
+                    if($_SESSION['livraison']['transporteur'] == 'colissimo'){
+                        $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Colissimo');
+                    }else{
+                        $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Relay');
+                    }
+
+                    addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS'],
+                    $cli['num'],$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'], $idC);
+                
                     changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
                     changeCommandeToken($_GET['id'],'1');// change le statut de la commande
         
@@ -88,7 +111,7 @@ switch ($action){
                         changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
                     }
                 }
-            $_SESSION['panier']->vider(); // vider le panier
+           // $_SESSION['panier']->vider(); // vider le panier
             //recuperer la commande avec le prix
             $commande = voirCommandeToken($_GET['id']);
             $allStatutCommande = allStatutCommande(); // récupère tout les statuts
@@ -102,7 +125,18 @@ switch ($action){
         break;
 
 
+    case 'choixLivraison':
+        $error = true;
+        $poidsPanier = totalPanierPoids();
+        $prixColissimo = voirPrixSelonPoids($poidsPanier, 'Colissimo');
+        $prixRelay = voirPrixSelonPoids($poidsPanier, 'Relay');
+        require_once('./vues/v_choixLivraison.php');
+    break;
 
+
+    case 'addLivraison':
+        $_SESSION['livraison'] = $_GET;
+    break;
 
 
 

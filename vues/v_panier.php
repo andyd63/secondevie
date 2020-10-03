@@ -95,9 +95,9 @@
               </form>
               <div class="coupn-btn textAlignCenter"> 
                 <?php if(isConnected()){?>
-                <a href="index.php?c=panier&action=payment" class="btn">Continuer</a> 
+                <a href="index.php?c=panier&action=choixLivraison" class="btn">Continuer</a> 
                 <?php }else{?>
-                  <a href="index.php?c=panier&action=payment" class="btn">Connectez-vous!</a>
+                  <a href="index.php?c=connexion" class="btn">Connectez-vous!</a>
                 <?php }?>
                 </div>
             </div>

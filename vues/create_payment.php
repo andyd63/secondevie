@@ -3,9 +3,10 @@
 
 require("./vendor/autoload.php");
 $totalPanier = totalPrixPanier();
-$modeLivraison = '1'; // a faire definir par l'utilisateur
+$modeLivraison = $_GET['choix']; // a faire definir par l'utilisateur
 $token = genererChaineAleatoire(50);
 //ajoute une commande avec le token vide et le statut à 0
+var_dump($_SESSION['livraison']);
 ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo = NULL);
 
 //if($_POST['prix'] == 0){?>

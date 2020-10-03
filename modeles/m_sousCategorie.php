@@ -39,3 +39,21 @@ function sousCategorie($id){
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
+
+
+function voirPoids($genre,$sousCategorie){
+	if($genre >=2){
+		$conditions = array();
+		array_push($conditions, array('nameChamps'=>'idSousCategorie','type'=>'=','name'=>'idSousCategorie','value'=>$sousCategorie));
+		$req =  new myQueryClass('sousCategorie',$conditions);
+		$r = $req->myQuerySelect();
+		return $r[0]['poidsEnfant'];
+	}else{
+		$conditions = array();
+		array_push($conditions, array('nameChamps'=>'idSousCategorie','type'=>'=','name'=>'idSousCategorie','value'=>$sousCategorie));
+		$req =  new myQueryClass('sousCategorie',$conditions);
+		$r = $req->myQuerySelect();
+		return $r[0]['poidsAdulte'];
+	}
+
+}

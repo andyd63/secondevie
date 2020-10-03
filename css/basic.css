@@ -650,6 +650,14 @@ a.socialIcon:hover, .socialHoverClass {
     margin-top: 5;
 }
 
+.dataTables_scrollHeadInner{
+    width: 100%!important;
+}
+table{
+    width: 100%!important;
+}
+
+
 .marginBottom5{
     margin-bottom: 5px !important;
 }

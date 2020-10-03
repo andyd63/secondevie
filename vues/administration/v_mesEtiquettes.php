@@ -21,8 +21,8 @@
                   </div>
                  <?php  }?>
                 <h6>Mes etiquettes non traitées</h6>
-                
-              <table id="test1" class="table">
+              <button class="btn marginBottom5" id="traiteCommande">Traiter les commandes</button>
+              <table id="commandeNonTraite" class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -131,15 +131,32 @@
 </style>
   <script>
     $(document).ready(function() {
-        $('#test1').DataTable( {
+        $('#commandeNonTraite').DataTable( {
           "scrollX": true,
           dom: 'Bfrtip',
         buttons: [ {
           extend: 'excel',
             text: 'Exporter en excel',
-        }]
+        }],
+        "language": {
+            "lengthMenu":     "Voir _MENU_ résultats ",
+            "zeroRecords":    "Aucun résultat",
+            "info":           "Affichage de  _START_ à _END_ sur _TOTAL_ résultats",
+            "paginate": {
+                "previous": "<",
+                "next": ">"
+              }
+            }
+        
            
         } );
+    });
+
+    $('#traiteCommande').click(function(e){ 
+      url= 'index.php?c=admin&action=UpdateEtiquettesNonTraite';
+      messageRetour = 'Les étiquettes sont désormais en préparation!';
+      postAjax('',url,messageRetour,true);
+
     });
 </script>
   <?php include('./assets/inc/footer.php');?>

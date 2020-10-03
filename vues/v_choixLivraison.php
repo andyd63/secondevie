@@ -159,15 +159,17 @@
            */
           function(servicePointObject, postNumber) {
             document.getElementById('result').innerHTML = JSON.stringify(servicePointObject, null, 2)
+            $("#loader").fadeIn();      
             setTimeout(envoieBonLivraison, 2000); //On attend 5 secondes avant d'exécuter la fonction
             function envoieBonLivraison()
             {
+             console.log('r');
               rep = $.parseJSON(document.getElementById('result').innerHTML);
               param = '&transporteur='+rep.carrier+'&name='+rep.name+"&street="+rep.street+'&num='+rep.house_number+'&postal='+rep.postal_code+'&city='+rep.city;
               url= 'index.php?c=panier&action=addLivraison'+param;
               messageRetour = '';
-              postAjax(param,url,messageRetour);   
-              document.location.href = 'index.php?c=panier&action=payment&choix=2';           
+              postAjax('',url,messageRetour);  
+              document.location.href = 'index.php?c=panier&action=payment&choix=2';          
             }
           },
           /**

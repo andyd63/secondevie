@@ -56,6 +56,14 @@ switch($action)
         include('./vues/administration/v_mesEtiquettes.php'); 
     break;
 
+    case 'UpdateEtiquettesNonTraite':
+        $touteCommande = AllEtiquetteNonTraite();
+        foreach($touteCommande as $com){// change le statut des commandes non traité
+            UpdateCommandeNonTraite($com['idCommande']);
+        }
+        UpdateAllEtiquetteNonTraite(); // change le statut des etiquettes
+        echo 'Les étiquettes sont désormais en préparation!';
+    break;
 	
     case 'addproduit':
     $allTaille = allTaille();

@@ -32,18 +32,22 @@
                     <th scope="col">Statut</th>
                     <th scope="col">Date</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php foreach($commandes->commandes as $c){ ?>
+                <?php foreach($commandes->commandes as $c){ 
+                  $statutCommande = statutCommande($c->statutCommande);
+                  ?>
                   <tr>
                     <th scope="row"><?= $c->idCommande;?></th>
                     <td><?= $c->prixCommande;?></td>
                     <td><?= $c->nbreProduit;?></td>
                     <td><?= $c->modeLivraison;?></td>
-                    <td><?= $c->statutCommande;?></td>
+                    <td><?= $statutCommande['libStatutCommande'] ?></td>
                     <td><?= date('d/m/Y',$c->date);?></td>
-                    <td><a href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="fas fa-search-plus fa-lg"></i></a><a href=""><i class="far fa-file-pdf fa-lg"></i></a></td>
+                    <td><a class="btn" href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="fas fa-search-plus fa-lg"></i> Voir commande</a></td>
+                    <td><a class="btn" href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="far fa-file-pdf fa-lg"></i> Voir facture</a></td>
                   </tr>
                   <?php }?>
                   

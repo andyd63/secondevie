@@ -86,6 +86,17 @@ function changeCommandeFacture($token,$valeur)
 	$conn = null ; //Quitte la connexion
 }
 
+function UpdateCommandeNonTraite($id)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+	array_push($values, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>'2'));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
 
 
 //function retrouve le dernier produit 

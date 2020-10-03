@@ -15,6 +15,31 @@ function voirEtiquetteNonTraite(){
 	return $r;
 }
 
+function UpdateAllEtiquetteNonTraite()
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'statutEtiquette','type'=>'=','name'=>'statutEtiquette','value'=>'0'));
+	array_push($values, array('nameChamps'=>'statutEtiquette','name'=>'statutEtiquetteVal','value'=>'1'));
+	$req =  new myQueryClass('etiquetteLivraison',$conditions,'',$values);
+    $r = $req->myQueryUpdate();
+  
+	$conn = null ; //Quitte la connexion
+}
+
+// SELECTIONNE TOUTES LETIQUETTE NON TRAITE
+function AllEtiquetteNonTraite()
+{
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'statutEtiquette','type'=>'=','name'=>'statutEtiquette','value'=>'0'));
+	$req =  new myQueryClass('etiquetteLivraison',$conditions);
+    $r = $req->myQuerySelect();
+    return $r;
+	$conn = null ; //Quitte la connexion
+}
+
+
+
 //////////////// AJOUT d'un favoris /////////////////////////
 function addEtiquetteLivraison($nom,$numRue,$adresse,$complementAdresse
 ,$codePostal,$ville,$email,$tel,$nomOption,$idCommande,$pays = 'FR',$statut= 0){

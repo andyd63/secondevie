@@ -2,6 +2,7 @@
 
 function postAjax(param, url,messageRetour,retourJs = false){
     d = '';
+    
     form = $.ajax({
     async: !1,
     url : url, // La ressource ciblée
@@ -26,10 +27,12 @@ function postAjax(param, url,messageRetour,retourJs = false){
             }
         }}
         else {
-        
+           
         }}
  });
- return form;
+ if(retourJs == false){
+    return form;
+ }
 }
 
 function  changeVal(val1,val2) {
@@ -108,7 +111,8 @@ function $_GET(param) {
 
 function getDataTable(id,recherche =false){
     $('#'+id).DataTable( {
-        "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "All"]],
+        "scrollX": true,
+        "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "Tous"]],
         "language": {
             "lengthMenu":     "Voir _MENU_ résultats ",
             "zeroRecords":    "Aucun résultat",

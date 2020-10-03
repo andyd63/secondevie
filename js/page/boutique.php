@@ -118,6 +118,7 @@ $('#btnFiltrer').click(function(e){
    filterCategorie = categorieFilter();
    filterTaille = tailleFilter();
    etatFilter = etatFilter();
+   prixFilter = prixFilter();
 
    action =  $_GET('action');
    if(filterGenre != ''){
@@ -132,7 +133,7 @@ $('#btnFiltrer').click(function(e){
    if(etatFilter != ''){
     filter = filter + '&etat='+etatFilter;
    }
-   adresse = 'index.php?c=boutique&action='+ action + filter ;
+   adresse = 'index.php?c=boutique&action='+ action + filter +'&'+prixFilter ;
    document.location.href = adresse;
    
 });
@@ -185,6 +186,13 @@ function etatFilter() {
         }
     }
     return etat;
+}
+
+
+function prixFilter() {
+        prix = 'prixMin=' +    $('#prixMinValue').text();
+        prix = prix + '&prixMax=' +    $('#prixMaxValue').text();
+    return prix;
 }
 
 

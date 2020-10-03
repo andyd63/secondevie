@@ -103,8 +103,9 @@ function allProduitByCategorie($id,$get){
     array_push($conditions, array('nameChamps'=>'categorie','type'=>'=','name'=>'categorie','value'=>$id));
     array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
     // pour chaque get
+   
     foreach($get as $g => $value){
-        if($g != 'order'){
+        if(($g != 'order' ) && ($g != 'prixMin') && ($g != 'prixMax')){
             $value = explode(",", $value);
             $nb = count($value) -1; // nbre de valeur
             $cp = 0;
@@ -122,7 +123,18 @@ function allProduitByCategorie($id,$get){
                 $cp++;
             }
         } else{
-            array_push($order, array('nameChamps'=>'prix','sens'=>$value));
+            if($g == 'order'){
+                array_push($order, array('nameChamps'=>'prix','sens'=>$value));
+            }
+            if($g == 'prixMin'){
+                array_push($conditions, array('nameChamps'=> 'prix','type'=>'>=','name'=>'prixMin' ,'value'=> $value));
+            }
+            if($g == 'prixMax'){
+                array_push($conditions, array('nameChamps'=> 'prix','type'=>'<=','name'=>'prixMax' ,'value'=> $value));
+            }
+            
+        
+      
         }
        
     }

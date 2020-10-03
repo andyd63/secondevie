@@ -61,10 +61,10 @@
               <!-- FILTER BY PRICE -->
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divPrix','spanPrix')">Filtrer par prix <span id="spanPrix"><i  class="fas fa-angle-down"></i></span></h5>
               <div style="display:none" id="divPrix" data-role="rangeslider">
-                <label for="price-min">Prix minimum: <span id="prixMinValue">0</span>€</label>
-                <input type="range" name="price-min" id="price-min" value="0" min="0" max="100">
-                <label for="price-max">Prix maximum: <span id="prixMaxValue">100</span>€</label>
-                <input type="range" name="price-max" id="price-max" value="100" min="0" max="100">
+                <label for="price-min">Prix minimum: <span id="prixMinValue"><?php if(isset($_GET['prixMin'])){ echo $_GET['prixMin'];}else{ echo '0'; }?></span>€</label>
+                <input type="range" name="price-min" id="price-min" value="<?php if(isset($_GET['prixMin'])){ echo $_GET['prixMin'];}else{ echo '0'; }?>" min="0" max="100">
+                <label for="price-max">Prix maximum: <span id="prixMaxValue"><?php if(isset($_GET['prixMax'])){ echo $_GET['prixMax'];}else{ echo '100'; }?></span>€</label>
+                <input type="range" name="price-max" id="price-max" value="<?php if(isset($_GET['prixMax'])){ echo $_GET['prixMax'];}else{ echo '100'; }?>" min="0" max="100">
               </div>
               <!-- 
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>

@@ -68,6 +68,14 @@ if(isset($_GET['action'])){
 			return '';
 		break;
 
+		case 'search':
+			$produits = searchProduit($_POST['ask']);
+			$allGenre =  allGenre();	
+			$allSousCategorie = allSousCategorie();	
+			$allTaille = allTaille();	
+			include('vues/v_boutique.php');
+		break;
+
 		//ERREUR 
 		default: 
 			$categorie =  categorie(1);

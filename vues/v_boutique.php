@@ -17,8 +17,12 @@
       <div class="container">
         <div class="row"> 
         <div class="col-sm-12">
-
-          <h5><?=$categorie['iconeCategorie']?><?=$categorie['nomCategorie']?></h5><hr>
+          <?php if(isset($categorie)){?>
+          <h5><?=$categorie['iconeCategorie']?><?=$categorie['nomCategorie']?></h5>
+          <?php }else{?>
+          <h5>Résultat pour: <?=$_POST['ask']?></h5>
+          <?php }?>
+          <hr>
         </div>
           <!-- Shop SideBar -->
           <div class="col-sm-3">

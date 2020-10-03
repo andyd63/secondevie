@@ -34,8 +34,8 @@
                   <div class="search-overlay"></div>
                   <div class="position-center-center">
                     <div class="search">
-                      <form>
-                        <input type="search" placeholder="Search Shop">
+                      <form action="index.php?c=boutique&action=search" method="post">
+                        <input name="ask" type="search" placeholder="Une marque, un produit? Pour rechercher, c'est ici!">
                         <button type="submit"><i class="icon-check"></i></button>
                       </form>
                     </div>

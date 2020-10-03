@@ -155,12 +155,22 @@ function countProduitByCategorie($idCategorie,$idSousCategorie){
 
 
 //voir produit selon l'etat 
-// 0 : dispo
-// 1 : réservé 
-// 2 : vendu
+// 1 : bon
+// 2 :  tres bonne
+// 3 : neuf
 function voirProduitParEtat($id){
     $conditions = array();
     array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'=','name'=>'etatDuProduit','value'=>$id));
+    $req =  new myQueryClass('produit',$conditions);
+    $r = $req->myQuerySelect();
+	return $r;
+}
+
+
+function searchProduit($recherche){
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=> 'marque','type'=>'=','name'=>'recherche' ,'value'=>$recherche ,'operator'=>'OR'));
+    array_push($conditions, array('nameChamps'=> 'nom','type'=>'=','name'=>'recherche2','value'=>$recherche ,'operator'=>'OR'));
     $req =  new myQueryClass('produit',$conditions);
     $r = $req->myQuerySelect();
 	return $r;

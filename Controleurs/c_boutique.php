@@ -39,20 +39,15 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 		case 3: 
-			$categorie =  categorie(3); 
+			$categorie =  categorie(3);	
+			$allGenre =  allGenre();	
+			$allSousCategorie = allSousCategorie();	
+			$allTaille = allTaille();	
 			unset($_GET['c']);
 			unset($_GET['action']);
 			$produits = allProduitByCategorie(3,$_GET);
 			include('vues/v_boutique.php');
 		break;
-		case 4: 
-			$categorie =  categorie(4); 
-			$allGenre = allGenre();
-			unset($_GET['c']);
-			unset($_GET['action']);
-			$produits = allProduitByCategorie(4,$_GET);
-			include('vues/v_boutique.php');
-		break;	
 
 		case 'addFavoris':
 			addFavoris($_POST['idClient'],$_POST['idProduit']);
@@ -73,8 +68,15 @@ if(isset($_GET['action'])){
 			return '';
 		break;
 
+		//ERREUR 
 		default: 
-			$categorie = 0;
+			$categorie =  categorie(1);
+			$allSousCategorie = sousCategorieAdulte();
+			$allGenre = genreAdulte();
+			$allTaille = tailleAdulte();
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(1,$_GET);
 			include('vues/v_boutique.php');
 		break;
 		

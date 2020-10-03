@@ -7,7 +7,9 @@ require_once ('./classes/templateRest.php');
 
 
 function allTaille(){
-	$req =  new myQueryClass('taille');
+	$order = array();
+	array_push($order, array('nameChamps'=>'idTaille','sens'=>'asc'));
+	$req =  new myQueryClass('taille','',$order);
 	$r = $req->myQuerySelect();
 	return $r;
 }

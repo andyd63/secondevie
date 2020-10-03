@@ -2,6 +2,7 @@
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_menuadmin.php";
+require_once "./modeles/m_etiquettelivraison.php";
 require_once "./modeles/m_couleur.php";
 require_once "./modeles/m_etat.php";
 require_once "./modeles/m_boxAdmin.php";
@@ -42,6 +43,20 @@ switch($action)
         $menuAdmin = menuAdminByNom('Produit');
         include('./vues/administration/v_admin_def.php');
     break;
+	
+    case 'accueilCommande':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('Commande');
+        include('./vues/administration/v_admin_def.php');
+    break;
+
+    case 'lesEtiquettes':
+        $etiquetteNonTraite = voirEtiquetteNonTraite();
+        var_dump($etiquetteNonTraite);
+        include('./vues/administration/v_mesEtiquettes.php'); 
+    break;
+
 	
     case 'addproduit':
     $allTaille = allTaille();

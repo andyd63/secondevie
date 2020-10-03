@@ -259,6 +259,10 @@ header .user-basket .menuPanier li {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
+.ascenseurH{
+    overflow-x: scroll;
+}
+
 .prixLivraison {
     background: #ffe115;
     position: absolute;

@@ -88,8 +88,14 @@ if(isset($_GET['action'])){
 		
 }
 else{
-	$categorie = 0;
-	include('vues/v_boutique.php');
+	$categorie =  categorie(1);
+			$allSousCategorie = sousCategorieAdulte();
+			$allGenre = genreAdulte();
+			$allTaille = tailleAdulte();
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitByCategorie(1,$_GET);
+			include('vues/v_boutique.php');
 }
 
 

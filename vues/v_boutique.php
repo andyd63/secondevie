@@ -116,13 +116,15 @@
                       <button id="btnFiltrer" class="btn btnSmall"><i class="fas fa-sync-alt"></i> Filtrer</button>
               </li>
 
-              <!-- SIDE BACR BANER -->
+              <!--SIDE BACR BANER -->
+              <!-- FUTUR ONGLET PROMO 
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="images/sidebar-bnr.jpg" alt="">
                 <div class="position-center-center"> <span class="price"><small>$</small>299</span>
                   <div class="bnr-text">
                     PROMO</div>
                 </div>
               </div>
+                -->
             </div>
           </div>
           
@@ -130,7 +132,7 @@
           <div class="col-sm-9">
             <div class="item-display">
               <div class="row">
-                <div class="col-xs-6"> <span class="product-num">Affichage de  1 - 10 sur <?=$nbProduit;?> produits</span> </div>
+                <div class="col-xs-6"> <span class="product-num">Affichage de <!-- 1 - 10 sur--> <?=$nbProduit;?> produits</span> </div>
                 
                 <!-- Products Select -->
                 <div class="col-xs-6">
@@ -222,7 +224,7 @@
              
          
             
-            <!-- Pagination -->
+            <!-- Pagination 
             <ul class="pagination">
               <li class="active"><a href="#">1</a></li>
               <li><a href="#">2</a></li>
@@ -230,6 +232,7 @@
               <li><a href="#">4</a></li>
               <li><a href="#">5</a></li>
             </ul>
+                  -->
           </div>
         </div>
       </div>

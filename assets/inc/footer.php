@@ -37,13 +37,13 @@
       
       <!-- MY ACCOUNT -->
       <div class="col-md-3">
-        <h6>MY ACCOUNT</h6>
+        <h6>Compte</h6>
         <ul class="link">
-          <li><a href="#."> Login</a></li>
-          <li><a href="#."> My Account</a></li>
-          <li><a href="#."> My Cart</a></li>
-          <li><a href="#."> Wishlist</a></li>
-          <li><a href="#."> Checkout</a></li>
+          <li><a href="#."> Se connecter</a></li>
+          <li><a href="#."> S'inscrire</a></li>
+          <li><a href="#."> Mon compte</a></li>
+          <li><a href="#."> Mes favoris</a></li>
+          <li><a href="#."> Mes commandes</a></li>
         </ul>
       </div>
       

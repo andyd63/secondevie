@@ -24,7 +24,8 @@
           <?php }?>
           <hr>
         </div>
-          <!-- Shop SideBar -->
+        <?php if($barFilter){?>
+          <!-- BAR DE FILTRE -->
           <div class="col-sm-3">
             <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h5><hr>
             <div class="shop-sidebar"> 
@@ -130,10 +131,13 @@
               </div>
                 -->
             </div>
-          </div>
-          
-          <!-- Item Content -->
+          </div> 
+
+          <!-- DEBUT PAGE BOUTIQUE -->
           <div class="col-sm-9">
+          <?php } else{?>
+          <div class="col-sm-12">
+          <?php }?>
             <div class="item-display">
               <div class="row">
                 <div class="col-xs-6"> <span class="product-num">Affichage de <!-- 1 - 10 sur--> <?=$nbProduit;?> produits</span> </div>
@@ -162,17 +166,16 @@
               genererError(14);
             }
             foreach($produits as $produit){
-              if ($number % 3 == 0) { // si c'est une nouvelle ligne ?>
+              if ($number % $nbProduitParLigne == 0) { // si c'est une nouvelle ligne ?>
                 </div>
                 <div class='row'>
-              <?php }
-              $number++;
-              ?>
-            <!-- Popular Item Slide -->
-            
-              <!-- Item -->
+              <?php } $number++; 
+              if($barFilter){?>
               <div class="col-md-4">
-                <div class="item"> 
+              <?php }else {?>
+                <div class="col-md-3">
+              <?php } ?>
+              <div class="item"> 
                 <div class="item"> 
                 <!-- Sale Tags -->
                 <?php if($produit['reduction']>0){?>

@@ -35,6 +35,31 @@ function tailleAdulte(){
 	return $r;
 }
 
+function taillePantalon(){
+	$conditions = array();
+	$order = array();
+	array_push($conditions, array('nameChamps'=>'typeTaille','type'=>'=','name'=>'typeTaille','value'=>1));
+	array_push($conditions, array('nameChamps'=>'typeBoutique','type'=>'=','name'=>'typeBoutique','value'=>1));
+	array_push($order, array('nameChamps'=>'idTaille','sens'=>'asc'));
+	$req =  new myQueryClass('taille',$conditions,$order);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+
+function tailleHaut(){
+	$conditions = array();
+	$order = array();
+	array_push($conditions, array('nameChamps'=>'typeTaille','type'=>'=','name'=>'typeTaille','value'=>0));
+	array_push($conditions, array('nameChamps'=>'typeBoutique','type'=>'=','name'=>'typeBoutique','value'=>1));
+	array_push($order, array('nameChamps'=>'idTaille','sens'=>'asc'));
+	$req =  new myQueryClass('taille',$conditions,$order);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+
+
 
 function taille($id){
 	$conditions = array();

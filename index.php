@@ -12,7 +12,7 @@ session_start();
 				   case 'accueil' : include("./vues/accueil.php"); break;
 				   case 'contact' : include("./vues/contact.php"); break;
 				   case 'profil' : include("./Controleurs/c_client.php"); break;
-				   case 'acceuil-m' : include("./vues/accueil_m.php"); break;
+				   case 'vendre' : include("./Controleurs/c_vendre.php"); break;
 				   case 'calend' : include("./vues/calendrier_vue.php"); break;
 				   case 'boutique' : include("./Controleurs/c_boutique.php"); break;
 				   case 'panier' : include("./Controleurs/c_panier.php"); break;

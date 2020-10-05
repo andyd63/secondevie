@@ -1,0 +1,28 @@
+<?php
+
+require_once "./modeles/m_module.php";
+require_once "./modeles/m_genre.php";
+require_once "./modeles/m_alert.php";
+require_once "./modeles/m_clients.php";
+require_once "./modeles/m_commande.php";
+require_once('modeles/m_statutCommande.php');
+require_once('modeles/m_modeLivraison.php');
+require_once('modeles/m_produit.php');
+require_once "./assets/inc/function.php";
+
+if(isset($_GET['action']))
+	$action = $_GET['action'];
+else{
+	$action = "vendre";
+}
+switch ($action){
+	case 'profil' :
+		include('vues/v_vendre.php');
+	break;
+
+	default :
+		include('vues/v_vendre.php');
+	break;
+}
+
+?>

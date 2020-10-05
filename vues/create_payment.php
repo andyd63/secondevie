@@ -27,13 +27,13 @@ $session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' => [[
     'name' => 'Commande Deuxiemevie '.$token,
-    'description' => 'Commande de vêtement:',
+    'description' => 'Commande de vêtement',
     'amount' => $totalPanier['totalAvecRemise'] *100,
     'currency' => 'eur',
     'quantity' => 1,
   ]],
   'success_url' => 'index.php?c=panier&action=success&id='.$token,
-  'cancel_url' => 'https://index.php?c=panier&action=cancel&id='.$token,
+  'cancel_url' => 'index.php?c=panier&action=cancel&id='.$token,
 ]);
 //}
 

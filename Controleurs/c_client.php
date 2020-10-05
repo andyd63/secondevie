@@ -23,8 +23,9 @@ switch ($action){
 		$cli = informationsRest($id);
 		if(!isset($_GET['ajx'])){ //appel normal
 				$cli = json_decode($cli);
-				$cli = $cli->result;
-				require_once('vues/vue_profil.php');
+				$cli = $cli->result->clients[0];
+
+				require_once('vues/v_profil.php');
 		} else	{ // Appel Ajax
 				appelAjax($cli);
 		}	

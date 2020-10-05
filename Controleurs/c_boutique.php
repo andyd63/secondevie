@@ -19,6 +19,8 @@ if(isset($_GET['action'])){
 	switch ($_GET['action'])
 	{
 		case 1: 
+			$barFilter = true;
+			$nbProduitParLigne = 3;
 			$categorie =  categorie(1);
 			$allSousCategorie = sousCategorieAdulte();
 			$allGenre = genreAdulte();
@@ -29,6 +31,8 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 		case 2: 
+			$barFilter = true;
+			$nbProduitParLigne = 3;
 			$categorie =  categorie(2);
 			$allSousCategorie = sousCategorieEnfant();
 			$allGenre = genreEnfant();
@@ -39,6 +43,8 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 		case 3: 
+			$barFilter = true;
+			$nbProduitParLigne = 3;
 			$categorie =  categorie(3);	
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
@@ -60,6 +66,8 @@ if(isset($_GET['action'])){
 		break;
 			
 		case 'voirProduit':
+			$barFilter = true;
+			$nbProduitParLigne = 3;
 			$produit = voirProduitById($_GET['id']);
 			$etat = etat($produit['etat']);
 			$moduleDernierProduit = voir_module(3);
@@ -69,6 +77,8 @@ if(isset($_GET['action'])){
 		break;
 
 		case 'search':
+			$barFilter = false;
+			$nbProduitParLigne = 4;
 			$produits = searchProduit($_POST['ask']);
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
@@ -78,6 +88,8 @@ if(isset($_GET['action'])){
 
 		//ERREUR 
 		default: 
+			$barFilter = true;
+			$nbProduitParLigne = 3;
 			$categorie =  categorie(1);
 			$allSousCategorie = sousCategorieAdulte();
 			$allGenre = genreAdulte();

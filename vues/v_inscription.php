@@ -1,8 +1,10 @@
 
 
   <!--- Include Header et menu --->
-  <?php include('./assets/inc/header.php');?>
-  <?php include('./assets/inc/menu.php');?>
+  <?php include('./assets/inc/header.php');
+   include('./assets/inc/menu.php');
+
+   ?>
 
   
 
@@ -20,9 +22,9 @@
               
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-12">
-                <h6>S'inscrire</h6>
                 <?=genererError(15);?>
-                <p><span class="rouge">*</span> Obligatoire
+
+                <span class="rouge">*</span> Obligatoire
                  <form action="index.php?c=inscription&action=valide" method="post">
                   <ul class="row">
                     
@@ -88,11 +90,42 @@
                       </label>
                     </li>
                     
-                    <!-- PHONE -->
-                    <li class="col-md-12 textAlignCenter">
+                  
+                    
+                  </ul>
+                  <ul class="row">
+                    <li class="col-md-12">
+                      <p>Pour mieux cibler les vêtements à vous proposer, vous pouvez nous donner les informations sur vos tailles de vêtements, mais 
+                        ceci n'est pas obligatoire!</p>
+                      </p>
+                    </li>
+                  </ul>
+                  <ul class="row">
+                     <!-- TAILLE DE HAUT -->
+                    <li class="col-md-6">
+                      <label>Taille de haut</label>
+                        <select class="form-control" name="tailleHClient">
+                            <?php foreach ($tailleHaut as $haut){
+                              echo "<option value=".$haut['idTaille'].">".$haut['nomTaille']."</option>";
+                            }?> 
+                        </select>
+                    </li>
+                     <!-- TAILLE DE BAS -->
+                    <li class="col-md-6">
+                      <label>Taille de pantalon</label>
+                        <select class="form-control" name="taillePClient">
+                            <?php foreach ($taillePantalon as $pantalon){
+                              echo "<option value=".$pantalon['idTaille'].">".$pantalon['nomTaille']."</option>";
+                            }?> 
+                        </select>
+                    </li>
+                  </ul>
+                  <hr>
+                  <ul class="row">
+                      <!-- BOUTON S'INSCRIRE -->
+                      <li class="col-md-12 textAlignCenter">
                       <button id='btnInscription' type="submit" class="btn">S'inscrire!</button>
                     </li>
-                    
                   </ul>
                 </form>
               </div>

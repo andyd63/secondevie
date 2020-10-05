@@ -92,6 +92,7 @@ switch ($action){
                   
                     if($_GET['choix'] == 2){
                         $cli = clientByEmail($_SESSION['mail']);
+
                         addPointRelaiCommande($_SESSION['livraison']['transporteur'],$idC,$_SESSION['livraison']['name'],
                         $_SESSION['livraison']['num'].' '.$_SESSION['livraison']['street'], $_SESSION['livraison']['postal'],$_SESSION['livraison']['city'] );
                         $poidsPanier = totalPanierPoids();

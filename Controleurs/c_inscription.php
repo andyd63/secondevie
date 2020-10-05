@@ -36,14 +36,10 @@ switch($action) {
 		$_SESSION['adresse'] = $_POST['adresse'];
 		$_SESSION['cp'] = $_POST['cp'];
 		$_SESSION['ville'] = $_POST['ville'];
-	break;
-	
-	case 'reussi':
-		$cli = derclient() ;
 		$moduleInscriptionReussi = voir_module(9);	
 		include('vues/v_inscription r.php');
 	break;
-
+	
 	default:
 		include('vues/v_inscription.php');
 	break;

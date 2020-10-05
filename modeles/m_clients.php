@@ -43,11 +43,7 @@ function ajouterclient($nom,$prenom,$email,$tel,$adresse,$cp,$ville,$password,$m
 								VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
 	$newclient->execute(array($nom,$prenom,$email,$tel,$ville,$adresse,$cp,$password,$mdp_claire,$tailleHaut,$tailleBas,$date,$date));
 	$conn = null ; //Quitte la connexion
-?>
-<SCRIPT LANGUAGE="JavaScript">
-document.location.href="index.php?c=inscription&action=reussi"
-</SCRIPT>
-<?php 	
+	
 }
 
 function modifclient($adresse,$cp,$ville,$tel){

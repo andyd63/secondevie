@@ -15,6 +15,8 @@ require_once "./modeles/m_module.php";
 require_once "./modeles/m_categorie.php";
 require_once "./modeles/m_sousCategorie.php";
 require_once "./modeles/m_taille.php";
+require_once('modeles/m_statutCommande.php');
+require_once('modeles/m_modeLivraison.php');
 
 
 require_once "./assets/inc/function.php";
@@ -63,6 +65,7 @@ switch($action)
     break;
 	
     case 'addproduit':
+    redirectionNonAdmin(adminexist($_SESSION['mail']));
     $allTaille = allTaille();
     $allCategorie = allCategorie(); // toutes les catégories
     $allEtat = allEtat();
@@ -74,6 +77,7 @@ switch($action)
     break;  
 
     case 'addproduitValide':
+    redirectionNonAdmin(adminexist($_SESSION['mail']));
     $allTaille = allTaille();
     $allEtat = allEtat();
     $allCategorie = allCategorie(); // toutes les catégories
@@ -100,19 +104,32 @@ switch($action)
     break;    
 
     case 'mesProduits':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
         $allProduitDispo = voirProduitParEtat(0);
         $allProduitReserve = voirProduitParEtat(1);
         $allProduitVendu = voirProduitParEtat(2);
         include('./vues/administration/v_mesProduits.php'); 
     break;
 
-
+    case 'lacommande' :
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+            $commande = voirCommandeId($_GET['id']);
+            if($commande != false){ // si elle n'existe pas
+                $allStatutCommande = allStatutCommande(); // récupère tout les statuts
+                $statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
+                $modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
+                $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
+                // recuperer les produits de la commande    
+                require_once('./vues/v_commande.php');
+            } else{
+                redirectUrl("index.php?c=accueil");
+            }
+    break;
 
     //LES COMMANDES ET SA GESTION 
-    case 'lesCommandes' : 
-        if(isset($_SESSION['id']))
-        {  
-            $commandes= allCommandes();
+    case 'lesCommandes' :
+        redirectionNonAdmin(adminexist($_SESSION['mail'])); 
+        $commandes= allCommandes();
             if(!isset($_GET['ajx'])){ //appel normal
                 $commandes = json_decode($commandes);
                 $commandes = $commandes->result;
@@ -120,15 +137,11 @@ switch($action)
             } else	{ // Appel Ajax
                 appelAjax($commandes);
             }	
-        }else{
-            redirectUrl("index.php?c=accueil");
-        }
         break;
 
 
     default: 
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        $nbCommande = count(allCommandes()); // nb de commande 
         $menuAdmin = menuAdminByNom('General');
         include('./vues/administration/v_admin_def.php');
     break;

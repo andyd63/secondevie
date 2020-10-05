@@ -8,8 +8,10 @@ require_once ('./classes/templateRest.php');
 
 function menuAdminByNom($name){
 	$conditions = array();
+	$ordre = array();
 	array_push($conditions, array('nameChamps'=>'nomMenu','type'=>'=','name'=>'nomMenu','value'=>$name));
-	$req =  new myQueryClass('menuadmin',$conditions);
+	array_push($ordre, array('nameChamps'=>'ordre','sens'=>'asc'));
+	$req =  new myQueryClass('menuadmin',$conditions,$ordre);
 	$r = $req->myQuerySelect();
 	return $r;
 }

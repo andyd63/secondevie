@@ -53,6 +53,19 @@ function voirCommandeToken($token){
 		return false;
 	}
 }
+
+//function retrouve le dernier produit 
+function voirCommandeId($id){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	if(count($r)== 1){
+		return $r[0];
+	}else{
+		return false;
+	}
+}
 	
 function deleteCommandeToken($token){
     $conn = bdd();
@@ -146,23 +159,6 @@ function allCommandes(){
 }
 
 
-function photo_commande_p($id){
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from photos  where idCommande = ? and choix = 1 ');
-	$dernierecomm-> execute(array($id));
-	$laderniercom = $dernierecomm->fetchAll();
-	$conn=null;
-	return $laderniercom;
-}
-
-function photo_commande_n($id){
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT * from photos  where idCommande = ? and choix = 2  ');
-	$dernierecomm-> execute(array($id));
-	$laderniercom = $dernierecomm->fetchAll();
-	$conn=null;
-	return $laderniercom;
-}
 
 
 function premiere_commandemois(){
@@ -202,31 +198,6 @@ function sum_photo_mois_num(){
 }
 
 
-/**
- * @return mixed Retourne le nombre photo papier des commande à partir du premier jour du mois
- */
-function sum_photo_mois_papier(){
-	$conn=bdd();
-	$id = premiere_commandemois();
-	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='1' and idCommande >='$id'");
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetch();
-	$conn=null;
-	return $laderniercom['nbre'];
-}
-
-
-/**
- * @return mixed Retourne les infos d'une commande
- */
-function commandeParId($id){
-    $conn=bdd();
-    $dernierecomm = $conn->prepare("SELECT * from commande where idCommande ='$id'");
-    $dernierecomm-> execute();
-    $lacommande = $dernierecomm->fetch();
-    $conn=null;
-    return $lacommande;
-}
 
 function sum_photo_num(){
 	$conn=bdd();

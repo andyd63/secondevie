@@ -32,21 +32,18 @@ switch($action)
 {
     case 'accueil':
     redirectionNonAdmin(adminexist($_SESSION['mail']));
-    $nbCommande = count(allCommandes()); // nb de commande 
     $menuAdmin = menuAdminByNom('General');
 	include('./vues/administration/v_admin_def.php');
     break;
     
     case 'accueilProduit':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        $nbCommande = count(allCommandes()); // nb de commande 
         $menuAdmin = menuAdminByNom('Produit');
         include('./vues/administration/v_admin_def.php');
     break;
 	
     case 'accueilCommande':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        $nbCommande = count(allCommandes()); // nb de commande 
         $menuAdmin = menuAdminByNom('Commande');
         include('./vues/administration/v_admin_def.php');
     break;
@@ -108,6 +105,26 @@ switch($action)
         $allProduitVendu = voirProduitParEtat(2);
         include('./vues/administration/v_mesProduits.php'); 
     break;
+
+
+
+    //LES COMMANDES ET SA GESTION 
+    case 'lesCommandes' : 
+        if(isset($_SESSION['id']))
+        {  
+            $commandes= allCommandes();
+            if(!isset($_GET['ajx'])){ //appel normal
+                $commandes = json_decode($commandes);
+                $commandes = $commandes->result;
+                require_once('vues/administration/v_lescommandes.php');
+            } else	{ // Appel Ajax
+                appelAjax($commandes);
+            }	
+        }else{
+            redirectUrl("index.php?c=accueil");
+        }
+        break;
+
 
     default: 
         redirectionNonAdmin(adminexist($_SESSION['mail']));

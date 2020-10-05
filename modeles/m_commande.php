@@ -140,8 +140,9 @@ function allCommandes(){
 	$dernierecomm = $conn->prepare('SELECT  *, commande.date as commandeDate from commande inner join client on client.ID_CLIENTS = commande.idClient order by idCommande desc');
 	$dernierecomm-> execute();
 	$laderniercom = $dernierecomm->fetchAll();
-	$conn=null;
-	return $laderniercom;
+	$success = true;
+	$data['commandes'] = $laderniercom;
+	return reponse_json($success, $data);
 }
 
 

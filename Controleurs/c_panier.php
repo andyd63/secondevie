@@ -100,8 +100,8 @@ switch ($action){
                         }else{
                             $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Relay');
                         }
-                        addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS'],
-                        $cli['num'],$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $idC);
+                        addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS']
+                        ,$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $idC);
                     }
                     changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
                     changeCommandeToken($_GET['id'],'1');// change le statut de la commande

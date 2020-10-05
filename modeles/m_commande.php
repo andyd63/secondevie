@@ -149,13 +149,11 @@ function mescommandes($id){
  * @return array : Retourne toutes les commandes du sites
  */
 function allCommandes(){
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT  *, commande.date as commandeDate from commande inner join client on client.ID_CLIENTS = commande.idClient order by idCommande desc');
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetchAll();
-	$success = true;
-	$data['commandes'] = $laderniercom;
-	return reponse_json($success, $data);
+	$req =  new myQueryClass('commande');
+	$r = $req->myQuerySelect();
+		$success = true;
+		$data['commandes'] = $r;
+		return reponse_json($success, $data);
 }
 
 

@@ -41,12 +41,11 @@ function AllEtiquetteNonTraite()
 
 
 //////////////// AJOUT d'un favoris /////////////////////////
-function addEtiquetteLivraison($nom,$numRue,$adresse,$complementAdresse
+function addEtiquetteLivraison($nom,$adresse,$complementAdresse
 ,$codePostal,$ville,$email,$tel,$nomOption,$idCommande,$pays = 'FR',$statut= 0){
     $conn = bdd();
     $conditions = array();
     array_push($conditions, array('nameChamps'=>'nom','name'=>'nom','value'=>$nom));
-    array_push($conditions, array('nameChamps'=>'numRue','name'=>'numRue','value'=>$numRue));
     array_push($conditions, array('nameChamps'=>'complementAdresse','name'=>'complementAdresse','value'=>$complementAdresse));
     array_push($conditions, array('nameChamps'=>'adresse','name'=>'adresse','value'=>$adresse));
     array_push($conditions, array('nameChamps'=>'codePostal','name'=>'cp','value'=>$codePostal));

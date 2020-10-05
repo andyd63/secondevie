@@ -25,7 +25,7 @@
           <h4  class="textAlignCenter"><?php echo $moduleConcept['titre_module'];?></h5>
           <p><?php echo $moduleConcept['texte_module'];?></p>
           <div class="coupn-btn textAlignCenter"> 
-            <a class="btn" href="javascript:history.back()"><i class="fas fa-money-bill-wave"></i> Vendre</A>
+            <a class="btn" href="index.php?c=vendre"><i class="fas fa-money-bill-wave"></i> Vendre</A>
           </div>
         </div>
       </div>

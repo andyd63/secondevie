@@ -195,14 +195,22 @@ function prixFilter() {
     return prix;
 }
 
-
+// CHANGE le tri ou ajoute le tri par prix
 function changeTri(){
+  var ask = '<?php if(isset($_POST['ask'])){echo '&ask='.$_POST['ask'];}else{ echo false;}?>' ;
   var urlcourante = document.location.href;
   var selectElmt = document.getElementById("OrderbyProduit");
   var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;  
   var textselectionne = selectElmt.options[selectElmt.selectedIndex].text; 
-
-  urlcourante += '&order='+valeurselectionnee;
+  if(urlcourante.indexOf('order=')!= -1){ // si y a déjà un tri
+    if(urlcourante.indexOf('order=ASC')!= -1){ // si c'est asc on supprime
+      urlcourante = urlcourante.substring(0, urlcourante.length - 10);
+    }
+    if(urlcourante.indexOf('order=DESC')!= -1){// si c'est DESC on supprime
+      urlcourante = urlcourante.substring(0, urlcourante.length - 11);
+    }
+  }
+  urlcourante += ask+'&order='+valeurselectionnee;
   document.location.href= urlcourante;
 }
 

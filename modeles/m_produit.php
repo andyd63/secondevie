@@ -167,11 +167,19 @@ function voirProduitParEtat($id){
 }
 
 
-function searchProduit($recherche){
+function searchProduit($recherche,$ask){
     $conditions = array();
+    
     array_push($conditions, array('nameChamps'=> 'marque','type'=>'=','name'=>'recherche' ,'value'=>$recherche ,'operator'=>'OR'));
-    array_push($conditions, array('nameChamps'=> 'nom','type'=>'=','name'=>'recherche2','value'=>$recherche ,'operator'=>'OR'));
-    $req =  new myQueryClass('produit',$conditions);
+    array_push($conditions, array('nameChamps'=> 'nom','type'=>'like','name'=>'recherche2','value'=>$recherche.'%','operator'=>'OR' ));
+
+    if(isset($_GET['order'])){
+        $order =array();
+        array_push($order, array('nameChamps'=>'prix','sens'=>$_GET['order']));
+        $req =  new myQueryClass('produit',$conditions,$order);
+    }else{
+        $req =  new myQueryClass('produit',$conditions);
+    }
     $r = $req->myQuerySelect();
 	return $r;
 }

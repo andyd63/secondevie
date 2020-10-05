@@ -20,7 +20,7 @@
           <?php if(isset($categorie)){?>
           <h5><?=$categorie['iconeCategorie']?><?=$categorie['nomCategorie']?></h5>
           <?php }else{?>
-          <h5>Résultat pour: <?=$_POST['ask']?></h5>
+          <h5>Résultat pour: <?=$ask;?></h5>
           <?php }?>
           <hr>
         </div>

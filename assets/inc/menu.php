@@ -12,7 +12,7 @@
   <!-- header -->
   <header>
     <div class="sticky textAlignCenter">
-    <div class="col-md-12 textAlignCenter headerLogo"> <a href="index.html"><img  class="logoSite img-responsive" src="<?=$configSite->logoSite;?>" alt="" ></a> 
+    <div class="col-md-12 textAlignCenter headerLogo"> <a href="index.php"><img  class="logoSite img-responsive" src="<?=$configSite->logoSite;?>" alt="" ></a> 
     <ul class="social_icons">
           <li><a href="#."><i class="blueFb fa-2x fab fa-facebook"></i></a></li>
           <li><a href="#."><i class="violet fa-2x fab fa-instagram"></i></a></li>  

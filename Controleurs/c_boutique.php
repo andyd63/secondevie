@@ -77,13 +77,33 @@ if(isset($_GET['action'])){
 		break;
 
 		case 'search':
+			$ask = null;
+			if(isset($_POST['ask'])){
+				$ask = $_POST['ask'];
+			}
+			if(isset($_GET['ask'])){
+				$ask = $_GET['ask'];
+			}
+			if($ask != null ){
 			$barFilter = false;
 			$nbProduitParLigne = 4;
-			$produits = searchProduit($_POST['ask']);
+			$produits = searchProduit($ask,$_GET);
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
 			$allTaille = allTaille();	
 			include('vues/v_boutique.php');
+			}else{ // erreur sans recherche
+				$barFilter = true;
+				$nbProduitParLigne = 3;
+				$categorie =  categorie(1);
+				$allSousCategorie = sousCategorieAdulte();
+				$allGenre = genreAdulte();
+				$allTaille = tailleAdulte();
+				unset($_GET['c']);
+				unset($_GET['action']);
+				$produits = allProduitByCategorie(1,$_GET);
+				include('vues/v_boutique.php');
+			}
 		break;
 
 		//ERREUR 

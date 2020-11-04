@@ -89,8 +89,7 @@ switch ($action){
                 if($commande != false){ // si celui ci a une commande
                     $derFacture = voirDerniereCommandeAvecFacture();
                     $idC = $derFacture['idFacture'] + 1;
-                  
-                    if($_GET['choix'] == 2){
+                    if($commande['modeLivraison'] == 2){ // si le mode de livraison est par relai
                         $cli = clientByEmail($_SESSION['mail']);
 
                         addPointRelaiCommande($_SESSION['livraison']['transporteur'],$idC,$_SESSION['livraison']['name'],
@@ -103,23 +102,36 @@ switch ($action){
                         }
                         addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS']
                         ,$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $idC);
+                        
+                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+                        changeCommandeToken($_GET['id'],'1');// change le statut de la commande
+            
+                        foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+                            changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
+                        }
+                         // $_SESSION['panier']->vider(); // vider le panier
+                        //recuperer la commande avec le prix
+                        $commande = voirCommandeToken($_GET['id']);
+                        $allStatutCommande = allStatutCommande(); // récupère tout les statuts
+                        $statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
+                        $modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
+                        $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
+                        // recuperer les produits de la commande    
+                        require_once('./vues/v_commande.php');
+
+                    }else{
+                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+                        changeCommandeToken($_GET['id'],'1');// change le statut de la commande
+            
+                        foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+                            changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
+                        }
+                        require_once('./vues/v_confirmLivraison.php');
+
                     }
-                    changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
-                    changeCommandeToken($_GET['id'],'1');// change le statut de la commande
-        
-                    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
-                        changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
-                    }
+                    
                 }
-           // $_SESSION['panier']->vider(); // vider le panier
-            //recuperer la commande avec le prix
-            $commande = voirCommandeToken($_GET['id']);
-            $allStatutCommande = allStatutCommande(); // récupère tout les statuts
-            $statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
-            $modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
-            $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
-            // recuperer les produits de la commande    
-            require_once('./vues/v_commande.php');
+      
         
         }
         break;

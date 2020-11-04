@@ -19,3 +19,11 @@ function modeLivraison($id){
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
+
+function voirLibellemodeLivraison($id){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idModeLivraison','type'=>'=','name'=>'idModeLivraison','value'=>$id));
+	$req =  new myQueryClass('modeLivraison',$conditions);
+	$r = $req->myQuerySelect();
+	return $r[0]['libModeLivraison'];
+}

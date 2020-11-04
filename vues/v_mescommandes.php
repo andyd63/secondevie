@@ -43,7 +43,7 @@
                     <th scope="row"><?= $c->idCommande;?></th>
                     <td><?= $c->prixCommande;?></td>
                     <td><?= $c->nbreProduit;?></td>
-                    <td><?= $c->modeLivraison;?></td>
+                    <td><?= voirLibellemodeLivraison($c->modeLivraison)?></td>
                     <td><?= $statutCommande['libStatutCommande'] ?></td>
                     <td><?= date('d/m/Y',$c->date);?></td>
                     <td><a class="btn" href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="fas fa-search-plus fa-lg"></i> Voir commande</a></td>

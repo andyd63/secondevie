@@ -34,10 +34,10 @@
               <h6>étape de la vente</h6>
               <div class="grand-total">
                 <div class="order-detail">
-                  <p> 1: Créer un compte </p>
-                  <p> 2: Regarder notre tableau d'estimation</p>
-                  <p> 3: Regarder le type de vêtement qu'on récupère</p>
-                  <p> 4: prendre un rendez-vous!</p>
+                  <p class="textEnGras"> 1: Créer un compte </p>
+                  <p class="textEnGras"> 2: Regarder notre tableau d'estimation</p>
+                  <p class="textEnGras"> 3: Regarder le type de vêtement qu'on récupère</p>
+                  <p class="textEnGras"> 4: prendre un rendez-vous!</p>
                 </div>
               </div>
             </div>

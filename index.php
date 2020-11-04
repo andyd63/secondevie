@@ -15,6 +15,7 @@ session_start();
 				   case 'vendre' : include("./Controleurs/c_vendre.php"); break;
 				   case 'calend' : include("./vues/calendrier_vue.php"); break;
 				   case 'boutique' : include("./Controleurs/c_boutique.php"); break;
+				   case 'global' : include("./vues/v_globalBoutique.php"); break;
 				   case 'panier' : include("./Controleurs/c_panier.php"); break;
 				   case 'admin' : include("./Controleurs/c_administration.php"); break;
 				   case 'configSite' : include("./Controleurs/c_administrationGlobal.php"); break;

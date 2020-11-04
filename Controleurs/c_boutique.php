@@ -137,7 +137,7 @@ else{
 			unset($_GET['c']);
 			unset($_GET['action']);
 			$produits = allProduitByCategorie(1,$_GET);
-			include('vues/v_boutique.php');
+			include('vues/v_globalBoutique.php');
 }
 
 

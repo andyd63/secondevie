@@ -672,6 +672,12 @@ table{
     font-weight: bold;
 }
 
+
+.textEnGras{
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
 .pWhite{
     color: white;
    

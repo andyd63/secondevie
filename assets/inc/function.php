@@ -166,7 +166,6 @@ function supprReservationProduitPanier(){
         if($difference >= 3600){ // temps de réservation au dessus d'une heure
             $_SESSION['panier']->supprimer($produitPanier->getId()); // supprime le produit du panier
         }
-        var_dump($_SESSION['panier']);
     }
 }
 
@@ -177,11 +176,11 @@ function supprReservationProduitBdd(){
         if($difference >= 3600){ // temps de réservation au dessus d'une heure
             $_SESSION['panier']->supprimer($produitPanier->getId()); // supprime le produit du panier
         }
-        var_dump($_SESSION['panier']);
     }
-
-    changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
+    supprProduitReservation();
 }
+
+
 
 
 ?>

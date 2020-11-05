@@ -202,16 +202,55 @@ function changeProduitStatut($idProduit,$valeur,$idCommande = null,$idClient =NU
 function changeProduitDateReservation($idProduit,$valeur,$idClient =NULL)
 {
 	$conditions = array();
-	$values = array();
+    $values = array();
+    
+    $date = date('Y-m-d H:i:s');
+    $year = substr($date, 0, -15);   
+    $month = substr($date, 5, 2);   
+    $day = substr($date, 8,2); 
+    $heure = substr($date, 11,2); 
+    $minute = substr($date, 14,2);     
+
+ 
+    // récupère la date du jour
+    $date_string = mktime($heure,$minute,0,$month,$day,$year);
+    $datee = date("Y-m-d H:i:s", $date_string); 
 	array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$idProduit));
     array_push($values, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>$valeur));
     array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
-    array_push($values, array('nameChamps'=>'dateReservation','name'=>'dateReservation','value'=>date('Y-m-d H:i:s')));
+    array_push($values, array('nameChamps'=>'dateReservation','name'=>'dateReservation','value'=>$datee));
 	$req =  new myQueryClass('produit',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion
 }
 
+
+function changeProduitDateReservationNull()
+{
+	$conditions = array();
+    $values = array();
+    $date = date('Y-m-d H:i:s');
+    $year = substr($date, 0, -15);   
+    $month = substr($date, 5, 2);   
+    $day = substr($date, 8,2); 
+    $heure = substr($date, 11,2); 
+    $minute = substr($date, 14,2);     
+
+ 
+    // récupère la date du jour
+    $date_string = mktime($heure,$minute,0,$month,$day,$year);
+    // Supprime une heure
+    $dateMoinsUneHeure = $date_string -  3600;
+    
+    $dateMoinsUneHeure = date("Y-m-d H:i:s", $dateMoinsUneHeure); 
+    
+	array_push($conditions, array('nameChamps'=>'dateReservation','type'=>'<','name'=>'dateReservatio','value'=>$dateMoinsUneHeure));
+    array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>null));
+    array_push($values, array('nameChamps'=>'dateReservation','name'=>'dateReservation','value'=>null));
+	$req =  new myQueryClass('produit',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion*/
+}
 
 
 ?>

@@ -1,6 +1,8 @@
 <?php
 require_once "./modeles/m_bdd.php";
+require_once "./assets/inc/function.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_produit.php";
 require_once "./modeles/m_module.php";
 $conn = bdd();
 
@@ -37,8 +39,8 @@ switch($action){
 			$_SESSION['adresse'] = $unclient['ADRESSE'];
 			$_SESSION['cp'] = $unclient['CODEPOSTAL'];
 			$_SESSION['ville'] = $unclient['VILLE'];
-			 $d = maj_co($_SESSION['id']);
-			
+			$d = maj_co($_SESSION['id']);
+			associerProduitAuPanier($_SESSION['id']);	
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 document.location.href="index.php?c=acceuil" //redirige vers l'acceuil

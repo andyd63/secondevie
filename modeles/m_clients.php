@@ -175,8 +175,15 @@ function maj_co($id){
 function deconnexionclient()
 {
 	session_start();
-	$_SESSION = array();
-	session_destroy();
+	unset($_SESSION['id']);
+	unset($_SESSION['nom']);
+	unset($_SESSION['prenom']);
+	unset($_SESSION['mail']);
+	unset($_SESSION['rang']);
+	unset($_SESSION['tel']);
+	unset($_SESSION['adresse']);
+	unset($_SESSION['cp']);
+	unset($_SESSION['ville']);
 	header("Location:index.php");
 }
 

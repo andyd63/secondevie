@@ -29,7 +29,9 @@ else{
 }
 switch ($action){
 	case 'viderP' :
+        videReservation();
         $_SESSION['panier']->vider();
+        
         echo "Votre panier est bien vidé!";
 	break;
 
@@ -68,7 +70,7 @@ switch ($action){
 	case 'supprPanier' : // action pour Supprimer dans le panier
         // Supprime le produit du panier
         $_SESSION['panier']->supprimer($_POST['idProduit'] );       
-
+        changeProduitStatut($_POST['idProduit'],'0',null,null,null);
     // DERESERVE LE PRODUIT
     break;
 

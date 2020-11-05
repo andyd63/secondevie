@@ -166,10 +166,9 @@ function voirProduitParEtat($id){
 	return $r;
 }
 
-
+//Voir produit selon la recherche
 function searchProduit($recherche,$ask){
     $conditions = array();
-    
     array_push($conditions, array('nameChamps'=> 'marque','type'=>'=','name'=>'recherche' ,'value'=>$recherche ,'operator'=>'OR'));
     array_push($conditions, array('nameChamps'=> 'nom','type'=>'like','name'=>'recherche2','value'=>$recherche.'%','operator'=>'OR' ));
 
@@ -185,15 +184,66 @@ function searchProduit($recherche,$ask){
 }
 
 
+// Les produits selon la taille du monsieur ou madame
+function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe =null){
+    $order = array();
+    $conditions = array(); 
+    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$tailleBas ,'operator'=>'OR'));
+    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$tailleHaut ,'operator'=>'OR'));
+    // pour chaque get
+   
+    foreach($get as $g => $value){
+        if(($g != 'order' ) && ($g != 'prixMin') && ($g != 'prixMax')){
+            $value = explode(",", $value);
+            $nb = count($value) -1; // nbre de valeur
+            $cp = 0;
+            foreach($value as $v){
+                if($cp == 0){
+                    array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v));
+                }else{
+                    if($nb != $cp){
+                        array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR'));
+                        }else{
+                        array_push($conditions, array('nameChamps'=> $g,'type'=>'=','name'=>$g.''.$cp ,'value'=>$v ,'operator'=>'OR' ));
+                        }
+                }
+            
+                $cp++;
+            }
+        } else{
+            if($g == 'order'){
+                array_push($order, array('nameChamps'=>'prix','sens'=>$value));
+            }
+            if($g == 'prixMin'){
+                array_push($conditions, array('nameChamps'=> 'prix','type'=>'>=','name'=>'prixMin' ,'value'=> $value));
+            }
+            if($g == 'prixMax'){
+                array_push($conditions, array('nameChamps'=> 'prix','type'=>'<=','name'=>'prixMax' ,'value'=> $value));
+            }
+            
+        
+      
+        }
+       
+    }
+    
+    $req =  new myQueryClass('produit',$conditions,$order);
+    $r = $req->myQuerySelect();
+	return $r;
+}
 
-function changeProduitStatut($idProduit,$valeur,$idCommande = null,$idClient =NULL)
+
+function changeProduitStatut($idProduit,$valeur,$idCommande = null,$idClient =NULL,$date = null)
 {
 	$conditions = array();
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$idProduit));
     array_push($values, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>$valeur));
     array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
-    array_push($values, array('nameChamps'=>'idCommande','name'=>'etatDuProduit','value'=>$idCommande));
+    array_push($values, array('nameChamps'=>'idCommande','name'=>'idCommande','value'=>$idCommande));
+    if($date != 'false'){ // si c'est false on ne mets pas la tête
+    array_push($values, array('nameChamps'=>'dateReservation','name'=>'dateReservation','value'=>$date));
+    }
 	$req =  new myQueryClass('produit',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion

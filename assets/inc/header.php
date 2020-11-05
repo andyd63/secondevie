@@ -16,9 +16,9 @@ require_once('./assets/inc/function.php');
 require_once('./modeles/mGlobal/m_menu.php');
 require_once('./modeles/m_configSite.php');
 
-supprReservationProduitPanier(); // permet de supprimer les produit du panier qui ne sont plus reservé
-changeProduitDateReservationNull();
 $configSite = initConfigSite();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -92,4 +92,7 @@ if(!isset($_SESSION['panier'])){
 
 $configSite = initConfigSite();
 initParamBoolSite($configSite);
+
+supprReservationProduitPanier(); // permet de supprimer les produit du panier qui ne sont plus reservé
+changeProduitDateReservationNull();
 

@@ -73,10 +73,14 @@ class myQueryClass
         $conditionsConstruit = ''; 
         $compteur =0;
         foreach($mesConditionsNonConstruit as $e){
+            
             if($compteur != 0){
             $conditionsConstruit .= 'And ('.$e.') ';
             }else{
-                $conditionsConstruit .= $e;
+                $where =  explode('WHERE', $e);
+                if(count($where) > 1){
+                $conditionsConstruit .= 'where ('.$where[0].' '.$where[1].' )' ;
+                }
             }
             $compteur++;
         }
@@ -88,7 +92,7 @@ class myQueryClass
                 $requete->bindParam($condition['name'], $condition['value']);
             }
         } 
-    
+
         $requete->execute();
        
       

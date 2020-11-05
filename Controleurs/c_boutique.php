@@ -55,6 +55,8 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 
+		
+
 		case 'addFavoris':
 			addFavoris($_POST['idClient'],$_POST['idProduit']);
 			return '';
@@ -104,6 +106,22 @@ if(isset($_GET['action'])){
 				$produits = allProduitByCategorie(1,$_GET);
 				include('vues/v_boutique.php');
 			}
+		break;
+
+
+		case 'selection':
+			$barFilter = true;
+			$nbProduitParLigne = 4;
+			$categorie =  categorie(4);
+			$page = 'selection';
+			unset($_GET['c']);
+			unset($_GET['action']);
+			$produits = allProduitBySelection($_GET,'33','35');
+			$allGenre =  allGenre();	
+			$allSousCategorie = allSousCategorie();	
+			$allTaille = allTaille();	
+			include('vues/v_boutique.php');
+			
 		break;
 
 		//ERREUR 

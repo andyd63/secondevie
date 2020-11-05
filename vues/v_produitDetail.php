@@ -66,7 +66,15 @@
                 
                   <li class="col-xs-10">
                   <!-- Ajouter dans le panier -->
-                  <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
+                  
+                  <?php
+                    if(isset($_SESSION['id'])){
+                      $cli = $_SESSION['id'];
+                    }else{
+                      $cli = null;
+                    }
+                    if(($produit['idClient'] == null) || ( $produit['idClient']== $cli)){
+                  if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
                             <a class="btn addPanier " id="panierAdd-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Ajouter dans le panier" style="display:none"><i id="<?=$produit['id'];?>" class="  fas fa-cart-plus"></i> Ajouter</a>
                             <a class="btn supprPanier"  id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier"><i id="<?=$produit['id'];?>" class=" fas rouge fa-window-close"></i> Enlever</a>
                           <?php } else { ?>
@@ -83,7 +91,8 @@
                            <?php } else { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris fa-2x icon-heart"></i></a>
                             <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-2x fa-heart"></i></a>
-                          <?php }?></li>
+                          <?php }} else{?>
+                          <a class="btn" >Déjà réservé</a><?php }?></li>
                 </ul>
                 
                 <!-- INFOMATION sur le retour et le l'envoie -->

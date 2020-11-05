@@ -29,7 +29,8 @@
           <div class="col-sm-3">
             <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h5><hr>
             <div class="shop-sidebar"> 
-              
+            
+            <?php if(!isset($page)){;?>
             <!-- Category -->
              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Genre <span class="cursor" id="spanGenre" ><i  class="fas fa-angle-up"></i></span></h5>
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
@@ -43,7 +44,7 @@
                 <?php
               }?>
               </ul>
-              
+              <?php }?>
 
               <!-- Category -->
               <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Catégorie <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-down"></i></span></h5>
@@ -54,8 +55,9 @@
                 <?php }?>
               </ul>
               
-               
-              <!-- Category -->
+              
+              <!-- Taille affiché tout le temps sauf sur la séléction -->
+              <?php if(!isset($page)){;?>
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divTaille','spanTaille')">Taille <span id="spanTaille" ><i  class="fas fa-angle-down"></i></span></h5>
               <ul style="display:none" id="divTaille" class="shop-cate">
               <span class="transparent" id="nbTaille"><?=count($allTaille);?></span>
@@ -63,6 +65,7 @@
                   <li class="taille"> <input type="checkbox" class="form-check-input " id="taille-<?=$taille['idTaille']?>" <?php if(siCheckUrl($taille['idTaille'],'taille')){ echo 'checked';}?>> <?=$taille['iconeTaille']?> <?=$taille['nomTaille']?></li>
                 <?php }?>
               </ul>
+              <?php }?>
               <!-- FILTER BY PRICE -->
               <h5 class="cursor shop-tittle margin-top-30 margin-bottom-30"  onclick="changeVisibilite('divPrix','spanPrix')">Filtrer par prix <span id="spanPrix"><i  class="fas fa-angle-down"></i></span></h5>
               <div style="display:none" id="divPrix" data-role="rangeslider">
@@ -166,6 +169,12 @@
               genererError(14);
             }
             foreach($produits as $produit){
+              if(isset($_SESSION['id'])){
+                $cli = $_SESSION['id'];
+              }else{
+                $cli = null;
+              }
+              if(($produit['idClient'] == null) || ( $produit['idClient']== $cli)){
               if ($number % $nbProduitParLigne == 0) { // si c'est une nouvelle ligne ?>
                 </div>
                 <div class='row'>
@@ -190,6 +199,8 @@
                       <!-- Overlay -->
                     </div>
                   </a>
+                  <?php $taille = taille($produit['taille']);?>
+                  <p class="textAlignCenter">Taille : <?= $taille['nomTaille'];?></p>
                         <div class="inn">
                           <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
                           <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
@@ -226,7 +237,7 @@
               </div>
                   </div>
              
-            <?php }?>
+            <?php } }?>
             </div>
              
          

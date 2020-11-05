@@ -1,4 +1,7 @@
 <?php
+date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fr_FR.utf8','fra');// OK
+
 require_once('./modeles/m_bdd.php');
 require_once('./modeles/m_clients.php');
 require_once('./modeles/m_produit.php');
@@ -14,6 +17,7 @@ require_once('./assets/inc/function.php');
 require_once('./modeles/mGlobal/m_menu.php');
 require_once('./modeles/m_configSite.php');
 
+supprReservationProduitPanier(); // permet de supprimer les produit du panier qui ne sont plus reservé
 $configSite = initConfigSite();
 ?>
 

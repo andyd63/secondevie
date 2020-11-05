@@ -40,9 +40,14 @@ switch ($action){
         $produit = voirProduitById($_POST['idProduit']);
         $poids = voirPoids($produit['genre'],$produit['sousCategorie']);
         // Ajouter le produit au panier
-        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['categorie'],$produit['nom'],$produit['prix'],$produit['reduction'],$produit['image1'],$produit['description'],$poids),$produit['id'] );       
-        // Réserve le produit pendant 30 minutes
-
+        $_SESSION['panier']->ajouter(new produits($produit['id'],$produit['categorie'],$produit['nom'],$produit['prix'],$produit['reduction'],$produit['image1'],$produit['description'],$poids, time()),$produit['id'] );       
+        // Réserve le produit pendant 60 minutes
+        if(!isset($_SESSION['id'])){
+            $cli = null;
+        }else{
+            $cli = $_SESSION['id'];
+        }
+        changeProduitDateReservation($produit['id'],1,$cli);
         echo json_encode($produit);
         ?>
         <?php

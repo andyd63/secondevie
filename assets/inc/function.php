@@ -159,20 +159,30 @@ function countNbreImageDossierCopyright($idEvenement){
     return  $nbFichiers;
 }
 
-function countNbreImageDossierNormal($idEvenement){
-    $nbFichiers = 0;
-    $nomRep = "./assets/img/mes_evenements_photo_normal/".$idEvenement;
-    if(is_dir($nomRep) == true){
-    $repertoire = opendir($nomRep);
-    while ($fichier = readdir($repertoire)) {
-        $nbFichiers += 1;
+// Verifie les réservations dans le panier si ça fait plus d'une heure qu'il est réservé
+function supprReservationProduitPanier(){
+    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+        $difference = time() - $produitPanier->getDateReservation(); // diffrence entre les deux heures
+        if($difference >= 3600){ // temps de réservation au dessus d'une heure
+            $_SESSION['panier']->supprimer($produitPanier->getId()); // supprime le produit du panier
+        }
+        var_dump($_SESSION['panier']);
     }
-    }
-    else {
-        $nbFichiers = 'Dossier inexistant';
-    }              
-    return  $nbFichiers;
 }
+
+// Verifie les réservations dans le panier si ça fait plus d'une heure qu'il est réservé
+function supprReservationProduitBdd(){
+    foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
+        $difference = time() - $produitPanier->getDateReservation(); // diffrence entre les deux heures
+        if($difference >= 3600){ // temps de réservation au dessus d'une heure
+            $_SESSION['panier']->supprimer($produitPanier->getId()); // supprime le produit du panier
+        }
+        var_dump($_SESSION['panier']);
+    }
+
+    changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
+}
+
 
 ?>
 

@@ -199,6 +199,19 @@ function changeProduitStatut($idProduit,$valeur,$idCommande = null,$idClient =NU
 	$conn = null ; //Quitte la connexion
 }
 
+function changeProduitDateReservation($idProduit,$valeur,$idClient =NULL)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'id','type'=>'=','name'=>'id','value'=>$idProduit));
+    array_push($values, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>$valeur));
+    array_push($values, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
+    array_push($values, array('nameChamps'=>'dateReservation','name'=>'dateReservation','value'=>date('Y-m-d H:i:s')));
+	$req =  new myQueryClass('produit',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
 
 
 ?>

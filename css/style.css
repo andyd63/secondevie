@@ -563,8 +563,7 @@ header .navbar li.active a:before {
 	padding: 25px 20px;
 	border-radius: 0px 0px 8px 8px;
 }
-.ownmenu .nav .dropdown-menu {
-}
+
 .ownmenu .dropdown.megamenu {
 	position: static !important;
 }
@@ -897,12 +896,7 @@ header .user-acc li a {
 	padding: 10px 20px;
 	font-size: 12px;
 }
-header .user-acc .dropdown-menu>li>a:hover {
-	
-}
-header .user-acc .dropdown-menu>li>a:focus {
 
-}
 header .navbar-right li a:before {
 	display: none;
 }
@@ -1394,8 +1388,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 /*=======================================================
       NEW ARRIVAL LIST
 ========================================================*/
-.new-arrival-list {
-}
+
 .new-arrival-list li {
 	position: relative;
 	text-align: center;

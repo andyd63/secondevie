@@ -166,9 +166,7 @@ header .user-basket .menuPanier li {
 .topBar ul {
     margin: 0;
 }
-.topBar ul li {
 
-}
 .topBar a {
     color: #878c94;text-decoration:none;
 }
@@ -250,7 +248,7 @@ header .user-basket .menuPanier li {
     font-weight: normal;
     line-height: 1.42857143;
     color: #878c94;
-    font-size:15px
+    font-size:15px;
     white-space: nowrap;
 }
 .topBar .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
@@ -285,9 +283,7 @@ header .user-basket .menuPanier li {
     width: 6px;
     background-color: #ECECEC;
 }
-.cart-items::-webkit-scrollbar-track {
 
-}
 .cart-items::-webkit-scrollbar-thumb {
     background-color: #084951;
     outline: 1px solid black;

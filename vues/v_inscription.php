@@ -96,9 +96,7 @@
                   <ul class="row">
                     <hr>
                     <li class="col-md-12">
-                      <p>Pour mieux cibler les vêtements à vous proposer, vous pouvez nous donner les informations sur vos tailles de vêtements, mais 
-                        ceci n'est pas obligatoire!</p>
-                      </p>
+                      <?= genererError(23);?>
                     </li>
                   </ul>
                   <ul class="row">

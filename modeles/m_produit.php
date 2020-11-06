@@ -185,11 +185,12 @@ function searchProduit($recherche,$ask){
 
 
 // Les produits selon la taille du monsieur ou madame
-function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe =null){
+function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe){
     $order = array();
     $conditions = array(); 
     array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$tailleBas ,'operator'=>'OR'));
     array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$tailleHaut ,'operator'=>'OR'));
+    array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$sexe ));
     // pour chaque get
    
     foreach($get as $g => $value){

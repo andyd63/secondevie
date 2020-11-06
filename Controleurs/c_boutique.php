@@ -2,6 +2,7 @@
 
 require_once "./modeles/m_module.php";
 require_once "./modeles/m_genre.php";
+require_once "./modeles/m_clients.php";
 require_once "./modeles/m_alert.php";
 require_once "./modeles/m_categorie.php";
 require_once "./modeles/m_etat.php";
@@ -111,16 +112,17 @@ if(isset($_GET['action'])){
 			}
 		break;
 
-
-		case 'selection':
+		// Case de la séléction
+		case '4':
 			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 4;
 			$categorie =  categorie(4);
-			$page = 'selection';
+			$page = 'selection'; // nom de la page
 			unset($_GET['c']);
 			unset($_GET['action']);
-			$produits = allProduitBySelection($_GET,'33','35');
+			$leClient = clientByEmail($_SESSION['mail']); //récupère les infos du client 
+			$produits = allProduitBySelection($_GET,$leClient['tailleBas'],$leClient['tailleHaut'],$leClient['genre']); // récupère les produits selon ses infos
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
 			$allTaille = allTaille();	

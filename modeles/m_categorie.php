@@ -8,7 +8,7 @@ require_once ('./classes/templateRest.php');
 
 function allCategorie(){
 	$order = array();
-	array_push($order, array('nameChamps'=>'nomCategorie','sens'=>'asc'));
+	array_push($order, array('nameChamps'=>'ordre','sens'=>'asc'));
 	$req =  new myQueryClass('categorie','',$order);
 	$r = $req->myQuerySelect();
 	return $r;

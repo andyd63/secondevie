@@ -4752,7 +4752,14 @@ html[xmlns] .flexslider .slides {
 	letter-spacing: 10px !important;
 }
 
-
+.barBoutique {
+	text-align: center;
+	border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+.lienActif{
+	color: gold;
+}
 .btnSmall{
 	border: none;
 	color: #fff;

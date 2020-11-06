@@ -1401,7 +1401,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	text-align: center;
 }
 .new-arrival-list li h4 a {
-	color: #2d3a4b;
+	color: white;
+	border-color: #ffe115;
 }
 .new-arrival-list li .btn {
 	background: #2d3a4b;

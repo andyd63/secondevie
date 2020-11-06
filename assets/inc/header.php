@@ -93,6 +93,6 @@ if(!isset($_SESSION['panier'])){
 $configSite = initConfigSite();
 initParamBoolSite($configSite);
 
-supprReservationProduitPanier(); // permet de supprimer les produit du panier qui ne sont plus reservé
-changeProduitDateReservationNull();
+//supprReservationProduitPanier(); // permet de supprimer les produit du panier qui ne sont plus reservé
+//changeProduitDateReservationNull();
 

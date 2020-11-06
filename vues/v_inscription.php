@@ -94,6 +94,7 @@
                     
                   </ul>
                   <ul class="row">
+                    <hr>
                     <li class="col-md-12">
                       <p>Pour mieux cibler les vêtements à vous proposer, vous pouvez nous donner les informations sur vos tailles de vêtements, mais 
                         ceci n'est pas obligatoire!</p>
@@ -102,7 +103,17 @@
                   </ul>
                   <ul class="row">
                      <!-- TAILLE DE HAUT -->
-                    <li class="col-md-6">
+                    <li class="col-md-4">
+                      <label>Désignation</label>
+
+                        <select class="form-control" name="genreClient">
+                            <?php foreach ($allGenre as $genre){
+                              echo "<option value=".$genre['idGenre'].">".$genre['libGenre']."</option>";
+                            }?> 
+                        </select>
+                    </li>
+                     <!-- TAILLE DE HAUT -->
+                    <li class="col-md-4">
                       <label>Taille de haut</label>
                         <select class="form-control" name="tailleHClient">
                             <?php foreach ($tailleHaut as $haut){
@@ -111,7 +122,7 @@
                         </select>
                     </li>
                      <!-- TAILLE DE BAS -->
-                    <li class="col-md-6">
+                    <li class="col-md-4">
                       <label>Taille de pantalon</label>
                         <select class="form-control" name="taillePClient">
                             <?php foreach ($taillePantalon as $pantalon){

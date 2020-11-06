@@ -16,14 +16,20 @@
     <section class="shop-page  padding-bottom-100">
       <div class="container">
         <div class="row"> 
-        <div class="col-sm-12">
-          <?php if(isset($categorie)){?>
-          <h5><?=$categorie['iconeCategorie']?><?=$categorie['nomCategorie']?></h5>
-          <?php }else{?>
-          <h5>Résultat pour: <?=$ask;?></h5>
-          <?php }?>
-          <hr>
-        </div>
+          <div class="col-sm-12 barBoutique">
+            <?php if(isset($categorie)){?>
+            <?php foreach($allCategories as $cat){?>
+              <div class="col-sm-3">
+                <a href="index.php?c=boutique&action=<?=$cat['idCategorie'];?>"><h5 class="<?php if($categorie['nomCategorie'] == $cat['nomCategorie']){echo 'lienActif';}?>"><?=$cat['iconeCategorie']?><?=$cat['nomCategorie']?></h5></a>
+              </div>
+            <?php }?>
+            <?php }else{?>
+            <h5>Résultat pour: <?=$ask;?></h5>
+            <?php }?>
+            
+          </div>
+          
+      
         <?php if($barFilter){?>
           <!-- BAR DE FILTRE -->
           <div class="col-sm-3">

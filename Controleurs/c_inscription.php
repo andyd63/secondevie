@@ -1,6 +1,7 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/m_genre.php";
 require_once "./modeles/m_alert.php";
 require_once "./modeles/m_module.php";
 $conn = bdd();
@@ -14,6 +15,7 @@ switch($action) {
 
 	case 'sinscrire':
 		require('./modeles/m_taille.php');
+		$allGenre =  allGenre();
 		$tailleHaut = tailleHaut();
 		$taillePantalon = taillePantalon();
 		include('vues/v_inscription.php');
@@ -25,7 +27,7 @@ switch($action) {
 		$mois =  date("m");  
 		$annee =  date("Y");  
 		$date = mktime(0, 0, 0, $mois,  $jour, $annee);
-		ajouterclient($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['telephone'],$_POST['adresse'],$_POST['cp'],$_POST['ville'],$mdp,$_POST['password'],$_POST['tailleHClient'],$_POST['taillePClient'],$date); // modele/m_clients   | Permet d'ajouter client dans bdd
+		ajouterclient($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['telephone'],$_POST['adresse'],$_POST['cp'],$_POST['ville'],$mdp,$_POST['password'],$_POST['tailleHClient'],$_POST['taillePClient'],$_POST['genreClient'], $date); // modele/m_clients   | Permet d'ajouter client dans bdd
 		$derniercli = derclient();
 		$_SESSION['id'] = $derniercli;
 		$_SESSION['nom'] = $_POST['nom'];

@@ -19,6 +19,7 @@ if(isset($_GET['action'])){
 	switch ($_GET['action'])
 	{
 		case 1: 
+			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 3;
 			$categorie =  categorie(1);
@@ -31,6 +32,7 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 		case 2: 
+			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 3;
 			$categorie =  categorie(2);
@@ -43,6 +45,7 @@ if(isset($_GET['action'])){
 			include('vues/v_boutique.php');
 		break;
 		case 3: 
+			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 3;
 			$categorie =  categorie(3);	
@@ -110,6 +113,7 @@ if(isset($_GET['action'])){
 
 
 		case 'selection':
+			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 4;
 			$categorie =  categorie(4);

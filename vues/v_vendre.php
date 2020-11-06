@@ -21,11 +21,7 @@
             <div class="col-sm-7">
               <h6>Les conditions de notre rachat</h6>
               <div class="grand-total">
-                <p>Nous acceptons tout type de vêtement, notre priorité c'est de vous débarrasser! Notre seul condition à cela,
-                c'est des vêtements en bonne état!</p>
-                <p>Pour faciliter le rendez-vous et vous prendre un minimum de temps on vous demande de préparer les vêtements que
-                  vous souhaitez donner.</p>
-                <p> Toujours intéressez? Alors prenez un rendez vous !</p>
+                <?=genererError(24);?>
               </div>
             </div>
             
@@ -35,7 +31,7 @@
               <div class="grand-total">
                 <div class="order-detail">
                   <p class="textEnGras"> 1: Créer un compte </p>
-                  <p class="textEnGras"> 2: Regarder notre tableau d'estimation</p>
+                  <p class="textEnGras"> 2: Regarder nos tableaux d'estimation</p>
                   <p class="textEnGras"> 3: Regarder le type de vêtement qu'on récupère</p>
                   <p class="textEnGras"> 4: prendre un rendez-vous!</p>
                 </div>
@@ -43,8 +39,11 @@
             </div>
           </div>
       </div>
+
+      <?php include('./vues/module/tableauEnfant.php');?>
+    <?php include('./vues/module/tableauAdulte.php');?>
     </section>
- 
+   
     <section class="padding-top-30 padding-bottom-100 light-gray-bg shopping-cart small-cart">
       <div class="container">
         <!-- Onglet reservation -->

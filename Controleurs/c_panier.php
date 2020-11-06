@@ -116,7 +116,7 @@ switch ($action){
                         foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
                             changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
                         }
-                         // $_SESSION['panier']->vider(); // vider le panier
+                         $_SESSION['panier']->vider(); // vider le panier
                         //recuperer la commande avec le prix
                         $commande = voirCommandeToken($_GET['id']);
                         $allStatutCommande = allStatutCommande(); // récupère tout les statuts

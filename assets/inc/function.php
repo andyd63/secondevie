@@ -57,7 +57,13 @@ function redirectUrl($url){
 function genererError($idModule){
         $module = voir_module($idModule);
         $alert = voirAlert($module['alert']);
-        echo $alert['part1Alert'].$module['titre_module'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
+
+        if($module['alert'] == 5){
+            echo $alert['part1Alert'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
+        }else{
+            echo $alert['part1Alert'].$module['titre_module'].$alert['part2Alert'].$module['texte_module'].$alert['part3Alert'];
+        }
+
 }
 
 // Permet de retrouver le prix dans le panier, le total des remises, et les prix avec remises

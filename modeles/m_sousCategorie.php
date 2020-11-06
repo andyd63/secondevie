@@ -49,6 +49,7 @@ function sousCategorie($id){
 
 
 function voirPoids($genre,$sousCategorie){
+
 	if($genre >=2){
 		$conditions = array();
 		array_push($conditions, array('nameChamps'=>'idSousCategorie','type'=>'=','name'=>'idSousCategorie','value'=>$sousCategorie));

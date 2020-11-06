@@ -132,8 +132,6 @@ if(isset($_GET['action'])){
 
 		//ERREUR 
 		default: 
-			$barFilter = true;
-			$nbProduitParLigne = 3;
 			$categorie =  categorie(1);
 			$allSousCategorie = sousCategorieAdulte();
 			$allGenre = genreAdulte();
@@ -141,7 +139,7 @@ if(isset($_GET['action'])){
 			unset($_GET['c']);
 			unset($_GET['action']);
 			$produits = allProduitByCategorie(1,$_GET);
-			include('vues/v_boutique.php');
+			include('vues/v_globalBoutique.php');
 		break;
 		
 

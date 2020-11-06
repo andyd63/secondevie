@@ -2,6 +2,7 @@
 
 require_once "./modeles/m_module.php";
 require_once "./modeles/m_genre.php";
+require_once "./modeles/m_sousCategorie.php";
 require_once "./modeles/m_alert.php";
 require_once "./modeles/m_clients.php";
 require_once "./modeles/m_commande.php";
@@ -16,11 +17,15 @@ else{
 	$action = "vendre";
 }
 switch ($action){
-	case 'profil' :
+	case 'vendre' :
+		$allProduitEnfant = sousCategorieEnfant();
+		$allProduitAdulte = sousCategorieAdulte();
 		include('vues/v_vendre.php');
 	break;
 
 	default :
+		$allProduitEnfant = sousCategorieEnfant();
+		$allProduitAdulte = sousCategorieAdulte();
 		include('vues/v_vendre.php');
 	break;
 }

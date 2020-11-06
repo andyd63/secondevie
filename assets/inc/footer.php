@@ -32,6 +32,8 @@
         <ul class="link">
           <li><a href="#.">Adulte</a></li>
           <li><a href="#.">Enfant</a></li>
+          <li><a href="#.">Braderie</a></li>
+          <li><a href="#.">Ma sélection</a></li>
         </ul>
       </div>
       

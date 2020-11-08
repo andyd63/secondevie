@@ -60,6 +60,11 @@ switch($action)
         include('./vues/administration/v_meslivraisons.php'); 
     break;
 
+    case 'mesClients':
+        $commandeNonTraite = voirCommandeLivraisonNonTraite();
+        include('./vues/administration/v_mesclients.php'); 
+    break;
+
     case 'changeDateLivraison';
     redirectionNonAdmin(adminexist($_SESSION['mail']));
     updateStatutCommande($_POST['id'],'2'); //change le statut de la commande

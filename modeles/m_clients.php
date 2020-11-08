@@ -23,7 +23,7 @@ function allClient($ask){
 function allClientTotal(){
 	$req =  new myQueryClass('client');
 	$r = $req->myQuerySelect("CONCAT(PRE_CLIENTS, ' ', NOM_CLIENTS) AS nom,MAIL_CLIENTS,TEL_CLIENTS,CONCAT(ADRESSE, ', ', CODEPOSTAL, ' ', VILLE) AS ville, CAST(FROM_UNIXTIME(client.date) as date) as dateInscription,  CAST(FROM_UNIXTIME(date_connecte) as date) as dateConnecte");
-	return reponse_jsonApi($r);
+	return $r;
 }
 
 

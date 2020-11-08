@@ -20,7 +20,14 @@
                     <?php echo $alert;?>
                   </div>
                  <?php  }?>
-              <h6>Mes commandes</h6>
+              <?php if($_GET['c'] == 'admin') { // si c'est en admin 
+              ?>
+                <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
+                <h6>Ses commandes</h6>
+              <?php } else{ ?>
+                <h6>Mes commandes</h6>
+              <?php }?>
+             
                 
               <table id="test" class="table">
                 <thead>

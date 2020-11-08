@@ -20,43 +20,37 @@
                   </div>
                  <?php  }?>
                 <h6>Mes clients</h6>
-              <table id="commandeNonTraite" class="table">
-                <thead>
+                <table id="tableCli" class="table ">
+                    <thead>
+                    <tr class="active">
+                        <td>Nom prénom </td>
+                        <td>Mail </td>
+                        <td>Tel </td>
+                        <td>Adresse</td>
+                        <td>Date d'inscription </td>
+                        <td>Date de connexion</td>
+                        <td>Ses commandes</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                  <?php 
+                  foreach($allClient as $client){ ?>
                   <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Id facture</th>
-                    <th scope="col">id client</th>
-                    <th scope="col">Num</th>
-                    <th scope="col">Adresse</th>
-                    <th scope="col">nbre produit</th>
-                    <th scope="col">prix commande</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Date livraison</th>
-                    <th scope="col">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach($commandeNonTraite as $comNonTaite){
-                   $cliCommande = informations($comNonTaite['idClient']); 
-                   $cliCommande = $cliCommande[0]; 
-                   ?>
-                  <tr>
-                    <th scope="row"><?= $comNonTaite['idCommande'];?></th>
-                    <td><?= $comNonTaite['idFacture'];?></td>
-                    <td><?= $comNonTaite['idClient'];?></td>
-                    <td><?= $cliCommande['TEL_CLIENTS'];?></td>
-                    <td><?= $cliCommande['ADRESSE'].' , '.$cliCommande['CODEPOSTAL'].' '.$cliCommande['VILLE'];?></td>
-                    <td><?= $comNonTaite['nbreProduit'];?></td>
-                    <td><?= $comNonTaite['prixCommande'];?>€</td>          
-                    <td><?= date('d/Y H:i:s', $comNonTaite['date']);?></td>             
-                    <td><input type="date" id="<?=$comNonTaite['idCommande'];?>" class="dateLivraisonChange" name="trip-start"  <?php if($comNonTaite['dateLivraison'] != null ){ ?> value="<?=$comNonTaite['dateLivraison'];?>" <?php } ?> ></td>             
-                    <td><input type="time" id="<?=$comNonTaite['idCommande'];?>" class="heureLivraisonChange" min="09:00" max="23:00" required <?php if($comNonTaite['heureLivraison'] != null ){ ?> value="<?=$comNonTaite['heureLivraison'];?>" <?php } ?> ></td>             
-                  </tr>
-                  <?php }?>
+                    <th scope="row"><?= $client['PRE_CLIENTS'];?> <?= $client['NOM_CLIENTS'];?></th>
+                    <td><?= $client['MAIL_CLIENTS'];?></td>
+                    <td><?= $client['TEL_CLIENTS'];?></td>
+                    <td><?= $client['ADRESSE'].' , '.$client['CODEPOSTAL'].' '.$client['VILLE'];?></td>
+                    <td><?= date('d/m/Y H:i:s', $client['date']);?></td>             
+                    <td><?= date('d/m/Y H:i:s', $client['date_connecte']);?></td>    
+                    <td><a class="btn" href="index.php?c=admin&action=commandeClient&id=<?= $client['ID_CLIENTS'];?>"><i class="fas fa-search-plus fa-lg"></i> Voir</a></td>        
+                  </tr> 
+                    <?php }?>
                   
               
                 </tbody>
-              </table>
+                </table>
+               
+              
               <hr>
          
               </div>
@@ -91,25 +85,7 @@
         postAjax(param,url,messageRetour,);
       });
 
-        $('#commandeNonTraite').DataTable( {
-          "scrollX": true,
-          dom: 'Bfrtip',
-        buttons: [ {
-          extend: 'excel',
-            text: 'Exporter en excel',
-        }],
-        "language": {
-            "lengthMenu":     "Voir _MENU_ résultats ",
-            "zeroRecords":    "Aucun résultat",
-            "info":           "Affichage de  _START_ à _END_ sur _TOTAL_ résultats",
-            "paginate": {
-                "previous": "<",
-                "next": ">"
-              }
-            }
-        
-           
-        } );
+      getDataTable('tableCli');
     });
 
     $('#traiteCommande').click(function(e){ 

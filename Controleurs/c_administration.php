@@ -61,7 +61,7 @@ switch($action)
     break;
 
     case 'mesClients':
-        $commandeNonTraite = voirCommandeLivraisonNonTraite();
+        $allClient = allClientTotal();
         include('./vues/administration/v_mesclients.php'); 
     break;
 
@@ -153,6 +153,19 @@ switch($action)
     case 'lesCommandes' :
         redirectionNonAdmin(adminexist($_SESSION['mail'])); 
         $commandes= allCommandes();
+            if(!isset($_GET['ajx'])){ //appel normal
+                $commandes = json_decode($commandes);
+                $commandes = $commandes->result;
+                require_once('vues/administration/v_lescommandes.php');
+            } else	{ // Appel Ajax
+                appelAjax($commandes);
+            }	
+        break;
+
+    //LES COMMANDES d'un client en particulier 
+    case 'commandeClient' :
+        redirectionNonAdmin(adminexist($_SESSION['mail'])); 
+        $commandes= mescommandes($_GET['id']);
             if(!isset($_GET['ajx'])){ //appel normal
                 $commandes = json_decode($commandes);
                 $commandes = $commandes->result;

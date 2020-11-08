@@ -20,10 +20,13 @@
             <div class="col-sm-12">
               <h6>Mode de livraison</h6>
               <div class="col-sm-6">
+              <div class="prixLivraison">
+                    3€
+                </div>
               <form>
                 <?= genererError(18);?>
                 <div class="textAlignCenter"> 
-                <a href='index.php?c=panier&action=payment&choix=1'><btn  class="btn">Continuer</btn></a> 
+                <btn id="btnLivraisonDomicile" class="btn">Continuer</btn></a> 
                 </div>
               </form>
               </div>
@@ -108,29 +111,41 @@
         postalCodeFieldMondialRelay = document.getElementById('postalCodeMondialRelay'),
         postalCodeFieldColissimo = document.getElementById('postalCodeColissimo'),
         advancedButton = document.getElementById('mondialRelayId')
+        prixColissimo = <?= $prixColissimo['prixFraisLivraison'];?>;
+        prixMondial = <?= $prixRelay['prixFraisLivraison'];?>;
 
+        $('#btnLivraisonDomicile').click(function(e){ 
+              url= 'index.php?c=panier&action=addLivraison&prixLivraison=3&choix=1';
+              messageRetour = '';
+              postAjax('',url,messageRetour);
+              document.location.href = 'index.php?c=panier&action=terminer';     
+        });
+     
 
 
       mondialRelayId.addEventListener('click', function() {
         openServicePointPicker(
           postalCodeFieldMondialRelay.value,
           ['mondial_relay'], //  permet de choisir colissimo ou mondialrelay
+          prixMondial
         )
       })
       colissimoId.addEventListener('click', function() {
         openServicePointPicker(
           postalCodeFieldColissimo.value,
           ['colissimo'], //  permet de choisir colissimo ou mondialrelay
-        )
+          prixColissimo
+          )
       })
 
-      function openServicePointPicker(postalCode, carriers) {
+      function openServicePointPicker(postalCode, carriers,prix) {
         /**
          * @typedef ConfigurationHash
          * @type {object}
          * @property {string} apiKey - required; replace it below with your API key
          * @property {string} country - required; ISO-2 code of the country you want to display the map (i.e.: NL, BE, DE, FR)
          * @property {?string} postalCode  - not required but recommended
+         * @property {?string} prix  - not required but recommended
          * @property {?string} language  - not required. Defaults to "en-us"
          * @property {?string} carriers - comma-separated list of carriers you can filter service points
          * @property {?string|?number} servicePointId - set a preselected service point to be shown upon displaying the map
@@ -146,6 +161,7 @@
           postalCode: postalCode,
           language: 'fr-fr',
           carriers: carriers,
+          prix : prix 
         }
 
         sendcloud.servicePoints.open(
@@ -163,13 +179,12 @@
             setTimeout(envoieBonLivraison, 2000); //On attend 5 secondes avant d'exécuter la fonction
             function envoieBonLivraison()
             {
-             console.log('r');
               rep = $.parseJSON(document.getElementById('result').innerHTML);
               param = '&transporteur='+rep.carrier+'&name='+rep.name+"&street="+rep.street+'&num='+rep.house_number+'&postal='+rep.postal_code+'&city='+rep.city;
-              url= 'index.php?c=panier&action=addLivraison'+param;
+              url= 'index.php?c=panier&action=addLivraison'+param+'&prixLivraison='+config.prix+"&choix=2";
               messageRetour = '';
               postAjax('',url,messageRetour);  
-              document.location.href = 'index.php?c=panier&action=payment&choix=2';          
+              document.location.href = 'index.php?c=panier&action=terminer';          
             }
           },
           /**

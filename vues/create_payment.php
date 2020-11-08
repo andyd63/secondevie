@@ -1,9 +1,9 @@
 
 <?php
-
+var_dump($_SESSION);
 require("./vendor/autoload.php");
 $totalPanier = totalPrixPanier();
-$modeLivraison = $_GET['choix']; // a faire definir par l'utilisateur
+$modeLivraison = $_SESSION['livraison']['choix']; // a faire definir par l'utilisateur
 $token = genererChaineAleatoire(50);
 //ajoute une commande avec le token vide et le statut à 0
 ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo = NULL);
@@ -27,7 +27,7 @@ $session = \Stripe\Checkout\Session::create([
   'line_items' => [[
     'name' => 'Commande Deuxiemevie '.$token,
     'description' => 'Commande de vêtement',
-    'amount' => $totalPanier['totalAvecRemise'] *100,
+    'amount' => $totalPanier['totalAvecRemise']+$_SESSION['livraison']['prixLivraison'] *100,
     'currency' => 'eur',
     'quantity' => 1,
   ]],

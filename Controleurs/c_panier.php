@@ -31,7 +31,7 @@ switch ($action){
 	case 'viderP' :
         videReservation();
         $_SESSION['panier']->vider();
-        
+        unset($_SESSION['livraison']);
         echo "Votre panier est bien vidé!";
 	break;
 
@@ -67,6 +67,13 @@ switch ($action){
         require_once('./vues/v_panier.php');
     break;
 
+
+    // VOIR PANIER
+    case 'terminer' :
+        
+        require_once('./vues/v_recapitulatif.php');
+    break;
+
 	case 'supprPanier' : // action pour Supprimer dans le panier
         // Supprime le produit du panier
         $_SESSION['panier']->supprimer($_POST['idProduit'] );       
@@ -92,7 +99,7 @@ switch ($action){
             $idcli= $_SESSION['id']; // id du client
             if(isset($_GET['id'])){ // si y a un token
                 $commande = voirCommandeToken($_GET['id']); // verifie si le token a une correspondance
-        
+               
                 if($commande != false){ // si celui ci a une commande
                     $derFacture = voirDerniereCommandeAvecFacture();
                     $idC = $derFacture['idFacture'] + 1;
@@ -108,7 +115,7 @@ switch ($action){
                             $prixLivraison = voirPrixSelonPoids($poidsPanier, 'Relay');
                         }
                         addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS']
-                        ,$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $idC);
+                        ,$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $commande['idCommande']);
                         
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
                         changeCommandeToken($_GET['id'],'1');// change le statut de la commande
@@ -127,12 +134,14 @@ switch ($action){
                         require_once('./vues/v_commande.php');
 
                     }else{
+                      
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
                         changeCommandeToken($_GET['id'],'1');// change le statut de la commande
             
                         foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
                             changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
                         }
+                        $_SESSION['panier']->vider(); // vider le panier
                         require_once('./vues/v_confirmLivraison.php');
 
                     }

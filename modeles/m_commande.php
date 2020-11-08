@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 ///////////////// Connexion à la base de données///////////////////////
 require_once('./modeles/m_bdd.php');     
@@ -12,7 +12,9 @@ $conn = bdd();
 $jour = date("d");   
 $mois = date("m");   
 $annee = date("Y");    
-$date = mktime(0, 0, 0, $mois,  $jour, $annee);
+$minute = date("i");    
+$heure = date("H");       
+$date = mktime($heure, $minute, 0, $mois,  $jour, $annee);
 
 $conditions = array();
 array_push($conditions, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
@@ -66,6 +68,16 @@ function voirCommandeId($id){
 		return false;
 	}
 }
+
+//function retrouve les commandes en livraison statut non traité
+function voirCommandeLivraisonNonTraite(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'modeLivraison','type'=>'=','name'=>'modeLivraison','value'=>'1'));
+	array_push($conditions, array('nameChamps'=>'statutCommande','type'=>'=','name'=>'statutCommande','value'=>'1'));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
 	
 function deleteCommandeToken($token){
     $conn = bdd();
@@ -88,6 +100,30 @@ function changeCommandeToken($token,$valeur)
 	$conn = null ; //Quitte la connexion
 }
 
+// changer la date de livraison ou de dépot colis
+function changeCommandeDateLivraison($id,$date)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+	array_push($values, array('nameChamps'=>'dateLivraison','name'=>'dateLivraison','value'=>$date));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
+// changer l'heure de livraison ou de dépot colis
+function changeCommandeHeureLivraison($id,$date)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+	array_push($values, array('nameChamps'=>'heureLivraison','name'=>'heureLivraison','value'=>$date));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
 function changeCommandeFacture($token,$valeur)
 {
 	$conditions = array();
@@ -99,12 +135,13 @@ function changeCommandeFacture($token,$valeur)
 	$conn = null ; //Quitte la connexion
 }
 
-function UpdateCommandeNonTraite($id)
+
+function updateStatutCommande($id,$statut)
 {
 	$conditions = array();
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
-	array_push($values, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>'2'));
+	array_push($values, array('nameChamps'=>'statutCommande','name'=>'statutCommande','value'=>$statut));
 	$req =  new myQueryClass('commande',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion
@@ -181,40 +218,6 @@ function modifStatutCommande($statutCommande,$idCommande){
     $conn = null ; //Quitte la connexion
     return "Le statut de la commande à été changé!";
 }
-
-/**
- * @return mixed Retourne le nombre photo numérique d'une commande
- */
-function sum_photo_mois_num(){
-	$conn=bdd();
-	$id = premiere_commandemois();
-	$dernierecomm = $conn->prepare("SELECT sum(qte_photo) as nbre from photos where choix ='2' and idCommande >='$id'");
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetch();
-	$conn=null;
-	return $laderniercom['nbre'];
-}
-
-
-
-function sum_photo_num(){
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT sum(qte_photo) as nbre from photos where choix = 2');
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetch();
-	$conn=null;
-	return $laderniercom['nbre'];
-}
-
-function sum_photo_papier(){
-	$conn=bdd();
-	$dernierecomm = $conn->prepare('SELECT sum(qte_photo) as nbre from photos where choix = 1');
-	$dernierecomm-> execute();
-	$laderniercom = $dernierecomm->fetch();
-	$conn=null;
-	return $laderniercom['nbre'];
-}
-
 
 function nbre_commandemois(){
 	$conn=bdd();

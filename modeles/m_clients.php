@@ -41,7 +41,7 @@ function ajouterclient($nom,$prenom,$email,$tel,$adresse,$cp,$ville,$password,$m
 	$conn = bdd();
 	$newclient = $conn->prepare('INSERT INTO client (pre_clients, nom_clients, mail_clients, tel_clients, VILLE, ADRESSE,CODEPOSTAL, mdp_clients, MDP_claire,tailleHaut,tailleBas,genre,date,date_connecte) 
 								VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-	$newclient->execute(array($nom,$prenom,$email,$tel,$ville,$adresse,$cp,$password,$mdp_claire,$tailleHaut,$tailleBas,$genre,$date,$date));
+	$newclient->execute(array($nom,$prenom,$email,$tel,$ville,$adresse,$cp,$password,$mdp_claire,$tailleHaut,$tailleBas,$date,$date));
 	$conn = null ; //Quitte la connexion
 	
 }

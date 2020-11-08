@@ -9,6 +9,7 @@
 	unset($_SESSION['adresse']);
 	unset($_SESSION['cp']);
 	unset($_SESSION['ville']);
+	unset($_SESSION['livraison']);
 	header("Location:index.php");
 ?>
 <SCRIPT LANGUAGE="JavaScript">

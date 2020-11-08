@@ -55,10 +55,28 @@ switch($action)
         include('./vues/administration/v_mesEtiquettes.php'); 
     break;
 
+    case 'leslivraisons':
+        $commandeNonTraite = voirCommandeLivraisonNonTraite();
+        include('./vues/administration/v_meslivraisons.php'); 
+    break;
+
+    case 'changeDateLivraison';
+    redirectionNonAdmin(adminexist($_SESSION['mail']));
+    updateStatutCommande($_POST['id'],'2'); //change le statut de la commande
+    changeCommandeDateLivraison($_POST['id'],$_POST['date']); // change la date de livraison
+    echo 'Date mis à jour!';
+    break;
+
+    case 'changeHeureLivraison';
+    redirectionNonAdmin(adminexist($_SESSION['mail']));
+    changeCommandeHeureLivraison($_POST['id'],$_POST['date']);
+    echo 'Heure mis à jour!';
+    break;
+
     case 'UpdateEtiquettesNonTraite':
         $touteCommande = AllEtiquetteNonTraite();
         foreach($touteCommande as $com){// change le statut des commandes non traité
-            UpdateCommandeNonTraite($com['idCommande']);
+            updateStatutCommande($com['idCommande'],2);
         }
         UpdateAllEtiquetteNonTraite(); // change le statut des etiquettes
         echo 'Les étiquettes sont désormais en préparation!';

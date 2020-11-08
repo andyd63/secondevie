@@ -24,8 +24,8 @@
             <h6>Information sur la commande #<?= $commande['idCommande'] ;?> </h6>
             <p>Date de la commande: <span class='enGras'><?= date('d/m/Y', $commande['date']);?></p>
             <p>Mode de livraison: <span class='enGras'><?= $modeLivraison['libModeLivraison'];?></span></p>
-            <?php if($modeLivraison['idModeLivraison'] == '2') {?>
-            <p>Date de livraison: <span class='enGras'></span></p> <!-- si à domicile -->
+            <?php if($modeLivraison['idModeLivraison'] == 1) {?>
+            <p>Date de livraison: <span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p> <!-- si à domicile -->
             <?php }else{?>
             <p>Date dépot colis: <span class='enGras'></span></p><!-- si relai coli-->
             <?php }?>

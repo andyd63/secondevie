@@ -14,6 +14,7 @@
           <div class="cart-ship-info">
             <div class="row"> 
               <div class="col-md-12 ">
+              <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
               <?php if(isset($alert)){?>
                   <div class="alert alert-primary" role="alert">
                     <?php echo $alert;?>
@@ -32,7 +33,7 @@
                     <th scope="col">prix commande</th>
                     <th scope="col">Date</th>
                     <th scope="col">Date livraison</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">heure</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,7 +59,47 @@
                 </tbody>
               </table>
               <hr>
-         
+              <hr>
+              <h6>Commande en livraison </h6>
+              <table id="commandeEnLivraison" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Id facture</th>
+                    <th scope="col">id client</th>
+                    <th scope="col">Num</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">nbre produit</th>
+                    <th scope="col">prix commande</th>
+                    <th scope="col">Date d'achat</th>
+                    <th scope="col">Date colis</th>
+                    <th scope="col">heure colis</th>
+                    <th scope="col">Ok?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($commandeEnLivraison as $comEnLiv){
+                   $cliCommande = informations($comEnLiv['idClient']); 
+                   $cliCommande = $cliCommande[0]; 
+                   ?>
+                  <tr>
+                    <th scope="row"><?= $comEnLiv['idCommande'];?></th>
+                    <td><?= $comEnLiv['idFacture'];?></td>
+                    <td><?= $comEnLiv['idClient'];?></td>
+                    <td><?= $cliCommande['TEL_CLIENTS'];?></td>
+                    <td><?= $cliCommande['ADRESSE'].' , '.$cliCommande['CODEPOSTAL'].' '.$cliCommande['VILLE'];?></td>
+                    <td><?= $comEnLiv['nbreProduit'];?></td>
+                    <td><?= $comEnLiv['prixCommande'];?>€</td>          
+                    <td><?= date('d/Y H:i:s', $comEnLiv['date']);?></td>             
+                    <td><?=$comEnLiv['dateLivraison'];?></td>             
+                    <td><?=$comEnLiv['heureLivraison'];?></td>             
+                    <td><input type="date" id="<?=$comEnLiv['idCommande'];?>" class="livraisonOkChange" name="trip-start"  <?php if($comEnLiv['datelivrer'] != null ){ ?> value="<?=$comEnLiv['datelivrer'];?>" <?php } ?> ></td>             
+                  </tr>
+                  <?php }?>
+                  
+              
+                </tbody>
+              </table>
               </div>
         
             </div>
@@ -80,16 +121,24 @@
       $('.dateLivraisonChange').change(function(e){ 
         url= 'index.php?c=admin&action=changeDateLivraison';
         messageRetour = 'Date mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=2';;
         postAjax(param,url,messageRetour,true);
       });
 
       $('.heureLivraisonChange').change(function(e){ 
         url= 'index.php?c=admin&action=changeHeureLivraison';
         messageRetour = 'Heure mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
-        postAjax(param,url,messageRetour,);
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=2';;
+        postAjax(param,url,messageRetour,true);
       });
+
+      $('.livraisonOkChange').change(function(e){ 
+        url= 'index.php?c=admin&action=changeDateLivrer';
+        messageRetour = 'Commande mise à jour!';  
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=4';
+        postAjax(param,url,messageRetour,true);
+      });
+
 
         $('#commandeNonTraite').DataTable( {
           "scrollX": true,

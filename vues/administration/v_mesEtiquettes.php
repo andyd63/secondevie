@@ -15,6 +15,7 @@
           <div class="cart-ship-info">
             <div class="row"> 
               <div class="col-md-12 ">
+              <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
               <?php if(isset($alert)){?>
                   <div class="alert alert-primary" role="alert">
                     <?php echo $alert;?>
@@ -59,58 +60,83 @@
               
                 </tbody>
               </table>
+              <br>              
               <hr>
-              <h6>Mes produits réservés</h6>
-                
-              <table id="test" class="table">
+              <h6>Commande Traité </h6>
+              <table id="commandeTraite" class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Marque</th>
-                    <th scope="col">Réduction</th>
-                    <th scope="col"></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Id facture</th>
+                    <th scope="col">id client</th>
+                    <th scope="col">Num</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">nbre produit</th>
+                    <th scope="col">prix commande</th>
+                    <th scope="col">Date d'achat</th>
+                    <th scope="col">Date colis</th>
+                    <th scope="col">heure colis</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($allProduitReserve as $produitR){?>
+                  <?php foreach($commandeTraite as $comTraite){
+                   $cliCommande = informations($comTraite['idClient']); 
+                   $cliCommande = $cliCommande[0]; 
+                   ?>
                   <tr>
-                    <th scope="row"><?= $produitR['id'];?></th>
-                    <td><?= $produitR['nom'];?></td>
-                    <td><?= $produitR['prix'];?></td>
-                    <td><?= $produitR['marque'];?></td>
-                    <td><?= $produitR['reduction'] *100?>%</td>
-                    <td></td>
+                    <th scope="row"><?= $comTraite['idCommande'];?></th>
+                    <td><?= $comTraite['idFacture'];?></td>
+                    <td><?= $comTraite['idClient'];?></td>
+                    <td><?= $cliCommande['TEL_CLIENTS'];?></td>
+                    <td><?= $cliCommande['ADRESSE'].' , '.$cliCommande['CODEPOSTAL'].' '.$cliCommande['VILLE'];?></td>
+                    <td><?= $comTraite['nbreProduit'];?></td>
+                    <td><?= $comTraite['prixCommande'];?>€</td>          
+                    <td><?= date('d/Y H:i:s', $comTraite['date']);?></td>             
+                    <td><input type="date" id="<?=$comTraite['idCommande'];?>" class="dateLivraisonChange" name="trip-start"  <?php if($comTraite['dateLivraison'] != null ){ ?> value="<?=$comTraite['dateLivraison'];?>" <?php } ?> ></td>             
+                    <td><input type="time" id="<?=$comTraite['idCommande'];?>" class="heureLivraisonChange" min="09:00" max="23:00" required <?php if($comTraite['heureLivraison'] != null ){ ?> value="<?=$comTraite['heureLivraison'];?>" <?php } ?> ></td>             
                   </tr>
                   <?php }?>
                   
               
                 </tbody>
               </table>
+
+
               <hr>
-              <h6>Mes produits vendus</h6>
-                
-              <table id="test" class="table">
+              <h6>Commande en livraison </h6>
+              <table id="commandeEnLivraison" class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Marque</th>
-                    <th scope="col">Réduction</th>
-                    <th scope="col"></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Id facture</th>
+                    <th scope="col">id client</th>
+                    <th scope="col">Num</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">nbre produit</th>
+                    <th scope="col">prix commande</th>
+                    <th scope="col">Date d'achat</th>
+                    <th scope="col">Date colis</th>
+                    <th scope="col">heure colis</th>
+                    <th scope="col">Ok?</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($allProduitVendu as $produitV){?>
+                  <?php foreach($commandeEnLivraison as $comEnLiv){
+                   $cliCommande = informations($comEnLiv['idClient']); 
+                   $cliCommande = $cliCommande[0]; 
+                   ?>
                   <tr>
-                    <th scope="row"><?= $produitV['id'];?></th>
-                    <td><?= $produitV['nom'];?></td>
-                    <td><?= $produitV['prix'];?></td>
-                    <td><?= $produitV['marque'];?></td>
-                    <td><?= $produitV['reduction'] *100?>%</td>
-                    <td></td>
+                    <th scope="row"><?= $comEnLiv['idCommande'];?></th>
+                    <td><?= $comEnLiv['idFacture'];?></td>
+                    <td><?= $comEnLiv['idClient'];?></td>
+                    <td><?= $cliCommande['TEL_CLIENTS'];?></td>
+                    <td><?= $cliCommande['ADRESSE'].' , '.$cliCommande['CODEPOSTAL'].' '.$cliCommande['VILLE'];?></td>
+                    <td><?= $comEnLiv['nbreProduit'];?></td>
+                    <td><?= $comEnLiv['prixCommande'];?>€</td>          
+                    <td><?= date('d/Y H:i:s', $comEnLiv['date']);?></td>             
+                    <td><?=$comEnLiv['dateLivraison'];?></td>             
+                    <td><?=$comEnLiv['heureLivraison'];?></td>             
+                    <td><input type="date" id="<?=$comEnLiv['idCommande'];?>" class="livraisonOkChange" name="trip-start"  <?php if($comEnLiv['datelivrer'] != null ){ ?> value="<?=$comEnLiv['datelivrer'];?>" <?php } ?> ></td>             
                   </tr>
                   <?php }?>
                   
@@ -151,6 +177,34 @@
            
         } );
     });
+
+    getDataTable('commandeEnLivraison')
+    getDataTable('commandeTraite')
+    // mettre une date de colie
+    $('.dateLivraisonChange').change(function(e){ 
+        url= 'index.php?c=admin&action=changeDateLivraison';
+        messageRetour = 'Date mis à jour!';
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=3';;
+        postAjax(param,url,messageRetour,true);
+      });
+
+      $('.heureLivraisonChange').change(function(e){ 
+        url= 'index.php?c=admin&action=changeHeureLivraison';
+        messageRetour = 'Heure mis à jour!';  
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=3';
+        postAjax(param,url,messageRetour,true);
+      });
+
+
+      $('.livraisonOkChange').change(function(e){ 
+        url= 'index.php?c=admin&action=changeDateLivrer';
+        messageRetour = 'Commande mise à jour!';  
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=4';
+        postAjax(param,url,messageRetour,true);
+      });
+
+
+
 
     $('#traiteCommande').click(function(e){ 
       url= 'index.php?c=admin&action=UpdateEtiquettesNonTraite';

@@ -14,6 +14,7 @@
           <div class="cart-ship-info">
             <div class="row"> 
               <div class="col-md-12 ">
+              <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
               <?php if(isset($alert)){?>
                   <div class="alert alert-primary" role="alert">
                     <?php echo $alert;?>

@@ -35,7 +35,9 @@
                   <p class="all-total">Total avec réduction: <span ><?= $totalPanier['totalAvecRemise'] + $fraideport;?>€</span></p>
                 </div>
               </div>
-              <br>
+              <br><hr>
+              
+              <h6>Vous avez un code de réduction?</h6>
               <form>
                 <input type="text" value="" placeholder="Entrer le code de réduction">
                 <button type="submit" class="btn btn-small btn-dark">Ok</button>

@@ -78,6 +78,36 @@ function voirCommandeLivraisonNonTraite(){
 	$r = $req->myQuerySelect();
 	return $r;
 }
+
+//function retrouve les commandes en relai statut  traité sans date de dépot
+function voirCommandeRelaiTraite(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'modeLivraison','type'=>'=','name'=>'modeLivraison','value'=>'2'));
+	array_push($conditions, array('nameChamps'=>'statutCommande','type'=>'=','name'=>'statutCommande','value'=>'2'));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+//function retrouve les commandes en relai statut en livraison
+function voirCommandeRelaienLivraison(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'modeLivraison','type'=>'=','name'=>'modeLivraison','value'=>'2'));
+	array_push($conditions, array('nameChamps'=>'statutCommande','type'=>'=','name'=>'statutCommande','value'=>'3'));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+//function retrouve les commandes en domicile statut en livraison
+function voirCommandeDomicileenLivraison(){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'modeLivraison','type'=>'=','name'=>'modeLivraison','value'=>'1'));
+	array_push($conditions, array('nameChamps'=>'statutCommande','type'=>'=','name'=>'statutCommande','value'=>'2'));
+	$req =  new myQueryClass('commande',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
 	
 function deleteCommandeToken($token){
     $conn = bdd();
@@ -107,6 +137,19 @@ function changeCommandeDateLivraison($id,$date)
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
 	array_push($values, array('nameChamps'=>'dateLivraison','name'=>'dateLivraison','value'=>$date));
+	$req =  new myQueryClass('commande',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+}
+
+
+// changer la date de livrer 
+function changeCommandeDateLivrer($id,$date)
+{
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'idCommande','type'=>'=','name'=>'idCommande','value'=>$id));
+	array_push($values, array('nameChamps'=>'datelivrer','name'=>'dateLivraison','value'=>$date));
 	$req =  new myQueryClass('commande',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion

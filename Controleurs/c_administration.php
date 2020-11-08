@@ -52,11 +52,14 @@ switch($action)
 
     case 'lesEtiquettes':
         $etiquetteNonTraite = voirEtiquetteNonTraite();
+        $commandeTraite = voirCommandeRelaiTraite();
+        $commandeEnLivraison = voirCommandeRelaienLivraison();
         include('./vues/administration/v_mesEtiquettes.php'); 
     break;
 
     case 'leslivraisons':
         $commandeNonTraite = voirCommandeLivraisonNonTraite();
+        $commandeEnLivraison = voirCommandeDomicileenLivraison();
         include('./vues/administration/v_meslivraisons.php'); 
     break;
 
@@ -67,9 +70,16 @@ switch($action)
 
     case 'changeDateLivraison';
     redirectionNonAdmin(adminexist($_SESSION['mail']));
-    updateStatutCommande($_POST['id'],'2'); //change le statut de la commande
+    updateStatutCommande($_POST['id'],$_POST['statut']); //change le statut de la commande
     changeCommandeDateLivraison($_POST['id'],$_POST['date']); // change la date de livraison
     echo 'Date mis à jour!';
+    break;
+
+    case 'changeDateLivrer';
+    redirectionNonAdmin(adminexist($_SESSION['mail']));
+    updateStatutCommande($_POST['id'],'4'); //change le statut de la commande
+    changeCommandeDateLivrer($_POST['id'],$_POST['date']); // change la date de livraison
+    echo 'Commande mise à jour!';
     break;
 
     case 'changeHeureLivraison';

@@ -25,10 +25,11 @@
             <p>Date de la commande: <span class='enGras'><?= date('d/m/Y', $commande['date']);?></p>
             <p>Mode de livraison: <span class='enGras'><?= $modeLivraison['libModeLivraison'];?></span></p>
             <?php if($modeLivraison['idModeLivraison'] == 1) {?>
-            <p>Date de livraison: <span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p> <!-- si à domicile -->
+            <p>Date de livraison: <?php if($commande['dateLivraison'] != null){?><span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?> <!-- si à domicile -->
             <?php }else{?>
-            <p>Date dépot colis: <span class='enGras'></span></p><!-- si relai coli-->
+            <p>Date dépot colis: <?php if($commande['dateLivraison'] != null){?><span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?><!-- si relai coli-->
             <?php }?>
+            <?php if($commande['datelivrer'] != null){?><p>Date livré: <span class='enGras'><?php echo $commande['datelivrer'];?></span></p><?php }?><!-- si relai coli-->
             <br>
 
             <h6>Statut de la commande</h6>

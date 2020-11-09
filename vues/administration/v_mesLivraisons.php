@@ -121,14 +121,14 @@
       $('.dateLivraisonChange').change(function(e){ 
         url= 'index.php?c=admin&action=changeDateLivraison';
         messageRetour = 'Date mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=2';;
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=3';;
         postAjax(param,url,messageRetour,true);
       });
 
       $('.heureLivraisonChange').change(function(e){ 
         url= 'index.php?c=admin&action=changeHeureLivraison';
         messageRetour = 'Heure mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=2';;
+        param = 'id='+e.target.id+"&date="+e.target.value+'&statut=3';;
         postAjax(param,url,messageRetour,true);
       });
 

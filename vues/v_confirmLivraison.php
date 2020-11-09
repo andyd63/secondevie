@@ -23,6 +23,12 @@
               height="600"
               src="https://book.timify.com/?accountId=5f7b153bc49edc1216a2ebab&hideCloseButton=true">
               </iframe>
+              <hr>
+            <h6>Vous avez fini de prendre votre rendez-vous? </h6>
+              <form action="index.php?c=profil&action=validLivraison" class="textAlignCenter">
+                <input type='button' class="btn validLivraison" value="<?=$_GET['id'];?>" ><i class="vert fas fa-check-circle"></i> Terminer ma commande</A>
+              </form>
+            </div>
             </div>
               <?php }?>
         </div>
@@ -30,6 +36,6 @@
   
 
 
-    <?php include('./js/page/boutique.php');?>
+  <?php include('./js/page/boutique.php');?>
   <?php include('./assets/inc/footer.php');?>
   

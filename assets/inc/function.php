@@ -193,5 +193,90 @@ function videReservation(){
 
 
 
+// FUNCTION qui sert à envoyer des mails : 
+// si bdd = null : Prendre message, sinon prendre le message correspondant à l'id dans messsage
+function envoieMail($sujet,$mail,$message_txt,$message_html, $bdd = null){
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+    {
+        $passage_ligne = "\r\n";
+    }
+    else{
+        $passage_ligne = "\n";
+    }
+    //=====Création de la boundary
+    $boundary = "-----=".md5(rand());
+    //==========
+    
+    //=====Création du header de l'e-mail.
+    $header = "From: \"Deuxièmevie\"<".$configSite->emailSite.">".$passage_ligne;
+    $header.= "Reply-to: \"Deuxiemevie\"<".$configSite->emailSite.">".$passage_ligne;
+    $header.= "MIME-Version: 1.0".$passage_ligne;
+    $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+    //==========
+    
+    //=====Création du message.
+    $message = $passage_ligne."--".$boundary.$passage_ligne;
+    //=====Ajout du message au format texte.
+    $message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
+    $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+    $message.= $passage_ligne.$message_txt.$passage_ligne;
+    //==========
+    $message.= $passage_ligne."--".$boundary.$passage_ligne;
+    //=====Ajout du message au format HTML
+    $message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+    $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+    $message.= $passage_ligne.$message_html.$passage_ligne;
+    //==========
+    $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+    $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+    //==========
+    
+    //=====Envoi de l'e-mail.
+    mail($mail,$sujet,$message,$header);
+    //==========
+    }
+
+
+
+function mailCommandeClient($commande,$produits){
+
+$sujet = 'Votre commande est validée!';
+$mailClient = $_SESSION['mail']; // Déclaration de l'adresse de destination.
+$tel = $_SESSION['tel'] ;
+
+if($commande['modeLivraison'] == 1){
+$messageInfo = 'Merci votre commande est un succès ! <br>Après avoir pris un rendez-vous pour la livraison à domicile, vous allez recevoir un mail de confirmation de votre livraison.<br>
+Le statut de votre commande sur notre site se mettra à jour d\'ici quelques heure.';
+
+}else{
+    $messageInfo = 'Merci votre commande est un succès !<br> Votre commande va être traitée dans les plus brefs délai par notre équipe.<br>';
+}
+
+$tableauProduit = '<table><tr><td>Produit</td><td>Prix</td></tr>';
+
+foreach($produits as $produit){
+    $tableauProduit.='<tr><td>'.$produit['nom'].'</td><td>'.$produit['prix'] * $produit['reduction'].'</td><tr>';
+}
+
+
+//=====Déclaration des messages au format texte et au format HTML.
+$message_txt2 = "Bonjour, Voici le récapitulatif de votre commande ! ";
+$message_html2 = "<html><head></head><body><b>Bonjour,</b><br>".$messageInfo."
+Voici un résumé des informations de votre commande : <br>
+Email : $mailClient <br>
+Tel : $tel <br>
+Prix de la commande : ".$_SESSION['prixTotalTempo']." 	&#8364;<br>
+
+Voici les produits achetés :
+<table>
+$tableauProduit	
+</table>
+
+
+ </body></html>";
+
+ mail($mail,$sujet,$message,$header);
+}
+
 ?>
 

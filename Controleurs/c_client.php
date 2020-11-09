@@ -50,6 +50,25 @@ switch ($action){
 	}
 	break;
 	
+	case 'confirmLivraison':
+		$commande = voirCommandeToken($_GET['id']);
+		if($commande != false){ // si elle existe 
+		require_once('./vues/v_confirmLivraison.php');
+		}else{
+			redirectUrl("index.php?c=accueil");
+		}
+	break ;
+
+	case 'validLivraison':
+		$commande = voirCommandeToken($_POST['id']);
+		if($commande != false){ // si elle existe 
+			updateStatutCommande($_POST['id'],2);
+			redirectUrl('index.php?c=profil&action=macommande='.$_GET['id']);
+		}else{
+			redirectUrl("index.php?c=accueil");
+		}
+	break ;
+
 	case 'macommande' :
 	if(isset($_SESSION['id'])){    
 		$commande = voirCommandeToken($_GET['id']);

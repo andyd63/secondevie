@@ -195,7 +195,7 @@ function videReservation(){
 
 // FUNCTION qui sert à envoyer des mails : 
 // si bdd = null : Prendre message, sinon prendre le message correspondant à l'id dans messsage
-function envoieMail($sujet,$mail,$message_txt,$message_html, $bdd = null){
+function envoieMail($configSite,$sujet,$mail,$message_txt,$message_html, $bdd = null){
     if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
     {
         $passage_ligne = "\r\n";
@@ -238,7 +238,7 @@ function envoieMail($sujet,$mail,$message_txt,$message_html, $bdd = null){
 
 
 
-function mailCommandeClient($commande,$produits){
+function mailCommandeClient($configSite,$commande,$produits){
 
 $sujet = 'Votre commande est validée!';
 $mailClient = $_SESSION['mail']; // Déclaration de l'adresse de destination.
@@ -260,12 +260,12 @@ foreach($produits as $produit){
 
 
 //=====Déclaration des messages au format texte et au format HTML.
-$message_txt2 = "Bonjour, Voici le récapitulatif de votre commande ! ";
-$message_html2 = "<html><head></head><body><b>Bonjour,</b><br>".$messageInfo."
+$message_txt = "Bonjour, Voici le récapitulatif de votre commande ! ";
+$message_html = "<html><head></head><body><b>Bonjour,</b><br>".$messageInfo."
 Voici un résumé des informations de votre commande : <br>
 Email : $mailClient <br>
 Tel : $tel <br>
-Prix de la commande : ".$_SESSION['prixTotalTempo']." 	&#8364;<br>
+Prix de la commande : ".$commande['prixCommande']." 	&#8364;<br>
 
 Voici les produits achetés :
 <table>
@@ -275,8 +275,7 @@ $tableauProduit
 
  </body></html>";
 
- mail($mail,$sujet,$message,$header);
+ envoieMail($configSite,$sujet,$mailClient,$message_txt,$message_html);
 }
-
 ?>
 

@@ -130,8 +130,10 @@ switch ($action){
                         
 
                         // envoie mail de la commande
-                        mailCommandeClient($commande,$produits);
-                        redirectUrl('index.php?c=profil&action=macommande='.$_GET['id']);
+                        $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
+                        // envoie mail de la commande
+                        mailCommandeClient($configSite,$commande,$produits);
+                        redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
                     }else{
                       
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
@@ -145,7 +147,7 @@ switch ($action){
 
                         // envoie mail de la commande
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
-                        mailCommandeClient($commande,$produits);
+                        mailCommandeClient($configSite,$commande,$produits);
                         
                         redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
 

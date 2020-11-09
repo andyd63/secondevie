@@ -9,8 +9,9 @@ $token = genererChaineAleatoire(50);
 ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo = NULL);
 
 //if($_POST['prix'] == 0){?>
-<script>
- // document.location.href="../index.php?c=panier&action=success"; 
+<script> 
+  var token = <?php echo json_encode($token); ?>;
+  document.location.href="index.php?c=panier&action=success&id="+token; 
 </script>
 <?php
 /*}

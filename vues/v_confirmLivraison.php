@@ -25,8 +25,9 @@
               </iframe>
               <hr>
             <h6>Vous avez fini de prendre votre rendez-vous? </h6>
-              <form action="index.php?c=profil&action=validLivraison" class="textAlignCenter">
-                <input type='button' class="btn validLivraison" value="<?=$_GET['id'];?>" ><i class="vert fas fa-check-circle"></i> Terminer ma commande</A>
+              <form action="index.php?c=profil&action=validLivraison" method='post' class="textAlignCenter">
+                <input type="text" name="id" class="btn transparent" value="<?=$_GET['id'];?>" >
+                <button class="btn validLivraison" type="submit"><i class="vert fas fa-check-circle"></i> Terminer ma commande</button>
               </form>
             </div>
             </div>

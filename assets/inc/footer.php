@@ -1,58 +1,60 @@
 <!--======= FOOTER =========-->
 <footer>
     <div class="container"> 
-      
       <!-- ABOUT Location -->
       <div class="col-md-3">
       <h6  class="blanc"><?=$configSite->nameSite;?></h5>
         <div class="about-footer">
-          <p><i class="icon-pointer"></i> Street No. 12, Newyork 12, <br>
-            MD - 123, USA.</p>
-          <p><i class="icon-call-end"></i> 1.800.123.456789</p>
-          <p><i class="icon-envelope"></i> info@PAVSHOP.com</p>
+         <!-- <p><i class="icon-pointer"></i> Street No. 12, Newyork 12, <br>
+            MD - 123, USA.</p>-->
+          <p><i class="icon-call-end"></i> <?=$configSite->telSite;?></p>
+          <p><i class="icon-envelope"></i> <?=$configSite->emailSite;?></p>
         </div>
-      </div>
-      
-      <!-- HELPFUL LINKS -->
-      <div class="col-md-3">
-        <h6>HELPFUL LINKS</h6>
-        <ul class="link">
-          <li><a href="#."> Products</a></li>
-          <li><a href="#."> Find a Store</a></li>
-          <li><a href="#."> Features</a></li>
-          <li><a href="#."> Privacy Policy</a></li>
-          <li><a href="#."> Blog</a></li>
-          <li><a href="#."> Press Kit </a></li>
-        </ul>
       </div>
       
       <!-- SHOP -->
       <div class="col-md-3">
         <h6>Boutique</h6>
         <ul class="link">
-          <li><a href="#.">Adulte</a></li>
-          <li><a href="#.">Enfant</a></li>
-          <li><a href="#.">Braderie</a></li>
-          <li><a href="#.">Ma sélection</a></li>
+          <li><a href="index.php?c=boutique&action=1">Adulte</a></li>
+          <li><a href="index.php?c=boutique&action=2">Enfant</a></li>
+          <li><a href="index.php?c=boutique&action=3">Braderie</a></li>
+          <li><a href="index.php?c=boutique&action=4">Ma sélection</a></li>
         </ul>
       </div>
+
+
+      <!-- HELPFUL LINKS -->
+      <div class="col-md-3">
+        <h6>Liens rapides</h6>
+        <ul class="link">
+          <li><a href="index.php?c=panier">Panier</a></li>
+          <li><a href="#.">Contact</a></li>
+          <li><a href="#.">Foire aux questions</a></li>
+        </ul>
+      </div>
+      
       
       <!-- MY ACCOUNT -->
       <div class="col-md-3">
         <h6>Compte</h6>
         <ul class="link">
-          <li><a href="#."> Se connecter</a></li>
-          <li><a href="#."> S'inscrire</a></li>
+  
+          <?php if(isConnected()){?>
           <li><a href="#."> Mon compte</a></li>
           <li><a href="#."> Mes favoris</a></li>
           <li><a href="#."> Mes commandes</a></li>
+          <?php }else{ ?>
+            <li><a href="#."> Se connecter</a></li>
+          <li><a href="#."> S'inscrire</a></li>
+          <?php }?>
         </ul>
       </div>
       
       <!-- Rights -->
       
       <div class="rights">
-        <p>©  2017 PAVSHOP All right reserved. </p>
+        <p>©2020 Deuxièmevie All right reserved. </p>
         <div class="scroll"> <a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a> </div>
       </div>
     </div>

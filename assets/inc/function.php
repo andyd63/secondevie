@@ -136,6 +136,30 @@ function totalPrixPanierParCategorie(){
 }
 
 
+// Permet de retrouver le prix de la commande pour chaque catégorie
+function totalPrixCommandeParCategorie($id){
+    $allCategorie = allCategorie(); // récupere les catégories
+    //Pour chaque catérogies
+    $totalPanier = array();
+    foreach ($allCategorie as $categorie) {
+        //Pour chaque produit du panier
+        $totalPrix = 0;
+        $totalRemise = 0;
+        $produits = voirProduitByCommande($id); // tout les produits de la commande
+        foreach ($produits as $produitPanier) {
+            if($produitPanier['categorie'] == $categorie['idCategorie']){
+                $totalPrix += $produitPanier['prix'];
+                $totalRemise += ($produitPanier['prix'] * (1 - $produitPanier['reduction'] )) ;
+            }
+       
+        }
+        array_push($totalPanier, array('id'=>$categorie['idCategorie'],'totalAvecRemise'=>number_format(($totalRemise ),2),'totalSansRemise'=>number_format($totalPrix,2),'totalRemise'=>number_format($totalPrix - $totalRemise,2)));
+    }
+
+    return $totalPanier;
+}
+
+
 function prixReel($prix){
     $margeFixe = 0.25;
     $margePourcent = 0.014;

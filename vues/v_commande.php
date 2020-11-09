@@ -48,7 +48,7 @@
                 <div class="order-detail">
                   <?php
                 
-                  $totPanierCategories =  totalPrixPanierParCategorie(); 
+                  $totPanierCategories =  totalPrixCommandeParCategorie($commande['idCommande']); 
                   foreach($totPanierCategories as $tot){
                     $cat = categorie($tot['id']);?>
                     <p>Produit <?=$cat['nomCategorie'];?> 
@@ -56,11 +56,13 @@
                       <span><del><?= $tot['totalSansRemise'];?>€</del><?= $tot['totalAvecRemise'];?>€</span>
                     <?php } ?>
                   </p>
+                  
                   <?php } ?>
+                  <p>Frais de livraison / port: <span><?=$commande['fraisCommande'];?>€</span></p>
                   <!-- SUB TOTAL -->
                   <?php $totalPanier = totalPrixPanier();?>
-                  <p class="all-total">Total sans réduction: <span><?= $commande['prixSansReduction']?>€</span></p>
-                  <p class="all-total">Total avec réduction: <span ><?= $commande['prixCommande'];?>€</span></p>
+                  <p class="all-total">Total sans réduction: <span><?= $commande['prixSansReduction'] + $commande['fraisCommande']?>€</span></p>
+                  <p class="all-total">Total avec réduction: <span ><?= $commande['prixCommande'] + $commande['fraisCommande'];?>€</span></p>
                 </div>
               </div>
             </div>

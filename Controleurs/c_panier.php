@@ -118,7 +118,7 @@ switch ($action){
                         addEtiquetteLivraison($cli['PRE_CLIENTS'].' '.$cli['NOM_CLIENTS']
                         ,$cli['ADRESSE'],'',$cli['CODEPOSTAL'],$cli['VILLE'],$cli['MAIL_CLIENTS'],$cli['TEL_CLIENTS'], $prixLivraison['libPrixLivraison'].' '.$prixLivraison['libPrix2'], $commande['idCommande']);
                         
-                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1 , $prixLivraison['prixFraisLivraison']);// change l'id de la facture et les frais de port
                         changeCommandeToken($_GET['id'],'1');// change le statut de la commande
             
                         foreach ($_SESSION['panier']->getCollection() as $produitPanier) {
@@ -136,7 +136,7 @@ switch ($action){
                         redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
                     }else{
                       
-                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1);// change l'id de la facture
+                        changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1,'3');// change l'id de la facture et le prix des frais de livraison 3€
                         changeCommandeToken($_GET['id'],'1');// change le statut de la commande
                     
                         foreach ($_SESSION['panier']->getCollection() as $produitPanier) {

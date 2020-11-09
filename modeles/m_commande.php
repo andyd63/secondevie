@@ -167,12 +167,13 @@ function changeCommandeHeureLivraison($id,$date)
 	$conn = null ; //Quitte la connexion
 }
 
-function changeCommandeFacture($token,$valeur)
+function changeCommandeFacture($token,$valeur,$fraisCommande)
 {
 	$conditions = array();
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'tokenVerification','type'=>'=','name'=>'tokenVerification','value'=>$token));
 	array_push($values, array('nameChamps'=>'idFacture','name'=>'idFacture','value'=>$valeur));
+	array_push($values, array('nameChamps'=>'fraisCommande','name'=>'fraisCommande','value'=>$fraisCommande));
 	$req =  new myQueryClass('commande',$conditions,'',$values);
 	$r = $req->myQueryUpdate();
 	$conn = null ; //Quitte la connexion

@@ -64,6 +64,10 @@ document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
 	break;
 	
 	case 'oublie': // INSCRIPTION REUSSI
+		require_once('vues/v_mdpOublie.php');
+		break;
+
+	case 'oublieEnvoie': // INSCRIPTION REUSSI
     $mail = $_POST['email'];
     $a = oublie_motdepasse($mail);
 	?>

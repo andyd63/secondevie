@@ -17,12 +17,7 @@
               <div class="col-md-2 ">
               </div>
               <div class="col-md-8 ">
-              <?php if(isset($alert)){?>
-                  <div class="alert alert-primary" role="alert">
-                    <?php echo $alert;?>
-                  </div>
-                 <?php  }?>
-                <h6>Se connecter</h6>
+                <h6>Mot de passe oublié?</h6>
                 
                 <form action="index.php?c=connexion&action=valide" method="post">
                   <ul class="row">
@@ -32,28 +27,10 @@
                       <label>Email
                         <input type="text" name="mail" value="" placeholder="">
                       </label>
-                    </li>
-                    <!-- LAST NAME -->
-                    <li class="col-md-12">
-                      <label>Mot de passe
-                        <input type="password" name="mdp" value="" placeholder="">
-                      </label>
-                    </li>
-                                       
-                    <!-- FORGET PASS -->
-                    <li class="col-md-6">
-                      <div class="checkbox margin-0 margin-top-20 text-center">
-                        <a class="survol" href="index.php?c=connexion&action=oublie">Mot de passe oublié ?</a>
-                      </div>
-                    </li>
-                    <li class="col-md-6">
-                      <div class="checkbox margin-0 margin-top-20 text-center">
-                        <a class="survol" href="index.php?c=inscription">Pas encore inscrit?</a>
-                      </div>
-                    </li>
+                    </li>                                      
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">
-                      <button  class="btn"type="submit">Se connecter</button>
+                      <button  class="btn"type="submit">Réinitialiser le mot de passe</button>
                     </li>
                     
                    

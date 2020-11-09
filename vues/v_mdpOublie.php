@@ -18,61 +18,47 @@
               </div>
               <div class="col-md-8 ">
                 <h6>Mot de passe oublié?</h6>
-                
-                <form action="index.php?c=connexion&action=valide" method="post">
                   <ul class="row">
                     
                     <!-- Name -->
                     <li class="col-md-12">
                       <label>Email
-                        <input type="text" name="mail" value="" placeholder="">
+                        <input type="text" id="mail" name="mail" value="" placeholder="">
                       </label>
                     </li>                                      
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">
-                      <button  class="btn"type="submit">Réinitialiser le mot de passe</button>
+                      <button  class="btn" id="btnReinit" type="submit">Réinitialiser le mot de passe</button>
                     </li>
-                    
-                   
                   </ul>
-                  
-                </form>
-                
+         
               </div>
-              
-              <!-- SUB TOTAL -->
-                <!--
-                <div class="col-sm-5">
-                <h6>LOGIN WITH</h6>
-                
-                <ul class="login-with">
-                	<li>
-                    	<a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a>
-                    
-                    </li>
-                    
-                    <li>
-                    	<a href="#."><i class="fa fa-google"></i>GOOGLE</a>
-                    
-                    </li>
-                    
-                    <li>
-                    	<a href="#."><i class="fa fa-twitter"></i>TWITTER</a>
-                    
-                    </li>
-                
-                </ul>
-              
-                
-              </div>
-            -->
             </div>
           </div>
         </div>
       </div>
     </section>
-    
-
 
   </div>
+
+  
+  <script>
+    
+    $('#btnReinit').click(function(e){ 
+      Email = document.getElementById('mail').value;
+      param = 'email='+Email
+      url= 'index.php?c=profil&action=verifMail&ajx=1&'+param;
+      messageRetour = '';
+      reponse= postAjax(param,url,messageRetour);
+      rep = reponse.responseText;
+      rep = jQuery.parseJSON(rep);
+      if(rep.success){ // si le mail existe déjà
+      }else{
+        Swal.fire({
+                      icon: 'warning',
+                      title: "Désolé, mais aucun compte correspond à cet adresse mail, veuillez créer un compte ou retapez votre mail.",
+        });
+      }
+    });
+    </script>
   <?php include('./assets/inc/footer.php');?>

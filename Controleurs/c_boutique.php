@@ -114,6 +114,7 @@ if(isset($_GET['action'])){
 
 		// Case de la séléction
 		case '4':
+			if(isConnected()){
 			$allCategories = allCategorie();
 			$barFilter = true;
 			$nbProduitParLigne = 4;
@@ -127,6 +128,9 @@ if(isset($_GET['action'])){
 			$allSousCategorie = allSousCategorie();	
 			$allTaille = allTaille();	
 			include('vues/v_boutique.php');
+			}else{
+				include('vues/v_globalBoutique.php');
+			}
 			
 		break;
 

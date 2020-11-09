@@ -4,6 +4,7 @@
 require_once('./modeles/m_bdd.php');     
 require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
+require_once ('./assets/inc/function.php');
 
 /**
  * Retourne tout les clients
@@ -14,6 +15,20 @@ function allClient($ask){
 	$req =  new myQueryClass('client', $conditions);
 	$r = $req->myQuerySelect("MAIL_CLIENTS",true);
 	return reponse_jsonAlone($r);
+}
+
+// change le token de reinit du mot de passe
+function updateTokenClient($email)
+{
+	$token =genererChaineAleatoire(18);
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'MAIL_CLIENTS','type'=>'=','name'=>'MAIL_CLIENTS','value'=>$email));
+	array_push($values, array('nameChamps'=>'tokenMdp','name'=>'tokenMdp','value'=>$token));
+	$req =  new myQueryClass('client',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
+	return $token;
 }
 
 
@@ -144,6 +159,16 @@ function informationsRest($id){
 function informations($id){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'ID_CLIENTS','type'=>'=','name'=>'idCli','value'=>$id));
+	$req =  new myQueryClass('client',$conditions);
+	$r = $req->myQuerySelect();
+		$success = true;
+		$data['clients'] = $r;
+		return $data['clients'];
+}
+
+function getClientToken($token){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'tokenMdp','type'=>'=','name'=>'tokenMdp','value'=>$token));
 	$req =  new myQueryClass('client',$conditions);
 	$r = $req->myQuerySelect();
 		$success = true;

@@ -44,16 +44,16 @@
                 </article>
                 
               </li>
+              <?php if(isConnected()){?>
               <li class="col-md-6"> 
-                
                 <!-- SHOP_ITEM 2 -->
                 <article> <img class="img-responsive" src="./assets/img/general/boutique/selectionIcone.jpg" alt="">
                   <div class="position-center-center">
                     <h4><a href="index.php?c=boutique&action=3">Ma sélection</a></h4>
                     <a href="index.php?c=boutique&action=3" class="btn btn-small btn-round">Voir</a> </div>
                 </article>
-                
               </li>
+              <?php }?>
             </ul>
             
           </div>

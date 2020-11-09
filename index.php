@@ -9,6 +9,9 @@ require_once ('./classes/configSite.php');
 require_once ('./classes/paramSite.php');
 //require_once ('./classes/photo.php');
 require_once ('./classes/myQuery.php');	
+require_once('./assets/inc/_initGeneral/functionInit.php');
+require_once('./modeles/m_configSite.php');
+
 session_start();
 	        // Menu MasterPage
 	        if (isset($_REQUEST['c']))   {

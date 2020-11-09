@@ -206,39 +206,6 @@ switch ($action){
         require_once('./vues/create_payment.php');
     break;
 
-	
-
-    /////////////////////////////////////////
-    // PREPARATION MAIL
-    //////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////////////////////////////
-///////////////// ENVOIE MAIL ADMIN
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
-$mail = $configSite->emailSite; // Déclaration de l'adresse de destination.
-if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)){ // On filtre les serveurs qui rencontrent des bogues.
-	$passage_ligne = "\r\n";
-}
-else{
-	$passage_ligne = "\n";
-}
-$email = $_SESSION['mail'] ;
-$tel = $_SESSION['tel'] ;
-$adresse = $_SESSION['adresse'] ;
-$ville = $_SESSION['ville'] ;
-$cp = $_SESSION['cp'] ;
-$nom = $_SESSION['nom'] ;
-$prenom = $_SESSION['prenom'] ;
-
-
-//=====Déclaration des messages au format texte et au format HTML.
-$message_txt = "Bonjour, Une nouvelle commande est arrivee ! Elle est disponible sur le panneau administrateur de votre site !";
-$message_html = "<html><head></head><body><b>Bonjour</b>, Une nouvelle commande est arrivee ! Vous pouvez la retrouver sur le panneau administrateur de votre site ! <br>
- </body></html>";
-//==========
-
 
 
 

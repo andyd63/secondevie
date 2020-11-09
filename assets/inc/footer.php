@@ -19,7 +19,7 @@
           <li><a href="index.php?c=boutique&action=1">Adulte</a></li>
           <li><a href="index.php?c=boutique&action=2">Enfant</a></li>
           <li><a href="index.php?c=boutique&action=3">Braderie</a></li>
-          <li><a href="index.php?c=boutique&action=4">Ma sélection</a></li>
+          <?php if(isConnected()){?><li><a href="index.php?c=boutique&action=4">Ma sélection</a></li><?php }?>
         </ul>
       </div>
 
@@ -29,8 +29,8 @@
         <h6>Liens rapides</h6>
         <ul class="link">
           <li><a href="index.php?c=panier">Panier</a></li>
-          <li><a href="#.">Contact</a></li>
-          <li><a href="#.">Foire aux questions</a></li>
+          <li><a href="index.php?c=contact">Contact</a></li>
+          <li><a href="index.php?c=faq">Foire aux questions</a></li>
         </ul>
       </div>
       

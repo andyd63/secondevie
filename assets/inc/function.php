@@ -301,5 +301,35 @@ $tableauProduit
 
  envoieMail($configSite,$sujet,$mailClient,$message_txt,$message_html);
 }
+
+
+function mailMdpClient($configSite,$token,$mailClient){
+
+    $sujet = 'Votre commande est validée!';
+    $lien =  'https://unedeuxiemevie.fr/index.php?c=profil&action=formMdp&token='.$token;
+    
+    
+    //=====Déclaration des messages au format texte et au format HTML.
+    $message_txt = "Bonjour, voici le lien pour réinitialiser votre mot de passe pour ainsi accéder à unedeuxiemevie.fr:".$lien;
+    $message_html = "<html><head></head><body><b>Bonjour,</b><br>, voici le lien pour réinitialiser votre mot de passe pour ainsi accéder à unedeuxiemevie.fr:
+    ".$lien;
+    var_dump($message_html);
+     envoieMail($configSite,$sujet,$mailClient,$message_txt,$message_html);
+    }
+    
+
+
+// Function qui permet de créer un token
+function genererChaineAleatoire($longueur = 10)
+{
+ $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ $longueurMax = strlen($caracteres);
+ $chaineAleatoire = '';
+ for ($i = 0; $i < $longueur; $i++)
+ {
+ $chaineAleatoire .= $caracteres[rand(0, $longueurMax - 1)];
+ }
+ return $chaineAleatoire;
+}
 ?>
 

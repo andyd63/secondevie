@@ -110,11 +110,33 @@ switch ($action){
 	
 	break;
 
-	case 'modif_mdp' : 
+	case 'modifMdp' : 
 	$message = modifmdp($_POST['password']);
 	$cli = informationsRest($_SESSION['id']);
 	$cli = json_decode($cli);
 	require_once('vues/vue_profil.php');
+	break;
+
+	// Action en ajax qui permet de mettre un token dans la bdd pour réinitialiser le mot de passe
+	case 'reinitMdp' : 
+		$token = updateTokenClient($_POST['email']);
+		$configSite = initConfigSite();
+		initParamBoolSite($configSite);
+		$mail = mailMdpClient($configSite,$token,$_POST['email']);
+		var_dump($mail);
+		echo 'Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!';
+	break;
+
+	// réinitialiser le mot de passe
+	case 'formMdp' : 
+		$client = getClientToken($_GET['token']);
+
+		if(isset($client[0])){
+			require_once('vues/v_reinitMdp.php');
+		}else{
+			redirectUrl('index.php?c=connexion&action=oublie');
+		}
+		
 	break;
 
 

@@ -48,11 +48,18 @@
       Email = document.getElementById('mail').value;
       param = 'email='+Email
       url= 'index.php?c=profil&action=verifMail&ajx=1&'+param;
-      messageRetour = '';
+      messageRetour = 'Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!';
       reponse= postAjax(param,url,messageRetour);
       rep = reponse.responseText;
       rep = jQuery.parseJSON(rep);
       if(rep.success){ // si le mail existe déjà
+        Email = document.getElementById('mail').value;
+        param = 'email='+Email
+        url= 'index.php?c=profil&action=reinitMdp&ajx=1&'+param;
+        messageRetour = '';
+        reponse= postAjax(param,url,messageRetour,true);
+        rep = reponse.responseText;
+        rep = jQuery.parseJSON(rep);
       }else{
         Swal.fire({
                       icon: 'warning',

@@ -3,6 +3,10 @@
  <!--- Include Header et menu --->
  <?php include('./assets/inc/header.php');?>
   <?php include('./assets/inc/menu.php');?> 
+  <?php include('./modeles\m_villeLivraison.php');
+  $client = informations($_SESSION['id']);
+  $client = $client[0];
+  ?> 
 
   
   <!-- Content -->
@@ -19,17 +23,16 @@
             <!-- DISCOUNT CODE -->
             <div class="col-sm-12">
               <h6>Mode de livraison</h6>
+              <?php if(villeLivraison($client['CODEPOSTAL'])){ ?>
               <div class="col-sm-6">
-              <div class="prixLivraison">
-                    3€
-                </div>
+              <div class="prixLivraison">3€</div>
               <form>
                 <?= genererError(18);?>
                 <div class="textAlignCenter"> 
                 <btn id="btnLivraisonDomicile" class="btn">Continuer</btn></a> 
                 </div>
               </form>
-              </div>
+              </div><?php }?>
               <div class="col-sm-6">
               <form>
               <?= genererError(19);?>
@@ -200,6 +203,7 @@
       }
       $('#btnChoixRelai').click(function(e){ 
         document.getElementById('divChoixRelai').style.display = 'block';
+        $(window).scrollTop( $(window).scrollTop() + 600 );
       });
       
     </script>

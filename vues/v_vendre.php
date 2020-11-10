@@ -30,10 +30,9 @@
               <h6>étape de la vente</h6>
               <div class="grand-total">
                 <div class="order-detail">
-                  <p class="textEnGras"> 1: Créer un compte </p>
-                  <p class="textEnGras"> 2: Regarder nos tableaux d'estimation</p>
-                  <p class="textEnGras"> 3: Regarder le type de vêtement qu'on récupère</p>
-                  <p class="textEnGras"> 4: prendre un rendez-vous!</p>
+                  <p class="textEnGras"> 1: Créez un compte </p>
+                  <p class="textEnGras"> 2: Regardez nos tableaux d’estimations</p>
+                  <p class="textEnGras"> 3: Prenez rendez-vous!</p>
                 </div>
               </div>
             </div>
@@ -50,7 +49,7 @@
         <div class="cart-ship-info margin-top-0">
           <div class="row">  
             <div class="col-sm-12">
-              <h6>Prendre un rendez-vous</h6>
+              <h6>Prendre rendez-vous</h6>
               <p>Attention, dans le formulaire mettez le même prénom et nom que sur votre compte!</p>
               <?php if(isConnected()){?>
               <iframe id="inlineFrameExample"

@@ -65,11 +65,12 @@ function clientByEmail($email){
 
 
 //////////////// AJOUT d'un client /////////////////////////
-function ajouterclient($nom,$prenom,$email,$tel,$adresse,$cp,$ville,$password,$mdp_claire,$tailleHaut,$tailleBas,$genre,$date){
+function ajouterclient($nom,$prenom,$email,$tel,$adresse,$cp,$ville,$password,$tailleHaut,$tailleBas,$genre,$date){
 	$conn = bdd();
-	$newclient = $conn->prepare('INSERT INTO client (pre_clients, nom_clients, mail_clients, tel_clients, VILLE, ADRESSE,CODEPOSTAL, mdp_clients, MDP_claire,tailleHaut,tailleBas,genre,date,date_connecte) 
-								VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-	$newclient->execute(array($nom,$prenom,$email,$tel,$ville,$adresse,$cp,$password,$mdp_claire,$tailleHaut,$tailleBas,$date,$date));
+	$newclient = $conn->prepare('INSERT INTO client (pre_clients, nom_clients, mail_clients,
+	 tel_clients, VILLE, ADRESSE,CODEPOSTAL, mdp_clients,tailleHaut,tailleBas,genre,date,date_connecte) 
+								VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+	$newclient->execute(array($nom,$prenom,$email,$tel,$ville,$adresse,$cp,$password,$tailleHaut,$tailleBas,$genre,$date,$date));
 	$conn = null ; //Quitte la connexion
 	
 }

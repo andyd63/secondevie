@@ -15,8 +15,8 @@
                 foreach($allProduitEnfant as $produitE){?>
                   <tr>
                     <th scope="row"><?= $produitE['nomSousCategorie'];?></th>
-                    <td><?= $produitE['prixAdulteLowCoast'];?>€</td>
-                    <td><?= $produitE['prixAdulteMarque'];?>€</td>
+                    <td><?= $produitE['prixEnfantLowCoast'];?>€</td>
+                    <td><?= $produitE['prixEnfantMarque'];?>€</td>
                     <td></td>
                   </tr>
                   <?php }?>

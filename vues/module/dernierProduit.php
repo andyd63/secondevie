@@ -12,7 +12,15 @@
           </div>
           
           <div class="papular-block row"> 
-            <?php foreach($lesDerniersProduits as $produit){ ?>
+            <?php foreach($lesDerniersProduits as $produit){ 
+              if(isset($_SESSION['id'])){
+                $cli = $_SESSION['id'];
+              }else{
+                $cli = null;
+              }
+              if(($produit['idClient'] == null) || ( $produit['idClient']== $cli)){ // s'il est déjààà réservé
+              
+              ?>
             <!-- Popular Item Slide -->
             
               <!-- Item -->
@@ -51,6 +59,6 @@
                   <span class="price"><?=$produit['prix'];?>€ </div>
               </div>
              
-            <?php }?>
+            <?php }}?>
             </div>
         </section>

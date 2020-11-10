@@ -68,9 +68,11 @@
               <br>
             
               <div class="coupn-btn textAlignCenter"> 
-                <?php if(isConnected()){?>
+                <?php if(isConnected()){ // s'il est connecté
+                  if($nbProd){ 
+                  ?>
                 <a href="index.php?c=panier&action=choixLivraison" class="btn">Continuer</a> 
-                <?php }else{?>
+                <?php }}else{?>
                   <a href="index.php?c=connexion" class="btn">Connectez-vous!</a>
                 <?php }?>
               </div>

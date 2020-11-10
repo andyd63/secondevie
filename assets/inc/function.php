@@ -174,19 +174,14 @@ function appelAjax($data){
 }
 
 
-function countNbreImageDossierCopyright($idEvenement){
-    $nbFichiers = 0;
-    $nomRep = "./assets/img/mes_evenements/".$idEvenement;
-    if(is_dir($nomRep) == true){
-    $repertoire = opendir($nomRep);
-    while ($fichier = readdir($repertoire)) {
-        $nbFichiers += 1;
+//Savoir si y a des produits dans les panier
+function voirNbPanier(){
+    $nbProd = count($_SESSION['panier']->getCollection());
+    if($nbProd > 0){
+        return $nbProd;
+    }else{
+        return false;
     }
-    }
-    else {
-        $nbFichiers = 'Dossier inexistant';
-    }              
-    return  $nbFichiers;
 }
 
 // Verifie les réservations dans le panier si ça fait plus d'une heure qu'il est réservé

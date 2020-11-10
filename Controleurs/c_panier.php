@@ -36,6 +36,12 @@ switch ($action){
         echo "Votre panier est bien vidé!";
 	break;
 
+    // VOIR PANIER
+    case 'voirpanier' :
+        $error = false;
+        $nbProd = voirNbPanier();
+        require_once('./vues/v_panier.php');
+    break;
 
     /// PERMET D'AJOUTER AU PANIER
     case 'addPanier':
@@ -62,12 +68,7 @@ switch ($action){
         echo  $_SESSION['panier']->getNbCollection();
     break;
 
-    // VOIR PANIER
-    case 'voirpanier' :
-        $error = false;
-        require_once('./vues/v_panier.php');
-    break;
-
+    
 
     // VOIR PANIER
     case 'terminer' :
@@ -164,11 +165,16 @@ switch ($action){
 
 
     case 'choixLivraison':
+        $nbProd = voirNbPanier(); // nb produit dans le panier
+        if($nbProd){  // si y a des produits
         $error = true;
         $poidsPanier = totalPanierPoids();
         $prixColissimo = voirPrixSelonPoids($poidsPanier, 'Colissimo');
         $prixRelay = voirPrixSelonPoids($poidsPanier, 'Relay');
         require_once('./vues/v_choixLivraison.php');
+        }else{ // si y a rien
+            redirectUrl('index.php');
+        }
     break;
 
 

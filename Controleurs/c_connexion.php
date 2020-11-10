@@ -49,7 +49,7 @@ document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
 		}
 		else
 		{
-			$moduleErrorConnexion = voir_module(10);	
+			$moduleErrorConnexion = voirModule(10);	
 		/////////////////////////////////////// MESSAGE EN CAS D'ERREUR D'IDENTIFIANT OU MDP
 			$alert= "<div class='alert alert-danger'>".$moduleErrorConnexion['texte_module']."</div>";
 			require_once('vues/v_connexion.php');

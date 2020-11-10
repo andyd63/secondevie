@@ -38,7 +38,7 @@ switch($action) {
 		$_SESSION['adresse'] = $_POST['adresse'];
 		$_SESSION['cp'] = $_POST['cp'];
 		$_SESSION['ville'] = $_POST['ville'];
-		$moduleInscriptionReussi = voir_module(9);	
+		$moduleInscriptionReussi = voirModule(9);	
 		include('vues/v_inscription r.php');
 	break;
 	

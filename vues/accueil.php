@@ -3,9 +3,9 @@
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');?>
   <?php include('./assets/inc/menu.php');
-  $moduleVendre = voir_module(1);
-  $moduleConcept = voir_module(2);
-  $moduleDernierProduit = voir_module(3);
+  $moduleVendre = voirModule(1);
+  $moduleConcept = voirModule(2);
+  $moduleDernierProduit = voirModule(3);
   $lesDerniersProduits = voir10DernierProduit(); 
   ?>
 

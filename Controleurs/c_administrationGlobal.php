@@ -10,6 +10,7 @@ require_once "./modeles/m_codepromo.php";
 require_once "./modeles/m_panier.php";
 require_once "./modeles/m_produit.php";
 require_once "./modeles/m_module.php";
+require_once "./modeles/m_alert.php";
 require_once "./assets/inc/function.php";
 $conn = bdd();
 
@@ -28,6 +29,21 @@ switch($action){
         $nbCommande = count(allCommandes()); // nb de commande 
         $menuAdmin = menuAdminByNom('ConfigSite');
         include('./vues/administration/v_admin_def.php');
+        break;
+
+    //Les textes du sites
+    case 'module':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $allModule = voirAllModule();
+        include('./vues/administration/v_module.php');
+        break;
+
+    //edit text du sites
+    case 'moduleDetail':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $lesAlerts = allAlert();
+        $module = voirModule($_GET['id']);
+        include('./vues/administration/v_moduleDetail.php');
         break;
 
     case 'global':
@@ -86,7 +102,9 @@ switch($action){
 
     default:
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        include('./vues/configSite/v_admin_configGlobal.php');
+        $nbCommande = count(allCommandes()); // nb de commande 
+        $menuAdmin = menuAdminByNom('ConfigSite');
+        include('./vues/administration/v_admin_def.php');
     break;
 
 }

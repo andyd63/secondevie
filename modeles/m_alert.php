@@ -13,6 +13,11 @@ function voirAlert($id)
 	$r = $req->myQuerySelect();
 	return $r[0] ;
 }
+function allAlert(){
+	$req =  new myQueryClass('alert');
+	$r = $req->myQuerySelect();
+	return $r;
+}
 
 
 

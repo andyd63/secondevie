@@ -55,7 +55,7 @@ function redirectUrl($url){
 
 // Generer l'erreur ou le message à afficher entièrement
 function genererError($idModule){
-        $module = voir_module($idModule);
+        $module = voirModule($idModule);
         $alert = voirAlert($module['alert']);
 
         if($module['alert'] == 5){

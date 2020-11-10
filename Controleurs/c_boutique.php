@@ -76,7 +76,7 @@ if(isset($_GET['action'])){
 			$nbProduitParLigne = 3;
 			$produit = voirProduitById($_GET['id']);
 			$etat = etat($produit['etat']);
-			$moduleDernierProduit = voir_module(3);
+			$moduleDernierProduit = voirModule(3);
 			$lesDerniersProduits = voir10DernierProduit($_GET['id']); 
 			include('vues/v_produitDetail.php');
 			return '';

@@ -5,7 +5,7 @@ require_once('./modeles/m_bdd.php');
 require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
 
-function voir_module($id)
+function voirModule($id)
 {
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'id_module','type'=>'=','name'=>'id_module','value'=>$id));

@@ -29,13 +29,13 @@
                     <!-- LAST NAME -->
                     <li class="col-md-12">
                       <label>Confirmer Mot de passe
-                        <input type="password" name="mdpconfirm" value="" placeholder="">
+                        <input type="password" id="mdpConfirm" name="mdpconfirm" value="" placeholder="">
                       </label>
                     </li>
                                        
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">
-                      <button  class="btn" id='btnFormChangeMdp' >Changer mot de passe</button>
+                      <button  class="btn" id='btnFormChangeMdp' disabled >Changer mot de passe</button>
                     </li>
                     
                    
@@ -53,6 +53,23 @@
   </div>
 
 <script>
+    
+$('#mdpConfirm').change(function(e){ 
+    mdpConfirm = document.getElementById('mdpConfirm').value;
+    mdp= document.getElementById('mdp').value;
+
+    if(mdp != mdpConfirm){ // si ce n'est pas les mêmes
+        Swal.fire({
+                    icon: 'warning',
+                    title: 'Les deux mots de passes ne correspondent pas.',
+      });
+      document.getElementById('btnFormChangeMdp').disabled = true;
+    }else{
+      document.getElementById('btnFormChangeMdp').disabled = false;
+    }
+  });
+
+// Action bouton changer mdp
  $('#btnFormChangeMdp').click(function(e){ 
       token = $_GET('token');
       mdp = document.getElementById('mdp').value;
@@ -62,6 +79,9 @@
       rep = jQuery.parseJSON(reponse.responseText);
       alertJs(rep.success,rep.msg);
       });
+
+
+
 </script>
 
   <?php include('./assets/inc/footer.php');?>

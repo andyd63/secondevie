@@ -1,19 +1,18 @@
 
 
-function postAjax(param, url,messageRetour,retourJs = false){
-    d = '';
-    
+function postAjax(param, url,messageRetour = null,retourJs = false){
+   
     form = $.ajax({
     async: !1,
     url : url, // La ressource ciblée
     type : 'POST', // Le type de la requête HTTP.
     data : param,
     dataType : 'html',
-
     success: function(data,status,xhr){
         if(retourJs === true){
         if(xhr.status === 200){
             valRetour = xhr.responseText.replace(/\r|\t|\n/g,'');
+            messageRetour = messageRetour.replace(/\r|\t|\n/g,'');
             if(valRetour == messageRetour){
                     Swal.fire({
                     icon: 'success',
@@ -34,6 +33,23 @@ function postAjax(param, url,messageRetour,retourJs = false){
     return form;
  }
 }
+
+function alertJs(success,messageRetour){
+    if(success){
+        Swal.fire({
+        icon: 'success',
+        title: messageRetour,
+      })
+    }else{
+    Swal.fire({
+        icon: 'warning',
+        title: messageRetour,
+      })
+}
+
+}
+
+
 
 function  changeVal(val1,val2) {
     var varTemp = document.getElementById(val2).value;

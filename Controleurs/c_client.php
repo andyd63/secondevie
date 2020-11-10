@@ -110,11 +110,11 @@ switch ($action){
 	
 	break;
 
-	case 'modifMdp' : 
-	$message = modifmdp($_POST['password']);
-	$cli = informationsRest($_SESSION['id']);
-	$cli = json_decode($cli);
-	require_once('vues/vue_profil.php');
+	//Modifier le mot de passe avec un token
+	case 'modifMdpToken' : 
+	$message = updateMdpClient($_POST['token'],$_POST['mdp']);
+	$rep = reponse_json(true, $message , 'Votre mot de passe est réinitialisé, vous pouvez désormais vous connecter!');
+	appelAjax($rep);
 	break;
 
 	// Action en ajax qui permet de mettre un token dans la bdd pour réinitialiser le mot de passe
@@ -123,14 +123,12 @@ switch ($action){
 		$configSite = initConfigSite();
 		initParamBoolSite($configSite);
 		$mail = mailMdpClient($configSite,$token,$_POST['email']);
-		var_dump($mail);
-		echo 'Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!';
+		echo reponse_json(true,'','Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!');
 	break;
 
 	// réinitialiser le mot de passe
 	case 'formMdp' : 
 		$client = getClientToken($_GET['token']);
-
 		if(isset($client[0])){
 			require_once('vues/v_reinitMdp.php');
 		}else{

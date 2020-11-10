@@ -18,72 +18,30 @@
               </div>
               <div class="col-md-8 ">
                 <h6>Réinitialisation mot de passe</h6>
-                
-                <form action="index.php?c=connexion&action=valide" method="post">
                   <ul class="row">
                     
                     <!-- Name -->
                     <li class="col-md-12">
                       <label>Mot de passe
-                        <input type="password" name="mdp" value="" placeholder="">
+                        <input type="password" id="mdp" name="mdp" value="" placeholder="">
                       </label>
                     </li>
                     <!-- LAST NAME -->
                     <li class="col-md-12">
                       <label>Confirmer Mot de passe
-                        <input type="password" name="mdp" value="" placeholder="">
+                        <input type="password" name="mdpconfirm" value="" placeholder="">
                       </label>
                     </li>
                                        
-                    <!-- FORGET PASS -->
-                    <li class="col-md-6">
-                      <div class="checkbox margin-0 margin-top-20 text-center">
-                        <a class="survol" href="#.">Mot de passe oublié ?</a>
-                      </div>
-                    </li>
-                    <li class="col-md-6">
-                      <div class="checkbox margin-0 margin-top-20 text-center">
-                        <a class="survol" href="index.php?c=inscription">Pas encore inscrit?</a>
-                      </div>
-                    </li>
                          <!-- LOGIN -->
                     <li class="col-md-12 text-center margin-top-20">
-                      <button  class="btn"type="submit">Se connecter</button>
+                      <button  class="btn" id='btnFormChangeMdp' >Changer mot de passe</button>
                     </li>
                     
                    
                   </ul>
-                  
-                </form>
-                
+
               </div>
-              
-              <!-- SUB TOTAL -->
-                <!--
-                <div class="col-sm-5">
-                <h6>LOGIN WITH</h6>
-                
-                <ul class="login-with">
-                	<li>
-                    	<a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a>
-                    
-                    </li>
-                    
-                    <li>
-                    	<a href="#."><i class="fa fa-google"></i>GOOGLE</a>
-                    
-                    </li>
-                    
-                    <li>
-                    	<a href="#."><i class="fa fa-twitter"></i>TWITTER</a>
-                    
-                    </li>
-                
-                </ul>
-              
-                
-              </div>
-            -->
             </div>
           </div>
         </div>
@@ -93,4 +51,17 @@
 
 
   </div>
+
+<script>
+ $('#btnFormChangeMdp').click(function(e){ 
+      token = $_GET('token');
+      mdp = document.getElementById('mdp').value;
+      param = 'token='+token + "&mdp="+ mdp ;
+      url= 'index.php?c=profil&action=modifMdpToken&ajx=1&'+param;
+      reponse= postAjax(param,url);
+      rep = jQuery.parseJSON(reponse.responseText);
+      alertJs(rep.success,rep.msg);
+      });
+</script>
+
   <?php include('./assets/inc/footer.php');?>

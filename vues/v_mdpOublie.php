@@ -48,8 +48,7 @@
       Email = document.getElementById('mail').value;
       param = 'email='+Email
       url= 'index.php?c=profil&action=verifMail&ajx=1&'+param;
-      messageRetour = 'Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!';
-      reponse= postAjax(param,url,messageRetour);
+      reponse= postAjax(param,url);
       rep = reponse.responseText;
       rep = jQuery.parseJSON(rep);
       if(rep.success){ // si le mail existe déjà
@@ -57,14 +56,10 @@
         param = 'email='+Email
         url= 'index.php?c=profil&action=reinitMdp&ajx=1&'+param;
         messageRetour = '';
-        reponse= postAjax(param,url,messageRetour,true);
-        rep = reponse.responseText;
-        rep = jQuery.parseJSON(rep);
+        reponse= postAjax(param,url,messageRetour);
+        alertJs(true, 'Nous vous avons envoyé un mail de réinitialisation de votre mot de passe!');
       }else{
-        Swal.fire({
-                      icon: 'warning',
-                      title: "Désolé, mais aucun compte correspond à cet adresse mail, veuillez créer un compte ou retapez votre mail.",
-        });
+        alertJs(false, "Désolé, mais aucun compte correspond à cet adresse mail, veuillez créer un compte ou retapez votre mail." );
       }
     });
     </script>

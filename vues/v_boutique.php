@@ -33,7 +33,7 @@
         <?php if($barFilter){?>
           <!-- BAR DE FILTRE -->
           <div class="col-sm-3">
-            <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h5><hr>
+            <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h6><hr>
             <div class="shop-sidebar"> 
             
             <?php if(!isset($page)){;?>

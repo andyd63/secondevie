@@ -172,9 +172,7 @@ p.intro-small {
 .primary-color {
 	color: #ffe115 !important;
 }
-.border-bottom-1 {
-	border-bottom: 1px solid #ededed;
-}
+
 .position-center-center {
 	left: 50%;
 	position: absolute;

@@ -67,8 +67,14 @@ $configSite = initConfigSite();
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 
 
-
-
+<script src="https://cdn.tiny.cloud/1/bwkohbx6klhjryo3yzjrkhz2of52v8ir0chg0jyjj87guogd/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src='https://cdn.tiny.cloud/1/bwkohbx6klhjryo3yzjrkhz2of52v8ir0chg0jyjj87guogd/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+  </script>
+  <script>
+    tinymce.init({
+      selector: '.mytextarea'
+    });
+  </script>
  
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Online Fonts -->

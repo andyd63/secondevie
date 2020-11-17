@@ -29,11 +29,17 @@ function voirAllModule()
 
 }
 
-function modif_module($text,$id)
+function modifModule($id,$text,$alert,$sujet)
 {
-	$conn = bdd();
-	$eve = $conn->prepare("UPDATE module SET texte_module = ? WHERE id_module = ? ");
-	$eve->execute(array($text,$id));
+	$conditions = array();
+	$values = array();
+	array_push($conditions, array('nameChamps'=>'id_module','type'=>'=','name'=>'id_module','value'=>$id));
+	array_push($values, array('nameChamps'=>'texte_module','name'=>'texte_module','value'=>$text));
+	array_push($values, array('nameChamps'=>'alert','name'=>'alert','value'=>$alert));
+	array_push($values, array('nameChamps'=>'titre_module','name'=>'titre_module','value'=>$sujet));
+	$req =  new myQueryClass('module',$conditions,'',$values);
+	$r = $req->myQueryUpdate();
+	$conn = null ; //Quitte la connexion
 }
 
 

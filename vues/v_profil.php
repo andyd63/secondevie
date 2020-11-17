@@ -17,9 +17,14 @@
           <!-- SHOPPING INFORMATION -->
           <div class="cart-ship-info S'inscrire">
             <div class="row"> 
-              
+              <div class="col-sm-4 ">
+              <h5 class="textAlignCenter border-bottom-1 margin-bottom-30 padding-bottom-10">Menu</h5>
+              <h5 class="cursor shop-tittle margin-bottom-30">Mes informations <span class="cursor" id="spanGenre" ></span></h5>
+              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Changer mon mot de passe <span class="cursor" id="spanGenre" ></span></h5>
+              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Changer ma taille <span class="cursor" id="spanGenre" ></span></h5>
+              </div>
               <!-- ESTIMATE SHIPPING & TAX -->
-              <div class="col-sm-12">
+              <div class="col-sm-8">
                 <?=genererError(22);?>
                 <p>
                  <form action="index.php?c=inscription&action=valide" method="post">

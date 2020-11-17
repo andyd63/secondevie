@@ -25,12 +25,12 @@
                      <!-- TAILLE DE HAUT -->
                     <li class="col-md-6">
                       <label>Titre</label>
-                      <input type="text" name="titreModule" value="<?=$module['titre_module'];?>" placeholder="" required>
+                      <input type="text" id="titreModule" name="titreModule" value="<?=$module['titre_module'];?>" placeholder="" required>
                     </li>
                      <!-- TAILLE DE HAUT -->
                     <li class="col-md-6">
                       <label>Type de texte</label>
-                        <select class="form-control" name="tailleHClient">
+                        <select class="form-control" id="typeAlert" >
                             <?php foreach ($lesAlerts as $alert){
                               var_dump($module['alert']);
                               if($alert['idAlert'] == $module['alert']){ $selected = 'selected';}else { $selected = '';}
@@ -43,15 +43,14 @@
                      <!-- TAILLE DE BAS -->
                     <li class="col-md-12">
                       <label>Texte</label>
-                      <?php var_dump($module);?>
-                      <textarea class="form-control" value="<?=$module['texte_module'];?>"><?=$module['texte_module'];?></textarea>
+                      <textarea class="form-control mytextarea" id='textModule' rows='20' value="<?=$module['texte_module'];?>"><?=$module['texte_module'];?></textarea>
                     </li>
                   </ul>
                   <hr>
                   <ul class="row">
                       <!-- BOUTON S'INSCRIRE -->
                       <li class="col-md-12 textAlignCenter">
-                      <button id='btnInscription' type="submit" class="btn">Modifier !</button>
+                      <button id='btnModuleChange' type="submit" class="btn">Modifier !</button>
                     </li>
                   </ul>
                
@@ -76,28 +75,25 @@
    
     $(document).ready(function() {
 
-      $('.dateLivraisonChange').change(function(e){ 
-        url= 'index.php?c=admin&action=changeDateLivraison';
-        messageRetour = 'Date mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
-        postAjax(param,url,messageRetour,true);
-      });
-
-      $('.heureLivraisonChange').change(function(e){ 
-        url= 'index.php?c=admin&action=changeHeureLivraison';
-        messageRetour = 'Heure mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
-        postAjax(param,url,messageRetour,);
-      });
-
-      getDataTable('tableCli');
+    tinyMCE.init({
+    mode : "textareas",
+    theme : "advanced"
     });
+    
+    $('#btnModuleChange').click(function(e){ 
+      var selectElmt = document.getElementById("typeAlert");
+      var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+      id= $_GET('id');
+      titreModule = document.getElementById('titreModule').value;
 
-    $('#traiteCommande').click(function(e){ 
-      url= 'index.php?c=admin&action=UpdateEtiquettesNonTraite';
-      messageRetour = 'Les étiquettes sont désormais en préparation!';
-      postAjax('',url,messageRetour,true);
-
+      textarea = tinyMCE.get('textModule'); // on recupère le textarea
+      text = encodeURIComponent(textarea.getContent());
+      url= 'index.php?id='+id+'&c=configSite&action=UpdateModuleDetail';
+      param = "titre="+titreModule+"&text="+text+"&type="+valeurselectionnee;
+      reponse = postAjax(param,url);
+      rep = jQuery.parseJSON(reponse.responseText);
+      alertJs(rep.success,rep.msg);
     });
+  });
 </script>
   <?php include('./assets/inc/footer.php');?>

@@ -157,6 +157,9 @@ transform:scale(1);
 	z-index: 10;
 }
 
+
+
+
 .ownmenu .nav ul.dropdown, .ownmenu .nav ul.dropdown li ul.dropdown {
 	list-style: none;
 	margin: 0;
@@ -4782,4 +4785,14 @@ html[xmlns] .flexslider .slides {
 		width: 100%;
 		font-size: 14px;
 		padding-left: 10px;
+	}
+
+	.border-bottom-1 {
+		border-bottom: 1px solid #ededed;
+	}
+	.border-right-1 {
+		border-right: 1px solid #ededed;
+	}
+	.paddingBottom10{
+		padding-bottom: 10px;
 	}

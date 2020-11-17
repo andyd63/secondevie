@@ -38,12 +38,20 @@ switch($action){
         include('./vues/administration/v_module.php');
         break;
 
-    //edit text du sites
+    //page pour edit text du sites
     case 'moduleDetail':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
         $lesAlerts = allAlert();
         $module = voirModule($_GET['id']);
         include('./vues/administration/v_moduleDetail.php');
+        break;
+
+
+    //ajax edite text du sites
+    case 'UpdateModuleDetail':
+        modifModule($_GET['id'],$_POST['text'],$_POST['type'],$_POST['titre']);
+        echo reponse_json(true,'','Le module est modifié!');
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
         break;
 
     case 'global':

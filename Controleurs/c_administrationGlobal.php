@@ -26,7 +26,6 @@ switch($action){
     
     case 'accueil':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        $nbCommande = count(allCommandes()); // nb de commande 
         $menuAdmin = menuAdminByNom('ConfigSite');
         include('./vues/administration/v_admin_def.php');
         break;

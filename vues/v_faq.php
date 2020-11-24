@@ -19,7 +19,7 @@
             
             <!-- DISCOUNT CODE -->
             <div class="col-sm-12">
-              <h6>La foire aux question</h6>
+              <h6>La foire aux questions</h6>
               <div class="grand-total">
               <?php foreach($questions as $q){?>
                 <div class="cart-ship-info margin-top-30">

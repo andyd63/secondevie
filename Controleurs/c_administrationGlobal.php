@@ -1,6 +1,7 @@
 <?php
 require_once "./modeles/m_bdd.php";
 require_once "./modeles/m_clients.php";
+require_once "./modeles/mGlobal/m_faq.php";
 require_once "./modeles/m_menuadmin.php";
 require_once "./modeles/m_couleur.php";
 require_once "./modeles/m_configSite.php";
@@ -45,13 +46,49 @@ switch($action){
         include('./vues/administration/v_moduleDetail.php');
         break;
 
+    //Les textes du sites
+    case 'tabfaq':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $allFaq = voirAllFaq();
+        include('./vues/configSite/v_tableaufaq.php');
+        break;
+
+    //page pour edit text du sites
+    case 'addfaq':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        include('./vues/configSite/v_addfaq.php');
+        break;
+
+    //page pour edit text du sites
+    case 'faqdetail':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $lesAlerts = allAlert();
+        $faq = voirFaq($_GET['id']);
+        include('./vues/configSite/v_faqdetail.php');
+        break;
+
+    //ajax edite FAQ du sites
+    case 'UpdateFaqDetail':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        modifFaq($_GET['id'],$_POST['text'],$_POST['titre']);
+        echo reponse_json(true,'','La question est modifié!');
+    break;
+
+    //ajax edite FAQ du sites
+    case 'addFaqForm':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        addFaq($_POST['text'],$_POST['titre'],$_POST['partie']);
+        echo reponse_json(true,'','La question est ajoutée!');
+       
+    break;
+
 
     //ajax edite text du sites
     case 'UpdateModuleDetail':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
         modifModule($_GET['id'],$_POST['text'],$_POST['type'],$_POST['titre']);
         echo reponse_json(true,'','Le module est modifié!');
-        redirectionNonAdmin(adminexist($_SESSION['mail']));
-        break;
+    break;
 
     case 'global':
         redirectionNonAdmin(adminexist($_SESSION['mail']));

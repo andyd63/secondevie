@@ -1279,6 +1279,17 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	left: -100%;
 	position: relative;
 }
+
+.imageBoutique{
+	width: 100%;
+	max-width: 150px;
+	height: 250px;
+}
+
+.item-img{
+	text-align: center;
+}
+
 .arrival-block .item .img-2 {
 	position: absolute;
 	left: 100%;

@@ -201,7 +201,7 @@
                 <?php }?>
                   <!-- Item img -->
                   <a  href="index.php?c=boutique&action=voirProduit&id=<?=$produit['id'];?>">
-                    <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
+                    <div class="item-img"> <img class="imageBoutique img-1" src="<?=$produit['image1'];?>" alt="" > <img class="imageBoutique img-2" src="<?=$produit['image2'];?>" alt="" > 
                       <!-- Overlay -->
                     </div>
                   </a>

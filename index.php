@@ -1,18 +1,19 @@
-<?php
-
-date_default_timezone_set('Europe/Paris');
-setlocale(LC_TIME, 'fr_FR.utf8','fra');// OK
-
+<?php 
 require_once ('./classes/collection.php');
 require_once ('./classes/produits.php');
 require_once ('./classes/configSite.php');
 require_once ('./classes/paramSite.php');
 //require_once ('./classes/photo.php');
 require_once ('./classes/myQuery.php');	
+
+session_start();
+date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fr_FR.utf8','fra');// OK
+
+
 require_once('./assets/inc/_initGeneral/functionInit.php');
 require_once('./modeles/m_configSite.php');
 
-session_start();
 	        // Menu MasterPage
 	        if (isset($_REQUEST['c']))   {
 		       switch ($_REQUEST['c'])      {

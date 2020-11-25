@@ -4,7 +4,7 @@ require_once('modeles/m_mailGenerique.php');
 require_once('modeles/m_produit.php');
 require_once('modeles/m_pointRelaiCommande.php');
 require_once('modeles/m_clients.php');
-require_once('modeles/m_etiquetteLivraison.php');
+require_once('modeles/m_etiquettelivraison.php');
 require_once('modeles/m_categorie.php');
 require_once('modeles/m_sousCategorie.php');
 require_once('modeles/m_prixLivraison.php');

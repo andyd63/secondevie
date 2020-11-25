@@ -91,7 +91,7 @@
                     <td><?= $cliCommande['ADRESSE'].' , '.$cliCommande['CODEPOSTAL'].' '.$cliCommande['VILLE'];?></td>
                     <td><?= $comTraite['nbreProduit'];?></td>
                     <td><?= $comTraite['prixCommande'];?>€</td>          
-                    <td><?= date('d/Y H:i:s', $comTraite['date']);?></td>             
+                    <td><?= date('d/m/Y H:i:s', $comTraite['date']);?></td>             
                     <td><input type="date" id="<?=$comTraite['idCommande'];?>" class="dateLivraisonChange" name="trip-start"  <?php if($comTraite['dateLivraison'] != null ){ ?> value="<?=$comTraite['dateLivraison'];?>" <?php } ?> ></td>             
                     <td><input type="time" id="<?=$comTraite['idCommande'];?>" class="heureLivraisonChange" min="09:00" max="23:00" required <?php if($comTraite['heureLivraison'] != null ){ ?> value="<?=$comTraite['heureLivraison'];?>" <?php } ?> ></td>             
                   </tr>

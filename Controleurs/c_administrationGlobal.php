@@ -50,13 +50,13 @@ switch($action){
     case 'tabfaq':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
         $allFaq = voirAllFaq();
-        include('./vues/configSite/v_tableaufaq.php');
+        include('./vues/configSite/v_tableauFaq.php');
         break;
 
     //page pour edit text du sites
     case 'addfaq':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
-        include('./vues/configSite/v_addfaq.php');
+        include('./vues/configSite/v_addFaq.php');
         break;
 
     //page pour edit text du sites
@@ -64,7 +64,7 @@ switch($action){
         redirectionNonAdmin(adminexist($_SESSION['mail']));
         $lesAlerts = allAlert();
         $faq = voirFaq($_GET['id']);
-        include('./vues/configSite/v_faqdetail.php');
+        include('./vues/configSite/v_faqDetail.php');
         break;
 
     //ajax edite FAQ du sites

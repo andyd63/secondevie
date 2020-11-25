@@ -3,7 +3,7 @@
  <!--- Include Header et menu --->
  <?php include('./assets/inc/header.php');?>
   <?php include('./assets/inc/menu.php');?> 
-  <?php include('./modeles\m_villeLivraison.php');
+  <?php include('./modeles/m_villeLivraison.php');
   $client = informations($_SESSION['id']);
   $client = $client[0];
   ?> 

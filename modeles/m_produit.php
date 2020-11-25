@@ -22,6 +22,7 @@ function addproduit($nom,$marque,$prix,$etat,$taille,$categorie,$image1,$image2,
     array_push($conditions, array('nameChamps'=>'sousCategorie','name'=>'sousCategorie','value'=>$sousCategorie));
     array_push($conditions, array('nameChamps'=>'genre','name'=>'genre','value'=>$genre));
     array_push($conditions, array('nameChamps'=>'reduction','name'=>'reduction','value'=>$reduc));
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','name'=>'etatDuProduit','value'=>'0'));
     $req =  new myQueryClass('produit',$conditions);
 	$r = $req->myQueryInsert();
     $conn = null ; //Quitte la connexion

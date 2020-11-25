@@ -1,39 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Andy Douarre
- * Date: 01/03/2019
- * Time: 15:08
- */
-
-/**
- * @param $files tableau de fichier à archiver
- * @param $idCommande id de la commandes pour le nom de l'archive
- * @param $nameRep : Nom du repertoire soit archives papier ou numérique
- */
-function createZip($files,$idCommande,$nameRep){
-    $zip = new zipfiles(); //on crée une instance zip
-    $i = 0;
-    $rep = "Archives/".$nameRep;
-    $nomZip = $rep."/".$idCommande.".zip";
-    while (count($files) > $i) {
-        $file = explode('/', $files[$i]);
-        $fichier = $file[0].'/'.$file[1].'/'.$file[2].'/mes_evenements_photo_normal/'.$file[4].'/'.$file[5];
-        $fo = fopen($fichier, 'r'); //on ouvre le fichier
-        $contenu = fread($fo, filesize($fichier)); //on enregistre le contenu
-        $str = explode('/', $fichier);
-        fclose($fo); //on ferme fichier
-        $zip->addfile($contenu, $str[5]); //on ajoute le fichier
-        $i++; //on incrémente i
-    }
-
-    $archive = $zip->file(); // on associe l'archive
-    // on enregistre l'archive dans un fichier
-    $open = fopen($nomZip, "wb");
-    fwrite($open, $archive);
-    fclose($open);
-}
-
 
 function redirectionNonAdmin($bool){
     if($bool == 0){?>

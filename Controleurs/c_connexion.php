@@ -67,18 +67,7 @@ document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
 		require_once('vues/v_mdpOublie.php');
 		break;
 
-	case 'oublieEnvoie': // INSCRIPTION REUSSI
-    $mail = $_POST['email'];
-    $a = oublie_motdepasse($mail);
-	?>
-	<div class="col-md-9">
-	<div class="alert alert-info">
-				Nous avons envoyé votre mot de passe par mail, veuillez vérifier si vous ne l'avez pas reçu dans vos spams ! 
-					</div>
-                          
-    </div>
-	<?php
-	break;
+
 	
 	case 'deconnecter': // DECONNEXION CLIENT
 		deconnexionclient();

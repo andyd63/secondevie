@@ -1279,6 +1279,22 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	left: -100%;
 	position: relative;
 }
+
+.imageBoutique{
+	width: 100%;
+	max-width: 150px;
+	height: 250px;
+}
+.imageProduitDetail{
+	width: 100%;
+	max-width: 250px;
+	height: 450px;
+}
+
+.item-img{
+	text-align: center;
+}
+
 .arrival-block .item .img-2 {
 	position: absolute;
 	left: 100%;
@@ -1839,6 +1855,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .images-slider .slides {
 	display: inline-block;
 	width: 100%;
+	text-align: center;
 }
 /*=======================================================
       PRODUCT DESCRIPTION

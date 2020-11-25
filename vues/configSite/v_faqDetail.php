@@ -30,7 +30,7 @@
                 <ul class="row"><br>
                     <li class="col-md-12">
                       <label>Texte</label>
-                      <textarea class="form-control mytextarea" id='textFaq' rows='20' value="<?=$faq['textFaq'];?>"><?=$faq['textFaq'];?></textarea>
+                      <textarea class="form-control mytextarea" id='textFaq' rows='20' value=""><?=$faq['textFaq'];?></textarea>
                     </li>
                   </ul>
                   <hr>

@@ -172,6 +172,7 @@ function searchProduit($recherche,$ask){
     $conditions = array();
     array_push($conditions, array('nameChamps'=> 'marque','type'=>'=','name'=>'recherche' ,'value'=>$recherche ,'operator'=>'OR'));
     array_push($conditions, array('nameChamps'=> 'nom','type'=>'like','name'=>'recherche2','value'=>$recherche.'%','operator'=>'OR' ));
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
 
     if(isset($_GET['order'])){
         $order =array();

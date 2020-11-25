@@ -2,7 +2,7 @@
   
   
   <!-- Dernier produit -->
-   <section class="padding-top-50 padding-bottom-150">
+   <section class="padding-top-10 padding-bottom-150">
       <div class="container"> 
         
         <!-- Main Heading -->
@@ -28,10 +28,12 @@
                 <div class="item"> 
                   <!-- Item img -->
                   <a  href="index.php?c=boutique&action=voirProduit&id=<?=$produit['id'];?>">
-                    <div class="item-img"> <img class="img-1" src="<?=$produit['image1'];?>" alt="" > <img class="img-2" src="<?=$produit['image2'];?>" alt="" > 
+                    <div class="item-img"> <img class="img-1 imageBoutique" src="<?=$produit['image1'];?>" alt="" > <img class="img-2 imageBoutique" src="<?=$produit['image2'];?>" alt="" > 
                       <!-- Overlay -->
                     </div>
                   </a>
+                      <?php $taille = taille($produit['taille']);?>
+                     <p class="textAlignCenter"><?= iconeSelonSexe($produit['genre']);?> Taille : <?= $taille['nomTaille'];?></p>
                         <div class="inn">
                           <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
                           <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>

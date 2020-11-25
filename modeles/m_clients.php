@@ -85,8 +85,7 @@ function modifclient($adresse,$cp,$ville,$tel){
 	$_SESSION['adresse'] = $adresse;
 	$_SESSION['cp'] = $cp;
 	$_SESSION['ville'] = $ville;	
-	$message = "Tes informations sont modifiés!";
-	return $message ;	
+	$conn = null ; //Quitte la connexion
 }
 
 function modifmdp($mdp){

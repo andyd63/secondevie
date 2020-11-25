@@ -46,7 +46,7 @@
                     <!-- Name -->
                     <li class="col-md-6">
                       <label>Prix €
-                        <input type="number" name="prixProduit" value="" placeholder="" required>
+                        <input type="number" name="prixProduit" value="0.00"  step="0.01" value="" placeholder="" required>
                       </label>
                     </li>
                     <li class="col-md-6">

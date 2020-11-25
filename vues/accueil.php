@@ -3,6 +3,7 @@
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');?>
   <?php include('./assets/inc/menu.php');
+  require_once('./modeles/m_taille.php');
   $moduleVendre = voirModule(1);
   $moduleConcept = voirModule(2);
   $moduleDernierProduit = voirModule(3);
@@ -14,7 +15,7 @@
   <div id="content"> 
     
     <!-- New Arrival -->
-    <section class="padding-top-30">
+    <section class="padding-top-10">
       <div class="container"> 
       <div class="heading row">
         <div class="col-md-6">

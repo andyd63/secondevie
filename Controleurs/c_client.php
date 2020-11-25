@@ -103,11 +103,8 @@ switch ($action){
 	break;
 
 	case 'modif' : 
-	$message = modifclient($_POST['adresse'],$_POST['cp'],$_POST['ville'],$_POST['telephone']);
-	$cli = informationsRest($_SESSION['id']);
-	$cli = json_decode($cli);
-	require_once('vues/vue_profil.php');
-	
+	$message = modifclient($_POST['adresse'],$_POST['cp'],$_POST['ville'],$_POST['telephone']);	
+	echo reponse_json(true,$message,'Vos informations sont modifiés!');
 	break;
 
 	//Modifier le mot de passe avec un token

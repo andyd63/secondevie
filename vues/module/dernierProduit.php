@@ -32,6 +32,8 @@
                       <!-- Overlay -->
                     </div>
                   </a>
+                      <?php $taille = taille($produit['taille']);?>
+                     <p class="textAlignCenter"><?= iconeSelonSexe($produit['genre']);?> Taille : <?= $taille['nomTaille'];?></p>
                         <div class="inn">
                           <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
                           <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>

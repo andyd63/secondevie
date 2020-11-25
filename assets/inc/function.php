@@ -125,6 +125,16 @@ function totalPrixCommandeParCategorie($id){
 }
 
 
+function iconeSelonSexe($idSexe){
+    if(($idSexe == 1) || ($idSexe == 3) ){
+        $r = '<i class="fas fa-lg rose fa-female"></i>';
+    }else{
+        $r = '<i class="fas fa-lg blue fa-male"></i>';
+    }
+    return $r;
+
+}
+
 function prixReel($prix){
     $margeFixe = 0.25;
     $margePourcent = 0.014;

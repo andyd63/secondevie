@@ -1285,6 +1285,11 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	max-width: 150px;
 	height: 250px;
 }
+.imageProduitDetail{
+	width: 100%;
+	max-width: 250px;
+	height: 450px;
+}
 
 .item-img{
 	text-align: center;
@@ -1850,6 +1855,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .images-slider .slides {
 	display: inline-block;
 	width: 100%;
+	text-align: center;
 }
 /*=======================================================
       PRODUCT DESCRIPTION

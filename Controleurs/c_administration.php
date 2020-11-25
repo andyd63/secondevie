@@ -65,7 +65,7 @@ switch($action)
 
     case 'mesClients':
         $allClient = allClientTotal();
-        include('./vues/administration/v_mesclients.php'); 
+        include('./vues/administration/v_mesClients.php'); 
     break;
 
    

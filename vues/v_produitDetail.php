@@ -24,8 +24,8 @@
               <!-- Images Slider -->
               <div class="images-slider">
                 <ul class="slides">
-                  <li data-thumb="<?=$produit['image1'];?>"> <img class="img-responsive" src="<?=$produit['image1'];?>"  alt=""> </li>
-                  <li data-thumb="<?=$produit['image2'];?>"> <img class="img-responsive" src="<?=$produit['image2'];?>"  alt=""> </li>
+                  <li data-thumb="<?=$produit['image1'];?>"> <img class="img-responsive imageProduitDetail" src="<?=$produit['image1'];?>"  alt=""> </li>
+                  <li data-thumb="<?=$produit['image2'];?>"> <img class="img-responsive imageProduitDetail" src="<?=$produit['image2'];?>"  alt=""> </li>
                <!-- dans le cas d'une troisième image   <li data-thumb="images/large-img-3.jpg"> <img class="img-responsive" src="images/large-img-3.jpg"  alt=""> </li> -->
                 </ul>
               </div>
@@ -51,6 +51,8 @@
                   </div>
                 <?php }?>
               <ul class="item-owner">
+                <li>Genre:<span class="enGras blueSite"> <?= iconeSelonSexe($produit['genre']);?> </span></li>
+                <li>Taille:<span class="enGras blueSite"> <?= $taille['nomTaille'];?></span></li>
                 <li>Marque :<span class="enGras blueSite"> <?=$produit['marque'];?></span></li>
                 <li>Etat:<span class="enGras blueSite"> <?=$etat['libEtat'];?></span></li>
               </ul>

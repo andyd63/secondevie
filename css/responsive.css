@@ -199,6 +199,14 @@ header .navbar li {
 	margin: 0 15px;
 }
 }
+@media(min-width:768px){
+.menuOrdi{
+	display: block;
+}
+.menuMobile{
+	display: none;
+}
+}
 @media(min-width:768px) and (max-width:991px) {
 	.menuResponsive{
 		display: none;
@@ -528,6 +536,19 @@ footer h6 {
 }
 }
 @media(max-width:767px) {
+	.collapseMobile{
+		display: none;
+	}
+	.menuOrdi{
+		display: none;
+	}
+	.menuMobile{
+		display: block;
+	}
+	.iconeMobile{
+		font-size: 30px!important;
+	}
+
 	.menuResponsive{
 		display: inline-block !important;
 		float: right;

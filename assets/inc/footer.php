@@ -62,11 +62,11 @@
   
   <!--======= RIGHTS =========--> 
 <script>
-  $('#incMenuResponsive').click(function(e){ 
-    if(($('.collapse').is(":visible") == false)){
-      $('.collapse').show();
+  $('#btnResponsive').click(function(e){ 
+    if(($('.collapseMobile').is(":visible") == false)){
+      $('.collapseMobile').show();
     }else{
-      $('.collapse').hide();
+      $('.collapseMobile').hide();
     }
    
   });

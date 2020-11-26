@@ -1,4 +1,14 @@
 @media(min-width:1921px) {
+	.shopping-cart .cart-ship-info h6:before {
+		width: 60px;
+		height: 2px;
+		background: #2d3a4b;
+		border: none;
+		content: '';
+		display: inline-block;
+		position: absolute;
+		margin-top: 30px;
+	}
 	.menuResponsive{
 		display: none;
 	}
@@ -7,6 +17,17 @@
 	}
 }
 @media(min-width:1400px) and (max-width:1920px) {
+	.shopping-cart .cart-ship-info h6:before {
+		width: 60px;
+		height: 2px;
+		background: #2d3a4b;
+		border: none;
+		content: '';
+		display: inline-block;
+		position: absolute;
+		margin-top: 30px;
+	}
+
 	.menuResponsive{
 		display: none;
 	}

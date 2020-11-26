@@ -2808,16 +2808,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	font-size: 20px;
 	letter-spacing: 3px;
 }
-.shopping-cart .cart-ship-info h6:before {
-	width: 60px;
-	height: 2px;
-	background: #2d3a4b;
-	border: none;
-	content: '';
-	display: inline-block;
-	position: absolute;
-	margin-top: 30px;
-}
+
 .shopping-cart .cart-ship-info input {
 	border: 1px solid #2d3a4b;
 	width: 60px;

@@ -156,7 +156,7 @@ switch($action)
                 // recuperer les produits de la commande    
                 require_once('./vues/v_commande.php');
             } else{
-                redirectUrl("index.php?c=accueil");
+                redirectUrl("index.html");
             }
     break;
 

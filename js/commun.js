@@ -60,20 +60,13 @@ function  changeVal(val1,val2) {
 
 
 // Permet de rendre visible ou non le voyage regulier ou unique dans proposerVoyage.php
-function visibilite(divPrec,divId)
-{
-    console.log(divPrecedent);
+function visibilite(divPrec,divId){
+    console.log(divPrec);
     document.getElementById(divPrec).style.display = "none"
     document.getElementById(divId).style.display = "block"
-    if(divId == "voyageRegulier"){
-        document.getElementById("dateDep").style.display = "block";
-        document.getElementById("dateFin").style.display = "block";
-    }
-    if(divId == "voyageUnique"){
-        document.getElementById("dateDep").style.display = "none";
-        document.getElementById("dateFin").style.display = "none";
-    }
+
     divPrecedent = divId;
+    return divPrecedent
 }
 
 

@@ -16,10 +16,10 @@
       <div class="col-md-3">
         <h6>Boutique</h6>
         <ul class="link">
-          <li><a href="index.php?c=boutique&action=1">Adulte</a></li>
-          <li><a href="index.php?c=boutique&action=2">Enfant</a></li>
-          <li><a href="index.php?c=boutique&action=3">Braderie</a></li>
-          <?php if(isConnected()){?><li><a href="index.php?c=boutique&action=4">Ma sélection</a></li><?php }?>
+          <li><a href="boutique-1.html">Adulte</a></li>
+          <li><a href="boutique-2.html">Enfant</a></li>
+          <li><a href="boutique-3.html">Braderie</a></li>
+          <?php if(isConnected()){?><li><a href="boutique-4.html">Ma sélection</a></li><?php }?>
         </ul>
       </div>
 
@@ -28,9 +28,9 @@
       <div class="col-md-3">
         <h6>Liens rapides</h6>
         <ul class="link">
-          <li><a href="index.php?c=panier">Panier</a></li>
-          <li><a href="index.php?c=contact">Contact</a></li>
-          <li><a href="index.php?c=faq">Foire aux questions</a></li>
+          <li><a href="panier.html">Panier</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">Foire aux questions</a></li>
         </ul>
       </div>
       

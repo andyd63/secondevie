@@ -68,3 +68,12 @@ function taille($id){
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
+
+// Retourne juste le nom de la taille
+function nomTaille($id){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idTaille','type'=>'=','name'=>'idTaille','value'=>$id));
+	$req =  new myQueryClass('taille',$conditions);
+	$r = $req->myQuerySelect();
+	return $r[0]['nomTaille'];
+}

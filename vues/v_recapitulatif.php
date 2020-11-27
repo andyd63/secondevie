@@ -46,7 +46,7 @@
                 <?php if(isConnected()){?>
                 <a href="index.php?c=panier&action=payment" class="btn">Paiement</a> 
                 <?php }else{?>
-                  <a href="index.php?c=connexion" class="btn">Connectez-vous!</a>
+                  <a href="connexion.html" class="btn">Connectez-vous!</a>
                 <?php }?>
               </div>
             </div>        

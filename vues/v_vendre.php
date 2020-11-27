@@ -62,8 +62,8 @@
              <?php }else{?>
               <p>Pour voir le formulaire de rendez-vous, il faut avoir un compte et être connecté.</p>
               <div class="coupn-btn "> 
-                <a href="index.php?c=inscription" class="btn">Inscrivez-vous!</a>
-                <a href="index.php?c=connexion" class="btn">Connectez-vous!</a>
+                <a href="inscription.html" class="btn">Inscrivez-vous!</a>
+                <a href="connexion.html" class="btn">Connectez-vous!</a>
               </div>
           </div>
           <?php }?>

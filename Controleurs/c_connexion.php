@@ -43,7 +43,7 @@ switch($action){
 			associerProduitAuPanier($_SESSION['id']);	
 ?>
 <SCRIPT LANGUAGE="JavaScript">
-document.location.href="index.php?c=acceuil" //redirige vers l'acceuil
+document.location.href="index.html" //redirige vers l'acceuil
 </SCRIPT>
 <?php			exit;
 		}

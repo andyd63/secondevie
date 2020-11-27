@@ -1,0 +1,42 @@
+<?php 
+
+///////////////// Connexion à la base de données///////////////////////
+require_once('./modeles/m_bdd.php');     
+require_once ('./classes/myQuery.php');
+require_once ('./classes/templateRest.php');
+
+
+//////////////// AJOUT d'un profil /////////////////////////
+function addProfil($tailleH,$tailleB,$genre,$idImg,$idClient,$nomProfil){
+    $conn = bdd();
+    $conditions = array();
+	array_push($conditions, array('nameChamps'=>'idClient','name'=>'idClient','value'=>$idClient));
+	array_push($conditions, array('nameChamps'=>'genre','name'=>'genre','value'=>$genre));
+    array_push($conditions, array('nameChamps'=>'tailleBasProfil','name'=>'tailleBasProfil','value'=>$tailleB));
+	array_push($conditions, array('nameChamps'=>'tailleHautProfil','name'=>'tailleHautProfil','value'=>$tailleH));
+	array_push($conditions, array('nameChamps'=>'nomProfil','name'=>'nomProfil','value'=>$nomProfil));
+    array_push($conditions, array('nameChamps'=>'idAvatar','name'=>'idAvatar','value'=>$idImg));
+    $req =  new myQueryClass('profil',$conditions);
+	$r = $req->myQueryInsert();
+    $conn = null ; //Quitte la connexion
+    return $r= '';
+
+}
+
+
+function mesProfils($id){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idClient','type'=>'=','name'=>'idClient','value'=>$id));
+	$req =  new myQueryClass('profil',$conditions);
+	$r = $req->myQuerySelect();
+	return $r;
+}
+
+
+function monProfil($id){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idProfil','type'=>'=','name'=>'idProfil','value'=>$id));
+	$req =  new myQueryClass('profil',$conditions);
+	$r = $req->myQuerySelect();
+	return $r[0];
+}

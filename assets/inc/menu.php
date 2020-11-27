@@ -11,7 +11,7 @@
   <!-- header -->
   <header>
     <div class="sticky menuOrdi textAlignCenter">
-    <div class="col-md-12 textAlignCenter headerLogo"> <a href="index.php"><img  class="logoSite img-responsive" src="<?=$configSite->logoSite;?>" alt="" ></a> 
+    <div class="col-md-12 textAlignCenter headerLogo"> <a href="index.html"><img  class="logoSite img-responsive" src="<?=$configSite->logoSite;?>" alt="" ></a> 
     <ul class="social_icons">
           <li><a href="https://www.facebook.com/Unedeuxiemevie-103270551599761" target="_blank"><i class="blueFb fa-2x fab fa-facebook"></i></a></li>
           <li><a href="https://www.instagram.com/unedeuxiemevie.fr/?hl=fr" target="_blank"><i class="violet fa-2x fab fa-instagram"></i></a></li>  
@@ -61,7 +61,7 @@
                     <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier['totalAvecRemise'];?></span>€</h6>
                   </li>
                   <li class="margin-0">
-                      <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>
+                      <a href="panier.html" class="btn marginBottom5">Voir le panier</a>
                       <a id="viderPanier" class="btn rouge"><i class="fas fa-shopping-basket"></i> Vider le panier</a>
                   </li>
                 </ul>
@@ -69,32 +69,30 @@
               
           <?php foreach(allSiteMenuGroupe() as $groupe){ 
                 if(strlen($groupe['nomAction']) < 1){
-                  $param = 'c='.$groupe['nomControleur'];
+                  $param = $groupe['nomControleur'];
               }else{
-                  $param = 'c='.$groupe['nomControleur'].'&action='.$groupe['nomAction'];
+                  $param = $groupe['nomControleur'].'-'.$groupe['nomAction'];
               }
-                 if($groupe['sousMenu'] == 0){  
+                 if($groupe['sousMenu'] == 0){  // si y a pas de sous menu
                   if($groupe['connecte'] == 1) // si besoin d'etre co 
                     {
-                                    if(isset($_SESSION['mail'])){?>
-                                     <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
-                                    <?php }
-                                }else{}
-                          
+                      if(isset($_SESSION['mail'])){?>
+                        <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
+                      <?php }
+                    }else{}           
                   if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
-                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   if($groupe['connecte'] == 2){ // les deux
-                    ?> <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   if(isset($_SESSION['mail'])){
                   if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
                     ?>
 
-                    <li class="dropdown "> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
+                    <li class="dropdown "> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                     <?php
                   }}
-                  
               }else {
                 if(($groupe['connecte'] == 1) &&  (isset($_SESSION['mail']))){ // que quand tu es co
                 ?> <li class="dropdown "> <a class="survol" href="#." class="dropdown-toggle" data-toggle="dropdown"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
@@ -123,24 +121,24 @@
                       foreach(allSiteMenuV($groupe['id']) as $lien){ 
                    
                                if($lien['nomAction'] == ''){
-                                    $param = 'c='.$lien['nomControleur'];
+                                    $param = $lien['nomControleur'];
                                 }else{
-                                    $param = 'c='.$lien['nomControleur'].'&action='.$lien['nomAction'];
+                                    $param = $lien['nomControleur'].'-'.$lien['nomAction'];
                                 }
                                 if($lien['connecte'] == 1){
                                     if(isset($_SESSION['mail'])){?>
-                                     <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li>
+                                     <li> <a class="survol" href="<?=$param;?>.html"> <?=$lien['nomMenu'];?></a> </li>
                                     <?php }
                                 }else{ }
                                 if(($lien['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
-                                  ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                  ?> <li> <a class="survol" href="<?=$param;?>.html"> <?=$lien['nomMenu'];?></a> </li> <?php 
                                 }
                                 if($lien['connecte'] == 2){ // les deux
-                                  ?> <li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                  ?> <li> <a class="survol" href="<?=$param;?>.html"> <?=$lien['nomMenu'];?></a> </li> <?php 
                                 }
                                 if(isset($_SESSION['mail'])){
                                   if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
-                                    ?><li> <a class="survol" href="index.php?<?=$param;?>"> <?=$lien['nomMenu'];?></a> </li> <?php 
+                                    ?><li> <a class="survol" href="<?=$param;?>.html"> <?=$lien['nomMenu'];?></a> </li> <?php 
                                   }
                                 }
 
@@ -209,7 +207,7 @@
                       <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier['totalAvecRemise'];?></span>€</h6>
                     </li>
                     <li class="margin-0">
-                        <a href="index.php?c=panier&action=voirpanier" class="btn marginBottom5">Voir le panier</a>
+                        <a href="panier.html" class="btn marginBottom5">Voir le panier</a>
                         <a id="viderPanier" class="btn rouge"><i class="fas fa-shopping-basket"></i> Vider le panier</a>
                     </li>
                   </ul>
@@ -220,6 +218,8 @@
             
               
           <?php foreach(allSiteMenuGroupe() as $groupe){ 
+           
+           
                 if(strlen($groupe['nomAction']) < 1){
                   $param = 'c='.$groupe['nomControleur'];
               }else{
@@ -228,7 +228,8 @@
                  if($groupe['sousMenu'] == 0){  
                   if($groupe['connecte'] == 1) // si besoin d'etre co 
                     {
-                                    if(isset($_SESSION['mail'])){?>
+                      
+                      if(isset($_SESSION['mail'])){?>
                                      <li> <a class="survol" href="index.php?<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
                                     <?php }
                                 }else{}

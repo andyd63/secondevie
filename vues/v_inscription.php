@@ -4,7 +4,7 @@
   <?php include('./assets/inc/header.php');
    include('./assets/inc/menu.php');
    $number = 0;
-   $nbImg = 4;
+   $nbImg = 5;
    ?>
 
   
@@ -134,85 +134,22 @@
                     <label>Choisir mon avatar</label>
                     </li>
                   </ul>
-                  <div id='icone1' style='display:block'>
-                  <ul  class="row">
-                      <?php foreach($allAvatarEnfantFille as $avatarEF){
+                  <div id='icone1'style='display:block'>
+                  <ul  class="row margin-bottom-10">
+                      <?php foreach($allAvatar as $avatar){
                         if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
                         </ul>
-                        <ul class='row'>
+                        <ul class='row margin-bottom-5'>
                         <?php } $number++; ?>
-                      <li class="col-md-3">
-                        <div class="avatar">
-                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
-                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
-                          homme
+                      <li class="col-md-2">
+                        <div class="avatar imgAvatar" id="<?=$avatar["idAvatar"];?>">
+                          <img class="img-circle img<?=$avatar["idAvatar"];?>" id="<?=$avatar["idAvatar"];?>" src="<?=$avatar["lienAvatar"];?>" alt="" > 
                         </div>
                       </li>
                       <?php }?>
                     </ul>
                   </div>
-
-                  <div id='icone2' style='display:none'>
-                  <ul  class="row">
-                      <?php foreach($allAvatarEnfantFille as $avatarEF){
-                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
-                        </ul>
-                        <ul class='row'>
-                        <?php } $number++; ?>
-                      <li class="col-md-3">
-                        <div class="avatar">
-                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
-                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
-                          femme
-                        </div>
-                      </li>
-                      <?php }?>
-                    </ul>
-                  </div>
-
-                  <div id='icone3'  style='display:none'>
-                  <ul  class="row">
-                      <?php foreach($allAvatarEnfantFille as $avatarEF){
-                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
-                        </ul>
-                        <ul class='row'>
-                        <?php } $number++; ?>
-                      <li class="col-md-3">
-                        <div class="avatar">
-                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
-                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
-                          garcon
-                        </div>
-                      </li>
-                      <?php }?>
-                    </ul>
-                  </div>
-
-                  <div id='icone4'  style='display:none'>
-                  <ul  class="row">
-                      <?php foreach($allAvatarEnfantFille as $avatarEF){
-                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
-                        </ul>
-                        <ul class='row'>
-                        <?php } $number++; ?>
-                      <li class="col-md-3">
-                        <div class="avatar">
-                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
-                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
-                          filette
-                        </div>
-                      </li>
-                      <?php }?>
-                    </ul>
-                  </div>
-
-
-
-                
-                      </ul>
-               
-
-
+                  <input class="transparent" type="radio" id="imgAvatarForm" name="imgAvatarForm" value='1' checked>
                   <hr>
 
                   <ul class="row">
@@ -251,22 +188,15 @@
   });
 
 
-  $('#designation').change(function(e){ 
-    var selectElmt = document.getElementById("designation");
-    var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;  
-    for (let index = 1; index <= 4; index++) {
-      if(index == valeurselectionnee){
-        document.getElementById('icone'+index).style.display ='block';
-      }else{
-        document.getElementById('icone'+index).style.display ='none';
-      }
+    // quand click sur l'avatar
+    $('.imgAvatar').click(function(e){ 
+    document.getElementById('imgAvatarForm').value = e.target.id;
+    for (let index = 0; index < 150; index++) {
+      $('.img'+index).removeClass("imgActive");     // supp la bordure
     }
+    $('.img'+e.target.id).addClass("imgActive"); // ajoute une bordure autour
   });
 
-  function afficheSelonGenre(id){
-    console.log(id)
-   
-  }
   $('#mdpConfirm').change(function(e){ 
     mdpConfirm = document.getElementById('mdpConfirm').value;
     mdp = document.getElementById('mdpSimple').value;

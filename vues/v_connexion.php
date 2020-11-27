@@ -48,7 +48,7 @@
                     </li>
                     <li class="col-md-6">
                       <div class="checkbox margin-0 margin-top-20 text-center">
-                        <a class="survol" href="index.php?c=inscription">Pas encore inscrit?</a>
+                        <a class="survol" href="inscription.html">Pas encore inscrit?</a>
                       </div>
                     </li>
                          <!-- LOGIN -->

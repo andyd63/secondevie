@@ -1,6 +1,17 @@
 .not-allowed {cursor: not-allowed !important;}
 
 
+/***********************************
+AVATR
+****************/
+.imgAvatar{
+    cursor: pointer;
+}
+.imgActive {
+    color: yellow;
+    border: 4px solid;
+}
+
 /********************************
             COLOR
 ********************************/

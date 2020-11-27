@@ -126,7 +126,7 @@ function totalPrixCommandeParCategorie($id){
 
 
 function iconeSelonSexe($idSexe){
-    if(($idSexe == 1) || ($idSexe == 3) ){
+    if(($idSexe == 2) || ($idSexe == 4) ){
         $r = '<i class="fas fa-lg rose fa-female"></i>';
     }else{
         $r = '<i class="fas fa-lg blue fa-male"></i>';

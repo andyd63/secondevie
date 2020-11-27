@@ -13,6 +13,6 @@
 	header("Location:index.php");
 ?>
 <SCRIPT LANGUAGE="JavaScript">
-document.location.href="index.php?c=accueil"
+document.location.href="index.html"
 </SCRIPT>
 

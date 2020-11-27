@@ -92,7 +92,6 @@ class myQueryClass
                 $requete->bindParam($condition['name'], $condition['value']);
             }
         } 
-        
         $requete->execute();
        
       

@@ -6,18 +6,18 @@ require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
 
 
-function allAvatarEnfantGarcon(){
-	$conditions = array();
-	array_push($conditions, array('nameChamps'=>'idGenre','type'=>'=','name'=>'cpLivraison','value'=>'3'));
-	$req =  new myQueryClass('avatar',$conditions);
+function allAvatar(){
+	$req =  new myQueryClass('avatar');
 	$r = $req->myQuerySelect();
 	return $r;
 }
 
-function allAvatarEnfantFille(){
+
+
+function monAvatar($id){
 	$conditions = array();
-	array_push($conditions, array('nameChamps'=>'idGenre','type'=>'=','name'=>'cpLivraison','value'=>'4'));
+	array_push($conditions, array('nameChamps'=>'idAvatar','type'=>'=','name'=>'idAvatar','value'=>$id));
 	$req =  new myQueryClass('avatar',$conditions);
 	$r = $req->myQuerySelect();
-	return $r;
+	return $r[0];
 }

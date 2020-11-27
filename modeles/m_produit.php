@@ -187,16 +187,14 @@ function searchProduit($recherche,$ask){
 
 
 // Les produits selon la taille du monsieur ou madame
-function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe){
+function allProduitBySelection($get,$infoProfil = null){
     $order = array();
     $conditions = array(); 
-    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$tailleBas ,'operator'=>'OR'));
-    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$tailleHaut ,'operator'=>'OR'));
-    array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$sexe ));
+ 
     // pour chaque get
    
     foreach($get as $g => $value){
-        if(($g != 'order' ) && ($g != 'prixMin') && ($g != 'prixMax')){
+        if(($g != 'order' ) && ($g != 'prixMin') && ($g != 'prixMax') && ($g != 'profil')){
             $value = explode(",", $value);
             $nb = count($value) -1; // nbre de valeur
             $cp = 0;
@@ -214,6 +212,11 @@ function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe){
                 $cp++;
             }
         } else{
+            if($g == 'profil'){
+                array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$infoProfil["tailleHautProfil"] ,'operator'=>'OR'));
+                array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$infoProfil['tailleBasProfil'] ,'operator'=>'OR'));
+                array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$infoProfil['genre'] ));
+            }
             if($g == 'order'){
                 array_push($order, array('nameChamps'=>'prix','sens'=>$value));
             }
@@ -228,6 +231,12 @@ function allProduitBySelection($get,$tailleBas,$tailleHaut,$sexe){
       
         }
        
+       
+    }
+    if($infoProfil != null){
+        array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$infoProfil["tailleHautProfil"] ,'operator'=>'OR'));
+        array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$infoProfil['tailleBasProfil'] ,'operator'=>'OR'));
+        array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$infoProfil['genre'] ));
     }
     
     $req =  new myQueryClass('produit',$conditions,$order);

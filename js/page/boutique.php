@@ -114,22 +114,34 @@ function updateMenuPanier(idProduit){
 
 $('#btnFiltrer').click(function(e){ 
   filter= '';
-   filterGenre = genreFilter();
+ 
    filterCategorie = categorieFilter();
-   filterTaille = tailleFilter();
+ 
    etatFilter = etatFilter();
    prixFilter = prixFilter();
 
    action =  $_GET('action');
-   if(filterGenre != ''){
-     filter = filter + '&genre='+filterGenre;
+   if(document.getElementById('nbGenre')){
+      filterGenre = genreFilter();
+    if(filterGenre != ''){
+      filter = filter + '&genre='+filterGenre;
+    }
    }
-   if(filterCategorie != ''){
-    filter = filter + '&souscategorie='+filterCategorie;
+
+   if(document.getElementById('divProfil')){
+      filterProfil = document.getElementById('profil').value;
+    if(filterProfil != ''){
+      filter = filter + '&profil='+filterProfil;
+    }
    }
-   if(filterTaille != ''){
-    filter = filter + '&taille='+filterTaille;
-   }
+
+   if(document.getElementById('nbTaille')){
+      filterTaille = tailleFilter();
+      if(filterCategorie != ''){
+        filter = filter + '&souscategorie='+filterCategorie;
+      }
+    }
+
    if(etatFilter != ''){
     filter = filter + '&etat='+etatFilter;
    }

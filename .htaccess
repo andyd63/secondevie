@@ -1,0 +1,27 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^index-([abcd]+)-([0-9]+).html$ index.php?c=$1&action=$2 [L]
+
+RewriteRule ^index.html$ index.php [L]
+RewriteRule ^faq.html$ index.php?c=faq [L]
+RewriteRule ^vendre.html$ index.php?c=vendre [L]
+RewriteRule ^boutique.html$ index.php?c=boutique [L]
+RewriteRule ^connexion.html$ index.php?c=connexion [L]
+RewriteRule ^contact.html$ index.php?c=contact [L]
+RewriteRule ^admin.html$ index.php?c=admin [L]
+RewriteRule ^profil.html$ index.php?c=profil [L]
+RewriteRule ^deconnexion.html$ index.php?c=deconnexion [L]
+RewriteRule ^panier.html$ index.php?c=panier [L]
+RewriteRule ^inscription.html$ index.php?c=inscription [L]
+
+
+
+RewriteRule ^boutique-([0-9]+).html$ index.php?c=boutique&action=$1 [L]
+RewriteRule ^boutique-([a-z]+).html$ index.php?c=boutique&action=$1 [L]
+
+
+RewriteRule ^profil-([a-z]+).html$ index.php?c=profil&action=$1 [L]
+RewriteRule ^profil-([a-z]+)-([a-z]+).html$ index.php?c=profil&action=$1&partie=$2 [L]
+
+
+RewriteRule ^panier-([a-z]+).html$ index.php?c=panier&action=$1 [L]

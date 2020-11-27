@@ -73,7 +73,7 @@
                   ?>
                 <a href="index.php?c=panier&action=choixLivraison" class="btn">Continuer</a> 
                 <?php }}else{?>
-                  <a href="index.php?c=connexion" class="btn">Connectez-vous!</a>
+                  <a href="connexion.html" class="btn">Connectez-vous!</a>
                 <?php }?>
               </div>
             </div>        

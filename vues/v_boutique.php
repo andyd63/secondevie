@@ -35,8 +35,25 @@
           <div class="col-sm-3">
             <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h6><hr>
             <div class="shop-sidebar"> 
-            
-            <?php if(!isset($page)){;?>
+            <?php if(isset($page)){;?>
+             <!-- Profil -->
+             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Profil <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-up"></i></span></h5>
+              <ul style="display:block" id="divProfil" class="shop-cate">
+                <?php 
+               
+                foreach($mesProfils as $profil){
+                  $actif = '';
+                   $avatar = monAvatar($profil['idAvatar']);
+                   if($profilDef == $profil['idProfil']){
+                     $actif = 'imgActive';
+                   }
+                ?>
+                <img class="img-circle imgAvatar img<?=$profil["idProfil"];?> <?=$actif;?> " id="<?=$profil["idProfil"];?>" width='48px' src="<?=$avatar["lienAvatar"];?>" alt="" > 
+                <?php }?>
+                <input class="transparent" type="radio" id="profil" name="profil" value='<?= $profilDef;?>' checked>
+              </ul>
+                <?php }
+                 if(!isset($page)){;?>
             <!-- Category -->
              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Genre <span class="cursor" id="spanGenre" ><i  class="fas fa-angle-up"></i></span></h5>
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
@@ -264,7 +281,14 @@
     
 <script> 
 
-
+  // quand click sur l'avatar
+  $('.imgAvatar').click(function(e){ 
+    document.getElementById('profil').value = e.target.id;
+    for (let index = 0; index < 150; index++) {
+      $('.img'+index).removeClass("imgActive");     // supp la bordure
+    }
+    $('.img'+e.target.id).addClass("imgActive"); // ajoute une bordure autour
+  });
 
   $('#price-min').change(function(e){ 
       $('#prixMinValue').text($(this).val());

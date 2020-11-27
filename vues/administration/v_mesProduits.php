@@ -118,9 +118,9 @@
 
   <script>
    $(document).ready(function() {
-        getDataTable('produitDispo');
-        getDataTable('produitReserve');
-        getDataTable('produitVendu');
+        getDataTable('produitDispo',true);
+        getDataTable('produitReserve',true);
+        getDataTable('produitVendu',true);
     });
 </script>
   <?php include('./assets/inc/footer.php');?>

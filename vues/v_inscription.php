@@ -3,7 +3,8 @@
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');
    include('./assets/inc/menu.php');
-
+   $number = 0;
+   $nbImg = 4;
    ?>
 
   
@@ -103,8 +104,7 @@
                      <!-- TAILLE DE HAUT -->
                     <li class="col-md-4">
                       <label>Désignation</label>
-
-                        <select class="form-control" name="genreClient">
+                        <select class="form-control" id='designation' name="genreClient">
                             <?php foreach ($allGenre as $genre){
                               echo "<option value=".$genre['idGenre'].">".$genre['libGenre']."</option>";
                             }?> 
@@ -129,7 +129,92 @@
                         </select>
                     </li>
                   </ul>
+                  <ul class="row">
+                    <li class="col-md-12"> 
+                    <label>Choisir mon avatar</label>
+                    </li>
+                  </ul>
+                  <div id='icone1' style='display:block'>
+                  <ul  class="row">
+                      <?php foreach($allAvatarEnfantFille as $avatarEF){
+                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
+                        </ul>
+                        <ul class='row'>
+                        <?php } $number++; ?>
+                      <li class="col-md-3">
+                        <div class="avatar">
+                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
+                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
+                          homme
+                        </div>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
+
+                  <div id='icone2' style='display:none'>
+                  <ul  class="row">
+                      <?php foreach($allAvatarEnfantFille as $avatarEF){
+                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
+                        </ul>
+                        <ul class='row'>
+                        <?php } $number++; ?>
+                      <li class="col-md-3">
+                        <div class="avatar">
+                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
+                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
+                          femme
+                        </div>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
+
+                  <div id='icone3'  style='display:none'>
+                  <ul  class="row">
+                      <?php foreach($allAvatarEnfantFille as $avatarEF){
+                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
+                        </ul>
+                        <ul class='row'>
+                        <?php } $number++; ?>
+                      <li class="col-md-3">
+                        <div class="avatar">
+                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
+                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
+                          garcon
+                        </div>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
+
+                  <div id='icone4'  style='display:none'>
+                  <ul  class="row">
+                      <?php foreach($allAvatarEnfantFille as $avatarEF){
+                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
+                        </ul>
+                        <ul class='row'>
+                        <?php } $number++; ?>
+                      <li class="col-md-3">
+                        <div class="avatar">
+                          <img class="img-circle" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
+                          <input type="radio" id="louie" name="drone" value="<?=$avatarEF["idAvatar"];?>">
+                          filette
+                        </div>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
+
+
+
+                
+                      </ul>
+               
+
+
                   <hr>
+
                   <ul class="row">
                       <!-- BOUTON S'INSCRIRE -->
                       <li class="col-md-12 textAlignCenter">
@@ -164,6 +249,24 @@
       document.getElementById('btnInscription').disabled = false;
     }
   });
+
+
+  $('#designation').change(function(e){ 
+    var selectElmt = document.getElementById("designation");
+    var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;  
+    for (let index = 1; index <= 4; index++) {
+      if(index == valeurselectionnee){
+        document.getElementById('icone'+index).style.display ='block';
+      }else{
+        document.getElementById('icone'+index).style.display ='none';
+      }
+    }
+  });
+
+  function afficheSelonGenre(id){
+    console.log(id)
+   
+  }
   $('#mdpConfirm').change(function(e){ 
     mdpConfirm = document.getElementById('mdpConfirm').value;
     mdp = document.getElementById('mdpSimple').value;

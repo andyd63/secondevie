@@ -4,6 +4,7 @@ require_once "./modeles/m_clients.php";
 require_once "./modeles/m_genre.php";
 require_once "./modeles/m_alert.php";
 require_once "./modeles/m_module.php";
+require_once "./modeles/m_avatar.php";
 $conn = bdd();
 
 if(isset($_GET['action'])) // SI Y A PAS DE PARAMETRE ACTION DANS L URL
@@ -18,6 +19,8 @@ switch($action) {
 		$allGenre =  allGenre();
 		$tailleHaut = tailleHaut();
 		$taillePantalon = taillePantalon();
+		$allAvatarEnfantFille = allAvatarEnfantFille();
+		$allAvatarEnfantGarcon = allAvatarEnfantGarcon();
 		include('vues/v_inscription.php');
 	break;
 

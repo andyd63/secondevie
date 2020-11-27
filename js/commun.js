@@ -125,8 +125,10 @@ function $_GET(param) {
 }
 
 
-function getDataTable(id,recherche =false){
+function getDataTable(id, desc = false){
+    if(desc){
     $('#'+id).DataTable( {
+        "order": [[ 0, "desc" ]],
         "scrollX": true,
         "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "Tous"]],
         "language": {
@@ -139,5 +141,21 @@ function getDataTable(id,recherche =false){
               }
         }
     } );
+    }else{
+        $('#'+id).DataTable( {
+            "scrollX": true,
+            "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "Tous"]],
+            "language": {
+                "lengthMenu":     "Voir _MENU_ résultats ",
+                "zeroRecords":    "Aucun résultat",
+                "info":           "Affichage de  _START_ à _END_ sur _TOTAL_ résultats",
+                "paginate": {
+                    "previous": "<",
+                    "next": ">"
+                  }
+            }
+        } );
+
+    }
 }
 

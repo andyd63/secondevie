@@ -17,7 +17,14 @@ function redirectUrl($url){
         </SCRIPT>
     <?php }
 
-
+function ouiOuNon($val){
+    if($val == 1){
+        $r = 'Oui';
+    } else{
+        $r = 'non';
+    }
+    return $r;
+}
 // Generer l'erreur ou le message à afficher entièrement
 function genererError($idModule){
         $module = voirModule($idModule);

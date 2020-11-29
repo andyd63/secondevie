@@ -11,7 +11,10 @@ AVATR
     color: yellow;
     border: 4px solid;
 }
-
+.block{
+    display : block!important;
+    float: initial!important;
+}
 /********************************
             COLOR
 ********************************/

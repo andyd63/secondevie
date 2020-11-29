@@ -104,7 +104,7 @@
                         <ul class='row margin-top-10'>
                         <?php } $number++; ?>
                               <!-- Member -->
-                    <li class="col-md-4 text-center">
+                    <li id="avatar<?=$profil["idProfil"];?>" class="col-md-4 text-center">
                       <article> 
                         <!-- abatar -->
                         <div class="avatar"> <img class="img-circle imgAvatar" src="<?=$avatar["lienAvatar"];?>" alt="" > 
@@ -112,7 +112,7 @@
                         </div>
                         <!-- Team Detail -->
                         <div class="team-names margin-top-5">
-                          <h5><?= $profil['nomProfil'];?></h5>
+                          <h5><?= $profil['nomProfil'];?> <i id="<?=$profil['idProfil'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer le profil" class="suppProfil fas fa-trash-alt"></i></h5>
                           <p>Taille Haut: <?= nomTaille($profil['tailleBasProfil']);?><br>
                           Taille Bas:  <?= nomTaille($profil['tailleHautProfil']);?></p>
                           <button id="edit" class="btn btnSmall"><i class="fas fa-user-edit"></i> Modifier</button>
@@ -182,9 +182,9 @@
                       foreach($allAvatar as $avatarEF){
                         if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
                         </ul>
-                        <ul class='row margin-top-10'>
+                        <ul  class='row margin-top-10'>
                         <?php } $number++; ?>
-                      <li class="col-md-2">
+                      <li  class="col-md-2">
                         <div class="avatar imgAvatar" id="<?=$avatarEF["idAvatar"];?>">
                           <img width='80%' class="img-circle imgProfil img<?=$avatarEF["idAvatar"];?>" id="<?=$avatarEF["idAvatar"];?>" src="<?=$avatarEF["lienAvatar"];?>" alt="" > 
                         </div>
@@ -228,7 +228,23 @@
       $('.img'+index).removeClass("imgActive");     // supp la bordure
     }
     $('.img'+e.target.id).addClass("imgActive"); // ajoute une bordure autour
-  });
+    });
+
+
+    // quand click sur supprimer un profil
+    $('.suppProfil').click(function(e){ 
+      idProfil = e.target.id; // id du profil
+      param = 'id='+idProfil;
+      url= 'index.php?c=profil&action=supprimerprofil&ajx=1';
+      reponse= postAjax(param,url);
+      rep = reponse.responseText;
+      rep = jQuery.parseJSON(rep);
+      alertJs(rep.success,rep.msg); // affiche l'alert de suppression
+      document.getElementById('avatar'+idProfil).remove()
+      
+    });
+
+
   
   function visible(divPrec,divId){
     divPrecedente = visibilite(divPrec,divId);

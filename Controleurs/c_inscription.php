@@ -19,7 +19,6 @@ else
 switch($action) {
 
 	case 'sinscrire':
-		require('./modeles/m_taille.php');
 		$allGenre =  allGenre();
 		$tailleHaut = tailleHaut();
 		$taillePantalon = taillePantalon();

@@ -1,6 +1,30 @@
 .formRecherche{
     z-index: 0 !important;
 }
+
+.inputDivGauche {
+    width: 80%!important;
+    border-right: 0px !important;
+}
+.inputDivDroite {
+    cursor: pointer;
+    color:black;
+    border-right: 1px black solid !important;
+    border-left: 1px grey solid !important;
+    border-top: 1px black solid !important;
+    border-bottom: 1px black solid !important;
+    width: 20%!important;
+    height: 44px;
+    font-size: 11px;
+    padding: 11px 10px;
+    letter-spacing: 1px;
+    display: inline-block;
+    font-weight: normal;
+    text-align: left;
+    margin-top: 10px;
+    background-color: rgb(232, 240, 254) !important;
+}
+
 .logoSite{
     width: 250px;
 }

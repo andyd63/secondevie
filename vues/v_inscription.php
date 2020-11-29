@@ -56,11 +56,17 @@
                       </label>
                     </li>
                     
-                    <!-- LAST NAME -->
+                    <!-- Mdp -->
                     <li class="col-md-6">
-                      <label>Mot de passe <span class="rouge"><span class="rouge">*</span></span>
-                        <input id='mdpSimple' type="password" name="password" value="" placeholder required>
-                      </label>
+                      <label class="margin-bottom-0">Mot de passe <span class="rouge"><span class="rouge">*</span></label>
+                        <input class='inputDivGauche' id='mdpSimple' type="password" name="password" value="" placeholder required>
+                        <div class='inputDivDroite textAlignCenter unmask'><i class='fas fa-eye fa-2x'></i></div>
+                    </li>
+
+                    <li class="col-md-6">
+                        <label class="margin-bottom-0">Confirmation du mot de passe <span class="rouge"><span class="rouge">*</span></span></label>
+                        <input class='inputDivGauche' id="mdpConfirm" type="password"  value="" placeholder="" required> 
+                        <div class='inputDivDroite textAlignCenter unmask'><i class='fas fa-eye fa-2x'></i></div>
                     </li>
                     
                     <!-- LAST NAME -->
@@ -151,7 +157,6 @@
                   </div>
                   <input class="transparent" type="radio" id="imgAvatarForm" name="imgAvatarForm" value='1' checked>
                   <hr>
-
                   <ul class="row">
                       <!-- BOUTON S'INSCRIRE -->
                       <li class="col-md-12 textAlignCenter">
@@ -176,7 +181,7 @@
     reponse= postAjax(param,url,messageRetour);
     rep = reponse.responseText;
     rep = jQuery.parseJSON(rep);
-    if(rep.success){ // si le mail existe déjà
+   if(rep.success){ // si le mail existe déjà
         Swal.fire({
                     icon: 'warning',
                     title: 'Ce mail est déjà utilisé sur le site, veuillez prendre une autre adresse',
@@ -187,6 +192,16 @@
     }
   });
 
+  $('.unmask').on('click', function(){
+  
+  if($(this).prev('input').attr('type') == 'password')
+    changeType($(this).prev('input'), 'text');
+  
+  else
+    changeType($(this).prev('input'), 'password');
+  
+  return false;
+});
 
     // quand click sur l'avatar
     $('.imgAvatar').click(function(e){ 

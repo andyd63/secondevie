@@ -15,37 +15,34 @@
             <div class="row"> 
               <div class="col-md-12 ">
               <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
-              <?php if(isset($alert)){?>
-                  <div class="alert alert-primary" role="alert">
-                    <?php echo $alert;?>
-                  </div>
-                 <?php  }?>
-                <h6>Mes clients</h6>
+                <h6>Mes codePromos</h6>
                 <table id="tableCli" class="table ">
                     <thead>
                     <tr class="active">
                         <td>#</td>
-                        <td>Nom prénom </td>
-                        <td>Mail </td>
-                        <td>Tel </td>
-                        <td>Adresse</td>
-                        <td>Date d'inscription </td>
-                        <td>Date de connexion</td>
-                        <td>Ses commandes</td>
+                        <td>Nom</td>
+                        <td>Réduction </td>
+                        <td>Type </td>
+                        <td>Utilisable plusieurs fois?</td>
+                        <td>Actif</td>
+                        <td>Nombre d'utilisation</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
                   <?php 
-                  foreach($allClient as $client){ ?>
+                  foreach($allCodePromo as $promo){ ?>
                   <tr>
-                    <th scope="row"><?= $client['ID_CLIENTS'];?></th>
-                    <th scope="row"><?= $client['PRE_CLIENTS'];?> <?= $client['NOM_CLIENTS'];?></th>
-                    <td><?= $client['MAIL_CLIENTS'];?></td>
-                    <td><?= $client['TEL_CLIENTS'];?></td>
-                    <td><?= $client['ADRESSE'].' , '.$client['CODEPOSTAL'].' '.$client['VILLE'];?></td>
-                    <td><?= date('d/m/Y H:i:s', $client['date']);?></td>             
-                    <td><?= date('d/m/Y H:i:s', $client['date_connecte']);?></td>    
-                    <td><a class="btn" href="index.php?c=admin&action=commandeClient&id=<?= $client['ID_CLIENTS'];?>"><i class="fas fa-search-plus fa-lg"></i> Voir</a></td>        
+                    <th scope="row"><?= $promo['idCodePromo'];?></th>
+                    <th scope="row"><?= $promo['nomCodePromo'];?></th>
+                    <td><?= $promo['reducPromo'];?></td>
+                    <td><?php if($promo['typeCodePromo']== 1){ echo 'En €';}else { echo 'En %';};?></td>
+                    <td><?= ouiOuNon($promo['multi']);?></td>
+                    <td><?= ouiOuNon($promo['actif']);?></td>             
+                    <td><?= $promo['nbreUtilisation'];?></td>    
+                    <td></td>        
+                    <td></td>        
                   </tr> 
                     <?php }?>
                   

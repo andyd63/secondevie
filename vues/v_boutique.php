@@ -225,16 +225,16 @@
                   <?php $taille = taille($produit['taille']);?>
                   <p class="textAlignCenter"><?= iconeSelonSexe($produit['genre']);?> Taille : <?= $taille['nomTaille'];?></p>
                         <div class="inn">
-                          <a href="<?=$produit['image1'];?>"  data-lighter><i class="iconeMobile icon-magnifier"></i></a> 
+                          <a href="<?=$produit['image1'];?>" data-toggle="tooltip" data-placement="top" title="Voir en plus grand"  data-lighter><i class="iconeMobile icon-magnifier"></i></a> 
                           <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
-                           <i id="panierAdd-<?=$produit['id'];?>"  style="display:none" class="addPanier  iconeMobile fas fa-cart-plus"></i>
-                           <i id="panierSuppr-<?=$produit['id'];?>"  class="supprPanier  iconeMobile fas rouge fa-window-close"></i>
+                           <i id="panierAdd-<?=$produit['id'];?>"  data-toggle="tooltip" data-placement="top" title="Ajouter au panier " style="display:none" class="addPanier cursor iconeMobile fas fa-cart-plus"></i>
+                           <i id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" class="supprPanier  iconeMobile cursor fas rouge fa-window-close"></i>
                           <?php } else { ?>
-                           <i  id="panierAdd-<?=$produit['id'];?>" class="addPanier  iconeMobile fas fa-cart-plus"></i>
-                           <i  id="panierSuppr-<?=$produit['id'];?>"  style="display:none"  class="supprPanier iconeMobile fas rouge fa-window-close"></i>
+                           <i  id="panierAdd-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Ajouter au panier " class="addPanier  iconeMobile cursor fas fa-cart-plus"></i>
+                           <i  id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" style="display:none"  class="supprPanier cursor iconeMobile fas rouge fa-window-close"></i>
                           <?php }  if(isset($_SESSION['id'])){
                             if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
-                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."   data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris iconeMobile  icon-heart"></i></a>
+                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."   data-toggle="tooltip" data-placement="top" title="Ajouter au favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris iconeMobile  icon-heart"></i></a>
                             <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge iconeMobile supprFavoris fas fa-heart"></i></a>
                            <?php } else { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur iconeMobile  addFavoris icon-heart"></i></a>

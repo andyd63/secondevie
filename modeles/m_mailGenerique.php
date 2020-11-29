@@ -9,7 +9,7 @@ function voirMailGenerique($id)
 {
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'idMailGenerique','type'=>'=','name'=>'idMailGenerique','value'=>$id));
-	$req =  new myQueryClass('mailGenerique',$conditions);
+	$req =  new myQueryClass('mailgenerique',$conditions);
 	$r = $req->myQuerySelect();
 	return $r[0] ;
 }

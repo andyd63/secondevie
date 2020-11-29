@@ -42,10 +42,24 @@ switch ($action){
 	}
 	break;
 
+	///////////////////////////////////////////////////////////////////
+	///////////////// 		PROFIL
+	///////////////////////////////////////////////////////////////////
+	// Ajoute un profil
 	case 'addProfil':
 		addProfil($_POST['tailleHClient'],$_POST['taillePClient'],$_POST['genreClient'],$_POST['imgAvatarForm'],$_SESSION['id'], $_POST['prenom']); // ajoute l'avatar
 		redirectUrl("index.php?c=profil&partie=foyer");
 	break;
+
+	case 'supprimerprofil':
+		if(verifProfilById($_POST['id'])){ // verifie si le profil est à lui
+			deleteProfil($_POST['id']);
+		}
+		echo reponse_json(true,'','Le profil est bien supprimé!');
+	break;
+
+
+
 
 	case 'mescommandes' : 
 	if(isset($_SESSION['id']))

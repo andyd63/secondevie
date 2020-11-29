@@ -39,8 +39,8 @@
                 <!-- USER BASKET -->
                 <li class="dropdown user-basket"> <a class="bleuTurquoise dropdown-toggle menuP"  role="button" aria-haspopup="true" aria-expanded="true">
               <i class="fas fa fa-lg fa-shopping-cart noir"></i>(<b id="nbreProduitPanier"><?=  $_SESSION['panier']->getNbCollection(); ;?></b>)</a>
-                <ul class="menuPanier " >
-                  <li>
+                <ul class="menuPanier row " >
+                  <li class="col-md-12">
                     <div id="menuPanierProduit" class="media-body">
                       <?php 
                       foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
@@ -54,7 +54,7 @@
                         <?php }?>
                     
                   </li>
-                  <li>
+                  <li class="col-md-12">
                     <?php $totalPanier = totalPrixPanier();?>
 
                     <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier['totalSansRemise']?></span>€</h5>
@@ -185,8 +185,8 @@
     </div>
         <!-- Logo -->
         <nav class="navbar ">
-        <ul class="menuPanier dropdown user-basket " >
-                    <li>
+        <ul class="menuPanier dropdown user-basket  row" >
+                    <li class="block">
                       <div id="menuPanierProduit" class="media-body">
                         <?php 
                         foreach ($_SESSION['panier']->getCollection() as $produitPanier) { ?>
@@ -200,13 +200,13 @@
                           <?php }?>
                       
                     </li>
-                    <li>
+                    <li class="block">
                       <?php $totalPanier = totalPrixPanier();?>
 
                       <h5 class="text-center">Total sans réduc: <span id="prixTotalMenuPanier"><?= $totalPanier['totalSansRemise']?></span>€</h5>
                       <h6 class="text-center">Total avec réduc: <span id="prixTotalMenuPanierPromo"><?= $totalPanier['totalAvecRemise'];?></span>€</h6>
                     </li>
-                    <li class="margin-0">
+                    <li class="block">
                         <a href="panier.html" class="btn marginBottom5">Voir le panier</a>
                         <a id="viderPanier" class="btn rouge"><i class="fas fa-shopping-basket"></i> Vider le panier</a>
                     </li>

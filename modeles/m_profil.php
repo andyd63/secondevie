@@ -40,3 +40,25 @@ function monProfil($id){
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
+
+// verifier si le profil correspond à l'utilisateur 
+function verifProfilById($idProfil){
+	$conditions = array();
+	array_push($conditions, array('nameChamps'=>'idProfil','type'=>'=','name'=>'idProfil','value'=>$idProfil));
+	$req =  new myQueryClass('profil',$conditions);
+	$r = $req->myQuerySelect();
+	if($r[0]['idClient'] == $_SESSION['id']){
+		return true;
+	}else{
+		return false;
+	}
+}	
+
+// Supprime le profil
+function deleteProfil($id){
+	$conditions = array();
+    array_push($conditions, array('nameChamps'=>'idProfil','type'=>'=','name'=>'idProfil','value'=>$id));
+    $req =  new myQueryClass('profil',$conditions);
+	$r = $req->myQueryDelete();
+	$conn = null ; //Quitte la connexion
+}

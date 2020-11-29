@@ -15,7 +15,7 @@ function allModeLivraison(){
 function modeLivraison($id){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'idModeLivraison','type'=>'=','name'=>'idModeLivraison','value'=>$id));
-	$req =  new myQueryClass('modeLivraison',$conditions);
+	$req =  new myQueryClass('modelivraison',$conditions);
 	$r = $req->myQuerySelect();
 	return $r[0];
 }
@@ -23,7 +23,7 @@ function modeLivraison($id){
 function voirLibellemodeLivraison($id){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'idModeLivraison','type'=>'=','name'=>'idModeLivraison','value'=>$id));
-	$req =  new myQueryClass('modeLivraison',$conditions);
+	$req =  new myQueryClass('modelivraison',$conditions);
 	$r = $req->myQuerySelect();
 	return $r[0]['libModeLivraison'];
 }

@@ -6,7 +6,7 @@ require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
 
 
-//////////////// AJOUT d'un favoris /////////////////////////
+//////////////// AJOUT d'un point relai /////////////////////////
 function addPointRelaiCommande($transporteur,$idCommande,$nom,$rue,$codePostal,$ville){
     $conn = bdd();
     $conditions = array();
@@ -16,11 +16,10 @@ function addPointRelaiCommande($transporteur,$idCommande,$nom,$rue,$codePostal,$
     array_push($conditions, array('nameChamps'=>'rue','name'=>'rue','value'=>$rue));
     array_push($conditions, array('nameChamps'=>'codePostal','name'=>'codePostal','value'=>$codePostal));
     array_push($conditions, array('nameChamps'=>'ville','name'=>'ville','value'=>$ville));
-    $req =  new myQueryClass('pointRelaiCommande',$conditions);
+    $req =  new myQueryClass('pointrelaicommande',$conditions);
 	$r = $req->myQueryInsert();
     $conn = null ; //Quitte la connexion
     return $r= '';
-
 }
 
 

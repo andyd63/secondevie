@@ -58,7 +58,13 @@ switch ($action){
 		echo reponse_json(true,'','Le profil est bien supprimé!');
 	break;
 
+	////////////////////////////////////////////////////////
+	//////				Code Promo
+	////////////////////////////////////////////////////////
 
+	case 'verifieCodePromo':
+		
+	break;
 
 
 	case 'mescommandes' : 

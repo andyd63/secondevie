@@ -39,8 +39,8 @@
               
               <h6>Vous avez un code de réduction?</h6>
               <form>
-                <input type="text" value="" placeholder="Entrer le code de réduction">
-                <button type="submit" class="btn btn-small btn-dark">Ok</button>
+                <input id='codePromo' type="text" value="" placeholder="Entrer le code de réduction">
+                <a id="btnCodePromo" class="btn btn-small btn-dark">Ok</a>
               </form>
               <div class="coupn-btn textAlignCenter"> 
                 <?php if(isConnected()){?>
@@ -54,7 +54,22 @@
       </div>
     </section>
     
-    
+    <script>
+    $('#btnCodePromo').click(function(e){ 
+    monCodePromo = document.getElementById('codePromo').value; // champ du code promo
+    param = 'codePromo='+ monCodePromo
+    adresse = 'index.php?c=client&action=verifieCodePromo'  ;
+    reponse= postAjax(param,adresse);
+    rep = reponse.responseText;
+    rep = jQuery.parseJSON(rep);
+    if(rep.success){ // si le code existe et qu'il fonctionne
+          alertJs(true, 'Le code est pris en compte!');
+      }else{
+        alertJs(false, "Désolé mais ce code n'est pas valide");
+    }
+   
+});
+</script>
     
     <?php include('./js/page/boutique.php');?>
   <?php include('./assets/inc/footer.php');?>

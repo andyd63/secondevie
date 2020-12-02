@@ -17,7 +17,7 @@
       <div class="col-sm-6 cart-ship-info">
               <h6>Récapitulatif avant paiement</h6>
               <div class="grand-total">
-                <div class="order-detail">
+                <div id='panier'class="order-detail">
                   <?php
                   $totPanierCategories =  totalPrixPanierParCategorie(); 
                   foreach($totPanierCategories as $tot){
@@ -31,8 +31,14 @@
                   if(isset($_SESSION['livraison'])){ $fraideport = $_SESSION['livraison']['prixLivraison']; ?><p> Frais de port: <span><?= $_SESSION['livraison']['prixLivraison'];?>€</span></p> <?php }?>
                   <!-- SUB TOTAL -->
                   <?php $totalPanier = totalPrixPanier();?>
-                  <p class="all-total">Total sans réduction: <span><?= $totalPanier['totalSansRemise'] + $fraideport;?>€</span></p>
-                  <p class="all-total">Total avec réduction: <span ><?= $totalPanier['totalAvecRemise'] + $fraideport;?>€</span></p>
+                  <p id="codePromoLib" style='display:none'>Code promo
+                    <span id='libPourcentage' style='display:none'>%</span>
+                    <span id='libEuro' style='display:none'>€</span>
+                    <span id='prixReduc'></span>
+                    <span>-</span>
+                  </p>
+                  <p class="all-total">Total sans réduction: <span>€</span><span id="totalSansReduc"><?= $totalPanier['totalSansRemise'] + $fraideport;?></span></p>
+                  <p class="all-total">Total avec réduction: <span>€</span><span id="totalAvecReduc" ><?= $totalPanier['totalAvecRemise'] + $fraideport;?></span></p>
                 </div>
               </div>
               <br><hr>
@@ -58,14 +64,33 @@
     $('#btnCodePromo').click(function(e){ 
     monCodePromo = document.getElementById('codePromo').value; // champ du code promo
     param = 'codePromo='+ monCodePromo
-    adresse = 'index.php?c=client&action=verifieCodePromo'  ;
+    adresse = 'index.php?c=panier&action=verifieCodePromo'  ;
     reponse= postAjax(param,adresse);
     rep = reponse.responseText;
     rep = jQuery.parseJSON(rep);
     if(rep.success){ // si le code existe et qu'il fonctionne
-          alertJs(true, 'Le code est pris en compte!');
+  //     alertJs(true, rep.msg);
+      if(rep.result.typeCodePromo == '1'){ // en euro
+          reduc = parseFloat(rep.result.reducPromo);
+          document.getElementById('totalSansReduc').innerText = parseFloat(document.getElementById('totalSansReduc').innerText) - reduc;
+          document.getElementById('totalAvecReduc').innerText = parseFloat(document.getElementById('totalAvecReduc').innerText) - reduc;
+          document.getElementById('codePromoLib').style.display = 'Block';
+          document.getElementById('libEuro').style.display = 'Block';
+          document.getElementById('prixReduc').innerText = reduc;
+
       }else{
-        alertJs(false, "Désolé mais ce code n'est pas valide");
+          reduc = parseFloat(rep.result.reducPromo);
+          sansReduc = parseFloat(document.getElementById('totalSansReduc').innerText) - (parseFloat(document.getElementById('totalSansReduc').innerText) / reduc);
+          avecReduc =  parseFloat(document.getElementById('totalSansReduc').innerText) - (parseFloat(document.getElementById('totalAvecReduc').innerText) / reduc);
+          document.getElementById('totalSansReduc').innerText = sansReduc.toFixed(2);
+          document.getElementById('totalAvecReduc').innerText = avecReduc.toFixed(2);
+          document.getElementById('codePromoLib').style.display = 'Block';
+          document.getElementById('libPourcentage').style.display = 'Block';
+          document.getElementById('prixReduc').innerText = reduc;
+
+      }
+      }else{
+        alertJs(false, rep.msg);
     }
    
 });

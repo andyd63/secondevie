@@ -32,12 +32,18 @@ function allCodePromo(){
 /**
  * @return CodePromo selon le nom
  */
-function codePromobyPromo($nom) // Sert à renvoyer tout les codes promos
+function codePromobyNom($nom) // Sert à renvoyer le code promo selon le nom
 {
     $conn = bdd();
-    $requser = $conn->prepare('SELECT * FROM codepromo where nomCodePromo = ? and actif=1');
-    $requser->execute(array($nom));
-    return $requser->fetch();
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'nomCodePromo','type'=>'=','name'=>'nomCodePromo','value'=>$nom));
+    $req =  new myQueryClass('codepromo',$conditions);
+    $r = $req->myQuerySelect();
+    if(count($r) == 0){ // si y en a aucun
+        return false;
+    }else{
+        return $r[0];
+    }
 }
 function codePromobyId($id) // Sert à renvoyer tout les codes promos
 {

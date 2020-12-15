@@ -60,7 +60,6 @@ switch ($action){
 
 
 
-
 	case 'mescommandes' : 
 	if(isset($_SESSION['id']))
 	{  

@@ -181,7 +181,6 @@ function supprReservationProduitPanier(){
         $date_string = mktime($heure,$minute,0,$month,$day,$year);
         $dateTimeStamp = ($date_string +3600);
         $difference = (time() + 3600) - $dateTimeStamp; // diffrence entre les deux heures
-        var_dump($difference);
         if($difference >= 3600){ // temps de réservation au dessus d'une heure
             $_SESSION['panier']->supprimer($produitPanier->getId()); // supprime le produit du panier
             changeProduitStatut($produitPanier->getId(),'0',null,null,null);

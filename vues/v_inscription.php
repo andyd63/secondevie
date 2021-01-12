@@ -3,7 +3,8 @@
   <!--- Include Header et menu --->
   <?php include('./assets/inc/header.php');
    include('./assets/inc/menu.php');
-
+   $number = 0;
+   $nbImg = 5;
    ?>
 
   
@@ -55,11 +56,17 @@
                       </label>
                     </li>
                     
-                    <!-- LAST NAME -->
+                    <!-- Mdp -->
                     <li class="col-md-6">
-                      <label>Mot de passe <span class="rouge"><span class="rouge">*</span></span>
-                        <input id='mdpSimple' type="password" name="password" value="" placeholder required>
-                      </label>
+                      <label class="margin-bottom-0">Mot de passe <span class="rouge"><span class="rouge">*</span></label>
+                        <input class='inputDivGauche' id='mdpSimple' type="password" name="password" value="" placeholder required>
+                        <div class='inputDivDroite textAlignCenter unmask'><i class='fas fa-eye fa-2x'></i></div>
+                    </li>
+
+                    <li class="col-md-6">
+                        <label class="margin-bottom-0">Confirmation du mot de passe <span class="rouge"><span class="rouge">*</span></span></label>
+                        <input class='inputDivGauche' id="mdpConfirm" type="password"  value="" placeholder="" required> 
+                        <div class='inputDivDroite textAlignCenter unmask'><i class='fas fa-eye fa-2x'></i></div>
                     </li>
                     
                     <!-- LAST NAME -->
@@ -103,8 +110,7 @@
                      <!-- TAILLE DE HAUT -->
                     <li class="col-md-4">
                       <label>Désignation</label>
-
-                        <select class="form-control" name="genreClient">
+                        <select class="form-control" id='designation' name="genreClient">
                             <?php foreach ($allGenre as $genre){
                               echo "<option value=".$genre['idGenre'].">".$genre['libGenre']."</option>";
                             }?> 
@@ -129,6 +135,27 @@
                         </select>
                     </li>
                   </ul>
+                  <ul class="row">
+                    <li class="col-md-12"> 
+                    <label>Choisir mon avatar</label>
+                    </li>
+                  </ul>
+                  <div id='icone1'style='display:block'>
+                  <ul  class="row margin-bottom-10">
+                      <?php foreach($allAvatar as $avatar){
+                        if ($number % $nbImg == 0) { // si c'est une nouvelle ligne ?>
+                        </ul>
+                        <ul class='row margin-bottom-5'>
+                        <?php } $number++; ?>
+                      <li class="col-md-2">
+                        <div class="avatar imgAvatar" id="<?=$avatar["idAvatar"];?>">
+                          <img class="img-circle img<?=$avatar["idAvatar"];?>" id="<?=$avatar["idAvatar"];?>" src="<?=$avatar["lienAvatar"];?>" alt="" > 
+                        </div>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
+                  <input class="transparent" type="radio" id="imgAvatarForm" name="imgAvatarForm" value='1' checked>
                   <hr>
                   <ul class="row">
                       <!-- BOUTON S'INSCRIRE -->
@@ -154,7 +181,7 @@
     reponse= postAjax(param,url,messageRetour);
     rep = reponse.responseText;
     rep = jQuery.parseJSON(rep);
-    if(rep.success){ // si le mail existe déjà
+   if(rep.success){ // si le mail existe déjà
         Swal.fire({
                     icon: 'warning',
                     title: 'Ce mail est déjà utilisé sur le site, veuillez prendre une autre adresse',
@@ -164,6 +191,27 @@
       document.getElementById('btnInscription').disabled = false;
     }
   });
+
+  $('.unmask').on('click', function(){
+  
+  if($(this).prev('input').attr('type') == 'password')
+    changeType($(this).prev('input'), 'text');
+  
+  else
+    changeType($(this).prev('input'), 'password');
+  
+  return false;
+});
+
+    // quand click sur l'avatar
+    $('.imgAvatar').click(function(e){ 
+    document.getElementById('imgAvatarForm').value = e.target.id;
+    for (let index = 0; index < 150; index++) {
+      $('.img'+index).removeClass("imgActive");     // supp la bordure
+    }
+    $('.img'+e.target.id).addClass("imgActive"); // ajoute une bordure autour
+  });
+
   $('#mdpConfirm').change(function(e){ 
     mdpConfirm = document.getElementById('mdpConfirm').value;
     mdp = document.getElementById('mdpSimple').value;

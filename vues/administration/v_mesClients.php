@@ -24,6 +24,7 @@
                 <table id="tableCli" class="table ">
                     <thead>
                     <tr class="active">
+                        <td>#</td>
                         <td>Nom prénom </td>
                         <td>Mail </td>
                         <td>Tel </td>
@@ -37,6 +38,7 @@
                   <?php 
                   foreach($allClient as $client){ ?>
                   <tr>
+                    <th scope="row"><?= $client['ID_CLIENTS'];?></th>
                     <th scope="row"><?= $client['PRE_CLIENTS'];?> <?= $client['NOM_CLIENTS'];?></th>
                     <td><?= $client['MAIL_CLIENTS'];?></td>
                     <td><?= $client['TEL_CLIENTS'];?></td>
@@ -72,28 +74,9 @@
    
     $(document).ready(function() {
 
-      $('.dateLivraisonChange').change(function(e){ 
-        url= 'index.php?c=admin&action=changeDateLivraison';
-        messageRetour = 'Date mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
-        postAjax(param,url,messageRetour,true);
-      });
-
-      $('.heureLivraisonChange').change(function(e){ 
-        url= 'index.php?c=admin&action=changeHeureLivraison';
-        messageRetour = 'Heure mis à jour!';
-        param = 'id='+e.target.id+"&date="+e.target.value;
-        postAjax(param,url,messageRetour,);
-      });
-
       getDataTable('tableCli');
     });
 
-    $('#traiteCommande').click(function(e){ 
-      url= 'index.php?c=admin&action=UpdateEtiquettesNonTraite';
-      messageRetour = 'Les étiquettes sont désormais en préparation!';
-      postAjax('',url,messageRetour,true);
-
-    });
+   
 </script>
   <?php include('./assets/inc/footer.php');?>

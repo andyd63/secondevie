@@ -13,7 +13,7 @@ function voirPrixSelonPoids($poids,$value){
 	array_push($conditions, array('nameChamps'=>'libPrixLivraison','type'=>'like','name'=>'libPrixLivraison','value'=>"%".$value."%"));
 	array_push($conditions, array('nameChamps'=>'poidsPrixLivraison','type'=>'<=','name'=>'poidsPrixLivraison','value'=>$poids));
 	array_push($conditions, array('nameChamps'=>'poidsMaxLivraison','type'=>'>','name'=>'poidsMaxLivraison','value'=>$poids));
-	$req =  new myQueryClass('prixLivraison',$conditions);
+	$req =  new myQueryClass('prixlivraison',$conditions);
 	$r = $req->myQuerySelect();
 	return $r[0];
 }

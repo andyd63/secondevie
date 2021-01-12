@@ -5,31 +5,45 @@ require_once('./modeles/m_bdd.php');
 require_once ('./classes/myQuery.php');
 require_once ('./classes/templateRest.php');
 
-//////////////// AJOUT d'un client /////////////////////////
-function ajoutercodePromo($nom,$pourcentage,$type){
-	$conn = bdd();
-	$newclient = $conn->prepare('INSERT INTO codepromo (nomCodePromo,pourcentagePromo,multi,actif) 	VALUES (?,?,?, 1)');
-	$newclient->execute(array($nom,$pourcentage,$type));
-	$conn = null ; //Quitte la connexion
+
+//////////////// AJOUT d'un codePromo /////////////////////////
+function ajouterCodePromo($nom,$reduction,$multi,$typePromo){
+    $conn = bdd();
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'nomCodePromo','name'=>'nomCodePromo','value'=>$nom));
+    array_push($conditions, array('nameChamps'=>'reducPromo','name'=>'reducPromo','value'=>$reduction));
+    array_push($conditions, array('nameChamps'=>'multi','name'=>'multi','value'=>$multi));
+    array_push($conditions, array('nameChamps'=>'typeCodePromo','name'=>'typeCodePromo','value'=>$typePromo));
+    array_push($conditions, array('nameChamps'=>'actif','name'=>'actif','value'=>1));
+    array_push($conditions, array('nameChamps'=>'nbreUtilisation','name'=>'nbreUtilisation','value'=>0));
+    $req =  new myQueryClass('codepromo',$conditions);
+	$r = $req->myQueryInsert();
+    $conn = null ; //Quitte la connexion
 }
 
-function allCodePromo() // Sert à renvoyer tout les codes promos
-{
-    $conn = bdd();
-    $requser = $conn->prepare('SELECT * FROM codepromo');
-    $requser->execute();
-    return $requser->fetchAll();
+
+
+function allCodePromo(){
+	$req =  new myQueryClass('codepromo');
+	$r = $req->myQuerySelect();
+	return $r;
 }
 
 /**
  * @return CodePromo selon le nom
  */
-function codePromobyPromo($nom) // Sert à renvoyer tout les codes promos
+function codePromobyNom($nom) // Sert à renvoyer le code promo selon le nom
 {
     $conn = bdd();
-    $requser = $conn->prepare('SELECT * FROM codepromo where nomCodePromo = ? and actif=1');
-    $requser->execute(array($nom));
-    return $requser->fetch();
+    $conditions = array();
+    array_push($conditions, array('nameChamps'=>'nomCodePromo','type'=>'=','name'=>'nomCodePromo','value'=>$nom));
+    $req =  new myQueryClass('codepromo',$conditions);
+    $r = $req->myQuerySelect();
+    if(count($r) == 0){ // si y en a aucun
+        return false;
+    }else{
+        return $r[0];
+    }
 }
 function codePromobyId($id) // Sert à renvoyer tout les codes promos
 {

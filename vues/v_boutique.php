@@ -35,8 +35,25 @@
           <div class="col-sm-3">
             <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h6><hr>
             <div class="shop-sidebar"> 
-            
-            <?php if(!isset($page)){;?>
+            <?php if(isset($page)){;?>
+             <!-- Profil -->
+             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Profil <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-up"></i></span></h5>
+              <ul style="display:block" id="divProfil" class="shop-cate">
+                <?php 
+               
+                foreach($mesProfils as $profil){
+                  $actif = '';
+                   $avatar = monAvatar($profil['idAvatar']);
+                   if($profilDef == $profil['idProfil']){
+                     $actif = 'imgActive';
+                   }
+                ?>
+                <img class="img-circle imgAvatar img<?=$profil["idProfil"];?> <?=$actif;?> " id="<?=$profil["idProfil"];?>" width='48px' src="<?=$avatar["lienAvatar"];?>" alt="" > 
+                <?php }?>
+                <input class="transparent" type="radio" id="profil" name="profil" value='<?= $profilDef;?>' checked>
+              </ul>
+                <?php }
+                 if(!isset($page)){;?>
             <!-- Category -->
              <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divGenre','spanGenre')">Genre <span class="cursor" id="spanGenre" ><i  class="fas fa-angle-up"></i></span></h5>
               <span class="transparent" id="nbGenre"><?=count($allGenre);?></span> 
@@ -208,20 +225,20 @@
                   <?php $taille = taille($produit['taille']);?>
                   <p class="textAlignCenter"><?= iconeSelonSexe($produit['genre']);?> Taille : <?= $taille['nomTaille'];?></p>
                         <div class="inn">
-                          <a href="<?=$produit['image1'];?>" data-lighter><i class="icon-magnifier"></i></a> 
+                          <a href="<?=$produit['image1'];?>" data-toggle="tooltip" data-placement="top" title="Voir en plus grand"  data-lighter><i class="iconeMobile icon-magnifier"></i></a> 
                           <?php if ($_SESSION['panier']->cleExiste($produit['id'])){ ?>
-                           <i id="panierAdd-<?=$produit['id'];?>"  style="display:none" class="addPanier  fas fa-cart-plus"></i>
-                           <i id="panierSuppr-<?=$produit['id'];?>"  class="supprPanier fas rouge fa-window-close"></i>
+                           <i id="panierAdd-<?=$produit['id'];?>"  data-toggle="tooltip" data-placement="top" title="Ajouter au panier " style="display:none" class="addPanier cursor iconeMobile fas fa-cart-plus"></i>
+                           <i id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" class="supprPanier  iconeMobile cursor fas rouge fa-window-close"></i>
                           <?php } else { ?>
-                           <i  id="panierAdd-<?=$produit['id'];?>" class="addPanier  fas fa-cart-plus"></i>
-                           <i  id="panierSuppr-<?=$produit['id'];?>"  style="display:none"  class="supprPanier  fas rouge fa-window-close"></i>
+                           <i  id="panierAdd-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Ajouter au panier " class="addPanier  iconeMobile cursor fas fa-cart-plus"></i>
+                           <i  id="panierSuppr-<?=$produit['id'];?>" data-toggle="tooltip" data-placement="top" title="Supprimer du panier" style="display:none"  class="supprPanier cursor iconeMobile fas rouge fa-window-close"></i>
                           <?php }  if(isset($_SESSION['id'])){
                             if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
-                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."   data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris icon-heart"></i></a>
-                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge supprFavoris fas fa-heart"></i></a>
+                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."   data-toggle="tooltip" data-placement="top" title="Ajouter au favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris iconeMobile  icon-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#." style="display:none" data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge iconeMobile supprFavoris fas fa-heart"></i></a>
                            <?php } else { ?>
-                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur  addFavoris icon-heart"></i></a>
-                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge supprFavoris fas fa-heart"></i></a>
+                            <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur iconeMobile  addFavoris icon-heart"></i></a>
+                            <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge supprFavoris iconeMobile  fas fa-heart"></i></a>
                           <?php }}?>
                         </div>
                      
@@ -264,7 +281,14 @@
     
 <script> 
 
-
+  // quand click sur l'avatar
+  $('.imgAvatar').click(function(e){ 
+    document.getElementById('profil').value = e.target.id;
+    for (let index = 0; index < 150; index++) {
+      $('.img'+index).removeClass("imgActive");     // supp la bordure
+    }
+    $('.img'+e.target.id).addClass("imgActive"); // ajoute une bordure autour
+  });
 
   $('#price-min').change(function(e){ 
       $('#prixMinValue').text($(this).val());

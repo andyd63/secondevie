@@ -10,6 +10,8 @@ require_once "./modeles/m_taille.php";
 require_once "./modeles/m_produit.php";
 require_once "./modeles/m_favoris.php";
 require_once "./modeles/m_sousCategorie.php";
+require_once "./modeles/m_profil.php";
+require_once "./modeles/m_avatar.php";
 
 			
 $allEtat = allEtat();
@@ -120,11 +122,17 @@ if(isset($_GET['action'])){
 			$barFilter = true;
 			$nbProduitParLigne = 4;
 			$categorie =  categorie(4);
+			
 			$page = 'selection'; // nom de la page
 			unset($_GET['c']);
 			unset($_GET['action']);
-			$leClient = clientByEmail($_SESSION['mail']); //récupère les infos du client 
-			$produits = allProduitBySelection($_GET,$leClient['tailleBas'],$leClient['tailleHaut'],$leClient['genre']); // récupère les produits selon ses infos
+			$mesProfils = mesProfils($_SESSION['id']); // Profil du client
+			if(isset($_GET['profil'])){
+				$profilDef = $_GET['profil'];
+			 }else{
+				$profilDef = $mesProfils[0]['idProfil']; // mets par défaut un id Prouit
+			}
+			$produits = allProduitBySelection($_GET,monProfil($profilDef)); // récupère les produits selon ses infos
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
 			$allTaille = allTaille();	

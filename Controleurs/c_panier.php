@@ -15,7 +15,7 @@ require_once('modeles/m_statutCommande.php');
 require_once('modeles/m_modeLivraison.php');
 require_once('./modeles/m_configSite.php');
 //require_once('modeles/Transaction.php');
-//require_once('./modeles/m_codepromo.php');
+require_once('./modeles/m_codepromo.php');
 //require_once ('./classes/zipfiles.php');
 require_once ('./assets/inc/function.php');
 
@@ -69,10 +69,23 @@ switch ($action){
     break;
 
     
+	////////////////////////////////////////////////////////
+	//////				Code Promo
+	////////////////////////////////////////////////////////
+
+	case 'verifieCodePromo':
+        // Verifie s'il existe et s'il actif
+            $code = codePromobyNom($_POST['codePromo']);
+            if($code){ // existe
+                echo reponse_json(true,$code,'Le code est pris en compte!');
+                $_SESSION['codePromo'] = $code;
+            }else{
+                echo reponse_json(false,'',"Le code n'est pas bon..");
+            }
+    break;
 
     // VOIR PANIER
     case 'terminer' :
-        
         require_once('./vues/v_recapitulatif.php');
     break;
 
@@ -87,9 +100,9 @@ switch ($action){
         $error = true;
         if(isset($_GET['id'])){
         $commande = voirCommandeToken($_GET['id']);
-        if($commande != 'false'){
-            deleteCommandeToken($_GET['id']);
-        }
+            if($commande != 'false'){
+                deleteCommandeToken($_GET['id']);
+            }
         }
         // supprime la commande 
         require_once('./vues/v_panier.php');
@@ -134,7 +147,7 @@ switch ($action){
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
                         // envoie mail de la commande
                         mailCommandeClient($configSite,$commande,$produits);
-                        redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
+                       // redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
                     }else{
                       
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1,'3');// change l'id de la facture et le prix des frais de livraison 3€
@@ -150,7 +163,7 @@ switch ($action){
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
                         mailCommandeClient($configSite,$commande,$produits);
                         
-                        redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
+                       // redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
 
                     }
 

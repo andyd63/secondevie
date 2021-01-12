@@ -74,7 +74,7 @@
   <style> #test_filter{ display:none;}</style>
   <script>
     $(document).ready(function() {
-        getDataTable('test');
+        getDataTable('test',true);
     });
 </script>
   <?php include('./assets/inc/footer.php');?>

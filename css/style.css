@@ -400,7 +400,6 @@ section {
 ========================================================*/
 header {
 	width: 100%;
-	z-index: 999;
 	background: #fff;
 	padding: 30px 0;
 	position: relative;
@@ -2808,16 +2807,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	font-size: 20px;
 	letter-spacing: 3px;
 }
-.shopping-cart .cart-ship-info h6:before {
-	width: 60px;
-	height: 2px;
-	background: #2d3a4b;
-	border: none;
-	content: '';
-	display: inline-block;
-	position: absolute;
-	margin-top: 30px;
-}
+
 .shopping-cart .cart-ship-info input {
 	border: 1px solid #2d3a4b;
 	width: 60px;
@@ -2992,11 +2982,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	border-right: 0px;
 	margin: 0px;
 }
-.small-cart .cart-ship-info form button.btn {
-	width: 30%;
-	height: 44px;
-	float: left;
-}
+
 .small-cart .coupn-btn {
 	margin-top: 30px;
 }

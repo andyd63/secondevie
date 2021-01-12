@@ -60,20 +60,13 @@ function  changeVal(val1,val2) {
 
 
 // Permet de rendre visible ou non le voyage regulier ou unique dans proposerVoyage.php
-function visibilite(divPrec,divId)
-{
-    console.log(divPrecedent);
+function visibilite(divPrec,divId){
+    console.log(divPrec);
     document.getElementById(divPrec).style.display = "none"
     document.getElementById(divId).style.display = "block"
-    if(divId == "voyageRegulier"){
-        document.getElementById("dateDep").style.display = "block";
-        document.getElementById("dateFin").style.display = "block";
-    }
-    if(divId == "voyageUnique"){
-        document.getElementById("dateDep").style.display = "none";
-        document.getElementById("dateFin").style.display = "none";
-    }
+
     divPrecedent = divId;
+    return divPrecedent
 }
 
 
@@ -125,8 +118,10 @@ function $_GET(param) {
 }
 
 
-function getDataTable(id,recherche =false){
+function getDataTable(id, desc = false){
+    if(desc){
     $('#'+id).DataTable( {
+        "order": [[ 0, "desc" ]],
         "scrollX": true,
         "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "Tous"]],
         "language": {
@@ -139,5 +134,60 @@ function getDataTable(id,recherche =false){
               }
         }
     } );
+    }else{
+        $('#'+id).DataTable( {
+            "scrollX": true,
+            "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "Tous"]],
+            "language": {
+                "lengthMenu":     "Voir _MENU_ résultats ",
+                "zeroRecords":    "Aucun résultat",
+                "info":           "Affichage de  _START_ à _END_ sur _TOTAL_ résultats",
+                "paginate": {
+                    "previous": "<",
+                    "next": ">"
+                  }
+            }
+        } );
+
+    }
 }
 
+
+/* 
+  function from : https://gist.github.com/3559343
+  Thank you bminer!
+*/
+
+function changeType(x, type) {
+    if(x.prop('type') == type)
+        return x; //That was easy.
+    try {
+        return x.prop('type', type); //Stupid IE security will not allow this
+    } catch(e) {
+        //Try re-creating the element (yep... this sucks)
+        //jQuery has no html() method for the element, so we have to put into a div first
+        var html = $("<div>").append(x.clone()).html();
+        var regex = /type=(\")?([^\"\s]+)(\")?/; //matches type=text or type="text"
+        //If no match, we add the type attribute to the end; otherwise, we replace
+        var tmp = $(html.match(regex) == null ?
+            html.replace(">", ' type="' + type + '">') :
+            html.replace(regex, 'type="' + type + '"') );
+        //Copy data from old element
+        tmp.data('type', x.data('type') );
+        var events = x.data('events');
+        var cb = function(events) {
+            return function() {
+                //Bind all prior events
+                for(i in events)
+                {
+                    var y = events[i];
+                    for(j in y)
+                        tmp.bind(i, y[j].handler);
+                }
+            }
+        }(events);
+        x.replaceWith(tmp);
+        setTimeout(cb, 10); //Wait a bit to call function
+        return tmp;
+    }
+}

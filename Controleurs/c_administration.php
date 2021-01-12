@@ -43,6 +43,12 @@ switch($action)
         $menuAdmin = menuAdminByNom('Produit');
         include('./vues/administration/v_admin_def.php');
     break;
+
+    case 'accueilCodePromo':
+        redirectionNonAdmin(adminexist($_SESSION['mail']));
+        $menuAdmin = menuAdminByNom('CodePromo');
+        include('./vues/administration/v_admin_def.php');
+    break;
 	
     case 'accueilCommande':
         redirectionNonAdmin(adminexist($_SESSION['mail']));
@@ -156,7 +162,7 @@ switch($action)
                 // recuperer les produits de la commande    
                 require_once('./vues/v_commande.php');
             } else{
-                redirectUrl("index.php?c=accueil");
+                redirectUrl("index.html");
             }
     break;
 
@@ -186,6 +192,26 @@ switch($action)
             }	
         break;
 
+    //////////////////////////////////////////////////////
+    ////////////        Onglet code promo
+    //////////////////////////////////////////////////////
+
+    case 'mesCodePromo':
+        redirectionNonAdmin(adminexist($_SESSION['mail'])); 
+        $allCodePromo= allCodePromo();
+        require_once('vues/administration/v_mesCodePromo.php');
+    break;
+
+    case 'addCodePromo':
+        redirectionNonAdmin(adminexist($_SESSION['mail'])); 
+        require_once('vues/administration/v_addCodePromo.php');
+    break;
+
+    case 'addCodePromoForm':
+        redirectionNonAdmin(adminexist($_SESSION['mail'])); 
+        ajouterCodePromo($_POST['nomCodePromo'],$_POST['reduction'],$_POST['multi'],$_POST['typePromo']);
+        echo reponse_json(true,'','Le profil est bien supprimé!');
+    break;
 
     default: 
         redirectionNonAdmin(adminexist($_SESSION['mail']));

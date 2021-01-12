@@ -3,7 +3,11 @@ require_once "./modeles/m_clients.php";
 require_once "./modeles/m_commande.php";
 require_once('modeles/m_statutCommande.php');
 require_once('modeles/m_modeLivraison.php');
+require_once('modeles/m_profil.php');
+require_once('modeles/m_genre.php');
+require_once('modeles/m_taille.php');
 require_once('modeles/m_produit.php');
+require_once('modeles/m_avatar.php');
 require_once "./assets/inc/function.php";
 
 if(isset($_GET['action']))
@@ -24,15 +28,45 @@ switch ($action){
 		if(!isset($_GET['ajx'])){ //appel normal
 				$cli = json_decode($cli);
 				$cli = $cli->result->clients[0];
-
+				$mesProfils = mesProfils($id);
+				$allGenre =  allGenre();
+				$tailleHaut = tailleHaut();
+				$taillePantalon = taillePantalon();
+				$allAvatar = allAvatar();
 				require_once('vues/v_profil.php');
 		} else	{ // Appel Ajax
 				appelAjax($cli);
 		}	
 	}else{
-		redirectUrl("index.php?c=accueil");
+		redirectUrl("index.html");
 	}
 	break;
+
+	///////////////////////////////////////////////////////////////////
+	///////////////// 		PROFIL
+	///////////////////////////////////////////////////////////////////
+	// Ajoute un profil
+	case 'addProfil':
+		addProfil($_POST['tailleHClient'],$_POST['taillePClient'],$_POST['genreClient'],$_POST['imgAvatarForm'],$_SESSION['id'], $_POST['prenom']); // ajoute l'avatar
+		redirectUrl("index.php?c=profil&partie=foyer");
+	break;
+
+
+	case 'editProfil':
+		if(verifProfilById($_POST['idProfil'])){
+			updateProfil($_POST['tailleB'],$_POST['tailleH'],$_POST['idProfil']);
+		}
+		echo reponse_json(true,'','Le profil est bien modifié!');
+	break;
+
+	case 'supprimerprofil':
+		if(verifProfilById($_POST['id'])){ // verifie si le profil est à lui
+			deleteProfil($_POST['id']);
+		}
+		echo reponse_json(true,'','Le profil est bien supprimé!');
+	break;
+
+
 
 	case 'mescommandes' : 
 	if(isset($_SESSION['id']))
@@ -46,7 +80,7 @@ switch ($action){
 			appelAjax($commandes);
 		}	
 	}else{
-		redirectUrl("index.php?c=accueil");
+		redirectUrl("index.html");
 	}
 	break;
 	
@@ -59,7 +93,7 @@ switch ($action){
 				redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
 			}
 		}else{
-			redirectUrl("index.php?c=accueil");
+			redirectUrl("index.html");
 		}
 	break ;
 
@@ -69,7 +103,7 @@ switch ($action){
 			updateStatutCommande($commande['idCommande'],2);
 			redirectUrl('index.php?c=profil&action=macommande&id='.$_POST['id']);
 		}else{
-			redirectUrl("index.php?c=accueil");
+			redirectUrl("index.html");
 		}
 	break ;
 
@@ -84,10 +118,10 @@ switch ($action){
 			// recuperer les produits de la commande    
 			require_once('./vues/v_commande.php');
 		} else{
-			redirectUrl("index.php?c=accueil");
+			redirectUrl("index.html");
 		}	
 	} else{
-		redirectUrl("index.php?c=accueil");
+		redirectUrl("index.html");
 	}	
 
 	break;
@@ -149,12 +183,13 @@ switch ($action){
 		$cli = informationsRest($_SESSION['id']);
 		if(!isset($_GET['ajx'])){ //appel normal
 			$cli = json_decode($cli);
+			$mesProfils = mesProfils($id);
 			require_once('vues/vue_profil.php');
 		} else	{ // Appel Ajax
 			appelAjax($cli);
 		}
 	}else{
-		redirectUrl("index.php?c=accueil");
+		redirectUrl("index.html");
 	}
         break;
 }

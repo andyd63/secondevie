@@ -9,7 +9,7 @@ require_once ('./classes/templateRest.php');
 function allVilleLivraison(){
 	$order = array();
 	array_push($order, array('nameChamps'=>'nomVille','sens'=>'asc'));
-	$req =  new myQueryClass('villeLivraison','',$order);
+	$req =  new myQueryClass('villelivraison','',$order);
 	$r = $req->myQuerySelect();
 	return $r;
 }
@@ -17,7 +17,7 @@ function allVilleLivraison(){
 function villeLivraison($cp){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'cpLivraison','type'=>'=','name'=>'cpLivraison','value'=>$cp));
-	$req =  new myQueryClass('villeLivraison',$conditions);
+	$req =  new myQueryClass('villelivraison',$conditions);
 	$r = $req->myQuerySelect();
 	$nbVille = count($r);
 	if($nbVille == 0){

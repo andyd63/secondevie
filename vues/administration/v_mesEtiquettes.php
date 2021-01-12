@@ -178,8 +178,8 @@
         } );
     });
 
-    getDataTable('commandeEnLivraison')
-    getDataTable('commandeTraite')
+    getDataTable('commandeEnLivraison',true)
+    getDataTable('commandeTraite',true)
     // mettre une date de colie
     $('.dateLivraisonChange').change(function(e){ 
         url= 'index.php?c=admin&action=changeDateLivraison';

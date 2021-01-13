@@ -238,9 +238,8 @@ function envoieMail($configSite,$sujet,$mail,$message_txt,$message_html, $bdd = 
     //=====Création de la boundary
     $boundary = "-----=".md5(rand());
     //==========
-    
     //=====Création du header de l'e-mail.
-    $header = "From: \"Deuxièmevie\"<".$configSite->emailSite.">".$passage_ligne;
+    $header = "From: \"Deuxiemevie\"<".$configSite->emailSite.">".$passage_ligne;
     $header.= "Reply-to: \"Deuxiemevie\"<".$configSite->emailSite.">".$passage_ligne;
     $header.= "MIME-Version: 1.0".$passage_ligne;
     $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
@@ -270,7 +269,7 @@ function envoieMail($configSite,$sujet,$mail,$message_txt,$message_html, $bdd = 
 
 
 
-function mailCommandeClient($configSite,$commande,$produits){
+function mailCommandeClient($configSite,$commande,$produits,$prixLivraison){
 
 $sujet = 'Votre commande est validée!';
 $mailClient = $_SESSION['mail']; // Déclaration de l'adresse de destination.
@@ -287,17 +286,21 @@ Le statut de votre commande sur notre site se mettra à jour d\'ici quelques heu
 $tableauProduit = '<table><tr><td>Produit</td><td>Prix</td></tr>';
 
 foreach($produits as $produit){
-    $tableauProduit.='<tr><td>'.$produit['nom'].'</td><td>'.$produit['prix'] * $produit['reduction'].'</td><tr>';
+    if($produit['reduction'] == 0){
+        $prix = $produit['prix'];
+    }else{
+        $prix = $produit['prix'] * $produit['reduction'];
+    }
+    $tableauProduit.='<tr><td>'.$produit['nom'].'</td><td>'.$prix.'</td><tr>';
 }
-
-
+$prixTot = $commande['prixCommande'] + $prixLivraison;
 //=====Déclaration des messages au format texte et au format HTML.
 $message_txt = "Bonjour, Voici le récapitulatif de votre commande ! ";
 $message_html = "<html><head></head><body><b>Bonjour,</b><br>".$messageInfo."
-Voici un résumé des informations de votre commande : <br>
+Voici un résumé des informations de votre commande  : <br>
 Email : $mailClient <br>
 Tel : $tel <br>
-Prix de la commande : ".$commande['prixCommande']." 	&#8364;<br>
+Prix de la commande : ".$prixTot." &#8364;  (dont ".$prixLivraison."&#8364; de frais de port ) 	<br>
 
 Voici les produits achetés :
 <table>
@@ -312,16 +315,14 @@ $tableauProduit
 
 
 function mailMdpClient($configSite,$token,$mailClient){
-
-    $sujet = 'Votre commande est validée!';
+    $sujet = 'Réinitialisation du mot de passe!';
     $lien =  'https://unedeuxiemevie.fr/index.php?c=profil&action=formMdp&token='.$token;
-    
     
     //=====Déclaration des messages au format texte et au format HTML.
     $message_txt = "Bonjour, voici le lien pour réinitialiser votre mot de passe pour ainsi accéder à unedeuxiemevie.fr:".$lien;
-    $message_html = "<html><head></head><body><b>Bonjour,</b><br>, voici le lien pour réinitialiser votre mot de passe pour ainsi accéder à unedeuxiemevie.fr:
+    $message_html = "<html><head></head><body><b>Bonjour,</b><br>
+    Vous avez perdu votre mot de passe? Pas de soucis, voici le lien pour réinitialiser votre mot de passe pour ainsi accéder à unedeuxiemevie.fr:<br>
     ".$lien;
-    var_dump($message_html);
      envoieMail($configSite,$sujet,$mailClient,$message_txt,$message_html);
     }
     

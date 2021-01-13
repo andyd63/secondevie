@@ -146,8 +146,8 @@ switch ($action){
                         // envoie mail de la commande
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
                         // envoie mail de la commande
-                        mailCommandeClient($configSite,$commande,$produits);
-                       // redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
+                        mailCommandeClient($configSite,$commande,$produits, $_SESSION['livraison']['prixLivraison']  );
+                        redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
                     }else{
                       
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1,'3');// change l'id de la facture et le prix des frais de livraison 3€
@@ -161,9 +161,8 @@ switch ($action){
 
                         // envoie mail de la commande
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
-                        mailCommandeClient($configSite,$commande,$produits);
-                        
-                       // redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
+                        mailCommandeClient($configSite,$commande,$produits,$_SESSION['livraison']['prixLivraison'] );
+                        redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
 
                     }
 

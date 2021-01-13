@@ -89,11 +89,14 @@ class myQueryClass
         $requete = $pdo->prepare("SELECT * FROM ".$this->table." ".$conditionsConstruit." ".$mesOrder." ".$this->limit);
         if($this->conditions != ''){
             foreach($this->conditions as $condition ){
+                if(isset($condition['int'])){
+                    $requete->bindParam($condition['name'], $condition['value'],  PDO::PARAM_INT);
+                }else{
                 $requete->bindParam($condition['name'], $condition['value']);
+                }
             }
         } 
         $requete->execute();
-       
       
         
         $r = $requete->fetchAll();

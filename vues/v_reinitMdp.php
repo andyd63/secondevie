@@ -22,13 +22,13 @@
                     
                     <!-- Name -->
                     <li class="col-md-12">
-                      <label>Mot de passe
+                      <label>Mot de passe:
                         <input type="password" id="mdp" name="mdp" value="" placeholder="">
                       </label>
                     </li>
                     <!-- LAST NAME -->
                     <li class="col-md-12">
-                      <label>Confirmer Mot de passe
+                      <label>Confirmation du mot de passe
                         <input type="password" id="mdpConfirm" name="mdpconfirm" value="" placeholder="">
                       </label>
                     </li>

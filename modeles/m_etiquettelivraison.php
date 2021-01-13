@@ -10,7 +10,7 @@ require_once ('./classes/templateRest.php');
 function voirEtiquetteNonTraite(){
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'statutEtiquette','type'=>'=','name'=>'statutEtiquette','value'=>0));
-	$req =  new myQueryClass('etiquetteLivraison',$conditions);
+	$req =  new myQueryClass('etiquettelivraison',$conditions);
 	$r = $req->myQuerySelect();
 	return $r;
 }
@@ -21,7 +21,7 @@ function UpdateAllEtiquetteNonTraite()
 	$values = array();
 	array_push($conditions, array('nameChamps'=>'statutEtiquette','type'=>'=','name'=>'statutEtiquette','value'=>'0'));
 	array_push($values, array('nameChamps'=>'statutEtiquette','name'=>'statutEtiquetteVal','value'=>'1'));
-	$req =  new myQueryClass('etiquetteLivraison',$conditions,'',$values);
+	$req =  new myQueryClass('etiquettelivraison',$conditions,'',$values);
     $r = $req->myQueryUpdate();
   
 	$conn = null ; //Quitte la connexion
@@ -32,7 +32,7 @@ function AllEtiquetteNonTraite()
 {
 	$conditions = array();
 	array_push($conditions, array('nameChamps'=>'statutEtiquette','type'=>'=','name'=>'statutEtiquette','value'=>'0'));
-	$req =  new myQueryClass('etiquetteLivraison',$conditions);
+	$req =  new myQueryClass('etiquettelivraison',$conditions);
     $r = $req->myQuerySelect();
     return $r;
 	$conn = null ; //Quitte la connexion
@@ -41,7 +41,7 @@ function AllEtiquetteNonTraite()
 
 
 //////////////// AJOUT d'un favoris /////////////////////////
-function addEtiquetteLivraison($nom,$adresse,$complementAdresse
+function addetiquettelivraison($nom,$adresse,$complementAdresse
 ,$codePostal,$ville,$email,$tel,$nomOption,$idCommande,$pays = 'FR',$statut= 0){
     $conn = bdd();
     $conditions = array();
@@ -56,7 +56,7 @@ function addEtiquetteLivraison($nom,$adresse,$complementAdresse
     array_push($conditions, array('nameChamps'=>'idCommande','name'=>'idCommande','value'=>$idCommande));
     array_push($conditions, array('nameChamps'=>'pays','name'=>'pays','value'=>$pays));
     array_push($conditions, array('nameChamps'=>'statutEtiquette','name'=>'statutEtiquette','value'=>$statut));
-    $req =  new myQueryClass('etiquetteLivraison',$conditions);
+    $req =  new myQueryClass('etiquettelivraison',$conditions);
 	$r = $req->myQueryInsert();
     $conn = null ; //Quitte la connexion
     return $r= '';

@@ -83,6 +83,10 @@ switch ($action){
                 echo reponse_json(false,'',"Le code n'est pas bon..");
             }
     break;
+	case 'supCodePromo':
+       unset($_SESSION['codePromo']);
+       redirectUrl("javascript:history.back()");
+    break;
 
     // VOIR PANIER
     case 'terminer' :
@@ -147,7 +151,7 @@ switch ($action){
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
                         // envoie mail de la commande
                         mailCommandeClient($configSite,$commande,$produits, $_SESSION['livraison']['prixLivraison']  );
-                        redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
+                    //    redirectUrl('index.php?c=profil&action=macommande&id='.$_GET['id']);
                     }else{
                       
                         changeCommandeFacture($_GET['id'],$derFacture['idFacture']+1,'3');// change l'id de la facture et le prix des frais de livraison 3€
@@ -157,12 +161,13 @@ switch ($action){
                             changeProduitStatut($produitPanier->getId(),'2',$commande['idCommande'],$_SESSION['id']);// change le statut de la commande
                         }
                         $_SESSION['panier']->vider(); // vider le panier
+                        unset($_SESSION['codePromo']);
 
 
                         // envoie mail de la commande
                         $produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
                         mailCommandeClient($configSite,$commande,$produits,$_SESSION['livraison']['prixLivraison'] );
-                        redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
+                    //    redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id']);
 
                     }
 

@@ -10,11 +10,24 @@ require_once('modeles/m_produit.php');
 require_once('modeles/m_avatar.php');
 require_once "./assets/inc/function.php";
 
+
+
+
+
 if(isset($_GET['action']))
 	$action = $_GET['action'];
 else{
 	$action = "profil";
 }
+
+if($action != 'choisiProfil'){
+// S'il est connecté et qu'il n'a pas de profil
+if(isConnected()){
+	if(!isConnectedandProfil()){
+		include("./vues/v_popupProfil.php");
+	  exit;}}
+}
+
 switch ($action){
 	case 'profil' :
 	if(isset($_SESSION['id']))
@@ -49,6 +62,15 @@ switch ($action){
 	case 'addProfil':
 		addProfil($_POST['tailleHClient'],$_POST['taillePClient'],$_POST['genreClient'],$_POST['imgAvatarForm'],$_SESSION['id'], $_POST['prenom']); // ajoute l'avatar
 		redirectUrl("index.php?c=profil&partie=foyer");
+	break;
+
+
+	case 'choisiProfil':
+		$_SESSION['profil'] = $_GET['id'];
+		$profil = monProfil($_GET['id']);
+		$avatar = monAvatar($profil['idAvatar']);
+		$_SESSION['imgProfil'] = $avatar["lienAvatar"];
+		redirectUrl("javascript:history.back()");
 	break;
 
 
@@ -114,6 +136,12 @@ switch ($action){
 			$allStatutCommande = allStatutCommande(); // récupère tout les statuts
 			$statutCommande = statutCommande($commande['statutCommande']); // le statut de la commande
 			$modeLivraison = modeLivraison($commande['modeLivraison']); // le mode de livraison de la commande
+		
+			if($modeLivraison['idModeLivraison'] == 1) { // si c'est une livraison
+				if($statutCommande['idStatutCommande'] == 1){ // si elle n'est pas terminé
+					redirectUrl('index.php?c=profil&action=confirmLivraison&id='.$_GET['id'].'&o=1');
+				}
+			}
 			$produits = voirProduitByCommande($commande['idCommande']); // tout les produits de la commande
 			// recuperer les produits de la commande    
 			require_once('./vues/v_commande.php');

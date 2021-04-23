@@ -85,6 +85,15 @@ function isConnected(){
     return $r;
 }
 
+function isConnectedandProfil(){
+    $r = false;
+    if((isset($_SESSION['id'])) && (isset($_SESSION['profil']))){
+        $r = true;
+    }
+    return $r;
+}
+
+
 // Permet de retrouver le prix dans le panier pour chaque catégorie
 function totalPrixPanierParCategorie(){
     $allCategorie = allCategorie(); // récupere les catégories

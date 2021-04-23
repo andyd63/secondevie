@@ -12,14 +12,18 @@
   
 
  
-    <section class="padding-top-30 padding-bottom-100 light-gray-bg shopping-cart small-cart">
+    <section class="padding-top-30 padding-bottom-100  shopping-cart small-cart">
       <div class="container">
         <!-- Onglet reservation -->
-        <div class="cart-ship-info margin-top-0">
+        <div class="cart-ship-info margin-top-0 ">
           <div class="row">  
             <div class="col-sm-12">
-            <?php genererError(25);?>
-              <?php if(isConnected()){?>
+            <?php if(isset($_GET['o'])){
+              genererError(31);
+            }else{
+              genererError(25);
+            }
+            if(isConnected()){?>
               <iframe id="inlineFrameExample"
               title="Inline Frame Example"
               width="100%"

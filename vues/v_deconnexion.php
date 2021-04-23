@@ -10,6 +10,8 @@
 	unset($_SESSION['cp']);
 	unset($_SESSION['ville']);
 	unset($_SESSION['livraison']);
+	unset($_SESSION['profil']);
+	unset($_SESSION['imgProfil']);
 	header("Location:index.php");
 ?>
 

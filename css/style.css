@@ -1280,8 +1280,6 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 
 .imageBoutique{
-	width: 100%;
-	max-width: 150px;
 	height: 250px;
 }
 .imageProduitDetail{
@@ -2979,7 +2977,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .small-cart .cart-ship-info form input {
 	width: 70%;
 	float: left;
-	border-right: 0px;
+	height: 40px;
 	margin: 0px;
 }
 

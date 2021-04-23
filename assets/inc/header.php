@@ -25,6 +25,7 @@ if (!(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'
 $configSite = initConfigSite();
 
 
+
 ?>
 
 <!DOCTYPE html>

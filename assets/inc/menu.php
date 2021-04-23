@@ -69,28 +69,34 @@
               
           <?php foreach(allSiteMenuGroupe() as $groupe){ 
                 if(strlen($groupe['nomAction']) < 1){
-                  $param = $groupe['nomControleur'];
+                  $param = $groupe['nomControleur'].'.html';
               }else{
-                  $param = $groupe['nomControleur'].'-'.$groupe['nomAction'];
+				  if($groupe['extension'] == 'php'){
+					  $param = 'index.php?c='.$groupe['nomControleur'].'&action='.$groupe['nomAction'];
+
+				  }else{
+                  $param = $groupe['nomControleur'].'-'.$groupe['nomAction'].'.html';
+				  
+				  }
               }
                  if($groupe['sousMenu'] == 0){  // si y a pas de sous menu
                   if($groupe['connecte'] == 1) // si besoin d'etre co 
                     {
                       if(isset($_SESSION['mail'])){?>
-                        <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
+                        <li> <a class="survol" href="<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li>
                       <?php }
                     }else{}           
                   if(($groupe['connecte'] == 0) &&  (!isset($_SESSION['mail']))){ // que quand tu es déco
-                    ?> <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   if($groupe['connecte'] == 2){ // les deux
-                    ?> <li> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
+                    ?> <li> <a class="survol" href="<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a> </li> <?php 
                   }
                   if(isset($_SESSION['mail'])){
                   if(($groupe['connecte'] == 3) &&  (adminexist($_SESSION['mail']))){ // administration 
                     ?>
 
-                    <li class="dropdown "> <a class="survol" href="<?=$param;?>.html"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
+                    <li class="dropdown "> <a class="survol" href="<?=$param;?>"><?=$groupe['icone'];?> <?php if($groupe["sansTitre"] == '1'){ echo $groupe['name'];} else {?><span class="titreMenuResponsive"><?=$groupe['name'];?></span><?php }?></a>
                     <?php
                   }}
               }else {
@@ -317,9 +323,5 @@
 
     </div>
 
-
-
-
-
-    
   </header>
+  

@@ -5,8 +5,15 @@ require_once ('./classes/configSite.php');
 require_once ('./classes/paramSite.php');
 //require_once ('./classes/photo.php');
 require_once ('./classes/myQuery.php');	
-
+require_once "./modeles/m_profil.php";
 session_start();
+
+if(isset($_SESSION['profil'])){
+    $profil = monProfil($_SESSION['profil']);
+}else{
+    $profil = null;
+}
+
 date_default_timezone_set('Europe/Paris');
 setlocale(LC_TIME, 'fr_FR.utf8','fra');// OK
 

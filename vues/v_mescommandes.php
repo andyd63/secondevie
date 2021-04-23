@@ -47,7 +47,7 @@
                     <td><?= $statutCommande['libStatutCommande'] ?></td>
                     <td><?= date('d/m/Y',$c->date);?></td>
                     <td><a class="btn" href="index.php?c=profil&action=macommande&id=<?= $c->tokenVerification;?>"><i class="fas fa-search-plus fa-lg"></i> Voir commande</a></td>
-                    <td><a class="btn" href="GenerateFacture.php?c=<?= $c->tokenVerification;?>"><i class="far fa-file-pdf fa-lg"></i> Voir facture</a></td>
+                    <td><a class="btn" href="GenerateFacture.php?c=<?= $c->tokenVerification;?>"  target="_blank"><i class="far fa-file-pdf fa-lg"></i> Voir facture</a></td>
                   </tr>
                   <?php }?>
                   

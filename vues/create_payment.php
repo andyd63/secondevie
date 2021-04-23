@@ -6,7 +6,24 @@ $totalPanier = totalPrixPanier();
 $modeLivraison = $_SESSION['livraison']['choix']; // a faire definir par l'utilisateur
 $token = genererChaineAleatoire(50);
 //ajoute une commande avec le token vide et le statut à 0
-ajouter_commande($_SESSION['id'],$totalPanier['totalAvecRemise'],$totalPanier['totalSansRemise'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo = NULL);
+$idPromo = null;
+if(isset($_SESSION['codePromo'])){ 
+  $idPromo = $_SESSION['codePromo']['idCodePromo'];         
+  if($_SESSION['codePromo']['typeCodePromo'] == 0){               
+    if($_SESSION['codePromo']['reducPromo'] == 1){
+     $prixRemise = 0;
+    }else{
+      $prixRemise = ($totalPanier['totalAvecRemise'] + $_SESSION['livraison']['prixLivraison']) * (1-$_SESSION['codePromo']['reducPromo']);
+
+    }
+  }else{
+    $prixRemise =  (($prixRemise = $totalPanier['totalAvecRemise'] + $_SESSION['livraison']['prixLivraison']) - $_SESSION['codePromo']['reducPromo']);
+  }
+}else{  
+  $prixRemise = $totalPanier['totalSansRemise'] + $_SESSION['livraison']['prixLivraison'];
+}
+
+ajouter_commande($_SESSION['id'],$prixRemise,$totalPanier['totalSansRemise'] + $_SESSION['livraison']['prixLivraison'],$_SESSION['panier']->getNbCollection(),$modeLivraison,$token,$idPromo);
 
 //if($_POST['prix'] == 0){?>
 <script> 

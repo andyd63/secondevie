@@ -3,6 +3,13 @@
 require_once "./modeles/m_infosclient.php";
 require_once "./modeles/m_clients.php";
 
+
+// S'il est connecté et qu'il n'a pas de profil
+if(isConnected()){
+	if(!isConnectedandProfil()){
+		include("./vues/v_popupProfil.php");
+	  exit;}}
+	  
 if(isset($_GET['action']))
 	$action = $_GET['action'];
 else

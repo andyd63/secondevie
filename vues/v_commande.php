@@ -14,7 +14,11 @@
     <section class="padding-top-30 padding-bottom-100 light-gray-bg shopping-cart small-cart">
       <div class="container"> 
       <?php if(!isset($error)){?>
-      <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A><hr>
+      <a class="btn btnPrecedent" href="javascript:history.back()"><i class="fas fa-arrow-circle-left"></i> Page Précédente</A>	
+	  <a class="btn btnPrecedent" href="GenerateFacture.php?c=<?= $_GET['id'];?>"  target="_blank"><i class="far fa-file-pdf fa-lg"></i> Voir facture</a>
+  
+        
+      <hr>
       <?php } else{  genererError(17); }?>
         <!-- SHOPPING INFORMATION -->
         <div class="cart-ship-info margin-top-0">
@@ -22,14 +26,22 @@
             <!-- DISCOUNT CODE -->
             <div class="col-sm-7">
             <h6>Information sur la commande #<?= $commande['idCommande'] ;?> </h6>
-            <p>Date de la commande: <span class='enGras'><?= date('d/m/Y', $commande['date']);?></p>
+            <p><i class="far fa-calendar-alt"></i> Date de la commande: <span class='enGras'><?= date('d/m/Y', $commande['date']);?></p>
             <p>Mode de livraison: <span class='enGras'><?= $modeLivraison['libModeLivraison'];?></span></p>
-            <?php if($modeLivraison['idModeLivraison'] == 1) {?>
-            <p>Date de livraison: <?php if($commande['dateLivraison'] != null){?><span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?> <!-- si à domicile -->
+            <?php if($modeLivraison['idModeLivraison'] == 1) {
+              $dateLivraison =$commande['dateLivraison'];
+              $dateLivraison =  date('d-m-Y', strtotime($dateLivraison));?>
+            <p><i class="fas fa-truck"></i> Date de livraison: <?php if($commande['dateLivraison'] != null){?><span class='enGras'><?php echo $dateLivraison;?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?> <!-- si à domicile -->
             <?php }else{?>
-            <p>Date dépot colis: <?php if($commande['dateLivraison'] != null){?><span class='enGras'><?php echo $commande['dateLivraison'];?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?><!-- si relai coli-->
+            <p><i class="far fa-calendar-alt"></i> Date dépot colis: <?php if($commande['dateLivraison'] != null){
+              $dateColis =$commande['dateLivraison'];
+              $dateColis =  date('d-m-Y', strtotime($dateColis));
+              ?><span class='enGras'><?php echo $dateColis;?> à <?php echo $commande['heureLivraison'];?></span></p><?php }?><!-- si relai coli-->
             <?php }?>
-            <?php if($commande['datelivrer'] != null){?><p>Date livré: <span class='enGras'><?php echo $commande['datelivrer'];?></span></p><?php }?><!-- si relai coli-->
+            <?php if($commande['datelivrer'] != null){
+              $dateLiv =$commande['datelivrer'];
+			        $dateLiv =  date('d-m-Y', strtotime($dateLiv));
+              ?><p><i class="fas fa-truck-loading"></i> Date livré: <span class='enGras'><?php echo $dateLiv;?></span></p><?php }?><!-- si relai coli-->
             <br>
 
             <h6>Statut de la commande</h6>

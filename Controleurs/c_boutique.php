@@ -13,7 +13,12 @@ require_once "./modeles/m_sousCategorie.php";
 require_once "./modeles/m_profil.php";
 require_once "./modeles/m_avatar.php";
 
-			
+// S'il est connecté et qu'il n'a pas de profil
+if(isConnected()){
+	if(!isConnectedandProfil()){
+		include("./vues/v_popupProfil.php");
+	  exit;}}
+
 $allEtat = allEtat();
 
 // requete qui prend toutes les catégories
@@ -80,7 +85,7 @@ if(isset($_GET['action'])){
 			$etat = etat($produit['etat']);
 			$moduleDernierProduit = voirModule(3);
 			$taille = taille($produit['taille']);
-			$lesDerniersProduits = voir10DernierProduit($_GET['id']); 
+			$lesDerniersProduits = voir10DernierProduit($profil); 
 			include('vues/v_produitDetail.php');
 			return '';
 		break;
@@ -126,13 +131,7 @@ if(isset($_GET['action'])){
 			$page = 'selection'; // nom de la page
 			unset($_GET['c']);
 			unset($_GET['action']);
-			$mesProfils = mesProfils($_SESSION['id']); // Profil du client
-			if(isset($_GET['profil'])){
-				$profilDef = $_GET['profil'];
-			 }else{
-				$profilDef = $mesProfils[0]['idProfil']; // mets par défaut un id Prouit
-			}
-			$produits = allProduitBySelection($_GET,monProfil($profilDef)); // récupère les produits selon ses infos
+			$produits = allProduitBySelection($_GET,monProfil($_SESSION['profil'])); // récupère les produits selon ses infos
 			$allGenre =  allGenre();	
 			$allSousCategorie = allSousCategorie();	
 			$allTaille = allTaille();	

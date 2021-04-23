@@ -1,3 +1,4 @@
+
 <!--======= FOOTER =========-->
 <footer>
     <div class="container"> 
@@ -62,6 +63,7 @@
   
   <!--======= RIGHTS =========--> 
 <script>
+  $('#imageProfilMenu').attr('src',<?php echo  json_encode($_SESSION['imgProfil']);?>);
   $('#btnResponsive').click(function(e){ 
     if(($('.collapseMobile').is(":visible") == false)){
       $('.collapseMobile').show();

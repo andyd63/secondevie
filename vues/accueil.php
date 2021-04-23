@@ -4,11 +4,24 @@
   <?php include('./assets/inc/header.php');?>
   <?php include('./assets/inc/menu.php');
   require_once('./modeles/m_taille.php');
+  require_once "./modeles/m_profil.php";
   $moduleVendre = voirModule(1);
   $moduleConcept = voirModule(2);
   $moduleDernierProduit = voirModule(3);
-  $lesDerniersProduits = voir10DernierProduit(); 
-  ?>
+  if(isset($_SESSION['profil'])){
+    $profil = monProfil($_SESSION['profil']);
+  }else{
+      $profil = null;
+  }
+  $lesDerniersProduits = voir10DernierProduit($profil); 
+  
+
+// S'il est connecté et qu'il n'a pas de profil
+if(isConnected()){
+if(!isConnectedandProfil()){
+	include("./vues/v_popupProfil.php");
+  exit;}}
+?>
 
   
   <!-- Content -->

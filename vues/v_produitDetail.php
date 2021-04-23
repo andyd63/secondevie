@@ -86,6 +86,7 @@
                    </li>
                   
                   <!-- LIKE -->
+                  <?php if($cli != null){ ?>
                   <li class="col-xs-2"> 
                       <?php if(voirSiFavoris($_SESSION['id'],$produit['id']) == 0) { ?>
                         <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:bl" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris  fa-2x icon-heart"></i></a>
@@ -93,7 +94,7 @@
                            <?php } else { ?>
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur addFavoris fa-2x icon-heart"></i></a>
                             <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur supprFavoris fas fa-2x fa-heart"></i></a>
-                          <?php }} else{?>
+                          <?php }}} else{?>
                           <a class="btn" >Déjà réservé</a><?php }?></li>
                 </ul>
                 

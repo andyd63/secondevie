@@ -41,22 +41,33 @@ return $r[0] ;
 
 
 //function retrouve le dernier produit 
-function voir10DernierProduit($id = ''){
+
+function voir10DernierProduit($infoProfil=null,$id=null){
     $order = array();
+    $conditions = array(); 
     $limit = "limit 3";
-    if($id == ''){
-        $conditions = '';
-    }else {
-    $conditions = array();
-    array_push($conditions, array('nameChamps'=>'id','type'=>'!=','name'=>'id','value'=>$id));
-    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'id','value'=>'2'));
+    if($infoProfil != null){
+    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'d','value'=>$infoProfil["tailleHautProfil"] ,'operator'=>'OR'));
+    array_push($conditions, array('nameChamps'=> 'taille','type'=>'=','name'=>'t' ,'value'=>$infoProfil['tailleBasProfil'] ,'operator'=>'OR'));
+    array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$infoProfil['genre'] ));
+
+    }
+    if($id != null){
+        array_push($conditions, array('nameChamps'=>'id','type'=>'!=','name'=>'id','value'=>$id));
     }
 
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
     array_push($order, array('nameChamps'=>'id','sens'=>'desc'));
     $req =  new myQueryClass('produit',$conditions,$order,'',$limit);
     $r = $req->myQuerySelect();
     return $r;
-    }
+
+
+
+
+	return $r;
+}
+
     
     
 function allProduit(){
@@ -239,6 +250,7 @@ function allProduitBySelection($get,$infoProfil = null){
         array_push($conditions, array('nameChamps'=> 'genre','type'=>'=','name'=>'genre' ,'value'=>$infoProfil['genre'] ));
     }
     
+    array_push($conditions, array('nameChamps'=>'etatDuProduit','type'=>'!=','name'=>'etatDuProduit','value'=>'2'));
     $req =  new myQueryClass('produit',$conditions,$order);
     $r = $req->myQuerySelect();
 	return $r;

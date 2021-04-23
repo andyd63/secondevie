@@ -33,24 +33,19 @@
         <?php if($barFilter){?>
           <!-- BAR DE FILTRE -->
           <div class="col-sm-3">
-            <h6 class="textAlignCenter"> <i class="fas fa-filter"></i> Filtrer </h6><hr>
+            <h6 class="textAlignCenter">
+            <?php if(isset($_SESSION['profil'])){
+                  $avatar = monAvatar($profil['idAvatar']);
+                ?>
+            <img class="img-circle imgAvatar img<?=$profil["idProfil"];?>  imgActive" id="<?=$_SESSION['profil'];?>" width='48px' src="<?=$avatar["lienAvatar"];?>" alt="" > 
+             <?php } ?>
+              <i class="fas fa-filter"></i> Filtrer 
+            </h6><hr>
             <div class="shop-sidebar"> 
             <?php if(isset($page)){;?>
              <!-- Profil -->
-             <h5 class="cursor shop-tittle margin-bottom-30" onclick="changeVisibilite('divCategorie','spanCategorie')">Profil <span class="cursor" id="spanCategorie" ><i  class="fas fa-angle-up"></i></span></h5>
-              <ul style="display:block" id="divProfil" class="shop-cate">
-                <?php 
-               
-                foreach($mesProfils as $profil){
-                  $actif = '';
-                   $avatar = monAvatar($profil['idAvatar']);
-                   if($profilDef == $profil['idProfil']){
-                     $actif = 'imgActive';
-                   }
-                ?>
-                <img class="img-circle imgAvatar img<?=$profil["idProfil"];?> <?=$actif;?> " id="<?=$profil["idProfil"];?>" width='48px' src="<?=$avatar["lienAvatar"];?>" alt="" > 
-                <?php }?>
-                <input class="transparent" type="radio" id="profil" name="profil" value='<?= $profilDef;?>' checked>
+              <ul style="display:block" id="divProfil" class="shop-cate">     
+                <input class="transparent" type="radio" id="profil" name="profil" value='<?=$_SESSION['profil'];?>' checked>
               </ul>
                 <?php }
                  if(!isset($page)){;?>
@@ -240,7 +235,7 @@
                             <a id="linkAddFavoris<?=$produit['id'];?>" href="#."  style="display:none" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris"><i id="<?=$produit['id'];?>"  class="coeur iconeMobile  addFavoris icon-heart"></i></a>
                             <a id="linkSupprFavoris<?=$produit['id'];?>" href="#."  data-toggle="tooltip" data-placement="top" title="Supprimer des favoris"><i id="<?=$produit['id'];?>" class="coeur rouge supprFavoris iconeMobile  fas fa-heart"></i></a>
                           <?php }}?>
-                        </div>
+                          </div>
                      
            
                   <!-- Item Name -->
